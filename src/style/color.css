@@ -1,0 +1,20 @@
+body {
+    --stroke-color: #E2E8F0;
+    --gray-color: #EFF4FB;
+    --notification-color: #DC3545;
+    --primary-color: #3C50E0;
+    --text-color: #64748B;
+    --hover-color: rgba(48, 86, 211, 0.04);
+    --dark-color: #333A48;
+    --dark-text-color-1: #DEE4EE;
+    --dark-text-color-2: #8A99AF;
+    --hover-color-2: rgba(138, 153, 175, 0.2);
+    --alert-color: #F87171;
+    --alert-text-color: #CD5D5D;
+    --alert-background-color: #FEEAEA;
+    --alert-title-color: #BC1C21;
+    --success-background-color: #E1F9F0;
+    --success-color: #34D399;
+    --success-title-color: #004434;
+    --success-text-color: #637381;
+}

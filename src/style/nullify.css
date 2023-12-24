@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+
+ul {  
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0;
+}
+
+li {
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0;
+  display: inline-block;
+}
+
+menu {
+  all: unset;
+}
+
+input {
+  all: unset;
+  display: inline-block;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+select {
+  all: unset;
+}

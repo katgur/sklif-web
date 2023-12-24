@@ -1,0 +1,115 @@
+@font-face {
+    font-family: "PTSans";
+    src: url("../res/PTSans-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("../res/Nunito-Regular.ttf") format('truetype');
+}
+  
+@font-face {
+    font-family: "PTSans Bold";
+    src: url("../res/PTSans-Bold.ttf") format('truetype');
+}
+
+body {
+    font-family: PTSans, sans-serif;
+}
+
+.list {
+  font-family: Nunito, sans-serif;
+}
+
+.field-name {
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.table-column {
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--text-color);
+}
+
+.table-value {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.pagination-font {
+    font-size: 15px;
+    color: var(--text-color);
+    margin: 5px;
+}
+
+.pagination-font__selected {
+    font-size: 15px;
+    border-radius: 3px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 8px;
+    margin: 5px;
+}
+
+.header-font {
+    font-size: 22px;
+    line-height: 30px;
+    color: black;
+}
+
+.text-font {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.title-font {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.error-title {
+    color: var(--alert-title-color);
+    font-weight: 700;
+}
+
+.error-text {
+    color: var(--alert-text-color);
+}
+
+.success-title {
+    color: var(--success-title-color);
+    font-weight: 700;
+}
+
+.success-text {
+    color: var(--success-text-color);
+}
+
+.notify-title {
+    color: #9D5425;
+    font-weight: 700;
+}
+
+.notify-text {
+    color: #D0915C;
+}
+
+.star-font {
+    color: var(--alert-text-color);
+    font-size: x-large;
+}
+
+.error-font {
+    color: var(--alert-text-color);
+    font-size: small;
+}
+
+.phone-number-code-font {
+    color: white;
+    background-color: var(--primary-color);
+    padding: 15px 10px;
+    border-radius: 4px;
+    font-size: large;
+}
