@@ -1,66 +1,82 @@
-import request from './client';
-import { serverUrl, protocol } from '../util/config';
+import LS from './LSRequest';
 
-const url = `${protocol}://${serverUrl}/organization-management/api`;
+const key = 'user';
 
-const getUser = (email) => {
-    var params = {
-        email: email
+const get = async () => {
+    let value = await LS.get();
+    if (value[key] === undefined) {
+        console.log(value);
+        value[key] = [];
+        console.log(value);
+
+        await LS.set(value);
     }
-    return request({ method: 'get', url: url + '/user', params: params })
+    return value;
 }
 
-const changePassword = ({ email, password }) => {
-    var body = { email: email, password: password }
-    return request({ method: 'post', url: url + '/user/password_change', body: body })
+const getUser = async (email) => {
+    const value = await get();
+    console.log(value, email)
+
+    return value[key].find(user => user.email === email);
 }
 
-const changeUserInfo = ({ userInfo, email }) => {
-    return request({ method: 'patch', url: url + '/user/edit_info', body: userInfo, params: { email: email } })
+const changePassword = async () => {
+    return true;
 }
 
-const changeEmail = ({ previousEmail, newEmail }) => {
-    var body = {
-        previousEmail: previousEmail,
-        newEmail: newEmail,
-    }
-    return request({ method: 'patch', url: url + '/user/edit_email', body: body })
+const changeUserInfo = async ({ userInfo, email }) => {
+    let value = await get();
+    const user = { ...value[key].find(user => user.email === email), ...userInfo };
+    value[key] = value[key].filter(user => user.email !== email);
+    value[key].push(user);
+    await LS.set(value);
+    return user;
 }
 
-const changeUserRole = ({ previousRole, newRole, email }) => {
-    var body = {
-        previousRole: previousRole,
-        newRole: newRole,
-    }
-    return request({ method: 'patch', url: url + '/user/edit_role', body: body, params: { email: email } })
+const changeEmail = async ({ previousEmail, newEmail }) => {
+    let value = await get();
+    let user = value[key].find(user => user.email === previousEmail);
+    user.email = newEmail;
+    value[key] = value[key].filter(user => user.email !== previousEmail);
+    value[key].push(user);
+    await LS.set(value);
+    return user;
+}
+
+const changeUserRole = async ({ newRole, email }) => {
+    let value = await get();
+    let user = value[key].find(user => user.email === email);
+    user.role = newRole;
+    value[key] = value[key].filter(user => user.email !== email);
+    value[key].push(user);
+    await LS.set(value);
+    return user;
 }
 
 const postUser = async (user) => {
-    return request({ method: 'post', url: url + '/register/user', body: user });
+    let value = await get();
+    value[key].push(user);
+    await LS.set(value);
+    return user;
 }
 
-const getUsers = ({ organization, filter }) => {
-    var params = {
-        organization: organization
-    }
-    if (filter) {
-        params.filter = filter;
-    }
-    return request({ method: 'get', url: url + '/user/organization', params: params });
+const getUsers = async ({ filter }) => {
+    const value = await get();
+    return value[key].filter(user => user.firstName.includes(filter));
 }
 
-const deleteUser = ({ email }) => {
-    var params = {
-        email: email
-    }
-    return request({ method: 'delete', url: url + '/user/delete', params: params })
+const deleteUser = async ({ email }) => {
+    const value = await get();
+    value[key] = value[key].filter(user => user.email !== email);
+    await LS.set(value);
 }
 
-const postAvatar = ({ email, file }) => {
-    var body = new FormData();
-    body.append('multipartFile', file);
-    return request({ method: 'post', url: url + '/user/upload-avatar', params: { email: email }, body: body })
+const postAvatar = () => {
+    return true;
 }
 
-export { getUser, changePassword, changeUserInfo, changeEmail, 
-    changeUserRole, postUser, getUsers, deleteUser, postAvatar };
+export {
+    getUser, changePassword, changeUserInfo, changeEmail,
+    changeUserRole, postUser, getUsers, deleteUser, postAvatar
+};

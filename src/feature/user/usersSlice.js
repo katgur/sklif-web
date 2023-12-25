@@ -1,48 +1,49 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { postUser, getUsers, deleteUser, postAvatar } from '../../api/userApi'
-import { getUser } from '../../api/userApi';
-import { changeEmail, changePassword, changeUserInfo, changeUserRole } from '../../api/userApi';
+import { postUser, getUsers, deleteUser, postAvatar } from '../../api/mock/userApi'
+import { getUser } from '../../api/mock/userApi';
+import { changeEmail, changePassword, changeUserInfo, changeUserRole } from '../../api/mock/userApi';
 import { middleware } from '../middleware';
 import { mapChangeUserRole, mapUserForClient, mapUserForServer, mapUsersForClient } from '../../util/mapper';
 
 export const addUser = createAsyncThunk('users/addUser', async (params, thunk) => {
-  return await middleware(postUser, params, thunk, { inputMapper: mapUserForServer });
+  return await postUser(params);
 })
 
 export const fetchUsers = createAsyncThunk('users/getUsers', async (params, thunk) => {
-  return await middleware(getUsers, params, thunk, { outputMapper: mapUsersForClient });
+  console.log(params);
+  return await getUsers(params);
 })
 
 export const fetchUser = createAsyncThunk('users/fetch', async (params, thunk) => {
-  return await middleware(getUser, params, thunk, { outputMapper: mapUserForClient });
+  return await getUser(params);
 })
 
 export const setPassword = createAsyncThunk('user/password', async (params, thunk) => {
-  return await middleware(changePassword, params, thunk, {});
+  return await changePassword();
 })
 
 export const updateUserInfo = createAsyncThunk('user/update', async (params, thunk) => {
-  return await middleware(changeUserInfo, params, thunk, {});
+  return await changeUserInfo(params)
 })
 
 export const updateUserRole = createAsyncThunk('user/update_role', async (params, thunk) => {
-  return await middleware(changeUserRole, params, thunk, { inputMapper: mapChangeUserRole });
+  return await changeUserRole(params);
 })
 
 export const updateUserEmail = createAsyncThunk('user/edit_email', async (params, thunk) => {
-  return await middleware(changeEmail, params, thunk, {});
+  return await changeEmail(params);
 })
 
 export const removeUser = createAsyncThunk('user/delete', async (params, thunk) => {
-  return await middleware(deleteUser, params, thunk, {});
+  return await deleteUser(params);
 })
 
 export const uploadAvatar = createAsyncThunk('user/avatar', async (params, thunk) => {
-  return await middleware(postAvatar, params, thunk, {});
+  return await postAvatar();
 })
 
 export const fetchAuthUser = createAsyncThunk('user/auth', async (params, thunk) => {
-  return await middleware(getUser, params, thunk, { outputMapper: mapUserForClient });
+  return await getUser(params);
 })
 
 const usersSlice = createSlice({
@@ -90,10 +91,12 @@ const usersSlice = createSlice({
         state.progress = false;
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
+        console.log(action)
         state.list = action.payload;
         state.progress = false;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
+        console.log(action)
         state.status = {
           message: `Не удалось получить список пользователей${action.payload.message}`,
           code: action.payload.code,
