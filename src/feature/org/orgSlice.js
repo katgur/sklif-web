@@ -1,30 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { deleteOrganization, getOrganization, getOrganizations, patchOrganization, postOrganization } from '../../api/organizationApi';
+import { deleteOrganization, getOrganization, getOrganizations, patchOrganization, postOrganization } from '../../api/mock/organizationApi';
 import { middleware } from '../middleware';
 import { mapUpdateOriganizationForServer } from '../../util/mapper';
 
 export const addOrganization = createAsyncThunk('org/add', async (params, thunk) => {
-    return await middleware(postOrganization, params, thunk, {});
+    return await postOrganization(params);
 })
 
 export const updateOrganization = createAsyncThunk('org/update', async (params, thunk) => {
-    var inputMapper = (params) => {
-        params.organization = mapUpdateOriganizationForServer(params.organization);
-        return params;
-    }
-    return await middleware(patchOrganization, params, thunk, { inputMapper: inputMapper });
+    return await patchOrganization(params);
 })
 
 export const removeOrganization = createAsyncThunk('org/remove', async (params, thunk) => {
-    return await middleware(deleteOrganization, params, thunk, {});
+    return await deleteOrganization(params);
 })
 
 export const fetchOrganizations = createAsyncThunk('org/fetchAll', async (params, thunk) => {
-    return await middleware(getOrganizations, params, thunk, {});
+    return await getOrganizations();
 })
 
 export const fetchOrganization = createAsyncThunk('org/fetch', async (params, thunk) => {
-    return await middleware(getOrganization, params, thunk, {});
+    return await getOrganization(params);
 })
 
 const orgSlice = createSlice({
@@ -59,6 +55,8 @@ const orgSlice = createSlice({
                 state.progress = false;
             })
             .addCase(addOrganization.rejected, (state, action) => {
+                console.log(state, action)
+
                 state.status = {
                     message: `Не удалось добавить организацию${action.payload.message}`,
                     code: action.payload.code,
@@ -95,6 +93,7 @@ const orgSlice = createSlice({
             })
             .addCase(fetchOrganizations.fulfilled, (state, action) => {
                 state.data = action.payload;
+                console.log(action)
                 state.progress = false;
             })
             .addCase(fetchOrganizations.rejected, (state, action) => {
@@ -106,11 +105,6 @@ const orgSlice = createSlice({
             })
             .addCase(fetchOrganization.fulfilled, (state, action) => {
                 var organization = action.payload;
-                var administrator = organization.administratorFullName.split(' ');
-                organization.administratorFirstName = administrator[1];
-                organization.administratorLastName = administrator[0];
-                organization.administratorPatronymic = administrator[2];
-                delete organization.administratorFullName;
                 state.current = organization;
                 state.progress = false;
             })

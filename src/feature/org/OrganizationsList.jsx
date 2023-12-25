@@ -12,6 +12,7 @@ const contextMenu = [
 function OrganizationsList() {
     const organizations = useOrganizations(true);
 
+    console.log(organizations)
     return (
         <>
             <div className="card">
