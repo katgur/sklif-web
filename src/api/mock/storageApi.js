@@ -1,45 +1,85 @@
-import request from './client';
-import { protocol, serverUrl } from '../util/config';
+import LS from './LSRequest';
 
-const url = `${protocol}://${serverUrl}/organization-management/api/s3/local`;
+const key = 'storage';
 
-export const getByteUrl = (key) => url + `/get-byte?key=${key}`
-
-const getBytes = (key) => {
-    return url + '/get-byte?key=' + key
-}
-
-const getFiles = () => {
-    return request({ method: 'get', url: url + '/get' });
-}
-
-const deleteFile = ({ fileNames }) => {
-    return request({ method: 'delete', url: url + '/delete', body: { fileNames: fileNames } });
-}
-
-const postDirectory = ({ path }) => {
-    var params = {
-        path: path
+const get = async () => {
+    let value = await LS.get();
+    if (value[key] === undefined) {
+        value[key] = [];
+        await LS.set(value);
     }
-    return request({ method: 'post', url: url + '/create-folder', params: params })
+    return value;
 }
 
-const postFile = ({ path, files }) => {
-    var body = new FormData();
+const getBytes = () => {
+    return true;
+}
+
+const getFiles = async () => {
+    const value = await get();
+    if (value[key].length === 0) {
+        value[key] = [
+            {
+                key: 'S000001/',
+                date: new Date().toUTCString(),
+                size: 0,
+            },
+            {
+                key: 'S000002/',
+                date: new Date().toUTCString(),
+                size: 0,
+            },
+            {
+                key: 'S000001/000001',
+                date: new Date().toUTCString(),
+                size: 14,
+            },
+            {
+                key: 'S000001/000002',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
+        ]
+        await LS.set(value);
+    }
+    return value[key];
+}
+
+const deleteFile = async ({ fileNames }) => {
+    let value = await get();
+    value[key] = value[key].filter(file => !fileNames.includes(file.key));
+    await LS.set(value);
+}
+
+const postDirectory = async ({ path }) => {
+    let value = await get();
+    value[key].push({
+        key: path + "/",
+        date: new Date().toUTCString(),
+        size: 0,
+    });
+    await LS.set(value);
+}
+
+const postFile = async ({ path, files }) => {
+    console.log(files)
+    let value = await get();
     for (let i = 0; i < files.length; i++) {
-        body.append('multipartFiles', files.item(i));
+        let file = files.item(i)
+        value[key].push({
+            key: path + file.name,
+            date: file.lastMofifiedDate,
+            size: file.size,
+        })
     }
-    var params = {
-        path: path
-    }
-    return request({ method: 'post', url: url + '/upload', body: body, params: params });
+    await LS.set(value);
 }
 
-const deleteDirectory = ({ folderName }) => {
-    var params = {
-        folderName: folderName
-    }
-    return request({ method: 'delete', url: url + '/delete-folder', params: params })
+const deleteDirectory = async ({ folderName }) => {
+    let value = await get();
+    folderName += "/";
+    value[key] = value[key].filter(file => file.key !== folderName);
+    await LS.set(value);
 }
 
 export { getFiles, deleteFile, postDirectory, deleteDirectory, postFile, getBytes };
