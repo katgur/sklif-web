@@ -9,7 +9,7 @@ import CommentSection from './CommentSection';
 import MaskedImage from './MaskedImage';
 import { addComment } from './studiesSlice';
 import { isDirectory } from '../../util/storageUtil';
-import { getBytes } from '../../api/storageApi';
+import { getBytes } from '../../api/mock/storageApi';
 
 const schema = [
     {
@@ -73,7 +73,7 @@ function Viewer() {
 
     var key = window.location.href.split('viewer/')[1];
 
-    console.log(study)
+    console.log(study, info)
     useEffect(() => {
         if (!study) {
             dispatch(fetchStudy({ key: key }));
@@ -94,7 +94,7 @@ function Viewer() {
     var commentSection = {
         text: "Комментарии",
         tabs: [
-            { name: "commentsGeneral", text: "", object: (comments) => <CommentSection comments={study.commentsGeneral} onSave={onSave} /> },
+            { name: "commentsGeneral", text: "", object: (comments) => <CommentSection comments={study.globalComments} onSave={onSave} /> },
         ]
     }
 
@@ -107,9 +107,7 @@ function Viewer() {
             <div className="viewport-with-tools">
                 <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} maskState={maskState} />
                 <div className="viewports">
-                    <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => {
-                        return getBytes(key)
-                    })} />
+                    <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + getBytes(key))} />
                     {maskState.enabled && <MaskedImage path={study.keys[index]} />}
                     {drawerState.enabled &&
                         <SideDataViewer schema={[...schema, commentSection]} entity={info} />

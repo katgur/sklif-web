@@ -1,6 +1,6 @@
 const getMaskMock = {
     data: {
-        key: 'HSE/ai-masks/SE0001/',
+        key: 'https://storage.yandexcloud.net/news-platform-user-images/HSE/ai-masks/7777/IM000005_mask.jpg',
     }
 }
 
@@ -15,7 +15,7 @@ const getPendingResultMock = {
 
 const getResultsMock = {
     data: {
-        key: 'HSE/ai-masks/SE0001/',
+        key: 'https://storage.yandexcloud.net/news-platform-user-images/HSE/ai-masks/7777/IM000005_mask.jpg',
         status: 'READY',
         totalVolume: 3304.25,
         percentage: 100,
@@ -28,15 +28,15 @@ const delay = (ms, mock) => {
 
 let calledPending = false;
 
-const maskMock = (endpoint) => {
+const maskMock = async (endpoint) => {
     if (endpoint === '/get_mask') {
-        return delay(1000, getMaskMock);
+        return await delay(1000, getMaskMock);
     } else if (endpoint === '/get_results') {
         if (calledPending) {
-            return delay(1000, getResultsMock);
+            return await delay(1000, getResultsMock);
         } else {
             calledPending = true;
-            return delay(1000, getPendingResultMock);
+            return await delay(1000, getPendingResultMock);
         }
     }
 }

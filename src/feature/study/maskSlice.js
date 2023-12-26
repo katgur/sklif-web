@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { middleware } from '../middleware';
-import { getMask, getResults } from '../../api/maskApi';
+import { getMask, getResults } from '../../api/mock/maskApi';
 
 export const fecthMask = createAsyncThunk('mask/fetch', async (params, thunk) => {
     if (!thunk.getState().mask.maskRequested) {
@@ -54,7 +54,7 @@ const maskSlice = createSlice({
                         code: 3,
                     }
                     state.result = {
-                        url: "https://storage.yandexcloud.net/news-platform-user-images/" + response.key,
+                        url: response.key,
                         volume: response.totalVolume,
                     }
                 }

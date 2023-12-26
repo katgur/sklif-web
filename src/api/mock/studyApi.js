@@ -4,49 +4,49 @@ const _key = 'study';
 
 const mock = [
     {
-        "key": "HSE/HSE/1234",
-        "imagesCount": 26,
-        "keys": [
-            "string"
+        key: 'S000000/',
+        imagesCount: 26,
+        keys: [
+            'S000000/'
         ],
-        "studyId": "1",
-        "studyDescription": "MIBS HEAD^BRAIN",
-        "studyDate": "20190121",
-        "studyTime": "141805.750000",
-        "seriesDescription": [
-            "T2 cor"
+        studyId: 1,
+        studyDescription: 'MIBS HEAD^BRAIN',
+        studyDate: 20190121,
+        studyTime: 141805.750000,
+        seriesDescription: [
+            'T2 cor'
         ],
-        "modality": [
-            "MR"
+        modality: [
+            'MR'
         ],
-        "dataType": "",
-        "patientId": "048-001-0024477",
-        "patientName": "Dmitrienko G.A.",
-        "birthDate": "19990923",
-        "patientAge": "019Y",
-        "patientWeight": "70",
-        "patientAddress": "",
-        "country": "",
-        "region": "",
-        "telephone": "",
-        "occupation": "",
-        "patientComments": [
-            ""
+        dataType: '',
+        patientId: '048-001-0024477',
+        patientName: 'Dmitrienko G.A.',
+        birthDate: 19990923,
+        patientAge: '019Y',
+        patientWeight: 70,
+        patientAddress: '',
+        country: '',
+        region: '',
+        telephone: '',
+        occupation: '',
+        patientComments: [
+            ''
         ],
-        "physicianName": "",
-        "physicianAddress": "",
-        "physicianPhoneNumbers": "",
-        "departmentName": "",
-        "performingPhysician": "Demin D.S.",
-        "operatorName": "Kovaleva V.K.",
-        "reviewDate": "",
-        "reviewTime": "",
-        "reviewerName": "",
-        "textComments": [
-            ""
+        physicianName: '',
+        physicianAddress: '',
+        physicianPhoneNumbers: '',
+        departmentName: '',
+        performingPhysician: 'Demin D.S.',
+        operatorName: 'Kovaleva V.K.',
+        reviewDate: '',
+        reviewTime: '',
+        reviewerName: '',
+        textComments: [
+            ''
         ],
-        "globalComments": [
-            "Comments that have been added manualy"
+        globalComments: [
+            'Comments that have been added manualy'
         ]
     }
 ]
@@ -76,10 +76,10 @@ const getById = async ({ key }) => {
 
 const postComment = async ({ key, comment }) => {
     const value = await get();
-    const studyIndex = value[_key].indexOf(study => study.key === key);
-    value[_key][studyIndex].globalComments.push(comment);
+    const study = value[_key].find(study => study.key === key);
+    study.globalComments.push(comment);
     await LS.set(value);
-    return value[_key][studyIndex];
+    return study;
 }
 
 const getInfo = async ({ key }) => {

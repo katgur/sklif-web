@@ -102,6 +102,7 @@ const studiesSlice = createSlice({
                 state.progress = true;
             })
             .addCase(addComment.rejected, (state, action) => {
+                console.log(action)
                 state.progress = false;
                 state.status = {
                     message: `Не удалось добавить комментарий${action.payload.message}`,
