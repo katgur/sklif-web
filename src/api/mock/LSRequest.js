@@ -13,7 +13,6 @@ const set = async (value) => await delay(
 const get = async () => await delay(
     () => {
         const value = JSON.parse(localStorage.getItem(key));
-        console.log(value)
         if (!value) {
             localStorage.setItem(key, JSON.stringify({}));
             return {};

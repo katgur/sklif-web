@@ -33,7 +33,7 @@ function AuthorizedPage() {
 
     return (
         <>
-            <LocalAdmin />
+            <Client />
             {/* {data && data.authorities.includes("ADMIN_GLOBAL") && <GlobalAdmin />} */}
             {/* {data && data.authorities.includes("ADMIN_LOCAL") && <LocalAdmin />} */}
             {/* {data && data.authorities.includes("DOCTOR") && <Client accessToken={data.accessToken} />} */}

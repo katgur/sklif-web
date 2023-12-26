@@ -1,4 +1,5 @@
 import LS from './LSRequest';
+import mock from './assets/IM000005.dcm'
 
 const key = 'storage';
 
@@ -11,8 +12,21 @@ const get = async () => {
     return value;
 }
 
+const getMockUrl = () => {
+    return new Promise((resolve, reject) => {
+        fetch(mock)
+            .then((response) => response.blob())
+            .then((blob) => URL.createObjectURL(blob))
+            .then((url) => resolve(url))
+            .catch((err) => reject(err));
+    })
+}
+
+const url = await getMockUrl();
+
 const getBytes = () => {
-    return true;
+    return url
+
 }
 
 const getFiles = async () => {

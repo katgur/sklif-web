@@ -1,21 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { middleware } from '../middleware';
-import { getAll, getById, getInfo, postComment } from '../../api/studyApi';
+import { getAll, getById, getInfo, postComment } from '../../api/mock/studyApi';
 
 export const fetchStudies = createAsyncThunk('studies/fetch', async (params, thunk) => {
-    return middleware(getAll, params, thunk, {});
+    return  await getAll();
 })
 
 export const fetchStudy = createAsyncThunk('study/fetch', async (params, thunk) => {
-    return middleware(getById, params, thunk, {});
+    return await getById(params);
 })
 
 export const fetchInfo = createAsyncThunk('info/fetch', async (params, thunk) => {
-    return middleware(getInfo, params, thunk, {});
+    return await getInfo(params);
 })
 
 export const addComment = createAsyncThunk('study/comment', async (params, thunk) =>{
-    return middleware(postComment, params, thunk, {});
+    return await postComment(params);
 })
 
 const studiesSlice = createSlice({
@@ -69,6 +69,7 @@ const studiesSlice = createSlice({
                 state.progress = true;
             })
             .addCase(fetchStudy.rejected, (state, action) => {
+                console.log(action)
                 state.status = {
                     message: `Не удалось получить данные исследования${action.payload.message}`,
                     code: action.payload.code,

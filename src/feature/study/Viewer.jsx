@@ -73,6 +73,7 @@ function Viewer() {
 
     var key = window.location.href.split('viewer/')[1];
 
+    console.log(study)
     useEffect(() => {
         if (!study) {
             dispatch(fetchStudy({ key: key }));
@@ -107,7 +108,7 @@ function Viewer() {
                 <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} maskState={maskState} />
                 <div className="viewports">
                     <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => {
-                        return 'wadouri:' + getBytes(key)
+                        return getBytes(key)
                     })} />
                     {maskState.enabled && <MaskedImage path={study.keys[index]} />}
                     {drawerState.enabled &&
