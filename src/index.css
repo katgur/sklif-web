@@ -501,32 +501,6 @@ a:active {
     color: white;
 }
 
-.drawer1 {
-    background-color: var(--dark-color);
-    color: var(--dark-text-color-2);
-    display: flex;
-    flex-flow: column;
-    flex: 1;
-    height: 85vh;
-}
-
-.drawer1>li {
-    margin: 12px 25px;
-}
-
-.drawer1>li>span {
-    background: url('./res/chevron-down.svg') no-repeat 98%;
-    border-radius: 3px;
-    padding: 11px;
-    cursor: pointer;
-    display: flex;
-    gap: 5px;
-}
-
-.drawer1>li>span:hover {
-    background-color: var(--hover-color-2);
-}
-
 .viewport-with-tools {
     flex: 1;
 }

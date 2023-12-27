@@ -45,3 +45,11 @@ a:link, a:visited, a:hover, a:active {
 select {
   all: unset;
 }
+
+details {
+  overflow: hidden;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}

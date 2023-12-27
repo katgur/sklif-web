@@ -11,32 +11,31 @@ function AuthorizedPage() {
     const data = useSelector(selectData);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     var getNewToken = async (refresh_token) => {
-    //         return await refreshToken(refresh_token);
-    //     }
+    useEffect(() => {
+        var getNewToken = async (refresh_token) => {
+            return await refreshToken(refresh_token);
+        }
 
-    //     if (!data) {
-    //         var refresh_token = localStorage.getItem('srt');
-    //         if (!refresh_token) {
-    //             window.location.href = `${protocol}://${clientUrl}/login`;
-    //         }
-    //         getNewToken(refresh_token)
-    //             .then(response => {
-    //                 dispatch(setData(response.data));
-    //             })
-    //             .catch(error => {
-    //                 window.location.href = `${protocol}://${clientUrl}/login`;
-    //             });
-    //     }
-    // }, [data, dispatch])
+        if (!data) {
+            var refresh_token = localStorage.getItem('srt');
+            if (!refresh_token) {
+                window.location.href = `${protocol}://${clientUrl}/login`;
+            }
+            getNewToken(refresh_token)
+                .then(response => {
+                    dispatch(setData(response.data));
+                })
+                .catch(error => {
+                    window.location.href = `${protocol}://${clientUrl}/login`;
+                });
+        }
+    }, [data, dispatch])
 
     return (
         <>
-            <Client />
-            {/* {data && data.authorities.includes("ADMIN_GLOBAL") && <GlobalAdmin />} */}
-            {/* {data && data.authorities.includes("ADMIN_LOCAL") && <LocalAdmin />} */}
-            {/* {data && data.authorities.includes("DOCTOR") && <Client accessToken={data.accessToken} />} */}
+            {data && data.authorities.includes("ADMIN_GLOBAL") && <GlobalAdmin />}
+            {data && data.authorities.includes("ADMIN_LOCAL") && <LocalAdmin />}
+            {data && data.authorities.includes("DOCTOR") && <Client accessToken={data.accessToken} />}
         </>
     )
 }

@@ -9,7 +9,8 @@ const authSlice = createSlice({
             code: undefined,
         },
         data: {
-            email: 'mail@mail.com'
+            email: 'mail@mail.com',
+            authorities: 'ADMIN_GLOBAL'
         },
     },
     reducers: {

@@ -48,6 +48,23 @@ const drawerMenu = [
         text: "Добавить", route: "/home/add_organization", icon: addOrgIcon
       }
     ]
+  },
+  {
+    text: "Профиль", icon: profileIcon, options: [
+      {
+        text: "Перейти", route: "/home/profile", icon: profileIcon
+      },
+      {
+        text: "Редактировать", route: "/home/settings", icon: settingsIcon
+      }
+    ]
+  },
+  {
+    text: "Настройки", icon: settingsIcon, options: [
+      {
+        text: "Профиль", route: "/home/settings", icon: settingsIcon
+      },
+    ]
   }
 ]
 

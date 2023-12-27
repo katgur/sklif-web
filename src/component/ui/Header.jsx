@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import useAuthUser from '../../hook/useAuthUser';
 import Modal from './Modal';
 import { protocol, serverUrl } from '../../util/config';
-import useWindowSize from '../../hook/useWindowSize';
+import useWindowWidth from './hook/useWindowSize';
 
 const burgerIcon = (
     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@ function Header({ menu, className }) {
     const [modalState, setModalState] = useState({ enabled: false });
     const [profileModalState, setProfileModalState] = useState({ enabled: false });
     const avatarUrl = (user && user.avatarURL) || defaultAvatar;
-    const windowSize = useWindowSize();
+    const windowSize = useWindowWidth();
 
     const onMenuClick = (e) => {
         const rect = e.target.getBoundingClientRect();

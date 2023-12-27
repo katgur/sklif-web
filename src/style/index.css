@@ -112,58 +112,6 @@ header li svg {
     background-color: var(--hover-color);
 }
 
-.drawer {
-    background-color: var(--dark-color);
-    color: var(--dark-text-color-2);
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-}
-
-.drawer > h1 {
-    color: white;
-    display: inline-block;
-    margin: 40px;
-}
-
-.drawer > li {
-    margin: 0 25px;
-}
-
-.drawer > li > span {
-    border-radius: 3px;
-    padding: 11px;
-}
-
-.drawer > li > span {
-    display: flex;
-    gap: 5px;
-}
-
-.last {
-    margin-left: auto;
-}
-
-.drawer > li > span:hover {
-    background-color: var(--hover-color-2);
-    cursor: pointer;
-}
-
-.drawer ul {
-    margin-left: 45px;
-    margin-top: 15px;
-}
-
-.drawer ul > li {
-    display: block;
-    clear: right;
-    margin: 10px 0;
-}
-
-.drawer ul > li:hover {
-    color: white;
-}
-
 form > div {
     display: flex;
     flex-flow: column;
