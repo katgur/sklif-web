@@ -1,10 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import useAuthUser from '../../../hook/useAuthUser';
-import Modal from '../Modal';
-import { protocol, serverUrl } from '../../../util/config';
-import useWindowWidth from '../hook/useWindowSize';
+import './Header.css'
+import SearchBar from './SearchBar.jsx';
+import Popup from '../Popup.jsx';
 
 const burgerIcon = (
     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,64 +12,31 @@ const burgerIcon = (
     </svg>
 )
 
-const maximized = (menu, avatarUrl, onProfileIconClick, modalState, onLogoutButtonClick) => (
-    <>
-
-    </>
-)
-
-function Header() {
-    const defaultAvatar = "https://pasrc.princeton.edu/sites/g/files/toruqf431/files/styles/3x4_750w_1000h/public/2021-03/blank-profile-picture_0.jpg?itok=YcR6ckN3"
-    const user = useAuthUser();
-    const [modalState, setModalState] = useState({ enabled: false });
-    const [profileModalState, setProfileModalState] = useState({ enabled: false });
-    const avatarUrl = (user && user.avatarURL) || defaultAvatar;
-    const windowWidth = useWindowWidth();
-
-    const onMenuClick = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        setModalState({
-            enabled: !modalState.enabled,
-            coords: {
-                right: rect.width - rect.width / 2,
-                top: rect.y + window.scrollY + rect.height
-            }
-        });
-    }
-
-    var onProfileIconClick = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        setProfileModalState(
-            {
-                coords: {
-                    left: rect.x - (rect.width / 2),
-                    top: rect.y + window.scrollY + rect.height
-                },
-                enabled: !profileModalState.enabled
-            }
-        )
-    }
-
-    var onModalClick = () => {
-        setModalState({
-            enabled: false,
-            coords: {},
-        })
-    }
-
-    var onLogoutButtonClick = () => {
-        window.location.href = `${protocol}://${serverUrl}:8080/logout`;
-    }
+function Header({ user, onSearchClick, onLogoutButtonClick }) {
+    const [popupPoint, setPopupPoint] = useState(null);
 
     return (
         <header>
-            <nav>
-                <img onClick={onProfileIconClick} src={avatarUrl} className="header-avatar" alt="avatar" />
-
-            </nav>
-            <Modal state={modalState} className="header-context-menu">
-                <li onClick={onLogoutButtonClick}>Выход</li>
-            </Modal>
+            <div className='header__user'>
+                <p className='header__user-name'>
+                    <span className='header__title'>
+                        {user.name}
+                    </span>
+                    <span className='header__subtitle'>
+                        {user.role}
+                    </span>
+                </p>
+                <span onClick={(e) => setPopupPoint(!popupPoint ? { x: e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width / 2, y: e.target.getBoundingClientRect().bottom } : null)}>
+                    <img src={user.avatarURL} className="header__avatar" alt="Avatar" />
+                </span>
+            </div>
+            <SearchBar onSearchClick={onSearchClick} />
+            <Popup point={popupPoint}>
+                <ul className='header__popup header__text'>
+                    <li className='header__item'>Профиль</li>
+                    <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>
+                </ul>
+            </Popup>
         </header>
     );
 }

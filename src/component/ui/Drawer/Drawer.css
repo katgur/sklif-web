@@ -3,6 +3,11 @@
     src: url('../../../res/font/Inter-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Inter Light';
+    src: url('../../../res/font/Inter-Light.ttf');
+}
+
 .drawer {
     background-color: #1C2434;
     color: #8A99AF;
@@ -11,7 +16,8 @@
     height: 100%;
     padding: 40px 20px;
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Light', sans-serif;
+    letter-spacing: 0.05em;
 }
 
 .drawer__logo {
@@ -30,6 +36,7 @@
 }
 
 .drawer__title {
+    color: #DEE4EE;
     margin-top: 8px;
     padding: 8px 12px;
     padding-right: 48px;
@@ -62,7 +69,7 @@
 }
 
 .drawer__link:hover {
-    color: white;
+    color: #DEE4EE;
 }
 
 .drawer__link:first-child {

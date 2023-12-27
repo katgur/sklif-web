@@ -1,5 +1,5 @@
 import useUsers from '../../hook/useUsers';
-import SearchBar from '../../component/SearchBar';
+import SearchBar from '../../component/SearchBar.jsx';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 

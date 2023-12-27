@@ -67,27 +67,6 @@ header li svg {
     position: absolute;
 }
 
-.header-context-menu {
-    background-color: white;
-    color: var(--text-color);
-    border-radius: 5px;
-    box-shadow: 3px 2px 3px var(--stroke-color);
-}
-
-.header-context-menu > li {
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.header-context-menu > li:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
 .list-context-menu {
     background-color: white;
     color: var(--text-color);
