@@ -4,8 +4,8 @@
 }
 
 .drawer {
-    background-color: var(--dark-color);
-    color: var(--dark-text-color-2);
+    background-color: #1C2434;
+    color: #8A99AF;
     display: flex;
     flex-flow: column;
     height: 100%;
@@ -41,7 +41,7 @@
 }
 
 .drawer__title:hover {
-    background-color: var(--hover-color-2);
+    background-color: #333A48;
 }
 
 .drawer__title::after {
