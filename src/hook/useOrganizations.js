@@ -9,6 +9,7 @@ function useOrganizations(isGlobal) {
     const search = useRef();
     const params = useParams();
 
+    console.log(organizations)
     useEffect(() => {
         if (!isGlobal) {
             return;

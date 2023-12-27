@@ -10,6 +10,7 @@ function MaskedImage({ path }) {
         dispatch(fecthMask(path));
     }
 
+    console.log(result)
     return (
         <div className="masked-image">
             {!result.url &&
@@ -18,7 +19,7 @@ function MaskedImage({ path }) {
                 </div>
             }
             {result.url &&
-                <img src={result.url + path.split('/').slice(-1)[0] + "_mask.jpg"} style={{ objectFit: "contain", height: "85vh" }} alt="mask" />
+                <img src={result.url} style={{ objectFit: "contain", height: "85vh" }} alt="mask" />
             }
         </div>
     )

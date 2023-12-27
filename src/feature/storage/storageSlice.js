@@ -1,25 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { deleteDirectory, deleteFile, getFiles, postDirectory, postFile } from '../../api/storageApi';
+import { deleteDirectory, deleteFile, getFiles, postDirectory, postFile } from '../../api/mock/storageApi';
 import { middleware } from '../middleware';
 
 export const fetchFiles = createAsyncThunk('files/get', async (params, thunk) => {
-    return await middleware(getFiles, params, thunk, {});
+    return await getFiles();
 })
 
 export const addFile = createAsyncThunk('file/add', async (params, thunk) => {
-    return await middleware(postFile, params, thunk, {});
+    return await postFile(params);
 })
 
 export const removeFile = createAsyncThunk('file/delete', async (params, thunk) => {
-    return await middleware(deleteFile, params, thunk, {});
+    return await deleteFile(params);
 })
 
 export const addDirectory = createAsyncThunk('file/dir', async (params, thunk) => {
-    return await middleware(postDirectory, params, thunk, {});
+    return await postDirectory(params);
 })
 
 export const removeDirectory = createAsyncThunk('dir/delete', async (params, thunk) => {
-    return await middleware(deleteDirectory, params, thunk, {});
+    return await deleteDirectory(params);
 })
 
 const storageSlice = createSlice({
@@ -51,6 +51,7 @@ const storageSlice = createSlice({
                 state.progress = false;
             })
             .addCase(fetchFiles.rejected, (state, action) => {
+                console.log(action)
                 state.status = {
                     message: `Не удалось получить список файлов${action.payload.message}`,
                     code: action.payload.code,
@@ -65,6 +66,8 @@ const storageSlice = createSlice({
                 state.progress = false;
             })
             .addCase(addFile.rejected, (state, action) => {
+                console.log(action)
+
                 state.status = {
                     message: `Не удалось загрузить файл${action.payload.message}`,
                     code: action.payload.code,

@@ -150,7 +150,7 @@ function UploadFileForm() {
                 <label ref={dropArea} className="text-font custom-file-upload" htmlFor="file-upload">
                     Нажмите для выбора или перетащите файлы в выделенную область
                 </label>
-                <input id="file-upload" onChange={() => onFileUploaded(inputField.current.files)} ref={inputField} type="file" multiple accept=".dcm,.dicom" />
+                <input id="file-upload" onChange={() => onFileUploaded(inputField.current.files)} ref={inputField} type="file" multiple />
             </div>
         </>
     )

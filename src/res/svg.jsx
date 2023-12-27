@@ -1,7 +1,7 @@
 export const studyIcon = (
   <svg width="24" height="24" viewBox="-2.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g id="ui-gambling-website-lined-icnos-casinoshunter" transform="translate(-476.000000, -284.000000)" fill="#64748B" fill-rule="nonzero">
+    <g id="icons" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <g id="ui-gambling-website-lined-icnos-casinoshunter" transform="translate(-476.000000, -284.000000)" fill="#64748B" fillRule="nonzero">
         <g id="square-filled" transform="translate(50.000000, 120.000000)">
           <path d="M447.017693,164 C447.504179,164 447.973985,164.177317 448.339153,164.498753 L452.32146,168.004143 C452.752813,168.383838 453,168.930731 453,169.505391 L453,193 C453,194.656854 451.656854,196 450,196 L429,196 C427.343146,196 426,194.656854 426,193 L426,167 C426,165.343146 427.343146,164 429,164 L447.017693,164 Z M446,166 L429,166 C428.447715,166 428,166.447715 428,167 L428,193 C428,193.552285 428.447715,194 429,194 L450,194 C450.552285,194 451,193.552285 451,193 L451,172 L448.659002,172 C447.198488,172 446.085129,170.710688 446.004662,169.160652 L446,168.980703 L446,166 Z M451,169.505391 L448,166.865 L448,168.980703 C448,169.535984 448.292436,169.934644 448.585808,169.992691 L448.659002,170 L451,170 L451,169.505391 Z" id="paper">
           </path>
@@ -90,10 +90,10 @@ export const uploadIcon = (
     <g id="Complete">
       <g id="upload">
         <g>
-          <path d="M3,12.3v7a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2v-7" fill="none" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+          <path d="M3,12.3v7a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2v-7" fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
           <g>
-            <polyline data-name="Right" fill="none" id="Right-2" points="7.9 6.7 12 2.7 16.1 6.7" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-            <line fill="none" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="12" x2="12" y1="16.3" y2="4.8" />
+            <polyline data-name="Right" fill="none" id="Right-2" points="7.9 6.7 12 2.7 16.1 6.7" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+            <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="12" x2="12" y1="16.3" y2="4.8" />
           </g>
         </g>
       </g>
@@ -149,10 +149,10 @@ export const fileIcon = (
           <g id="F-File">
               <g id="Text">
                   <g>
-                      <path d="M18,22H6a2,2,0,0,1-2-2V4A2,2,0,0,1,6,2h7.1a2,2,0,0,1,1.5.6l4.9,5.2A2,2,0,0,1,20,9.2V20A2,2,0,0,1,18,22Z" fill="none" id="File" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
-                      <line fill="none" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" x1="7.9" x2="16.1" y1="17.5" y2="17.5" />
-                      <line fill="none" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" x1="7.9" x2="16.1" y1="13.5" y2="13.5" />
-                      <line fill="none" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" x1="8" x2="13" y1="9.5" y2="9.5" />
+                      <path d="M18,22H6a2,2,0,0,1-2-2V4A2,2,0,0,1,6,2h7.1a2,2,0,0,1,1.5.6l4.9,5.2A2,2,0,0,1,20,9.2V20A2,2,0,0,1,18,22Z" fill="none" id="File" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" />
+                      <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" x1="7.9" x2="16.1" y1="17.5" y2="17.5" />
+                      <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" x1="7.9" x2="16.1" y1="13.5" y2="13.5" />
+                      <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" x1="8" x2="13" y1="9.5" y2="9.5" />
                   </g>
               </g>
           </g>
@@ -164,7 +164,7 @@ export const folderIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <g id="Complete">
           <g id="folder">
-              <path d="M2,18.8V5.3A2.3,2.3,0,0,1,4.3,3H9.6a1.1,1.1,0,0,1,.8.4l2.8,3.2a1.1,1.1,0,0,0,.8.4h5.6A2.2,2.2,0,0,1,22,9.2v9.7A2.2,2.2,0,0,1,19.8,21H4.2A2.2,2.2,0,0,1,2,18.8Z" fill="none" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
+              <path d="M2,18.8V5.3A2.3,2.3,0,0,1,4.3,3H9.6a1.1,1.1,0,0,1,.8.4l2.8,3.2a1.1,1.1,0,0,0,.8.4h5.6A2.2,2.2,0,0,1,22,9.2v9.7A2.2,2.2,0,0,1,19.8,21H4.2A2.2,2.2,0,0,1,2,18.8Z" fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" />
           </g>
       </g>
   </svg>
@@ -172,11 +172,11 @@ export const folderIcon = (
 
 export const deleteIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 12V17" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M14 12V17" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M4 7H20" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M10 12V17" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M14 12V17" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4 7H20" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 

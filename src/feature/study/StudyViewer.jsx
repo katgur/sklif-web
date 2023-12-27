@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Viewport from "./Viewport";
 import DataViewer from "../../component/ui/DataViewer";
 import { useNavigate } from 'react-router-dom';
-import { getBytes } from "../../api/storageApi";
+import { getBytes } from "../../api/mock/storageApi";
 
 const schema = [
     {

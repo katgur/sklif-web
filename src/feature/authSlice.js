@@ -8,7 +8,9 @@ const authSlice = createSlice({
             message: undefined,
             code: undefined,
         },
-        data: undefined,
+        data: {
+            email: 'mail@mail.com'
+        },
     },
     reducers: {
         resetStatus: (state, action) => {

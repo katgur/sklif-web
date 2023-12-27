@@ -13,6 +13,7 @@ function useUsers() {
     const search = useRef();
     const user = useAuthUser();
 
+    console.log(user);
     useEffect(() => {
         if (!user) {
             return;
@@ -20,8 +21,10 @@ function useUsers() {
         if (users && params.search === search.current) {
             return;
         }
+        console.log(params)
+
         if (!params.search) {
-            dispatch(fetchUsers({ organization: user.organization }));
+            dispatch(fetchUsers({ organization: user.organization, filter: "" }));
             search.current = params.search;
             return;
         }
