@@ -32,37 +32,40 @@ const drawerMenu = [
   {
     text: "Пользователи", icon: usersIcon, options: [
       {
-        text: "Просмотреть всех", route: "/home/users", icon: viewUsersIcon
+        text: "Просмотреть всех", route: "/home/users"
       },
       {
-        text: "Добавить", route: "/home/add_user", icon: addUserIcon
+        text: "Добавить", route: "/home/add_user"
       }
     ]
   },
   {
     text: "Организации", icon: orgsIcon, options: [
       {
-        text: "Просмотреть все", route: "/home/organizations", icon: viewOrgsIcon
+        text: "Просмотреть все", route: "/home/organizations"
       },
       {
-        text: "Добавить", route: "/home/add_organization", icon: addOrgIcon
+        text: "Добавить", route: "/home/add_organization",
       }
     ]
   },
   {
     text: "Профиль", icon: profileIcon, options: [
       {
-        text: "Перейти", route: "/home/profile", icon: profileIcon
+        text: "Перейти", route: "/home/profile"
       },
       {
-        text: "Редактировать", route: "/home/settings", icon: settingsIcon
+        text: "Редактировать", route: "/home/settings"
+      },
+      {
+        text: "Выйти", route: "/logout"
       }
     ]
   },
   {
     text: "Настройки", icon: settingsIcon, options: [
       {
-        text: "Профиль", route: "/home/settings", icon: settingsIcon
+        text: "Профиль", route: "/home/settings"
       },
     ]
   }

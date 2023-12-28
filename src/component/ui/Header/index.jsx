@@ -15,6 +15,10 @@ const burgerIcon = (
 function Header({ user, onSearchClick, onLogoutButtonClick }) {
     const [popupPoint, setPopupPoint] = useState(null);
 
+    const onProfileIconClick = (e) => {
+        setPopupPoint(!popupPoint ? { x: e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width / 2, y: e.target.getBoundingClientRect().bottom } : null);
+    }
+    
     return (
         <header>
             <div className='header__user'>
@@ -26,7 +30,7 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
                         {user.role}
                     </span>
                 </p>
-                <span onClick={(e) => setPopupPoint(!popupPoint ? { x: e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width / 2, y: e.target.getBoundingClientRect().bottom } : null)}>
+                <span onClick={onProfileIconClick}>
                     <img src={user.avatarURL} className="header__avatar" alt="Avatar" />
                 </span>
             </div>
