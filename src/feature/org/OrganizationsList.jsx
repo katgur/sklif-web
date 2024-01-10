@@ -1,7 +1,6 @@
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet } from 'react-router-dom';
 import useOrganizations from '../../hook/useOrganizations';
-import SearchBar from '../../component/SearchBar.jsx';
 
 const schema = ["Почта", "Название", "Имя администратора", "Телефон", "Адрес"];
 const contextMenu = [
@@ -15,9 +14,6 @@ function OrganizationsList() {
     console.log(organizations)
     return (
         <>
-            <div className="card">
-                <SearchBar path='organizations' />
-            </div>
             <div className="content__home-page-table">
                 {
                     organizations &&

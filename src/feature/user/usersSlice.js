@@ -49,7 +49,17 @@ export const fetchAuthUser = createAsyncThunk('user/auth', async (params, thunk)
 const usersSlice = createSlice({
   name: 'users',
   initialState: {
-    list: undefined,
+    list: [
+      {
+        "email": "lrezunic@gmail.com",
+        "firstName": "Людмила",
+        "lastName": "Резуник",
+        "patronymic": "Александровна",
+        "phoneNumber": "+79129329178",
+        "role": "DOCTOR",
+        "organization": "HSE"
+      }
+    ],
     current: undefined,
     auth: undefined,
     status: {

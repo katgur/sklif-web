@@ -1,5 +1,4 @@
 import useUsers from '../../hook/useUsers';
-import SearchBar from '../../component/SearchBar.jsx';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
@@ -28,9 +27,6 @@ function UsersList({ isGlobal }) {
 
     return (
         <div className="content__home-page-table">
-            <div className="card toolbar-wrapper">
-                <SearchBar path="users" />
-            </div>
             {
                 users &&
                 <SortableTableViewer

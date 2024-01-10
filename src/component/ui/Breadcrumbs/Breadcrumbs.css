@@ -1,0 +1,31 @@
+.breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.breadcrumbs__title {
+    font-size: 26px;
+    line-height: 30px;
+}
+
+.breadcrumbs__list {
+    font-size: 16px;
+    margin: 1rem 0;
+}
+
+.breadcrumbs__link {
+    color: #64748B;
+}
+
+.breadcrumbs__link:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs__link--active {
+    color: #3C50E0;
+}
+
+.breadcrumbs__divider {
+    color: #64748B;
+}

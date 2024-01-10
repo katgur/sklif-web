@@ -11,7 +11,7 @@ function DrawerLayout({ drawerMenu, user, logo, children }) {
                 <Drawer menu={drawerMenu} logo={logo} />
             </div>
             <Header user={user} />
-            <div>
+            <div className='layout__content'>
                 {children}
             </div>
         </div>
