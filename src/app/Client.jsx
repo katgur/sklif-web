@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Viewer from '../feature/study/Viewer';
 import StudiesList from '../feature/study/StudiesList';
 import ProgressBar from '../component/ui/ProgressBar';
@@ -6,9 +6,11 @@ import ProfileViewer from '../feature/user/ProfileViewer';
 import LinkProvider from '../feature/study/LinkProvider';
 import UploadFileForm from '../feature/storage/UploadFileForm';
 import StudyViewer from '../feature/study/StudyViewer';
-import Welcome from '../component/Welcome';
-import Header from '../component/ui/Header';
+import HomePage from '../page/HomePage.jsx';
+import NotFoundPage from '../page/ui/NotFoundPage.jsx';
+import { Link } from 'react-router-dom';
 import { profileIcon, studyIcon } from '../res/svg';
+import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 
 import * as cornerstone from "cornerstone-core";
 import * as cornerstoneMath from "cornerstone-math";
@@ -57,42 +59,89 @@ const initCornerstone = (accessToken) => {
     });
 }
 
-const headerMenu = [
+const drawerMenu = [
     {
-        text: "Профиль", icon: profileIcon, route: "/home/profile", hasNotification: false
+        text: "Профиль", icon: profileIcon, options: [
+            {
+                text: "Перейти", route: "/home/profile"
+            },
+            {
+                text: "Выйти", route: "/logout"
+            }
+        ]
     },
     {
-        text: "Исследования", icon: studyIcon, route: "/home/studies", hasNotification: false
-    }
+        text: "Исследования", icon: studyIcon, options: [
+            {
+                text: "Список", route: "/home/studies"
+            },
+            {
+                text: "Зарузить", route: "/home/upload"
+            }
+        ]
+    },
 ]
 
 const homePage = (
     <>
         <ProgressBar />
-        <Header avatarUrl="https://pasrc.princeton.edu/sites/g/files/toruqf431/files/styles/3x4_750w_1000h/public/2021-03/blank-profile-picture_0.jpg?itok=YcR6ckN3" menu={headerMenu} />
-        <div className="basic-layout__content">
-            <Outlet />
-        </div>
+        <HomePage drawerMenu={drawerMenu} />
     </>
 )
 
+const studiesPage = (
+    <>
+        <Breadcrumbs title='Исследования'>
+            <Link to=''>Список</Link>
+        </Breadcrumbs>
+        <StudiesList />
+    </>
+)
 
+const studyPage = (
+    <>
+        <Breadcrumbs title='Просмотр исследования'>
+            <Link to='/home/studies'>Список</Link>
+            <Link to=''>Просмотр</Link>
+        </Breadcrumbs>
+        <StudyViewer />
+    </>
+)
+
+const uploadPage = (
+    <>
+        <Breadcrumbs title='Загрузка исследования'>
+            <Link to='/home/studies'>Список</Link>
+            <Link to=''>Загрузить</Link>
+        </Breadcrumbs>
+        <UploadFileForm />
+    </>
+)
+
+const profilePage = (
+    <>
+        <Breadcrumbs title='Профиль'>
+            <Link to=''>Просмотр</Link>
+        </Breadcrumbs>
+        <ProfileViewer searchable={false} />
+    </>
+)
 function Client({ accessToken }) {
     initCornerstone(accessToken);
 
     return (
         <Routes>
             <Route path="" element={homePage}>
-                <Route path="" element={<Welcome />} />
-                <Route path="studies" element={<StudiesList />}>
+                <Route path="studies" element={studiesPage}>
                     <Route path="search/:search" />
                 </Route>
                 <Route path="link/*" element={<LinkProvider />} />
-                <Route path="profile" element={<ProfileViewer searchable={false} />} />
-                <Route path="upload" element={<UploadFileForm />} />
-                <Route path="study/*" element={<StudyViewer />} />
+                <Route path="profile" element={profilePage} />
+                <Route path="upload" element={uploadPage} />
+                <Route path="study/*" element={studyPage} />
             </Route>
             <Route path="viewer/*" element={<Viewer />} />
+            <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
         </Routes>
     )
 }

@@ -83,7 +83,6 @@ function RegisterUserForm({ isGlobal }) {
 
     return (
         <>
-            {<h3>Регистрация пользователя</h3>}
             <div className="card">
                 {
                     (!status.code || status.code === 200) &&

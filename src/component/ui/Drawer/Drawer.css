@@ -66,6 +66,7 @@
 .drawer__link {
     padding: 4px 0;
     padding-left: 45px;
+    width: 100%;
 }
 
 .drawer__link:hover {

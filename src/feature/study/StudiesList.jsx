@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
-import SearchBar from '../../component/SearchBar.jsx';
 import useStudies from './useStudies';
 import { studiesPlusIcon as plusIcon } from '../../res/svg';
 
@@ -32,7 +31,6 @@ function StudiesList() {
     return (
         <>
             <div className="card toolbar-wrapper">
-                <SearchBar path='studies' />
                 <div className="tools">
                     <div className="right">
                         <div className="buttons">
