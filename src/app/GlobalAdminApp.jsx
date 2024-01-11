@@ -19,20 +19,11 @@ import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/ui/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 
-const headerMenu = [
-  {
-    text: "Профиль", icon: profileIcon, route: "/home/profile"
-  },
-  {
-    text: "Настройки", icon: settingsIcon, route: "/home/settings"
-  }
-]
-
 const drawerMenu = [
   {
     text: "Пользователи", icon: usersIcon, options: [
       {
-        text: "Просмотреть всех", route: "/home/users"
+        text: "Список", route: "/home/users"
       },
       {
         text: "Добавить", route: "/home/add_user"
@@ -42,7 +33,7 @@ const drawerMenu = [
   {
     text: "Организации", icon: orgsIcon, options: [
       {
-        text: "Просмотреть все", route: "/home/organizations"
+        text: "Список", route: "/home/organizations"
       },
       {
         text: "Добавить", route: "/home/add_organization",
@@ -74,14 +65,14 @@ const drawerMenu = [
 const homePage = (
   <>
     <ProgressBar />
-    <HomePage drawerMenu={drawerMenu} headerMenu={headerMenu} />
+    <HomePage drawerMenu={drawerMenu} />
   </>
 )
 
 const organizationsPage = (
   <>
     <Breadcrumbs title={'Организации'}>
-      <Link to={''}>Организации</Link>
+      <Link to={''}>Список</Link>
     </Breadcrumbs>
     <OrganizationsList />
   </>
@@ -89,7 +80,7 @@ const organizationsPage = (
 const addOrganizationPage = (
   <>
     <Breadcrumbs title={'Регистрация организации'}>
-      <Link to={'/home/organizations'}>Организации</Link>
+      <Link to={'/home/organizations'}>Список</Link>
       <Link to={''}>Добавить</Link>
     </Breadcrumbs>
     <div className="card">
@@ -101,7 +92,7 @@ const addOrganizationPage = (
 const editOrganizationPage = (
   <>
     <Breadcrumbs title={'Редактирование данных организации'}>
-      <Link to={'/home/organizations'}>Организации</Link>
+      <Link to={'/home/organizations'}>Список</Link>
       <Link to={''}>Редактировать</Link>
     </Breadcrumbs>
     <TabLayout titles={["Общая информация", "Привязка почты"]}>
@@ -138,7 +129,7 @@ const settingsPage = (
 const usersListPage = (
   <>
     <Breadcrumbs title={'Пользователи'}>
-      <Link to={''}>Пользователи</Link>
+      <Link to={''}>Список</Link>
     </Breadcrumbs>
     <UsersList isGlobal={true} />
   </>
@@ -147,7 +138,7 @@ const usersListPage = (
 const addUserPage = (
   <>
     <Breadcrumbs title={'Регистрация пользователя'}>
-      <Link to={'/home/users'}>Пользователи</Link>
+      <Link to={'/home/users'}>Список</Link>
       <Link to={''}>Добавить</Link>
     </Breadcrumbs>
     <RegisterUserForm isGlobal={true} />
@@ -157,7 +148,7 @@ const addUserPage = (
 const editUserPage = (
   <>
     <Breadcrumbs title={'Редактирование данных пользователя'}>
-      <Link to={'/home/users'}>Пользователи</Link>
+      <Link to={'/home/users'}>Список</Link>
       <Link to={''}>Редактировать</Link>
     </Breadcrumbs>
     <ProfileViewer searchable={true} />
