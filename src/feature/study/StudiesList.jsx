@@ -31,7 +31,6 @@ function StudiesList() {
     return (
         <>
             <div className="card toolbar-wrapper">
-                <SearchBar path='studies' />
                 <div className="tools">
                     <div className="right">
                         <div className="buttons">
