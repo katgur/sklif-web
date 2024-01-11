@@ -10,7 +10,7 @@ const authSlice = createSlice({
         },
         data: {
             email: 'mail@mail.com',
-            authorities: 'DOCTOR',
+            authorities: 'ADMIN_GLOBAL',
             accessToken: ''
         },
     },

@@ -156,48 +156,6 @@ form > div > div {
     margin-bottom: 15px;
 }
 
-.alert {
-    border-radius: 4px;
-    padding: 27px;
-    width: fit-content;
-    overflow: hidden;
-}
-
-.alert-error {
-    background-color: var(--alert-background-color);
-    border-left: 5px solid var(--alert-color);
-
-}
-
-.alert-success {
-    background-color: var(--success-background-color);
-    border-left: 5px solid var(--success-color);
-}
-
-.alert-notify {
-    background-color: #FEF5DE;
-    border-left: 5px solid #FFB800;
-}
-
-.alert > span {
-    float: left;
-    clear: left;
-}
-
-.alert > div {
-    float: left;
-    clear: right;
-    margin: 0 22px;
-}
-
-.alert > div > * {
-    float: left;
-    clear: left;
-    width: 300px;
-    overflow: hidden;
-    overflow-wrap: break-word;
-}
-
 .not-found-page {
     width: fit-content;
     margin: 20% auto;
@@ -224,12 +182,6 @@ select:focus {
     margin: 100px auto;
 }
 
-.alerts {
-    display: flex;
-    flex-flow: column;
-    gap: 10px;
-}
-
 .modal-shaded {
     background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
@@ -240,25 +192,6 @@ select:focus {
 .rounded-card {
     border-radius: 8px;
     background-color: white;
-}
-
-.alert {
-    display: flex;
-    flex-flow: row;
-}
-
-.alert > span {
-    cursor: pointer;
-}
-
-.alert > div {
-    display: flex;
-    flex-flow: row;
-    gap: 15px;
-}
-
-.alert > div > span {
-    width: fit-content;
 }
 
 #alert {
