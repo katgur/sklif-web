@@ -77,6 +77,7 @@ const organizationsPage = (
     <OrganizationsList />
   </>
 )
+
 const addOrganizationPage = (
   <>
     <Breadcrumbs title={'Регистрация организации'}>

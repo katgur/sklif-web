@@ -1,5 +1,6 @@
-import { useState, memo } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import './DataViewer.css';
 
 function DataViewer({ name, entity, schema, path }) {
     const [selected, setSelected] = useState(0);
@@ -17,33 +18,33 @@ function DataViewer({ name, entity, schema, path }) {
 
     return (
         <div className="data-viewer">
-            <h4>{name}</h4>
-            <p className="tabs">
+            <h2>{name}</h2>
+            <ul className="data-viewer__tabs">
                 {
                     schema.map((section, index) => {
-                        var className = index === selected ? "tab-selected" : "tab";
+                        const className = "data-viewer__tab data-viewer__tab--" + (index === selected ? "active" : "base");
                         return (
-                            <span className={className} onClick={() => { onTabClick(index) }}>{section.text}</span>
+                            <li className={className} onClick={() => { onTabClick(index) }}>{section.text}</li>
                         )
                     })
                 }
-            </p>
-            <div className="data">
+            </ul>
+            <ul className="data-viewer__data">
                 {
                     schema[selected].tabs.map((tab) => {
-                        var value = entity[tab.name];
+                        const value = entity[tab.name];
                         return (
                             value && value.length !== 0 && value[0] &&
-                            <p>
-                                <span className="title-font">{tab.text} </span>
-                                <span onClick={() => onValueClick(value)} className="outline-badge searchable">{value}</span>
-                            </p>
+                            <li>
+                                <span className="title-font">{tab.text}&emsp;</span>
+                                <span onClick={() => onValueClick(value)} className="outline-badge">{value}</span>
+                            </li>
                         )
                     })
                 }
-            </div>
+            </ul>
         </div>
     )
 }
 
-export default memo(DataViewer);
+export default DataViewer;

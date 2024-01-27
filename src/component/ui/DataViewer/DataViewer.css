@@ -1,0 +1,33 @@
+.data-viewer {
+    padding: 20px;
+}
+
+.data-viewer__header {
+    margin-bottom: 15px;
+}
+
+.data-viewer__tabs {
+    display: flex;
+}
+
+.data-viewer__tab {
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.5s;
+    padding-right: 32px;
+    padding-bottom: 12px;
+}
+
+.data-viewer__tab--base {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--stroke-color);
+}
+
+.data-viewer__tab--active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.data-viewer__data {
+    margin-top: 1em;
+}

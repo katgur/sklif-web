@@ -100,29 +100,6 @@ summary svg {
     padding: 0;
 }
 
-.tabs {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    align-items: stretch;
-}
-
-.tab {
-    color: var(--text-color);
-    font-size: small;
-    cursor: pointer;
-    border-bottom: 2px solid var(--stroke-color);
-    width: 200px;
-}
-
-.tab-selected {
-    color: var(--primary-color);
-    font-size: small;
-    border-bottom: 2px solid var(--primary-color);
-    cursor: pointer;
-    width: 200px;
-}
-
 .content__home-page-profile {
     display: flex;
     flex-flow: row;
@@ -137,36 +114,6 @@ summary svg {
 
 .data-viewer {
     padding: 20px;
-}
-
-.outline-badge {
-    background-color: var(--gray-color);
-    font-size: small;
-    color: var(--primary-color);
-    border-radius: 3px;
-    padding: 5px;
-}
-
-.outline-badge__selected {
-    background-color: var(--primary-color);
-    font-size: small;
-    color: white;
-    border-radius: 3px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.outline-badge:hover {
-    background-color: var(--stroke-color);
-}
-
-.outline-badge__selected {
-    background-color: var(--primary-color);
-    font-size: small;
-    color: white;
-    border-radius: 3px;
-    padding: 5px;
-    cursor: pointer;
 }
 
 .filled-badge {
@@ -619,4 +566,34 @@ header {
     width: 50%;
     margin: auto;
     margin-top: 100px;
+}
+
+.outline-badge {
+    background-color: var(--gray-color);
+    font-size: small;
+    color: var(--primary-color);
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.outline-badge__selected {
+    background-color: var(--primary-color);
+    font-size: small;
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.outline-badge:hover {
+    background-color: var(--stroke-color);
+}
+
+.outline-badge--selected {
+    background-color: var(--primary-color);
+    font-size: small;
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
 }
