@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Form from '../../component/ui/Form.jsx';
+import Form from '../../component/ui/Form';
 import { addDirectory, selectCurrent } from './storageSlice';
 
 function AddDirectoryForm() {

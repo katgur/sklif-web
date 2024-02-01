@@ -1,4 +1,4 @@
-import Form from '../../component/ui/Form.jsx';
+import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';

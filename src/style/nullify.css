@@ -4,6 +4,10 @@ body {
   overflow-x: hidden;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 h1,
 h2,
 h3,
@@ -37,6 +41,11 @@ menu {
 input {
   all: unset;
   display: inline-block;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
 }
 
 a:link,

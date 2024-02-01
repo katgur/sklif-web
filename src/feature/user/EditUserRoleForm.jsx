@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import Form from '../../component/ui/Form.jsx';
+import Form from '../../component/ui/Form';
 import { updateUserRole } from './usersSlice';
 import useUser from '../../hook/useUser';
 

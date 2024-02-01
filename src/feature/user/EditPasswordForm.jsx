@@ -1,4 +1,4 @@
-import Form from '../../component/ui/Form.jsx';
+import Form from '../../component/ui/Form';
 import { setMessage, selectData } from '../authSlice';
 import { setPassword } from './usersSlice';
 import { useDispatch, useSelector } from 'react-redux';

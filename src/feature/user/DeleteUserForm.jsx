@@ -1,4 +1,4 @@
-import Form from '../../component/ui/Form.jsx';
+import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';

@@ -10,7 +10,7 @@
 
 .outline-button {
     background-color: var(--gray-color);
-    color: var(--text-color);
+    color: var(--text-color-color);
     border: 0;
     border-radius: 5px;
     padding: 14px 40px;
@@ -30,7 +30,7 @@
 }
 
 .filled-input::placeholder {
-    color: var(--text-color);
+    color: var(--text-color-color);
     font-size: 14px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .outline-input::placeholder {
-    color: var(--text-color);
+    color: var(--text-color-color);
     font-size: 14px;
 }
 
