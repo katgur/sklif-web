@@ -3,27 +3,8 @@ import Form from '../../component/ui/Form';
 import { selectStatus, updateUserInfo } from './usersSlice';
 import useUser from '../../hook/useUser';
 import useNavigateIfSuccess from '../../hook/useNavigateIfSuccess';
-
-const fields = [
-    {
-        section: "Общая информация",
-        columnNumber: 2,
-        fields: [
-            {
-                name: "firstName", text: "Имя", type: "text", style: "filled-input", required: true
-            },
-            {
-                name: "lastName", text: "Фамилия", type: "text", style: "filled-input", required: true
-            },
-            {
-                name: "patronymic", text: "Отчество", type: "text", style: "filled-input", required: false
-            },
-            {
-                name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", style: "filled-input", required: true
-            }
-        ]
-    }
-];
+import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
+import Input from '../../component/ui/Form/Input';
 
 const updateUserInfoMapper = (data, isGlobal, user) => {
     if (!isGlobal) {
@@ -39,17 +20,34 @@ function EditUserInfoForm({ isGlobal }) {
 
     navigateIfSuccess();
 
-    const submitAction = (data) => {
+    const onSubmit = (data) => {
         var query = updateUserInfoMapper(data, isGlobal, user);
         dispatch(updateUserInfo({ userInfo: query, email: user.email }));
     }
 
-    const submit = {
-        text: "Изменить", type: "submit", style: "filled-button", action: submitAction
-    }
+    const fields = [
+        {
+            name: "firstName", text: "Имя", type: "text", required: true
+        },
+        {
+            name: "lastName", text: "Фамилия", type: "text", required: true
+        },
+        {
+            name: "patronymic", text: "Отчество", type: "text", required: false
+        },
+        {
+            name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", required: true
+        }
+    ]
 
     return (
-        <Form fields={fields} submit={submit} entity={user} />
+        <Form onSubmit={onSubmit}>
+            <TwoColumnLayout>
+                {
+                    fields.map(field => <Input key={field.name} field={field} />)
+                }
+            </TwoColumnLayout>
+        </Form>
     )
 }
 
