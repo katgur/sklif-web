@@ -2,33 +2,26 @@ import { useDispatch } from 'react-redux';
 import Form from '../../component/ui/Form';
 import { updateUserEmail } from './usersSlice';
 import useUser from '../../hook/useUser';
-
-const fields = [
-    {
-        section: "Привязка почты",
-        columnNumber: 1,
-        fields: [
-            {
-                name: "email", text: "Новая почта", type: "email", style: "filled-input", required: true
-            },
-        ]
-    }
-];
+import Input from '../../component/ui/Form/Input';
 
 function EditUserEmailForm() {
     const dispatch = useDispatch();
     const user = useUser();
 
-    const submitAction = (data) => {
+    const onSubmit = (data) => {
         dispatch(updateUserEmail({ previousEmail: user.email, newEmail: data.email }));
     }
 
-    const submit = {
-        text: "Изменить", style: "filled-button", action: submitAction
-    }
+    const fields = [
+        {
+            name: "email", text: "Новая почта", type: "email", required: true
+        },
+    ]
 
     return (
-        <Form fields={fields} submit={submit} />
+        <Form onSubmit={onSubmit}>
+            <Input field={fields[0]} />
+        </Form>
     )
 }
 

@@ -10,34 +10,28 @@ function DeleteUserForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useUser();
-    const [modalState, setModalState] = useState({ enabled: true, coords: {top: 0, left: 0} });
+    const [modalState, setModalState] = useState({ enabled: true, coords: { top: 0, left: 0 } });
 
-    const onCancelButtonClick = () => {
+    const onCancel = () => {
         navigate(-1);
         setModalState({
             enabled: false,
             coords: {}
         })
     }
-    
-    const submitAction = () => {
+
+    const onSubmit = () => {
         dispatch(removeUser({ email: user.email }));
-        onCancelButtonClick();
+        onCancel();
     }
-    
-    const submit = { name: "ok", text: "Удалить", style: "filled-button", action: submitAction }
-    
+
     return (
-        <Modal state={modalState} className="modal-shaded">
-            <div className="rounded-card delete-form">
-                <h3>Удаление пользователя</h3>
-                { user && <p className="text-font">{`Вы уверены, что хотите удалить пользователя ${user.lastName} ${user.firstName} ${user.patronymic}?`}</p> }
-                <div>
-                    <span className="outline-button" onClick={onCancelButtonClick}>Отмена</span>
-                    <Form submit={submit} />
-                </div>
-            </div>
-        </Modal>
+        // <Modal state={modalState} className="modal-shaded">
+        <Form onSubmit={onSubmit} onCancel={onCancel}>
+            <h1>Удаление пользователя</h1>
+            {user && <p className="text-font">{`Вы уверены, что хотите удалить пользователя ${user.lastName} ${user.firstName} ${user.patronymic}?`}</p>}
+        </Form>
+        // </Modal>
     )
 }
 
