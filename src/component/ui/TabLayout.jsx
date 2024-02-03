@@ -21,7 +21,7 @@ function TabLayout({ titles, children }) {
                             )
                         })}
                     </ul>
-                    <div className="card">{children[page]}</div>
+                    <div>{children[page]}</div>
                 </div>
             }
         </>
