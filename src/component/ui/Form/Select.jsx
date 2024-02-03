@@ -1,4 +1,4 @@
-function Select({ field, errors, register }) {
+function Select({ field, errors, register, children }) {
     const validation = {
         required: field.required && "Обязательное поле",
     }
@@ -7,13 +7,8 @@ function Select({ field, errors, register }) {
         <div>
             <p>{field.text}</p>
             {error && <span className="error-font">{error.message}</span>}
-            <select
-                key={field.name} {...register(field.name, validation)}>
-                {field.options.map((option) => {
-                    return (
-                        <option key={option} value={option}>{option}</option>
-                    )
-                })}
+            <select>
+                {children}
             </select>
         </div>
     )

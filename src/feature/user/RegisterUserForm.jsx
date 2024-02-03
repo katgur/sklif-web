@@ -5,6 +5,9 @@ import useOrganizations from '../../hook/useOrganizations';
 import useUser from '../../hook/useUser';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input.jsx';
+import RadioGroup from '../../component/ui/Form/RadioGroup';
+import Select from '../../component/ui/Form/Select'
+import Radio from '../../component/ui/Form/Radio.jsx';
 
 const globalOptions = ["Врач", "Администратор", "Глобальный администратор"];
 const localOptions = ["Врач", "Администратор"];
@@ -50,12 +53,6 @@ function RegisterUserForm({ isGlobal }) {
             name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", required: true
         },
         {
-            name: "role", text: "Роль", type: "radio", required: true
-        },
-        {
-            name: "organization", text: "Организация", type: "select", required: true
-        },
-        {
             name: "email", text: "Почта", type: "email", required: true
         },
         {
@@ -74,7 +71,7 @@ function RegisterUserForm({ isGlobal }) {
     }
 
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} entity={user}>
             <TwoColumnLayout>
                 {
                     fields.slice(0, 4).map(field => {
@@ -82,6 +79,13 @@ function RegisterUserForm({ isGlobal }) {
                     })
                 }
             </TwoColumnLayout>
+            <RadioGroup field={{ required: true, name: "role", text: "Роль" }}>
+                <Radio>Врач</Radio>
+                <Radio>Администратор</Radio>
+            </RadioGroup>
+            <Select field={{ required: true, name: "organization", text: "Организация" }}>
+
+            </Select>
             {
                 fields.slice(4).map(field => {
                     return <Input key={field.name} field={field} />

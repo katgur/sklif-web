@@ -234,21 +234,6 @@ input:checked+.slider:before {
     transform: translateX(19px);
 }
 
-.radio>input {
-    float: left;
-    clear: left;
-    margin-left: 6px;
-}
-
-.radio>span {
-    float: left;
-    margin: 0 5px;
-}
-
-form h4 {
-    margin-bottom: 8px;
-}
-
 .error {
     background-color: var(--alert-background-color);
     border-color: var(--alert-text-color);
@@ -549,10 +534,6 @@ textarea:focus {
 header {
     flex-flow: row;
     justify-content: right;
-}
-
-.card>form {
-    margin: 24px 48px;
 }
 
 .centered-button {

@@ -1,28 +1,12 @@
-function Radio({ register, entity, errors }) {
-    const validation = {
-        required: field.required
-    }
-    const error = errors[field.name];
+function Radio({ register, entity, children, field, validation }) {
     return (
-        <div>
-            <p>{field.text}</p>
-            {field.required && <span className="font__regular-16 font_color_error">&nbsp;*</span>}
-            {error && <span className="font__regular-14 font_color_error">&nbsp;&nbsp;{error.message}</span>}
-            {field.options.map((option, index) => {
-                return (
-                    <label key={option}>
-                        <input
-                            {...register(field.name, validation)}
-                            type='radio'
-                            defaultChecked={entity ? entity[field.name] === option : index === 0}
-                            className={field.style}
-                            value={option} />
-                        {option}
-                    </label>
-                )
-            })}
-        </div>
+        <label class="form__radio">
+            <input {...register(field.name, validation)} defaultChecked={entity && entity[field.name] === value} type="radio" value={children} />
+            <span className="form__label">
+                {children}
+            </span>
+        </label>
     )
 }
 
-export default Radio
+export default Radio;

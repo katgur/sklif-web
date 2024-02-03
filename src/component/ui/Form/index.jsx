@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import './Form.css';
 import Button from "../Button";
-import TwoColumnLayout from "./TwoColumnLayout";
 
 function Form({ onSubmit, entity, children }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -13,7 +12,7 @@ function Form({ onSubmit, entity, children }) {
 
     const childrenWithProps = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
-            return React.cloneElement(child, { register, errors });
+            return React.cloneElement(child, { register, entity, errors });
         }
         return child;
     });
