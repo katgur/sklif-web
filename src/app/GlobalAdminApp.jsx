@@ -2,7 +2,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from '../page/HomePage.jsx';
 import UsersList from '../feature/user/UsersList';
 import RegisterUserForm from '../feature/user/RegisterUserForm';
-import OrganizationForm from '../feature/org/OrganizationForm';
+import RegisterOrganizationForm from '../feature/org/RegisterOrganizationForm.jsx';
+import EditOrganizationForm from '../feature/org/EditOrganizationForm.jsx';
 import ProfileViewer from '../feature/user/ProfileViewer';
 import EditPasswordForm from '../feature/user/EditPasswordForm';
 import EditUserInfoForm from '../feature/user/EditUserInfoForm';
@@ -84,9 +85,7 @@ const addOrganizationPage = (
       <Link to={'/home/organizations'}>Список</Link>
       <Link to={''}>Добавить</Link>
     </Breadcrumbs>
-    <div className="card">
-      <OrganizationForm />
-    </div>
+    <RegisterOrganizationForm />
   </>
 )
 
@@ -97,7 +96,7 @@ const editOrganizationPage = (
       <Link to={''}>Редактировать</Link>
     </Breadcrumbs>
     <TabLayout titles={["Общая информация", "Привязка почты"]}>
-      <OrganizationForm />
+      <EditOrganizationForm />
       <EditOrganizationEmailForm />
     </TabLayout>
   </>

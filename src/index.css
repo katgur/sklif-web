@@ -125,10 +125,6 @@ summary svg {
     padding: 5px;
 }
 
-form>div>select {
-    margin: 10px 0;
-}
-
 .tools {
     display: flex;
     flex-flow: row;
@@ -161,7 +157,7 @@ form>div>select {
     margin: 0;
     width: 20px;
     height: 20px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-color-color);
     border-radius: 4px;
     transform: translateY(-0.075em);
 }
@@ -234,28 +230,6 @@ input:checked+.slider:before {
     transform: translateX(19px);
 }
 
-.radio>input {
-    float: left;
-    clear: left;
-    margin-left: 6px;
-}
-
-.radio>span {
-    float: left;
-    margin: 0 5px;
-}
-
-.field-section {
-    margin-top: 18px;
-    display: grid;
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
-}
-
-form h4 {
-    margin-bottom: 8px;
-}
-
 .error {
     background-color: var(--alert-background-color);
     border-color: var(--alert-text-color);
@@ -291,7 +265,7 @@ form h4 {
 
 .masked-image {
     flex: 1;
-    background-color: var(--dark-color);
+    background-color: var(--dark-color-color);
     height: 85vh;
 }
 
@@ -332,7 +306,7 @@ form h4 {
 }
 
 .viewer {
-    background-color: var(--dark-color);
+    background-color: var(--dark-color-color);
     display: flex;
     flex-flow: row;
     min-height: 100vh;
@@ -440,7 +414,7 @@ a:active {
 }
 
 .light-font {
-    color: var(--dark-text-color-2);
+    color: var(--dark-color-text-color-2);
     font-weight: 700;
     font-size: smaller;
 }
@@ -487,7 +461,7 @@ textarea:focus {
     border: 2px solid #ddd;
     border-radius: 5px;
     padding: 18px;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .file-chooser>* {
@@ -540,7 +514,7 @@ textarea:focus {
 }
 
 .analytics span {
-    color: var(--text-color);
+    color: var(--text-color-color);
     font-family: Nunito;
 }
 
@@ -556,10 +530,6 @@ textarea:focus {
 header {
     flex-flow: row;
     justify-content: right;
-}
-
-.card>form {
-    margin: 24px 48px;
 }
 
 .centered-button {

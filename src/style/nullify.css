@@ -36,7 +36,11 @@ menu {
 
 input {
   all: unset;
-  display: inline-block;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
 }
 
 a:link,
@@ -51,10 +55,6 @@ a:active {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-select {
-  all: unset;
 }
 
 details {

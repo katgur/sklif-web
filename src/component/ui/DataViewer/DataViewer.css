@@ -19,7 +19,7 @@
 }
 
 .data-viewer__tab--base {
-    color: var(--text-color);
+    color: var(--text-color-color);
     border-bottom: 2px solid var(--stroke-color);
 }
 

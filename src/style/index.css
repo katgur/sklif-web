@@ -69,7 +69,7 @@ header li svg {
 
 .list-context-menu {
     background-color: white;
-    color: var(--text-color);
+    color: var(--text-color-color);
     border-radius: 5px;
     box-shadow: 3px 2px 3px var(--stroke-color);
     display: flex;
@@ -89,32 +89,6 @@ header li svg {
 .list-context-menu > li:hover {
     color: var(--primary-color);
     background-color: var(--hover-color);
-}
-
-form > div {
-    display: flex;
-    flex-flow: column;
-    align-items: stretch;
-    overflow: hidden;
-}
-
-form > div > * {
-    float: left;
-    clear: left;
-}
-
-form > div > p {
-    margin: 0;
-}
-
-form > div > input {
-    margin: 10px 0;
-}
-
-form > div > div {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 16px;
 }
 
 .login-page__content {
@@ -167,17 +141,6 @@ form > div > div {
     margin: 20px auto;
 }
 
-select {
-    border: 1.5px solid var(--stroke-color);
-    padding: 15px;
-    border-radius: 4px;
-    background: url("../res/chevron-down.svg") no-repeat 98%;
-}
-
-select:focus {
-    border-color: var(--primary-color);
-}
-
 .not-found-page {
     margin: 100px auto;
 }
@@ -223,7 +186,7 @@ select:focus {
 
 .tab-layout > ul {
     background-color: white;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .tab-layout > ul > li {

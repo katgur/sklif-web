@@ -30,7 +30,10 @@ const orgSlice = createSlice({
             message: undefined,
             code: undefined,
         },
-        data: undefined,
+        data: [{
+            name: "Ромашка",
+            email: "mail@mail.com"
+        }],
         current: undefined,
         progress: false,
     },

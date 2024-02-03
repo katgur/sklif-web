@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "PTSans";
+    font-family: PTSans;
     src: url("../res/PTSans-Regular.ttf") format('truetype');
 }
 
@@ -13,8 +13,52 @@
     src: url("../res/PTSans-Bold.ttf") format('truetype');
 }
 
-body {
+.font__medium-16 {
     font-family: PTSans, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font__medium-14 {
+    font-family: PTSans, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.font__regular-16 {
+    font-family: PTSans, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font__regular-14 {
+    font-family: PTSans, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.font_color_dark {
+    color: var(--dark-color);
+}
+
+.font_color_text {
+    color: var(--text-color);
+}
+
+.font_color_gray {
+    color: var(--gray-color);
+}
+
+.font_color_primary {
+    color: var(--primary-color);
+}
+
+.font_color_error {
+    color: var(--alert-text-color);
 }
 
 .list {
@@ -29,17 +73,17 @@ body {
 .table-column {
     font-weight: 800;
     font-size: 13px;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .table-value {
     font-size: 14px;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .pagination-font {
     font-size: 15px;
-    color: var(--text-color);
+    color: var(--text-color-color);
     margin: 5px;
 }
 
@@ -60,13 +104,13 @@ body {
 
 .text-font {
     font-size: 14px;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .title-font {
     font-size: 14px;
     font-weight: 800;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .error-title {
