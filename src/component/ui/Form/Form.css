@@ -7,7 +7,6 @@
     margin-top: 24px;
     display: flex;
     gap: 15px;
-    justify-content: flex-end;
 }
 
 .form__two-column-layout {

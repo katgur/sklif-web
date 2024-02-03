@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import './Form.css';
 import Button from "../Button";
 
-function Form({ onSubmit, entity, children }) {
+function Form({ onSubmit, onCancel, entity, children }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     useEffect(() => {
@@ -18,11 +18,11 @@ function Form({ onSubmit, entity, children }) {
     });
 
     return (
-        <form onSubmit={handleSubmit((data) => onSubmit(data))} className="form card">
+        <form onSubmit={handleSubmit((data) => onSubmit(data))} onReset={onCancel} className="form card">
             {childrenWithProps}
             <div className="form__buttons">
-                <Button type="reset" style="secondary">Сбросить</Button>
                 <Button type="submit" style="primary">Готово</Button>
+                <Button type="reset" style="secondary">Сбросить</Button>
             </div>
         </form>
     )
