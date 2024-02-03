@@ -141,17 +141,6 @@ header li svg {
     margin: 20px auto;
 }
 
-select {
-    border: 1.5px solid var(--stroke-color);
-    padding: 15px;
-    border-radius: 4px;
-    background: url("../res/chevron-down.svg") no-repeat 98%;
-}
-
-select:focus {
-    border-color: var(--primary-color);
-}
-
 .not-found-page {
     margin: 100px auto;
 }

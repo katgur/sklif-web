@@ -8,35 +8,11 @@ import Input from '../../component/ui/Form/Input.jsx';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Select from '../../component/ui/Form/Select'
 import Radio from '../../component/ui/Form/Radio.jsx';
-
-const globalOptions = ["Врач", "Администратор", "Глобальный администратор"];
-const localOptions = ["Врач", "Администратор"];
-const getAccessSection = (isGlobal, organizations) => {
-    var organizationField;
-    if (organizations) {
-        organizationField = {
-            name: "organization", text: "Организация", type: "select",
-            required: true,
-            options: organizations.map((org) => { return org.organizationName })
-        }
-    }
-
-    return (organizationField) ?
-        {
-            section: "Права доступа",
-            columnNumber: 1,
-            fields: [organizationField, roleField],
-        }
-        : {
-            section: "Права доступа",
-            columnNumber: 1,
-            fields: [roleField],
-        }
-}
+import SelectOption from '../../component/ui/Form/SelectOption.jsx';
 
 function RegisterUserForm({ isGlobal }) {
     const dispatch = useDispatch();
-    const organizations = useOrganizations(isGlobal);
+    const organizations = ["Ромашка", "Romashka"]
     const user = useUser();
 
     const fields = [
@@ -84,7 +60,9 @@ function RegisterUserForm({ isGlobal }) {
                 <Radio>Администратор</Radio>
             </RadioGroup>
             <Select field={{ required: true, name: "organization", text: "Организация" }}>
-
+                {
+                    organizations.map(organization => <SelectOption key={organization}>{organization}</SelectOption>)
+                }
             </Select>
             {
                 fields.slice(4).map(field => {

@@ -125,10 +125,6 @@ summary svg {
     padding: 5px;
 }
 
-form>div>select {
-    margin: 10px 0;
-}
-
 .tools {
     display: flex;
     flex-flow: row;

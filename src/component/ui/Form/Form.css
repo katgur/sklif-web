@@ -83,3 +83,24 @@
     box-shadow: 0 0 0 1px var(--primary-color);
     background-color: var(--gray-color);
 }
+
+.form__select-container {
+    margin-top: 18px;
+}
+
+.form__select {
+    all: unset;
+    margin-top: 12px;
+    border: 1.5px solid var(--stroke-color);
+    padding: 15px;
+    border-radius: 4px;
+    background: url("../../../res/chevron-down.svg") no-repeat;
+    background-position: right 20px center;
+    display: block;
+    width: calc(100% - 26px);
+    transition: 250ms ease-in;
+}
+
+.form__select:focus {
+    border-color: var(--primary-color);
+}
