@@ -2,14 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import './Header.css'
 import SearchBar from './SearchBar.jsx';
-import Popup from '../Popup.jsx';
+import Popup from '../Popup';
 
 function Header({ user, onSearchClick, onLogoutButtonClick }) {
-    const [popupPoint, setPopupPoint] = useState(null);
+    const [anchor, setAnchor] = useState(null);
 
-    const onProfileIconClick = (e) => {
-        setPopupPoint(!popupPoint ? { x: e.target.getBoundingClientRect().left - e.target.getBoundingClientRect().width / 2, y: e.target.getBoundingClientRect().bottom } : null);
-    }
+    const onProfileIconClick = (e) => setAnchor(anchor ? null : e.currentTarget);
     
     return (
         <header>
@@ -27,7 +25,7 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
                 </span>
             </div>
             <SearchBar onSearchClick={onSearchClick} />
-            <Popup point={popupPoint}>
+            <Popup anchor={anchor} position="center bottom">
                 <ul className='header__popup header__text'>
                     <li className='header__item'>Профиль</li>
                     <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>

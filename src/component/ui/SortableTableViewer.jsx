@@ -1,5 +1,5 @@
 import React, { useRef, memo } from 'react'
-import TableItem from './TableItem'
+import TableItem from './TableItem';
 import { useState } from 'react'
 import sortIcon from '../../res/sort.svg';
 import { useEffect } from 'react';
