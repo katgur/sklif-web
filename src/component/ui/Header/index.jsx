@@ -33,15 +33,12 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
                 </span>
             </div>
             <SearchBar onSearchClick={onSearchClick} />
-            {targetRect !== null && (
-                <Popup targetRect={targetRect} position="center bottom">
-                    <ul className='header__popup header__text'>
-                        <li className='header__item'>Профиль</li>
-                        <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>
-                    </ul>
-                </Popup>
-            )
-            }
+            <Popup targetRect={targetRect} position="center bottom">
+                <ul className='header__popup header__text'>
+                    <li className='header__item'>Профиль</li>
+                    <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>
+                </ul>
+            </Popup>
 
         </header>
     );

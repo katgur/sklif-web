@@ -33,19 +33,17 @@ function TableItem({ item, contextMenu, onClick }) {
                     {moreIcon}
                 </span>
             }
-            {targetRect !== null && (
-                <Popup targetRect={targetRect} position="left top">
-                    <ul className="list-context-menu">
-                        {contextMenu.map((option, index) => {
-                            return (
-                                <li key={index}>
-                                    {option(item.id)}
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </Popup>
-            )}
+            <Popup targetRect={targetRect} position="left top">
+                <ul className="list-context-menu">
+                    {contextMenu.map((option, index) => {
+                        return (
+                            <li key={index}>
+                                {option(item.id)}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </Popup>
         </>
     )
 }
