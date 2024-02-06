@@ -5,50 +5,43 @@ import './Popup.css'
 import TooltipContainer from "./TooltipContainer";
 
 function computePosition(rect, selfRect, position) {
+    if (!rect) {
+        return [0, 0];
+    }
     const [x, y] = position.split(' ');
-    const res = {};
+    const res = [0, 0];
     if (x === 'left') {
-        res.left = rect.left - selfRect.width;
+        res[0] = rect.left;
     } else if (x === 'center') {
-        res.left = rect.left - rect.width;
+        res[0] = rect.left;
     } else if (x === 'right') {
-        res.left = rect.right;
+        res[0] = rect.right;
     } else {
         throw new Error('Invalid position value ' + x);
     }
     if (y === 'top') {
-        res.top = rect.top - selfRect.height;
+        res[1] = rect.top - selfRect.height;
     } else if (y === 'center') {
-        res.top = rect.y - selfRect.height / 2;
+        res[1] = rect.y - selfRect.height / 2;
     } else if (y === 'bottom') {
-        res.top = rect.bottom;
+        res[1] = rect.bottom;
     } else {
         throw new Error('Invalid position value ' + y);
     }
-    console.log(rect, selfRect);
     return res;
 }
 
 
 function Popup({ targetRect, children, position = 'center bottom' }) {
     const ref = useRef(null);
-    const [tooltipHeight, setTooltipHeight] = useState(0);
+    const [tooltipRect, setTooltipRect] = useState({});
 
     useLayoutEffect(() => {
-        const { height } = ref.current.getBoundingClientRect();
-        setTooltipHeight(height);
+        const rect = ref.current?.getBoundingClientRect() || {};
+        setTooltipRect(rect);
     }, []);
 
-    let tooltipX = 0;
-    let tooltipY = 0;
-    if (targetRect !== null) {
-        tooltipX = targetRect.left;
-        tooltipY = targetRect.top - tooltipHeight;
-        if (tooltipY < 0) {
-            // It doesn't fit above, so place below.
-            tooltipY = targetRect.bottom;
-        }
-    }
+    const [tooltipX, tooltipY] = computePosition(targetRect, tooltipRect, position);
 
     return createPortal(
         <TooltipContainer x={tooltipX} y={tooltipY} contentRef={ref}>
