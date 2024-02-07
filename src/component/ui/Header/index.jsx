@@ -27,7 +27,7 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
                 </span>
             </div>
             <SearchBar onSearchClick={onSearchClick} />
-            <Popup target={target} setTarget={setTarget} position="center bottom">
+            <Popup target={target} setTarget={setTarget} position="center top">
                 <ul className='header__popup header__text'>
                     <li className='header__item'>Профиль</li>
                     <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>
