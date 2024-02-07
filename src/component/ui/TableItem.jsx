@@ -8,7 +8,11 @@ const moreIcon = (
 )
 
 function TableItem({ item, contextMenu, onClick }) {
-    const [anchor, setAnchor] = useState(null);
+    const [target, setTarget] = useState(null);
+
+    const onProfileIconClick = (e) => {
+        setTarget(target ? null : e.target);
+    }
 
     return (
         <>
@@ -19,23 +23,21 @@ function TableItem({ item, contextMenu, onClick }) {
             })}
             {
                 contextMenu &&
-                <span onClick={(e) => setAnchor(anchor ? null : e.currentTarget)}>
+                <span onClick={onProfileIconClick}>
                     {moreIcon}
                 </span>
             }
-            {/* {contextMenu &&
-                <Popup anchor={anchor} position="left top">
-                    <ul className="list-context-menu">
-                        {contextMenu.map((option, index) => {
-                            return (
-                                <li key={index}>
-                                    {option(item.id)}
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </Popup>
-            } */}
+            <Popup target={target} setTarget={setTarget} position="left center">
+                <ul className="list-context-menu">
+                    {contextMenu.map((option, index) => {
+                        return (
+                            <li key={index}>
+                                {option(item.id)}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </Popup>
         </>
     )
 }

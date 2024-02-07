@@ -1,9 +1,12 @@
 import { useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import PortalContent from "./PortalContent";
 
 function Portal({ children, id }) {
     const [wrapper, setWrapper] = useState(null);
 
+    console.log(wrapper);
+    
     useLayoutEffect(() => {
         let newWrapper = document.getElementById(id);
         if (newWrapper) {
@@ -23,7 +26,7 @@ function Portal({ children, id }) {
         }
     }, [])
 
-    return wrapper && createPortal(children, wrapper);
+    return wrapper && <PortalContent wrapper={wrapper}>{children}</PortalContent>
 }
 
 export default Portal

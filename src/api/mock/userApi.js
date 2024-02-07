@@ -16,7 +16,6 @@ const get = async () => {
 
 const getUser = async (email) => {
     const value = await get();
-    console.log(value, email)
 
     return value[key].find(user => user.email === email);
 }

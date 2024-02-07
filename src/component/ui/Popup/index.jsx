@@ -1,61 +1,36 @@
-import { useLayoutEffect, useState, useRef, useEffect } from "react";
-import Portal from "../Modal/Portal";
+import { useEffect } from 'react';
 import './Popup.css'
+import PopupContent from './PopupContent';
 
-function computePosition(rect, selfRect, position) {
-    const [x, y] = position.split(' ');
-    const res = {};
-    if (x === 'left') {
-        res.left = rect.left - selfRect.width;
-    } else if (x === 'center') {
-        res.left = rect.left - rect.width + selfRect.width / 2;
-    } else if (x === 'right') {
-        res.left = rect.right;
-    } else {
-        throw new Error('Invalid position value ' + x);
-    }
-    if (y === 'top') {
-        res.top = rect.top - selfRect.height;
-    } else if (y === 'center') {
-        res.top = rect.y - selfRect.height / 2;
-    } else if (y === 'bottom') {
-        res.top = rect.bottom;
-    } else {
-        throw new Error('Invalid position value ' + y);
-    }
-    console.log(rect, selfRect);
-    return res;
-}
-
-
-function Popup({ anchor, children, position = 'center bottom' }) {
-    const [point, setPoint] = useState(null);
-    const ref = useRef();
-
-    const resetPoint = () => setPoint(computePosition(anchor.getBoundingClientRect(), ref.current.getBoundingClientRect(), position));
-
-    useLayoutEffect(() => {
-        if (!anchor) {
-            setPoint(null);
-            return;
+function Popup({ target, setTarget, children, position = 'center bottom' }) {
+    useEffect(() => {
+        const clear = (e) => {
+            if (e.target == target) {
+                return;
+            }
+            setTarget(null);
         }
-        resetPoint();
-    }, [anchor])
 
-    useLayoutEffect(() => {
-        document.addEventListener('resize', resetPoint);
+        document.body.addEventListener('click', clear);
+
         return () => {
-            document.removeEventListener('resize', resetPoint);
+            document.body.removeEventListener('click', clear);
         }
-    }, [])
+    }, [target])
 
-    return (
-        <Portal id="popup">
-            <div className="popup" style={point} ref={ref}>
-                {children}
-            </div>
-        </Portal>
-    );
+    useEffect(() => {
+        const onResize = () => {
+            setTarget(null);
+        }
+
+        window.addEventListener('resize', onResize);
+
+        return () => {
+            window.removeEventListener('resize', onResize);
+        }
+    }, []);
+
+    return target && <PopupContent targetRect={target.getBoundingClientRect()} position={position}>{children}</PopupContent>
 }
 
 export default Popup;
