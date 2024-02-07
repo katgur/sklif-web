@@ -58,10 +58,8 @@ function PopupContent({ targetRect, children, position = 'center bottom' }) {
     const [x, y] = computePosition(targetRect, tooltipRect, position);
 
     return createPortal(
-        <div className="popup" style={{ transform: `translate(${x}px, ${y}px)` }}>
-            <div ref={ref}>
-                {children}
-            </div>
+        <div className="popup" style={{ transform: `translate(${x}px, ${y}px)` }} ref={ref}>
+            {children}
         </div>,
         document.body,
     );
