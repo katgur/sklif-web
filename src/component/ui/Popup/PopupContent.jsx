@@ -1,19 +1,18 @@
-import { useLayoutEffect, useState, useRef, useEffect } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import './Popup.css'
 
 function computePosition(rect, selfRect, position) {
-    function layoutWithLeftBorder(x) {
-        return Math.max(4, x);
+    function layoutWithLeftBorder(left) {
+        return Math.max(4, left);
     }
-    function layoutWithTopBorder(x) {
-        return Math.max(4, x);
+    function layoutWithTopBorder(right) {
+        return Math.max(4, right);
     }
-    function layoutWithRightBorder(y) {
-        return Math.min(window.innerWidth - selfRect.width - 4, y);
+    function layoutWithRightBorder(top) {
+        return Math.min(window.innerWidth - selfRect.width - 4, top);
     }
-    function layoutWithBottomBorder(y) {
-        return Math.min(window.innerHeight - selfRect.height - 4, y);
+    function layoutWithBottomBorder(bottom) {
+        return Math.min(window.innerHeight - selfRect.height - 4, bottom);
     }
     const [x, y] = position.split(' ');
     const res = [];
@@ -59,14 +58,7 @@ function PopupContent({ targetRect, children, position = 'center bottom' }) {
     const [x, y] = computePosition(targetRect, tooltipRect, position);
 
     return createPortal(
-        <div
-            style={{
-                position: 'absolute',
-                pointerEvents: 'none',
-                left: 0,
-                top: 0,
-                transform: `translate3d(${x}px, ${y}px, 0)`
-            }}>
+        <div className="popup" style={{ transform: `translate(${x}px, ${y}px)` }}>
             <div ref={ref}>
                 {children}
             </div>
