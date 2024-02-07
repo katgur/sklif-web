@@ -27,7 +27,7 @@ function TableItem({ item, contextMenu, onClick }) {
                     {moreIcon}
                 </span>
             }
-            <Popup target={targetRect} setTargetRect={setTargetRect} position="left top">
+            <Popup target={targetRect} setTargetRect={setTargetRect} position="left center">
                 <ul className="list-context-menu">
                     {contextMenu.map((option, index) => {
                         return (

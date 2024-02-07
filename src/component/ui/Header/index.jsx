@@ -11,7 +11,6 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
         setTargetRect(e.target);
     }
 
-    console.log(targetRect)
     return (
         <header>
             <div className='header__user'>

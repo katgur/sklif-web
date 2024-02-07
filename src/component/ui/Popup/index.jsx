@@ -5,7 +5,6 @@ import PopupContent from './PopupContent';
 function Popup({ target, setTargetRect, children, position = 'center bottom' }) {
     useEffect(() => {
         const clear = (e) => {
-            console.log(e.target, target)
             if (e.target == target) {
                 return;
             }

@@ -3,28 +3,33 @@ import { createPortal } from "react-dom";
 import './Popup.css'
 
 function computePosition(rect, selfRect, position) {
-    if (!rect) {
-        return [0, 0];
-    }
     const [x, y] = position.split(' ');
-    const res = [0, 0];
-    if (x === 'left') {
-        res[0] = rect.left;
-    } else if (x === 'center') {
-        res[0] = rect.left;
-    } else if (x === 'right') {
-        res[0] = rect.right;
-    } else {
-        throw new Error('Invalid position value ' + x);
+    const res = [];
+    switch (x) {
+        case 'left':
+            res[0] = rect.left - selfRect.width - 4;
+            break;
+        case 'center':
+            res[0] = rect.left - selfRect.width / 2 + rect.width / 2;
+            break;
+        case 'right':
+            res[0] = rect.left + rect.width + 4;
+            break;
+        default:
+            throw new Error('Invalid position value ' + x);
     }
-    if (y === 'top') {
-        res[1] = rect.top - selfRect.height;
-    } else if (y === 'center') {
-        res[1] = rect.y - selfRect.height / 2;
-    } else if (y === 'bottom') {
-        res[1] = rect.bottom;
-    } else {
-        throw new Error('Invalid position value ' + y);
+    switch (y) {
+        case 'top':
+            res[1] = rect.top - selfRect.height - 4;
+            break;
+        case 'center':
+            res[1] = rect.top - selfRect.height / 2 + rect.height / 2;
+            break;
+        case 'bottom':
+            res[1] = rect.top + rect.height + 4;
+            break;
+        default:
+            throw new Error('Invalid position value ' + y);
     }
     return res;
 }
