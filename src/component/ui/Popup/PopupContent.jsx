@@ -1,7 +1,6 @@
 import { useLayoutEffect, useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import './Popup.css'
-import TooltipContainer from "./TooltipContainer";
 
 function computePosition(rect, selfRect, position) {
     if (!rect) {
@@ -36,16 +35,25 @@ function PopupContent({ targetRect, children, position = 'center bottom' }) {
     const [tooltipRect, setTooltipRect] = useState({});
 
     useLayoutEffect(() => {
-        const rect = ref.current?.getBoundingClientRect() || {};
+        const rect = ref.current.getBoundingClientRect();
         setTooltipRect(rect);
     }, []);
 
-    const [tooltipX, tooltipY] = computePosition(targetRect, tooltipRect, position);
+    const [x, y] = computePosition(targetRect, tooltipRect, position);
 
     return createPortal(
-        <TooltipContainer x={tooltipX} y={tooltipY} contentRef={ref}>
-            {children}
-        </TooltipContainer>,
+        <div
+            style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                left: 0,
+                top: 0,
+                transform: `translate3d(${x}px, ${y}px, 0)`
+            }}>
+            <div ref={ref}>
+                {children}
+            </div>
+        </div>,
         document.body,
     );
 }
