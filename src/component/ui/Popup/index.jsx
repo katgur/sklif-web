@@ -1,8 +1,8 @@
 import './Popup.css'
-import PopupContent from "./PopupContent";
+import PopupWrapper from './PopupWrapper';
 
 function Popup({ targetRect, children, position = 'center bottom' }) {
-    return targetRect && <PopupContent targetRect={targetRect} position={position}>{children}</PopupContent>
+    return targetRect && <PopupWrapper targetRect={targetRect} position={position}>{children}</PopupWrapper>
 }
 
 export default Popup;

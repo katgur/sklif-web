@@ -31,7 +31,7 @@ function computePosition(rect, selfRect, position) {
 }
 
 
-function PopupContent({ targetRect, children, position = 'center bottom' }) {
+function PopupContent({ targetRect, children, wrapper, position = 'center bottom' }) {
     const ref = useRef(null);
     const [tooltipRect, setTooltipRect] = useState({});
 
@@ -48,7 +48,7 @@ function PopupContent({ targetRect, children, position = 'center bottom' }) {
         <TooltipContainer x={tooltipX} y={tooltipY} contentRef={ref}>
             {children}
         </TooltipContainer>,
-        document.body
+        wrapper,
     );
 }
 

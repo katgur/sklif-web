@@ -1,12 +1,12 @@
-import { useLayoutEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import PortalContent from "./PortalContent";
+import { useState, useLayoutEffect } from 'react';
+import './Popup.css'
+import PopupContent from "./PopupContent";
 
-function Portal({ children, id }) {
+function PopupWrapper({ targetRect, children, position = 'center bottom' }) {
     const [wrapper, setWrapper] = useState(null);
+    const id = "popup";
 
-    console.log(wrapper);
-    
+    console.log(wrapper)
     useLayoutEffect(() => {
         let newWrapper = document.getElementById(id);
         if (newWrapper) {
@@ -15,7 +15,7 @@ function Portal({ children, id }) {
 
         newWrapper = document.createElement('div');
         newWrapper.setAttribute('id', id);
-        document.body.appendChild(newWrapper);  
+        document.body.appendChild(newWrapper);
 
         setWrapper(newWrapper);
 
@@ -26,7 +26,7 @@ function Portal({ children, id }) {
         }
     }, [])
 
-    return wrapper && <PortalContent wrapper={wrapper}>{children}</PortalContent>
+    return wrapper && <PopupContent wrapper={wrapper} targetRect={targetRect} position={position}>{children}</PopupContent>
 }
 
-export default Portal
+export default PopupWrapper;
