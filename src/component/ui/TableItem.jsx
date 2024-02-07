@@ -11,13 +11,7 @@ function TableItem({ item, contextMenu, onClick }) {
     const [targetRect, setTargetRect] = useState(null);
 
     const onProfileIconClick = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        setTargetRect(targetRect ? null : {
-            left: rect.left,
-            top: rect.top,
-            right: rect.right,
-            bottom: rect.bottom,
-        });
+        setTargetRect(e.target);
     }
 
     return (
@@ -33,7 +27,7 @@ function TableItem({ item, contextMenu, onClick }) {
                     {moreIcon}
                 </span>
             }
-            <Popup targetRect={targetRect} position="left top">
+            <Popup target={targetRect} setTargetRect={setTargetRect} position="left top">
                 <ul className="list-context-menu">
                     {contextMenu.map((option, index) => {
                         return (

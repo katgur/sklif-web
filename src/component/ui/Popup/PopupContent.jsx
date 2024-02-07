@@ -31,7 +31,7 @@ function computePosition(rect, selfRect, position) {
 }
 
 
-function PopupContent({ targetRect, children, wrapper, position = 'center bottom' }) {
+function PopupContent({ targetRect, children, position = 'center bottom' }) {
     const ref = useRef(null);
     const [tooltipRect, setTooltipRect] = useState({});
 
@@ -40,15 +40,13 @@ function PopupContent({ targetRect, children, wrapper, position = 'center bottom
         setTooltipRect(rect);
     }, []);
 
-    console.log(tooltipRect);
     const [tooltipX, tooltipY] = computePosition(targetRect, tooltipRect, position);
-    console.log(tooltipX, tooltipY)
 
     return createPortal(
         <TooltipContainer x={tooltipX} y={tooltipY} contentRef={ref}>
             {children}
         </TooltipContainer>,
-        wrapper,
+        document.body,
     );
 }
 
