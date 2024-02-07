@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import './Popup.css'
 import PopupContent from './PopupContent';
 
-function Popup({ target, setTargetRect, children, position = 'center bottom' }) {
+function Popup({ target, setTarget, children, position = 'center bottom' }) {
     useEffect(() => {
         const clear = (e) => {
             if (e.target == target) {
                 return;
             }
-            setTargetRect(null);
+            setTarget(null);
         }
 
         document.body.addEventListener('click', clear);
@@ -17,6 +17,19 @@ function Popup({ target, setTargetRect, children, position = 'center bottom' }) 
             document.body.removeEventListener('click', clear);
         }
     }, [target])
+
+    useEffect(() => {
+        const onResize = () => {
+            setTarget(null);
+        }
+
+        window.addEventListener('resize', onResize);
+
+        return () => {
+            window.removeEventListener('resize', onResize);
+        }
+    }, []);
+
     return target && <PopupContent targetRect={target.getBoundingClientRect()} position={position}>{children}</PopupContent>
 }
 

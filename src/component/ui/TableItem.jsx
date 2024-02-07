@@ -8,10 +8,10 @@ const moreIcon = (
 )
 
 function TableItem({ item, contextMenu, onClick }) {
-    const [targetRect, setTargetRect] = useState(null);
+    const [target, setTarget] = useState(null);
 
     const onProfileIconClick = (e) => {
-        setTargetRect(targetRect ? null : e.target);
+        setTarget(target ? null : e.target);
     }
 
     return (
@@ -27,7 +27,7 @@ function TableItem({ item, contextMenu, onClick }) {
                     {moreIcon}
                 </span>
             }
-            <Popup target={targetRect} setTargetRect={setTargetRect} position="left center">
+            <Popup target={target} setTarget={setTarget} position="left center">
                 <ul className="list-context-menu">
                     {contextMenu.map((option, index) => {
                         return (

@@ -5,10 +5,10 @@ import SearchBar from './SearchBar.jsx';
 import Popup from '../Popup';
 
 function Header({ user, onSearchClick, onLogoutButtonClick }) {
-    const [targetRect, setTargetRect] = useState(null);
+    const [target, setTarget] = useState(null);
 
     const onProfileIconClick = (e) => {
-        setTargetRect(targetRect ? null : e.target);
+        setTarget(target ? null : e.target);
     }
 
     return (
@@ -27,7 +27,7 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
                 </span>
             </div>
             <SearchBar onSearchClick={onSearchClick} />
-            <Popup target={targetRect} setTargetRect={setTargetRect} position="center bottom">
+            <Popup target={target} setTarget={setTarget} position="center bottom">
                 <ul className='header__popup header__text'>
                     <li className='header__item'>Профиль</li>
                     <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>
