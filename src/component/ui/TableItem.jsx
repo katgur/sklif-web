@@ -11,7 +11,7 @@ function TableItem({ item, contextMenu, onClick }) {
     const [targetRect, setTargetRect] = useState(null);
 
     const onProfileIconClick = (e) => {
-        setTargetRect(e.target);
+        setTargetRect(targetRect ? null : e.target);
     }
 
     return (

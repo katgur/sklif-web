@@ -8,7 +8,7 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
     const [targetRect, setTargetRect] = useState(null);
 
     const onProfileIconClick = (e) => {
-        setTargetRect(e.target);
+        setTargetRect(targetRect ? null : e.target);
     }
 
     return (
