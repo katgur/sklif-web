@@ -63,20 +63,6 @@ header li svg {
     height: 18px;
 }
 
-.modal {
-    position: absolute;
-}
-
-.list-context-menu {
-    background-color: white;
-    color: var(--text-color-color);
-    border-radius: 5px;
-    box-shadow: 3px 2px 3px var(--stroke-color);
-    display: flex;
-    flex-flow: column;
-    align-content: stretch;
-}
-
 .list-context-menu > li {
     float: left;
     clear: left;

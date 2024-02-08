@@ -5,6 +5,7 @@ body {
     --stroke-color: #E2E8F0;
     --gray-color: #EFF4FB;
     --notification-color: #DC3545;
+    --backdrop-color: rgb(33, 43, 54, 0.75);
     --primary-color: #3C50E0;
     --text-color-color: #64748B;
     --hover-color: rgba(48, 86, 211, 0.04);

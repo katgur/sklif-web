@@ -13,7 +13,6 @@ function useUsers() {
     const search = useRef();
     const user = useAuthUser();
 
-    console.log(user);
     useEffect(() => {
         if (!user) {
             return;

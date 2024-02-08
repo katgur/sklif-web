@@ -11,7 +11,6 @@ const contextMenu = [
 function UsersList({ isGlobal }) {
     const users = useUsers();
 
-    console.log(users)
     var mapUser = (user) => {
         var res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {
