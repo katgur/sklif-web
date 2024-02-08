@@ -1,0 +1,28 @@
+.progress__track {
+    height: 5px;
+    width: 100vw;
+    background: var(--stroke-color);
+    position: absolute;
+    top: 0;
+}
+
+@keyframes progress-bar {
+    from {
+        width: 0%;
+        margin-left: 0;
+    }
+
+    to {
+        width: 50%;
+        margin-left: 100%;
+    }
+}
+
+.progress__value {
+    height: 5px;
+    background: var(--primary-color);
+    animation-name: progress-bar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
