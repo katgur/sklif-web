@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './Drawer.css'
 
 function Drawer({ menu, logo }) {
-
     if (!menu) {
         return;
     }

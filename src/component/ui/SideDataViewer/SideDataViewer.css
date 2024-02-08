@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../../../res/font/Inter-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Inter Light';
+    src: url('../../../res/font/Inter-Light.ttf');
+}
+
+.side {
+    background-color: #1C2434;
+    color: #8A99AF;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    padding: 40px 20px;
+    font-size: 14px;
+    font-family: 'Inter Light', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.side__section {
+    width: 100%;
+    cursor: pointer;
+}
+
+.side__title {
+    color: #DEE4EE;
+    margin-top: 8px;
+    padding: 8px 12px;
+    padding-right: 48px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 4px;
+}
+
+.side__title:hover {
+    background-color: #333A48;
+}
+
+.side__title::after {
+    background: url('./chevron.svg') no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    content: "";
+    width: 48px;
+    height: 24px;
+    rotate: 0deg;
+    transition: rotate 200ms ease-out;
+}
+
+.side__item {
+    padding: 4px 0;
+    padding-left: 45px;
+    width: 100%;
+}
+
+.side__item:hover {
+    color: #DEE4EE;
+}
+
+.side__item:first-child {
+    margin-top: 20px;
+}
+
+.side__item:last-child {
+    margin-bottom: 20px;
+}
+
+.side__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 200ms ease-out;
+}
+
+details[open]+.side__content {
+    max-height: 100px;
+    transition: max-height 200ms ease-out;
+}
+
+details[open] .side__title::after {
+    rotate: -180deg;
+    transition: rotate 200ms ease-out;
+}
