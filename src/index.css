@@ -57,20 +57,6 @@ summary svg {
     margin: 0 5px;
 }
 
-.tab-layout {
-    display: grid;
-    grid-template-columns: 30% auto;
-    grid-column-gap: 24px;
-}
-
-.tab-layout>ul {
-    height: fit-content;
-}
-
-.tab-layout>div {
-    padding: 0;
-}
-
 .content__home-page-profile {
     display: flex;
     flex-flow: row;

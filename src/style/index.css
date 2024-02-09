@@ -130,40 +130,6 @@ header li svg {
     }
 }
 
-.tab-layout {
-    display: flex;
-    flex-flow: row wrap;
-    margin-top: 24px;
-}
-
-.tab-layout > ul {
-    background-color: white;
-    color: var(--text-color-color);
-}
-
-.tab-layout > ul > li {
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.tab-layout > ul > li:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
-.tab-layout > div {
-    padding: 32px;
-}
-
-.tab-layout__selected {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-    border-left: 4px solid var(--primary-color);
-}
 
 input[type="file"] {
     display: none;

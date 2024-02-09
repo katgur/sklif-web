@@ -39,7 +39,7 @@ const pagination = (showingItemsLength, itemsCount, pageNum, setPageNum, capacit
             <div>
                 {pageNum !== 0 && <button onClick={onBackButtonClick}><img src={chevronLeft} alt="left" /></button>}
                 {pages.map((page1) => {
-                    const style = "table-viewer__page" + ((pageNum === (page1 - 1)) && "--selected");
+                    const style = "table-viewer__page" + (pageNum === (page1 - 1) ? "--selected" : "");
                     return (
                         <span key={page1} className={style} onClick={() => onPageButtonClick(page1)}>
                             {page1}

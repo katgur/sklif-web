@@ -1,0 +1,36 @@
+.tab-layout {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+}
+
+.tab-layout__content {
+    flex: 2;
+}
+
+.tab-layout__tabs {
+    flex: 1;
+    margin-left: auto;
+    height: fit-content;
+    background-color: white;
+    color: var(--text-color-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-layout__tab {
+    display: block;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab-layout__tab--selected {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+    border-left: 4px solid var(--primary-color);
+}
+
+.tab-layout__tab:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
