@@ -62,22 +62,15 @@ const initCornerstone = (accessToken) => {
 const drawerMenu = [
     {
         text: "Профиль", icon: profileIcon, options: [
-            {
-                text: "Перейти", route: "/home/profile"
-            },
-            {
-                text: "Выйти", route: "/logout"
-            }
+            <Link to="/home/profile">Перейти</Link>,
+            <Link to="/home/settings">Редактировать</Link>,
+            <Link to="/logout">Выйти</Link>,
         ]
     },
     {
         text: "Исследования", icon: studyIcon, options: [
-            {
-                text: "Список", route: "/home/studies"
-            },
-            {
-                text: "Зарузить", route: "/home/upload"
-            }
+            <Link to="/home/study">Список</Link>,
+            <Link to="/home/upload">Заргузить</Link>,
         ]
     },
 ]

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import './Drawer.css'
 
 function Drawer({ menu, logo }) {
@@ -26,9 +25,7 @@ function Drawer({ menu, logo }) {
                                         {item.options.map(option => {
                                             return (
                                                 <li key={option.text} className="drawer__link">
-                                                    <Link to={option.route}>
-                                                        {option.text}
-                                                    </Link>
+                                                    {option}
                                                 </li>
                                             )
                                         })}

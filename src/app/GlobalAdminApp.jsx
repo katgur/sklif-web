@@ -23,42 +23,26 @@ import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 const drawerMenu = [
   {
     text: "Пользователи", icon: usersIcon, options: [
-      {
-        text: "Список", route: "/home/users"
-      },
-      {
-        text: "Добавить", route: "/home/add_user"
-      }
+      <Link to="/home/users">Список</Link>,
+      <Link to="/home/add_user">Добавить</Link>,
     ]
   },
   {
     text: "Организации", icon: orgsIcon, options: [
-      {
-        text: "Список", route: "/home/organizations"
-      },
-      {
-        text: "Добавить", route: "/home/add_organization",
-      }
+      <Link to="/home/organizations">Список</Link>,
+      <Link to="/home/add_organization">Добавить</Link>,
     ]
   },
   {
     text: "Профиль", icon: profileIcon, options: [
-      {
-        text: "Перейти", route: "/home/profile"
-      },
-      {
-        text: "Редактировать", route: "/home/settings"
-      },
-      {
-        text: "Выйти", route: "/logout"
-      }
+      <Link to="/home/profile">Перейти</Link>,
+      <Link to="/home/settings">Редактировать</Link>,
+      <Link to="/logout">Выйти</Link>,
     ]
   },
   {
     text: "Настройки", icon: settingsIcon, options: [
-      {
-        text: "Профиль", route: "/home/settings"
-      },
+      <Link to="/home/settings">Профиль</Link>,
     ]
   }
 ]
