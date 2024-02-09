@@ -8,7 +8,6 @@ import Input from '../../component/ui/Form/Input.jsx';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Select from '../../component/ui/Form/Select'
 import Radio from '../../component/ui/Form/Radio.jsx';
-import SelectOption from '../../component/ui/Form/SelectOption.jsx';
 
 function RegisterUserForm({ isGlobal }) {
     const dispatch = useDispatch();
@@ -40,6 +39,7 @@ function RegisterUserForm({ isGlobal }) {
     ];
 
     const onSubmit = (data) => {
+        console.log(data)
         if (!isGlobal) {
             data.organization = user.organization;
         }
@@ -59,11 +59,7 @@ function RegisterUserForm({ isGlobal }) {
                 <Radio>Врач</Radio>
                 <Radio>Администратор</Radio>
             </RadioGroup>
-            <Select field={{ required: true, name: "organization", text: "Организация" }}>
-                {
-                    organizations.map(organization => <SelectOption key={organization}>{organization}</SelectOption>)
-                }
-            </Select>
+            <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations} />
             {
                 fields.slice(4).map(field => {
                     return <Input key={field.name} field={field} />
