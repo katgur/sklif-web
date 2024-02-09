@@ -7,7 +7,7 @@ function SideDataViewer({ schema, entity }) {
     }
 
     return (
-        <div className="side">
+        <div className="side font__inter--sm">
             <ul>
                 {
                     schema.map(section => {

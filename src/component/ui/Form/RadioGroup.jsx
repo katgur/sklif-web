@@ -13,11 +13,11 @@ function RadioGroup({ register, field, entity, errors, children }) {
     });
     return (
         <div className='form__radio-group'>
-            <p className="font__medium-14">
+            <p className="font__jost--sm">
                 {field.text}
-                {field.required && <span className="font__regular-16 font_color_error">&nbsp;*</span>}
+                {field.required && <span className="font_color_error">&nbsp;*</span>}
             </p>
-            {error && <span className="font__regular-14 font_color_error">&nbsp;&nbsp;{error.message}</span>}
+            {error && <span className="font__inter--xs font_color_error">&nbsp;&nbsp;{error.message}</span>}
             {childrenWithProps}
         </div>
     )

@@ -15,9 +15,6 @@
     flex-flow: column;
     height: 100%;
     padding: 40px 20px;
-    font-size: 14px;
-    font-family: 'Inter Light', sans-serif;
-    letter-spacing: 0.05em;
 }
 
 .side__section {

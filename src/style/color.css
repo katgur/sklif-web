@@ -1,10 +1,13 @@
 body {
     --white: #fff;
-    --dark-color: #212B36;
+    --dark-color: #333A48;
     --text-color: #64748B;
     --stroke-color: #E2E8F0;
     --gray-color: #EFF4FB;
+    --white-hover-color: #DEE4EE;
     --notification-color: #DC3545;
+    --black: #212B36;
+    --text-color-2: #637381;
     --backdrop-color: rgb(33, 43, 54, 0.75);
     --primary-color: #3C50E0;
     --text-color-color: #64748B;

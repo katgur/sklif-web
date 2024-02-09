@@ -18,8 +18,8 @@ function TableItem({ item, contextMenu, onClick }) {
                     <span className="table-viewer__cell" onClick={(e) => setTarget(target ? null : e.target)}>
                         <img src={moreIcon} alt="more" />
                     </span>
-                    <Popup target={target} setTarget={setTarget}>
-                        <ul>
+                    <Popup target={target} setTarget={setTarget} position="left bottom">
+                        <ul className="table-viewer__menu font__inter--sm font_color_text">
                             {contextMenu.map((option, index) => {
                                 return (
                                     <li key={index} className="table-viewer__menu-item">

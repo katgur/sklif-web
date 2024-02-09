@@ -77,7 +77,7 @@ function SortableTableViewer({ columns, items, contextMenu, onItemClick, capacit
     const showingItems = sortableItems.slice(capacity * page, Math.min(capacity * page + capacity, sortableItems.length));
 
     return (
-        <div className="card">
+        <div className="card font__nunito--sm">
             <div className="table-viewer__list" style={{ gridTemplateColumns: "10fr ".repeat(columns.length) + "1fr" }}>
                 {columns.map((column, index) => {
                     return (

@@ -17,7 +17,7 @@ function DataViewer({ name, entity, schema, path }) {
     }
 
     return (
-        <div className="data-viewer">
+        <div className="data-viewer font__inter--sm">
             <h2>{name}</h2>
             <ul className="data-viewer__tabs">
                 {
@@ -29,7 +29,7 @@ function DataViewer({ name, entity, schema, path }) {
                     })
                 }
             </ul>
-            <ul className="data-viewer__data">
+            <ul className="data-viewer__data font__nunito--sm">
                 {
                     schema[selected].tabs.map((tab) => {
                         const value = entity[tab.name];

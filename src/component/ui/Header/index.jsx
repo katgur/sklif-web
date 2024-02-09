@@ -15,10 +15,10 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
         <header>
             <div className='header__user'>
                 <p className='header__user-name'>
-                    <span className='header__title'>
+                    <span className='header__title font__nunito--sm'>
                         {user.name}
                     </span>
-                    <span className='header__subtitle'>
+                    <span className='header__subtitle font__nunito--sm'>
                         {user.role}
                     </span>
                 </p>
@@ -28,12 +28,11 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
             </div>
             <SearchBar onSearchClick={onSearchClick} />
             <Popup target={target} setTarget={setTarget} position="center bottom">
-                <ul className='header__popup header__text'>
+                <ul className='header__popup header__text font__inter--sm'>
                     <li className='header__item'>Профиль</li>
                     <li className='header__item header__dangerous' onClick={onLogoutButtonClick}>Выход</li>
                 </ul>
             </Popup>
-
         </header>
     );
 }

@@ -22,7 +22,7 @@ function Form({ onSubmit, onCancel, entity, children }) {
             {childrenWithProps}
             <div className="form__buttons">
                 <Button type="submit" style="primary">Готово</Button>
-                <Button type="reset" style="secondary">Сбросить</Button>
+                <Button type="reset" style="secondary">Отмена</Button>
             </div>
         </form>
     )

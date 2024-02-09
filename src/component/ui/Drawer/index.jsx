@@ -1,5 +1,6 @@
 import React from "react";
-import './Drawer.css'
+import './Drawer.css';
+import '../typography.css';
 
 function Drawer({ menu, logo }) {
     if (!menu) {
@@ -7,8 +8,10 @@ function Drawer({ menu, logo }) {
     }
 
     return (
-        <aside className="drawer">
-            <img className="drawer__logo" src={logo} alt="Logo" />
+        <aside className="drawer font__inter--sm">
+            <a href="/">
+                <img className="drawer__logo" src={logo} alt="Logo" />
+            </a>
             <nav className="drawer__navigation">
                 <ul>
                     {

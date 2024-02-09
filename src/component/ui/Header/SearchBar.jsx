@@ -6,7 +6,7 @@ function SearchBar({ onSearchClick }) {
 
     return (
         <form onSubmit={onSubmit}>
-            <input className="header__input" type="text" placeholder="Поиск..." />
+            <input className="header__input font__nunito--xs" type="text" placeholder="Поиск..." />
         </form>
     )
 }

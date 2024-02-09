@@ -41,6 +41,7 @@ input {
 button {
   border: 0;
   cursor: pointer;
+  all: unset;
 }
 
 a:link,

@@ -16,12 +16,12 @@ function Select({ field, errors, register, children }) {
 
     return (
         <div className="form__select-container">
-            <p className="font__medium-14">
+            <p className="font__jost--sm">
                 {field.text}
-                {field.required && <span className="font__regular-16 font_color_error">&nbsp;*</span>}
+                {field.required && <span className="font__inter--m font_color_error">&nbsp;*</span>}
             </p>
-            {error && <span className="error-font">{error.message}</span>}
-            <select className="form__select font__regular-16 font_color_dark" {...register(field.name, validation)}>
+            {error && <span className="font__inter-xs">{error.message}</span>}
+            <select className="form__select font__inter--m" {...register(field.name, validation)}>
                 {childrenWithProps}
             </select>
         </div>

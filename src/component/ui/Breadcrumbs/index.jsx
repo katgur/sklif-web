@@ -1,12 +1,13 @@
 import './Breadcrumbs.css'
+import '../typography.css'
 
 function Breadcrumbs({ title, children }) {
     return (
         <nav className="breadcrumbs">
-            <h2 className='breadcrumbs__title'>
+            <h2 className='breadcrumbs__title font__inter--xl'>
                 {title}
             </h2>
-            <ul className='breadcrumbs__list'>
+            <ul className='breadcrumbs__list font__inter--sm'>
                 {
                     children.map && children.map((child, index) => {
                         return (

@@ -2,20 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.breadcrumbs__title {
-    font-size: 26px;
-    line-height: 30px;
-}
-
-.breadcrumbs__list {
-    font-size: 16px;
-    margin: 1rem 0;
+    margin-bottom: 20px;
 }
 
 .breadcrumbs__link {
-    color: #64748B;
+    color: var(--text-color);
 }
 
 .breadcrumbs__link:hover {
@@ -23,9 +14,9 @@
 }
 
 .breadcrumbs__link--active {
-    color: #3C50E0;
+    color: var(--primary-color);
 }
 
 .breadcrumbs__divider {
-    color: #64748B;
+    color: var(--text-color);
 }

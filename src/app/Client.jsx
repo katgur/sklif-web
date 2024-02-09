@@ -63,7 +63,6 @@ const drawerMenu = [
     {
         text: "Профиль", icon: profileIcon, options: [
             <Link to="/home/profile">Перейти</Link>,
-            <Link to="/home/settings">Редактировать</Link>,
             <Link to="/logout">Выйти</Link>,
         ]
     },

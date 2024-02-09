@@ -8,7 +8,7 @@ function TabLayout({ titles, children }) {
     const validation = titles && children && children.length > 0 && titles.length === children.length;
 
     return (validation &&
-        <div className="tab-layout">
+        <div className="tab-layout font__inter--sm">
             <div className="tab-layout__content">
                 {children[page]}
             </div>

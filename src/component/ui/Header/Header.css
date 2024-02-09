@@ -1,17 +1,7 @@
-@font-face {
-    font-family: 'Inter';
-    src: url('../../../res/font/Inter-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Inter Medium';
-    src: url('../../../res/font/Inter-Medium.ttf');
-}
-
 .header__user {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
 .header__user-name {
@@ -23,7 +13,6 @@
     object-fit: cover;
     width: 48px;
     height: 48px;
-    font-family: 'Inter', sans-serif;
     cursor: pointer;
 }
 
@@ -37,27 +26,25 @@
 }
 
 .header__title {
-    font-size: 13px;
-    font-family: 'Inter Medium', sans-serif;
-    display: block;
+    float: right;
+    color: var(--black);
 }
 
 .header__subtitle {
-    font-size: 12px;
-    color: #637381;
-    display: block;
+    float: right;
+    clear: right;
+    color: var(--text-color-2);
 }
 
 .header__input {
     background: url('./search.svg') no-repeat;
     background-position: left center;
-    color: #637381;
+    color: var(--dark-text-color-2);
     padding-left: 40px;
-    font-size: 14px;
 }
 
 .header__input::placeholder {
-    color: #637381;
+    color: var(--text-color-2);
 }
 
 .header__popup {
@@ -77,11 +64,6 @@
 .header__item:hover {
     color: #3C50E0;
     background-color: #E5E9FF;
-}
-
-.header__text {
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
 }
 
 .header__dangerous {
