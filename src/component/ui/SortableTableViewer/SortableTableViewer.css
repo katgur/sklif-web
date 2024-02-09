@@ -1,0 +1,65 @@
+.table-viewer__list {
+    display: grid;
+    grid-auto-rows: minmax(50px, auto);
+}
+
+.table-viewer__cell {
+    padding: 16px 20px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    border-bottom: 1px solid var(--stroke-color);
+}
+
+.table-viewer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-viewer__sort {
+    border-radius: 4px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.table-viewer__sort:hover {
+    background-color: var(--hover-color-2);
+}
+
+.table-viewer__value {
+    cursor: pointer;
+}
+
+.table-viewer__menu-item {
+    float: left;
+    clear: left;
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.table-viewer__menu-item:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+.table-viewer__pagination {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.table-viewer__page {
+    margin: 5px;
+}
+
+.table-viewer__page--selected {
+    border-radius: 3px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 5px 8px;
+    margin: 5px;
+}
+

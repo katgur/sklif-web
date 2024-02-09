@@ -53,6 +53,36 @@ const getFiles = async () => {
                 date: new Date().toUTCString(),
                 size: 21,
             },
+            {
+                key: 'S000001/000003',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
+            {
+                key: 'S000001/000004',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
+            {
+                key: 'S000001/000005',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
+            {
+                key: 'S000001/000006',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
+            {
+                key: 'S000001/000007',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
+            {
+                key: 'S000001/000008',
+                date: new Date().toUTCString(),
+                size: 21,
+            },
         ]
         await LS.set(value);
     }

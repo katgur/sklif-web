@@ -61,39 +61,14 @@
     color: var(--alert-text-color);
 }
 
-.list {
-  font-family: Nunito, sans-serif;
-}
-
 .field-name {
     font-weight: 800;
     font-size: 15px;
 }
 
-.table-column {
-    font-weight: 800;
-    font-size: 13px;
-    color: var(--text-color-color);
-}
-
 .table-value {
     font-size: 14px;
     color: var(--text-color-color);
-}
-
-.pagination-font {
-    font-size: 15px;
-    color: var(--text-color-color);
-    margin: 5px;
-}
-
-.pagination-font__selected {
-    font-size: 15px;
-    border-radius: 3px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 5px 8px;
-    margin: 5px;
 }
 
 .header-font {

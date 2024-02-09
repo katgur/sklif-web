@@ -15,8 +15,7 @@ header {
 }
 
 header svg,
-.list svg, 
-.pagination > div > span,
+.list svg,
 .list > div span {
     cursor: pointer;
 }
@@ -63,20 +62,6 @@ header li svg {
     height: 18px;
 }
 
-.list-context-menu > li {
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.list-context-menu > li:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
 .login-page__content {
     margin: 5vh auto;
     padding: 40px 70px;
@@ -87,25 +72,6 @@ header li svg {
 
 .login-page__header {
     margin-bottom: 35px;
-}
-
-.list {
-    display: grid;
-    grid-auto-rows: minmax(50px, auto);
-}
-
-.list > span {
-    border-bottom: 1px solid gainsboro;
-    padding: 20px;
-    overflow: hidden;
-    overflow-wrap: break-word;
-}
-  
-.pagination {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 30px;
-    border-bottom: 1px solid gainsboro;
 }
 
 .data-viewer {

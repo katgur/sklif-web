@@ -143,20 +143,6 @@ summary svg {
     background: url('./res/checked.svg') var(--hover-color) no-repeat center;
 }
 
-.table-value {
-    cursor: pointer;
-}
-
-.text-with-svg {
-    align-items: center;
-}
-
-.text-with-svg>* {
-    vertical-align: middle;
-    display: inline-block;
-    margin: 0 2px;
-}
-
 .toggle {
     position: relative;
     display: inline-block;
@@ -317,17 +303,6 @@ a:active {
     padding: 32px 24px;
     width: 500px;
     margin: 100px auto;
-}
-
-.transparent-badge {
-    border-radius: 4px;
-    padding: 3px;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.transparent-badge:hover {
-    background-color: #eee;
 }
 
 .content__home-page-table .toggle-wrapper {

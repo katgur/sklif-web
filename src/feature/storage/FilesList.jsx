@@ -145,7 +145,7 @@ function FilesList() {
                 items.length !== 0 &&
                 <SortableTableViewer
                     onItemClick={onItemClick}
-                    capacity={10}
+                    capacity={5}
                     columns={schema}
                     contextMenu={contextMenu}
                     items={items} />
