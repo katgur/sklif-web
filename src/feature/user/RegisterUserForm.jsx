@@ -40,9 +40,6 @@ function RegisterUserForm({ isGlobal }) {
 
     const onSubmit = (data) => {
         console.log(data)
-        if (!isGlobal) {
-            data.organization = user.organization;
-        }
         dispatch(addUser(data));
     }
 
