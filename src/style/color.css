@@ -1,13 +1,20 @@
 body {
+    --white: #fff;
+    --dark-color: #333A48;
+    --text-color: #64748B;
     --stroke-color: #E2E8F0;
     --gray-color: #EFF4FB;
+    --white-hover-color: #DEE4EE;
     --notification-color: #DC3545;
+    --black: #212B36;
+    --text-color-2: #637381;
+    --backdrop-color: rgb(33, 43, 54, 0.75);
     --primary-color: #3C50E0;
-    --text-color: #64748B;
+    --text-color-color: #64748B;
     --hover-color: rgba(48, 86, 211, 0.04);
-    --dark-color: #333A48;
-    --dark-text-color-1: #DEE4EE;
-    --dark-text-color-2: #8A99AF;
+    --dark-color-color: #333A48;
+    --dark-color-text-color-1: #DEE4EE;
+    --dark-color-text-color-2: #8A99AF;
     --hover-color-2: rgba(138, 153, 175, 0.2);
     --alert-color: #F87171;
     --alert-text-color: #CD5D5D;

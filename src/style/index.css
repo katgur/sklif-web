@@ -15,8 +15,7 @@ header {
 }
 
 header svg,
-.list svg, 
-.pagination > div > span,
+.list svg,
 .list > div span {
     cursor: pointer;
 }
@@ -63,133 +62,6 @@ header li svg {
     height: 18px;
 }
 
-.modal {
-    position: absolute;
-}
-
-.header-context-menu {
-    background-color: white;
-    color: var(--text-color);
-    border-radius: 5px;
-    box-shadow: 3px 2px 3px var(--stroke-color);
-}
-
-.header-context-menu > li {
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.header-context-menu > li:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
-.list-context-menu {
-    background-color: white;
-    color: var(--text-color);
-    border-radius: 5px;
-    box-shadow: 3px 2px 3px var(--stroke-color);
-    display: flex;
-    flex-flow: column;
-    align-content: stretch;
-}
-
-.list-context-menu > li {
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.list-context-menu > li:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
-.drawer {
-    background-color: var(--dark-color);
-    color: var(--dark-text-color-2);
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-}
-
-.drawer > h1 {
-    color: white;
-    display: inline-block;
-    margin: 40px;
-}
-
-.drawer > li {
-    margin: 0 25px;
-}
-
-.drawer > li > span {
-    border-radius: 3px;
-    padding: 11px;
-}
-
-.drawer > li > span {
-    display: flex;
-    gap: 5px;
-}
-
-.last {
-    margin-left: auto;
-}
-
-.drawer > li > span:hover {
-    background-color: var(--hover-color-2);
-    cursor: pointer;
-}
-
-.drawer ul {
-    margin-left: 45px;
-    margin-top: 15px;
-}
-
-.drawer ul > li {
-    display: block;
-    clear: right;
-    margin: 10px 0;
-}
-
-.drawer ul > li:hover {
-    color: white;
-}
-
-form > div {
-    display: flex;
-    flex-flow: column;
-    align-items: stretch;
-    overflow: hidden;
-}
-
-form > div > * {
-    float: left;
-    clear: left;
-}
-
-form > div > p {
-    margin: 0;
-}
-
-form > div > input {
-    margin: 10px 0;
-}
-
-form > div > div {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 16px;
-}
-
 .login-page__content {
     margin: 5vh auto;
     padding: 40px 70px;
@@ -202,89 +74,12 @@ form > div > div {
     margin-bottom: 35px;
 }
 
-.list {
-    display: grid;
-    grid-auto-rows: minmax(50px, auto);
-}
-
-.list > span {
-    border-bottom: 1px solid gainsboro;
-    padding: 20px;
-    overflow: hidden;
-    overflow-wrap: break-word;
-}
-  
-.pagination {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 30px;
-    border-bottom: 1px solid gainsboro;
-}
-
-.basic-layout {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: var(--header-height) auto;
-    height: inherit;
-}
-
-.basic-layout__drawer {
-    grid-row-start: 1;
-    grid-row-end: 3;
-}
-
-.basic-layout__content {
-    margin: 2% 4%;
-}
-
 .data-viewer {
     padding: 20px;
 }
 
 .data-viewer__header {
     margin-bottom: 15px;
-}
-
-.alert {
-    border-radius: 4px;
-    padding: 27px;
-    width: fit-content;
-    overflow: hidden;
-}
-
-.alert-error {
-    background-color: var(--alert-background-color);
-    border-left: 5px solid var(--alert-color);
-
-}
-
-.alert-success {
-    background-color: var(--success-background-color);
-    border-left: 5px solid var(--success-color);
-}
-
-.alert-notify {
-    background-color: #FEF5DE;
-    border-left: 5px solid #FFB800;
-}
-
-.alert > span {
-    float: left;
-    clear: left;
-}
-
-.alert > div {
-    float: left;
-    clear: right;
-    margin: 0 22px;
-}
-
-.alert > div > * {
-    float: left;
-    clear: left;
-    width: 300px;
-    overflow: hidden;
-    overflow-wrap: break-word;
 }
 
 .not-found-page {
@@ -298,25 +93,8 @@ form > div > div {
     margin: 20px auto;
 }
 
-select {
-    border: 1.5px solid var(--stroke-color);
-    padding: 15px;
-    border-radius: 4px;
-    background: url("../res/chevron-down.svg") no-repeat 98%;
-}
-
-select:focus {
-    border-color: var(--primary-color);
-}
-
 .not-found-page {
     margin: 100px auto;
-}
-
-.alerts {
-    display: flex;
-    flex-flow: column;
-    gap: 10px;
 }
 
 .modal-shaded {
@@ -329,25 +107,6 @@ select:focus {
 .rounded-card {
     border-radius: 8px;
     background-color: white;
-}
-
-.alert {
-    display: flex;
-    flex-flow: row;
-}
-
-.alert > span {
-    cursor: pointer;
-}
-
-.alert > div {
-    display: flex;
-    flex-flow: row;
-    gap: 15px;
-}
-
-.alert > div > span {
-    width: fit-content;
 }
 
 #alert {
@@ -371,40 +130,6 @@ select:focus {
     }
 }
 
-.tab-layout {
-    display: flex;
-    flex-flow: row wrap;
-    margin-top: 24px;
-}
-
-.tab-layout > ul {
-    background-color: white;
-    color: var(--text-color);
-}
-
-.tab-layout > ul > li {
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.tab-layout > ul > li:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
-.tab-layout > div {
-    padding: 32px;
-}
-
-.tab-layout__selected {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
-    border-left: 4px solid var(--primary-color);
-}
 
 input[type="file"] {
     display: none;

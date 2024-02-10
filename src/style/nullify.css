@@ -4,20 +4,28 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
+p {
+  margin: 0;
+}
 
-ul {  
-  list-style-type: none; 
-  padding: 0; 
+ul {
+  list-style-type: none;
+  padding: 0;
   margin: 0;
 }
 
 li {
-  list-style-type: none; 
-  padding: 0; 
+  list-style-type: none;
+  padding: 0;
   margin: 0;
   display: inline-block;
 }
@@ -28,12 +36,20 @@ menu {
 
 input {
   all: unset;
-  display: inline-block;
 }
 
-a:link, a:visited, a:hover, a:active {
-    text-decoration: none;
-    color: inherit;
+button {
+  border: 0;
+  cursor: pointer;
+  all: unset;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
 *,
@@ -42,6 +58,10 @@ a:link, a:visited, a:hover, a:active {
   box-sizing: border-box;
 }
 
-select {
-  all: unset;
+details {
+  overflow: hidden;
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }

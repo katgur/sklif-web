@@ -13,40 +13,35 @@ import DeleteFileForm from '../feature/storage/DeleteFileForm';
 import FilesList from '../feature/storage/FilesList';
 import ProgressBar from '../component/ui/ProgressBar';
 import AddDirectoryForm from '../feature/storage/AddDirectoryForm';
-import Welcome from '../component/Welcome';
 import UploadAvatarForm from '../feature/user/UploadAvatarForm';
 import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/ui/NotFoundPage.jsx';
-import { profileIcon, settingsIcon, usersIcon, viewUsersIcon, addUserIcon, storageIcon, uploadIcon } from '../res/svg';
-
-const headerMenu = [
-  {
-      text: "Профиль", icon: profileIcon, route: "/home/profile", hasNotification: false
-  },
-  {
-      text: "Настройки", icon: settingsIcon, route: "/home/settings", hasNotification: false
-  }
-]
+import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
+import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 
 const drawerMenu = [
   {
-      text: "Пользователи", icon: usersIcon, options: [
-          {
-              text: "Просмотреть всех", route: "/home/users", icon: viewUsersIcon
-          },
-          {
-              text: "Добавить", route: "/home/add_user", icon: addUserIcon
-          }
-      ]
+    text: "Пользователи", icon: usersIcon, options: [
+      <Link to="/home/users">Список</Link>,
+      <Link to="/home/add_user">Добавить</Link>,
+    ]
   },
   {
     text: "Хранилище", icon: storageIcon, options: [
-      {
-        text: "Просмотреть", icon: storageIcon, route: '/home/files',
-      },
-      {
-        text: "Загрузить", icon: uploadIcon, route: '/home/add_file',
-      }
+      <Link to="/home/files">Список</Link>,
+      <Link to="/home/add_file">Заргузить</Link>,
+    ]
+  },
+  {
+    text: "Профиль", icon: profileIcon, options: [
+      <Link to="/home/profile">Перейти</Link>,
+      <Link to="/home/settings">Редактировать</Link>,
+      <Link to="/logout">Выйти</Link>,
+    ]
+  },
+  {
+    text: "Настройки", icon: settingsIcon, options: [
+      <Link to="/home/settings">Профиль</Link>,
     ]
   }
 ]
@@ -54,13 +49,58 @@ const drawerMenu = [
 const homePage = (
   <>
     <ProgressBar />
-    <HomePage drawerMenu={drawerMenu} headerMenu={headerMenu} />
+    <HomePage drawerMenu={drawerMenu} />
   </>
 )
 
-var editUserPage = (
+const profilePage = (
   <>
-    <h3>Редактирование данных пользователя</h3>
+    <Breadcrumbs title={'Данные профиля'}>
+      <Link to={''}>Профиль</Link>
+    </Breadcrumbs>
+    <ProfileViewer searchable={true} />
+  </>
+)
+
+const settingsPage = (
+  <>
+    <Breadcrumbs title={'Настройки профиля'}>
+      <Link to={'/home/profile'}>Профиль</Link>
+      <Link to={''}>Настройки</Link>
+    </Breadcrumbs>
+    <TabLayout titles={["Фотография профиля", "Общая информация", "Пароль"]}>
+      <UploadAvatarForm />
+      <EditUserInfoForm />
+      <EditPasswordForm />
+    </TabLayout>
+  </>
+)
+
+const usersListPage = (
+  <>
+    <Breadcrumbs title={'Пользователи'}>
+      <Link to={''}>Список</Link>
+    </Breadcrumbs>
+    <UsersList />
+  </>
+)
+
+const addUserPage = (
+  <>
+    <Breadcrumbs title={'Регистрация пользователя'}>
+      <Link to={'/home/users'}>Список</Link>
+      <Link to={''}>Добавить</Link>
+    </Breadcrumbs>
+    <RegisterUserForm />
+  </>
+)
+
+const editUserPage = (
+  <>
+    <Breadcrumbs title='Редактирование данных пользователя'>
+      <Link to='/home/users'>Список</Link>
+      <Link to=''>Редактировать</Link>
+    </Breadcrumbs>
     <ProfileViewer searchable={true} />
     <TabLayout titles={["Общая информация", "Фотография профиля", "Привязка почты", "Права доступа"]}>
       <EditUserInfoForm />
@@ -71,42 +111,68 @@ var editUserPage = (
   </>
 )
 
-var settingsPage = (
+const profileViewer = (
   <>
-    <h3>Настройки профиля</h3>
-    <TabLayout titles={["Фотография профиля", "Общая информация", "Пароль"]}>
-      <UploadAvatarForm />
-      <EditUserInfoForm />
-      <EditPasswordForm />
-    </TabLayout>
+    <Breadcrumbs title={'Данные профиля'}>
+      <Link to={''}>Профиль</Link>
+    </Breadcrumbs>
+    <ProfileViewer searchable={true} />
+  </>
+)
+
+const filesPage = (
+  <>
+    <Breadcrumbs title={'Файлы'}>
+      <Link to={''}>Список</Link>
+    </Breadcrumbs>
+    <FilesList />
+  </>
+)
+
+const uploadFilePage = (
+  <>
+    <Breadcrumbs title={'Загрузка'}>
+      <Link to={'/home/files'}>Список файлов</Link>
+      <Link to={''}>Загрузить</Link>
+    </Breadcrumbs>
+    <UploadFileForm />
+  </>
+)
+
+const addDirectoryPage = (
+  <>
+    <Breadcrumbs title={'Создание директории'}>
+      <Link to={'/home/files'}>Список файлов</Link>
+      <Link to={''}>Создать директорию</Link>
+    </Breadcrumbs>
+    <AddDirectoryForm />
   </>
 )
 
 function App() {
   return (
     <>
-        <Routes>
-          <Route path="" element={homePage}>
-            <Route path="" element={<Welcome />} />
-            <Route path="users" element={<UsersList />}>
-              <Route path="delete/:id" element={<DeleteUserForm />} />
-              <Route path="search/:search" />
-            </Route>
-            <Route path="add_user" element={<RegisterUserForm isGlobal={false} />} />
-            <Route path="edit_user/:id" element={editUserPage} />
-
-            <Route path="files" element={<FilesList />}>
-              <Route path="delete/*" element={<DeleteFileForm />} />
-            </Route>
-            <Route path="add_file" element={<UploadFileForm />} />
-            <Route path="add_directory" element={<AddDirectoryForm />} />
-
-            <Route path="profile/:id" element={<ProfileViewer searchable={true} />} />
-            <Route path="profile" element={<ProfileViewer searchable={true} />} />
-            <Route path="settings" element={settingsPage} />
+      <Routes>
+        <Route path="" element={homePage}>
+          <Route path="users" element={usersListPage}>
+            <Route path="delete/:id" element={<DeleteUserForm />} />
+            <Route path="search/:search" />
           </Route>
-          <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
-        </Routes>
+          <Route path="add_user" element={addUserPage} />
+          <Route path="edit_user/:id" element={editUserPage} />
+
+          <Route path="files" element={filesPage}>
+            <Route path="delete/*" element={<DeleteFileForm />} />
+          </Route>
+          <Route path="add_file" element={uploadFilePage} />
+          <Route path="add_directory" element={addDirectoryPage} />
+
+          <Route path="profile/:id" element={profileViewer} />
+          <Route path="profile" element={profilePage} />
+          <Route path="settings" element={settingsPage} />
+        </Route>
+        <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
+      </Routes>
     </>
   );
 }

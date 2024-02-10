@@ -3,10 +3,6 @@
     height: 100vh;
 }
 
-.basic-layout {
-    height: 100vh;
-}
-
 .content__login-page {
     width: fit-content;
     padding: 70px;
@@ -49,35 +45,6 @@
     margin: 10px 0;
 }
 
-.progress-track {
-    height: 5px;
-    width: 100vw;
-    background: var(--stroke-color);
-    position: absolute;
-    top: 0;
-}
-
-@keyframes progress-bar {
-    from {
-        width: 0%;
-        margin-left: 0;
-    }
-
-    to {
-        width: 50%;
-        margin-left: 100%;
-    }
-}
-
-.progress-value {
-    height: 5px;
-    background: var(--primary-color);
-    animation-name: progress-bar;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
 details>summary {
     list-style-type: none;
 }
@@ -88,43 +55,6 @@ details>summary::-webkit-details-marker {
 
 summary svg {
     margin: 0 5px;
-}
-
-.tab-layout {
-    display: grid;
-    grid-template-columns: 30% auto;
-    grid-column-gap: 24px;
-}
-
-.tab-layout>ul {
-    height: fit-content;
-}
-
-.tab-layout>div {
-    padding: 0;
-}
-
-.tabs {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    align-items: stretch;
-}
-
-.tab {
-    color: var(--text-color);
-    font-size: small;
-    cursor: pointer;
-    border-bottom: 2px solid var(--stroke-color);
-    width: 200px;
-}
-
-.tab-selected {
-    color: var(--primary-color);
-    font-size: small;
-    border-bottom: 2px solid var(--primary-color);
-    cursor: pointer;
-    width: 200px;
 }
 
 .content__home-page-profile {
@@ -143,36 +73,6 @@ summary svg {
     padding: 20px;
 }
 
-.outline-badge {
-    background-color: var(--gray-color);
-    font-size: small;
-    color: var(--primary-color);
-    border-radius: 3px;
-    padding: 5px;
-}
-
-.outline-badge__selected {
-    background-color: var(--primary-color);
-    font-size: small;
-    color: white;
-    border-radius: 3px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.outline-badge:hover {
-    background-color: var(--stroke-color);
-}
-
-.outline-badge__selected {
-    background-color: var(--primary-color);
-    font-size: small;
-    color: white;
-    border-radius: 3px;
-    padding: 5px;
-    cursor: pointer;
-}
-
 .filled-badge {
     background-color: var(--primary-color);
     font-size: small;
@@ -180,10 +80,6 @@ summary svg {
     border-radius: 3px;
     cursor: pointer;
     padding: 5px;
-}
-
-form>div>select {
-    margin: 10px 0;
 }
 
 .tools {
@@ -218,7 +114,7 @@ form>div>select {
     margin: 0;
     width: 20px;
     height: 20px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-color-color);
     border-radius: 4px;
     transform: translateY(-0.075em);
 }
@@ -231,20 +127,6 @@ form>div>select {
 .checkbox:checked {
     border-color: var(--primary-color);
     background: url('./res/checked.svg') var(--hover-color) no-repeat center;
-}
-
-.table-value {
-    cursor: pointer;
-}
-
-.text-with-svg {
-    align-items: center;
-}
-
-.text-with-svg>* {
-    vertical-align: middle;
-    display: inline-block;
-    margin: 0 2px;
 }
 
 .toggle {
@@ -291,28 +173,6 @@ input:checked+.slider:before {
     transform: translateX(19px);
 }
 
-.radio>input {
-    float: left;
-    clear: left;
-    margin-left: 6px;
-}
-
-.radio>span {
-    float: left;
-    margin: 0 5px;
-}
-
-.field-section {
-    margin-top: 18px;
-    display: grid;
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
-}
-
-form h4 {
-    margin-bottom: 8px;
-}
-
 .error {
     background-color: var(--alert-background-color);
     border-color: var(--alert-text-color);
@@ -348,7 +208,7 @@ form h4 {
 
 .masked-image {
     flex: 1;
-    background-color: var(--dark-color);
+    background-color: var(--dark-color-color);
     height: 85vh;
 }
 
@@ -389,7 +249,7 @@ form h4 {
 }
 
 .viewer {
-    background-color: var(--dark-color);
+    background-color: var(--dark-color-color);
     display: flex;
     flex-flow: row;
     min-height: 100vh;
@@ -406,20 +266,6 @@ form h4 {
 .toolbar-wrapper>div {
     width: fit-content;
     height: fit-content;
-}
-
-.scroll-track {
-    width: 100%;
-    height: 10px;
-    background-color: #333;
-    border-radius: 5px;
-    padding: 1px;
-}
-
-.scroll-thumb {
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 4px;
 }
 
 .link-text {
@@ -445,17 +291,6 @@ a:active {
     margin: 100px auto;
 }
 
-.transparent-badge {
-    border-radius: 4px;
-    padding: 3px;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.transparent-badge:hover {
-    background-color: #eee;
-}
-
 .content__home-page-table .toggle-wrapper {
     display: flex;
     flex-flow: row;
@@ -470,15 +305,6 @@ a:active {
     width: 90%;
     padding: 32px 48px;
     margin: auto;
-}
-
-.header-avatar {
-    border-radius: 50%;
-    margin-left: 20px;
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    cursor: pointer;
 }
 
 .avatar {
@@ -501,38 +327,12 @@ a:active {
     color: white;
 }
 
-.drawer1 {
-    background-color: var(--dark-color);
-    color: var(--dark-text-color-2);
-    display: flex;
-    flex-flow: column;
-    flex: 1;
-    height: 85vh;
-}
-
-.drawer1>li {
-    margin: 12px 25px;
-}
-
-.drawer1>li>span {
-    background: url('./res/chevron-down.svg') no-repeat 98%;
-    border-radius: 3px;
-    padding: 11px;
-    cursor: pointer;
-    display: flex;
-    gap: 5px;
-}
-
-.drawer1>li>span:hover {
-    background-color: var(--hover-color-2);
-}
-
 .viewport-with-tools {
     flex: 1;
 }
 
 .light-font {
-    color: var(--dark-text-color-2);
+    color: var(--dark-color-text-color-2);
     font-weight: 700;
     font-size: smaller;
 }
@@ -574,24 +374,12 @@ textarea:focus {
     overflow: auto;
 }
 
-.search-input {
-    background: url('./res/search.svg') no-repeat 2%;
-    margin-left: 12px;
-    padding-left: 40px;
-    color: var(--text-color);
-    flex: 1;
-}
-
-.search-input::placeholder {
-    color: var(--text-color);
-}
-
 
 .file-chooser {
     border: 2px solid #ddd;
     border-radius: 5px;
     padding: 18px;
-    color: var(--text-color);
+    color: var(--text-color-color);
 }
 
 .file-chooser>* {
@@ -644,7 +432,7 @@ textarea:focus {
 }
 
 .analytics span {
-    color: var(--text-color);
+    color: var(--text-color-color);
     font-family: Nunito;
 }
 
@@ -662,12 +450,38 @@ header {
     justify-content: right;
 }
 
-.card>form {
-    margin: 24px 48px;
-}
-
 .centered-button {
     width: 50%;
     margin: auto;
     margin-top: 100px;
+}
+
+.outline-badge {
+    background-color: var(--gray-color);
+    font-size: small;
+    color: var(--primary-color);
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.outline-badge__selected {
+    background-color: var(--primary-color);
+    font-size: small;
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.outline-badge:hover {
+    background-color: var(--stroke-color);
+}
+
+.outline-badge--selected {
+    background-color: var(--primary-color);
+    font-size: small;
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
 }

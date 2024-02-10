@@ -1,18 +1,8 @@
 import { useDispatch } from 'react-redux';
-import Form from '../../component/ui/Form.jsx';
+import Form from '../../component/ui/Form';
 import useOrganization from '../../hook/useOrganization';
 import { updateOrganization } from '../../feature/org/orgSlice';
-
-const fields = [
-    {
-        section: "Введите новую почту для привязки",
-        fields: [
-            {
-                name: "email", text: "Новая почта", type: "email", style: "filled-input", required: true
-            },
-        ]
-    }
-];
+import Input from '../../component/ui/Form/Input.jsx';
 
 var mapToUpdateOrganization = (data) => {
     data.name = null;
@@ -28,17 +18,21 @@ function EditOrganizationEmailForm() {
     const dispatch = useDispatch();
     const organization = useOrganization();
 
-    const submitAction = (data) => {
+    const onSubmit = (data) => {
         var query = mapToUpdateOrganization(data);
         dispatch(updateOrganization({ organization: query, email: organization.email }));
     }
 
-    const submit = {
-        text: "Изменить", style: "filled-button", action: submitAction
-    }
+    const fields = [
+        {
+            name: "email", text: "Новая почта", type: "email", required: true
+        },
+    ]
 
     return (
-        <Form fields={fields} submit={submit} />
+        <Form onSubmit={onSubmit}>
+            <Input field={fields[0]}></Input>
+        </Form>
     )
 }
 

@@ -157,7 +157,6 @@ function UploadFileForm() {
 
     return (
         <>
-            <h3>Загрузка исследования</h3>
             <div className="card upload-form">
                 {
                     files ? uploadForm : dropFileForm

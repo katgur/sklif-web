@@ -1,5 +1,4 @@
 import useUsers from '../../hook/useUsers';
-import SearchBar from '../../component/SearchBar';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
@@ -12,7 +11,6 @@ const contextMenu = [
 function UsersList({ isGlobal }) {
     const users = useUsers();
 
-    console.log(users)
     var mapUser = (user) => {
         var res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {
@@ -28,9 +26,6 @@ function UsersList({ isGlobal }) {
 
     return (
         <div className="content__home-page-table">
-            <div className="card toolbar-wrapper">
-                <SearchBar path="users" />
-            </div>
             {
                 users &&
                 <SortableTableViewer

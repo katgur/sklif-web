@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/font/Inter-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Nunito SemiBold';
+    src: url('../assets/font/Nunito-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('../assets/font/Nunito-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Inter SemiBold';
+    src: url('../assets/font/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Jost Medium';
+    src: url('../assets/font/Jost-Medium.ttf');
+}
+
+.font__inter--sm {
+    font-size: 15px;
+    line-height: 20px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0;
+}
+
+.font__nunito--xs {
+    font-size: 14px;
+    line-height: 16px;
+    font-family: 'Nunito SemiBold', sans-serif;
+    letter-spacing: 0;
+}
+
+.font__nunito--sm {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: 'Nunito SemiBold', sans-serif;
+    letter-spacing: 0;
+}
+
+.font__inter--xs {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.font__inter--sm {
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.font__inter--m {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.font__inter--xl {
+    font-size: 26px;
+    line-height: 30px;
+    letter-spacing: 0;
+    font-family: 'Inter SemiBold', sans-serif;
+}
+
+.font__jost--sm {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-family: 'Jost Medium', sans-serif;
+}
+
+.font_color_error {
+    color: var(--notification-color);
+}
+
+.font_color_gray {
+    color: var(--gray-color);
+}
+
+.font_color_primary {
+    color: var(--primary-color);
+}
+
+.font_color_text {
+    color: var(--text-color);
+}

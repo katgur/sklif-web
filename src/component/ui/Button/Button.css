@@ -1,0 +1,15 @@
+.button {
+    border-radius: 4px;
+    padding: 11px 30px;
+    min-width: 150px;
+    text-align: center;
+}
+
+.button_theme_primary {
+    background-color: var(--primary-color);
+}
+
+.button_theme_secondary {
+    border: 1px solid var(--primary-color);
+    background-color: var(--white);
+}
