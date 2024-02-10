@@ -14,7 +14,7 @@ const iconMap = {
     'notify': notifyIcon,
 }
 
-function Alert({ id, text, type, onClose }) {
+function Alert({ content, type, onClose }) {
     var title = titleMap[type];
     var icon = iconMap[type];
     return (
@@ -23,22 +23,12 @@ function Alert({ id, text, type, onClose }) {
                 {icon}
                 <div className='alert__text'>
                     <div className={`${type}-title`}>{title}</div>
-                    <p className={`${type}-text`}>{text}</p>
+                    <p className={`${type}-text`}>{content}</p>
                 </div>
             </div>
-            <span className="alert__icon" onClick={() => { onClose(id) }}>{closeIcon}</span>
+            <span className="alert__icon" onClick={onClose}>{closeIcon}</span>
         </div>
     )
 }
 
-export const SuccessAlert = ({ id, text, onClose }) => {
-    return <Alert id={id} text={text} type='success' onClose={onClose} />
-}
-
-export const ErrorAlert = ({ id, text, onClose  }) => {
-    return <Alert id={id} text={text} type='error' onClose={onClose} />
-}
-
-export const NotifyAlert = ({ id, text, onClose }) => {
-    return <Alert id={id} text={text} type='notify' onClose={onClose} />
-}
+export default Alert

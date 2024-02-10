@@ -5,7 +5,7 @@ import AuthorizedPage from './page/AuthorizedPage.jsx';
 import { Provider } from 'react-redux';
 import store from './store';
 import NotFoundPage from './page/ui/NotFoundPage.jsx';
-import RequestStatusHandler from './component/RequestStatusHandler.jsx';
+import Notifications from './feature/notification/Notifications.jsx';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Route path='/home/*' element={<AuthorizedPage />} />
           <Route path='*' element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
         </Routes>
-        <RequestStatusHandler />
+        <Notifications />
       </Router>
     </Provider>
   );
