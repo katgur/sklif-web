@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input.jsx';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
+import Select from '../../component/ui/Form/Select'
 import Radio from '../../component/ui/Form/Radio.jsx';
+import useOrganizations from '../../hook/useOrganizations.js';
 import { useParams } from 'react-router';
 import useUser from '../../hook/useUser.js';
-import { addError } from '../notification/notificationSlice.js';
-import { createUser } from './usersSlice.js';
 
 const fields = [
     {
@@ -33,17 +33,13 @@ const fields = [
     }
 ];
 
-function RegisterUserForm() {
+function GlobalRegisterUserForm() {
     const dispatch = useDispatch();
+    const organizations = useOrganizations();
     const params = useParams();
     const user = useUser(params.email);
 
     const onSubmit = (data) => {
-        if (data.password !== data.repeatPassword) {
-            dispatch(addError("Введенные пароли не совпадают, попробуйте снова"));
-            return;
-        }
-        delete data.repeatPassword;
         dispatch(createUser(data));
     }
 
@@ -59,8 +55,9 @@ function RegisterUserForm() {
             <RadioGroup field={{ required: true, name: "role", text: "Роль" }}>
                 <Radio>Врач</Radio>
                 <Radio>Администратор</Radio>
+                <Radio>Глобальный администратор</Radio>
             </RadioGroup>
-
+            <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations} />
             {
                 fields.slice(4).map(field => {
                     return <Input key={field.name} field={field} />
@@ -70,4 +67,4 @@ function RegisterUserForm() {
     )
 }
 
-export default RegisterUserForm;
+export default GlobalRegisterUserForm;

@@ -40,18 +40,6 @@ export const fetchUsers = () => {
   }
 }
 
-export const fetchUser = email => {
-  return dispatch => {
-    api.getUser(email)
-      .then(user => {
-        dispatch(setUser(user));
-      })
-      .catch(error => {
-        dispatch(addError(`Не удалось получить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
-      })
-  }
-}
-
 export const setPassword = (email, newPassword) => {
   return dispatch => {
     api.changePassword(email, newPassword)
@@ -96,10 +84,11 @@ export const updateUserEmail = (email, newEmail) => {
   }
 }
 
-export const removeUser = (email) => {
+export const deleteUser = (email) => {
   return dispatch => {
     api.deleteUser(email, newEmail)
       .then(() => {
+        dispatch(removeUser(email));
         dispatch(addSuccess("Данные пользователя удалены"));
       })
       .catch((error) => {
@@ -122,46 +111,25 @@ export const uploadAvatar = (file) => {
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: {
-    list: [],
-    current: null,
-  },
+  initialState: [],
   reducers: {
     addUser: (state, action) => {
-      return {
-        ...state,
-        list: [...state.list, action.payload],
-      }
+      return [...state, action.payload]
     },
     editUser: (state, action) => {
-      return {
-        ...state,
-        list: state.list.filter(item => item.id !== action.payload.id).concat(action.payload),
-      }
+      return state.filter(item => item.email !== action.payload.email).concat(action.payload)
     },
     setUsers: (state, action) => {
-      return {
-        ...state,
-        list: action.payload,
-      }
+      return action.payload
     },
-    setUser: (state, action) => {
-      return {
-        ...state,
-        current: action.payload,
-      }
-    },
-    resetCurrent: (state, action) => {
-      return {
-        ...state,
-        current: nullF
-      }
+    removeUser: (state, action) => {
+      return state.filter(item => item.email !== action.payload)
     }
   },
 })
-export const { resetStatus, resetCurrent, addUser, editUser, setUsers, setUser } = usersSlice.actions;
 
-export const selectAll = (state) => state.users.list;
-export const selectCurrent = (state) => state.users.current;
+const { addUser, editUser, setUsers, removeUser } = usersSlice.actions;
+
+export const selectAll = (state) => state.users;
 
 export default usersSlice.reducer;

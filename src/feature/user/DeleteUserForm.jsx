@@ -1,10 +1,9 @@
 import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
 import { useNavigate } from 'react-router';
-import { useState } from 'react';
 import useUser from '../../hook/useUser';
 import { useDispatch } from 'react-redux';
-import { removeUser } from './usersSlice';
+import { deleteUser } from './usersSlice';
 
 function DeleteUserForm() {
     const navigate = useNavigate();
@@ -16,7 +15,7 @@ function DeleteUserForm() {
     }
 
     const onSubmit = () => {
-        dispatch(removeUser({ email: user.email }));
+        dispatch(deleteUser(user.email));
         onCancel();
     }
 
