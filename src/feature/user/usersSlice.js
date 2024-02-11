@@ -9,7 +9,8 @@ import { addSuccess } from '../notification/notificationSlice';
 export const addUser = user => {
   return dispatch => {
     postUser(user)
-      .then(() => {
+      .then(newUser => {
+        dispatch(addNewUser(newUser));
         dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
       })
       .catch((error) => {
@@ -82,6 +83,12 @@ const usersSlice = createSlice({
     progress: false,
   },
   reducers: {
+    addNewUser: (state, action) => {
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+      }
+    },
     resetStatus: (state, action) => {
       state.status = {
         message: undefined,
@@ -229,7 +236,7 @@ const usersSlice = createSlice({
       })
   },
 })
-export const { resetStatus, resetCurrent } = usersSlice.actions;
+export const { resetStatus, resetCurrent, addNewUser } = usersSlice.actions;
 
 export const selectAll = (state) => state.users.list;
 export const selectCurrent = (state) => state.users.current;

@@ -1,4 +1,5 @@
 import { setAccessToken } from '../api/client';
+import { addNewUser } from './user/usersSlice';
 
 export const middleware = async (method, params, thunk, { inputMapper, outputMapper }) => {
     setAccessToken(thunk.getState().auth.data.accessToken);
@@ -28,4 +29,12 @@ const map = (mapper, params) => {
         return mapper(params);
     }
     return params;
+}
+
+export const testMiddleware = state => next => action => {
+    if (addNewUser.match(action)) {
+        console.log(action, 'matches')
+    } else {
+        console.log(action, 'not matches')
+    }
 }
