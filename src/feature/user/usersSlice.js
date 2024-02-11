@@ -32,6 +32,7 @@ export const fetchUsers = () => {
   return dispatch => {
     api.getUsers({ filter: "" })
       .then(users => {
+        console.log(users)
         dispatch(setUsers(users));
       })
       .catch(error => {
@@ -111,7 +112,7 @@ export const uploadAvatar = (file) => {
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: [],
+  initialState: null,
   reducers: {
     addUser: (state, action) => {
       return [...state, action.payload]

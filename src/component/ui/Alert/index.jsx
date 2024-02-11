@@ -26,7 +26,9 @@ function Alert({ content, type, onClose }) {
                     <p className={`${type}-text`}>{content}</p>
                 </div>
             </div>
-            <span className="alert__icon" onClick={onClose}>{closeIcon}</span>
+            {
+                onClose && <span className="alert__icon" onClick={onClose}>{closeIcon}</span>
+            }
         </div>
     )
 }

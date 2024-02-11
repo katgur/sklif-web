@@ -4,8 +4,6 @@ import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input.jsx';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Radio from '../../component/ui/Form/Radio.jsx';
-import { useParams } from 'react-router';
-import useUser from '../../hook/useUser.js';
 import { addError } from '../notification/notificationSlice.js';
 import { createUser } from './usersSlice.js';
 
@@ -35,8 +33,6 @@ const fields = [
 
 function RegisterUserForm() {
     const dispatch = useDispatch();
-    const params = useParams();
-    const user = useUser(params.email);
 
     const onSubmit = (data) => {
         if (data.password !== data.repeatPassword) {
@@ -48,7 +44,7 @@ function RegisterUserForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={user}>
+        <Form onSubmit={onSubmit}>
             <TwoColumnLayout>
                 {
                     fields.slice(0, 4).map(field => {

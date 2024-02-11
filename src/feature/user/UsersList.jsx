@@ -1,9 +1,6 @@
 import useUsers from '../../hook/useUsers';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, selectAll } from './usersSlice';
-import { useEffect } from 'react';
 
 const schema = ["Почта", "Фамилия", "Имя", "Отчество", "Телефон", "Роль"];
 const contextMenu = [
@@ -12,29 +9,23 @@ const contextMenu = [
 ]
 
 function UsersList({ isGlobal }) {
-    const dispatch = useDispatch();
-    const users = useSelector(selectAll); //useUsers();
-    
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, []);
+    const users = useUsers();
+    const navigate = useNavigate();
 
-    console.log(users)
-    var mapUser = (user) => {
-        var res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
+    const mapUser = (user) => {
+        const res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {
-            res = res.concat(user.organization);
+            return res.concat(user.organization);
         }
         return res;
     }
 
-    const navigate = useNavigate();
-    var onItemClick = (id) => {
+    const onItemClick = (id) => {
         navigate(`/home/profile/${id}`);
     }
 
     return (
-        <div className="content__home-page-table">
+        <div>
             {
                 users &&
                 <SortableTableViewer
@@ -48,9 +39,6 @@ function UsersList({ isGlobal }) {
                                 data: mapUser(user)
                             }
                         })} />
-            }
-            {
-                !users && <span className="text-font">Пусто</span>
             }
             <Outlet />
         </div>

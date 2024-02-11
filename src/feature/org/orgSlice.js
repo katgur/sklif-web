@@ -68,7 +68,7 @@ export const fetchOrganization = email => {
 const orgSlice = createSlice({
     name: 'org',
     initialState: {
-        list: [],
+        list: null,
         current: null,
     },
     reducers: {

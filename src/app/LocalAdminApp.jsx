@@ -81,7 +81,7 @@ const usersListPage = (
     <Breadcrumbs title={'Пользователи'}>
       <Link to={''}>Список</Link>
     </Breadcrumbs>
-    <UsersList />
+    <UsersList isGlobal={false} />
   </>
 )
 

@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from '../page/HomePage.jsx';
 import UsersList from '../feature/user/UsersList';
-import RegisterUserForm from '../feature/user/RegisterUserForm';
+import GlobalRegisterUserForm from '../feature/user/GlobalRegisterUserForm.jsx';
 import RegisterOrganizationForm from '../feature/org/RegisterOrganizationForm.jsx';
 import EditOrganizationForm from '../feature/org/EditOrganizationForm.jsx';
 import ProfileViewer from '../feature/user/ProfileViewer';
@@ -125,7 +125,7 @@ const addUserPage = (
       <Link to={'/home/users'}>Список</Link>
       <Link to={''}>Добавить</Link>
     </Breadcrumbs>
-    <RegisterUserForm isGlobal={true} />
+    <GlobalRegisterUserForm />
   </>
 )
 

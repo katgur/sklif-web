@@ -6,8 +6,9 @@ import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Select from '../../component/ui/Form/Select'
 import Radio from '../../component/ui/Form/Radio.jsx';
 import useOrganizations from '../../hook/useOrganizations.js';
-import { useParams } from 'react-router';
-import useUser from '../../hook/useUser.js';
+import Alert from '../../component/ui/Alert';
+import { createUser } from './usersSlice.js';
+import { addError } from '../notification/notificationSlice.js';
 
 const fields = [
     {
@@ -36,15 +37,28 @@ const fields = [
 function GlobalRegisterUserForm() {
     const dispatch = useDispatch();
     const organizations = useOrganizations();
-    const params = useParams();
-    const user = useUser(params.email);
+
+    console.log(organizations)
+
+    if (!organizations) {
+        return;
+    }
+
+    if (organizations.length === 0) {
+        return <Alert type="error" content="Нельзя добавить пользователя, если список оранизаций пуст" />
+    }
 
     const onSubmit = (data) => {
+        if (data.password !== data.repeatPassword) {
+            dispatch(addError("Введенные пароли не совпадают, попробуйте снова"));
+            return;
+        }
+        delete data.repeatPassword;
         dispatch(createUser(data));
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={user}>
+        <Form onSubmit={onSubmit}>
             <TwoColumnLayout>
                 {
                     fields.slice(0, 4).map(field => {
@@ -57,7 +71,9 @@ function GlobalRegisterUserForm() {
                 <Radio>Администратор</Radio>
                 <Radio>Глобальный администратор</Radio>
             </RadioGroup>
-            <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations} />
+            {
+                organizations && <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations.map(org => org.organizationName)} />
+            }
             {
                 fields.slice(4).map(field => {
                     return <Input key={field.name} field={field} />
