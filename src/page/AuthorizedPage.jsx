@@ -3,31 +3,30 @@ import { selectData, setData } from '../feature/authSlice';
 import GlobalAdmin from '../app/GlobalAdminApp.jsx';
 import LocalAdmin from '../app/LocalAdminApp.jsx';
 import { clientUrl, protocol } from '../util/config';
-import { refreshToken } from '../api/authApi';
+import api from '../api/authApi';
 import Client from '../app/Client.jsx';
 import { useEffect } from 'react';
+import { setAccessToken } from '../api/client.js';
 
 function AuthorizedPage() {
     const data = useSelector(selectData);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        var getNewToken = async (refresh_token) => {
-            return await refreshToken(refresh_token);
-        }
-
         if (!data) {
             var refresh_token = localStorage.getItem('srt');
             if (!refresh_token) {
                 window.location.href = `${protocol}://${clientUrl}/login`;
             }
-            getNewToken(refresh_token)
+            api.refreshToken(refresh_token)
                 .then(response => {
                     dispatch(setData(response.data));
                 })
                 .catch(error => {
                     window.location.href = `${protocol}://${clientUrl}/login`;
                 });
+        } else {
+            setAccessToken(data.accessToken);
         }
     }, [data, dispatch])
 

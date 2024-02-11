@@ -8,4 +8,4 @@ const getResults = async (key) => {
     return await maskMock('/get_results');
 }
 
-export { getMask, getResults };
+export default { getMask, getResults };

@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Form from '../../component/ui/Form';
 import Input from '../../component/ui/Form/Input';
-import { addDirectory, selectCurrent } from './storageSlice';
+import { createDirectory, selectCurrent } from './storageSlice';
 
 function AddDirectoryForm() {
     const dispatch = useDispatch();
     const currentDirectory = useSelector(selectCurrent);
 
     const onSubmit = (data) => {
-        dispatch(addDirectory({ path: currentDirectory + data.directoryName }))
+        dispatch(createDirectory({ path: currentDirectory + data.directoryName }))
     }
 
     const fields = [

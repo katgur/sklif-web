@@ -75,7 +75,7 @@ const postAvatar = () => {
     return true;
 }
 
-export {
+export default {
     getUser, changePassword, changeUserInfo, changeEmail,
     changeUserRole, postUser, getUsers, deleteUser, postAvatar
 };

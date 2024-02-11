@@ -1,146 +1,119 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { deleteOrganization, getOrganization, getOrganizations, patchOrganization, postOrganization } from '../../api/mock/organizationApi';
-import { middleware } from '../middleware';
-import { mapUpdateOriganizationForServer } from '../../util/mapper';
+import { createSlice } from '@reduxjs/toolkit';
+import api from '../../api/mock/organizationApi';
+import { addSuccess, addError } from '../notification/notificationSlice';
 
-export const addOrganization = createAsyncThunk('org/add', async (params, thunk) => {
-    return await postOrganization(params);
-})
+export const addOrganization = org => {
+    return dispatch => {
+        api.postOrganization(org)
+            .then(newOrg => {
+                dispatch(addOrg(newOrg));
+                dispatch(addSuccess(`Организация ${newOrg.name} добавлена`));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось добавить организацию${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const updateOrganization = createAsyncThunk('org/update', async (params, thunk) => {
-    return await patchOrganization(params);
-})
+export const updateOrganization = org => {
+    return dispatch => {
+        api.patchOrganization(org)
+            .then(newOrg => {
+                dispatch(editOrg(newOrg));
+                dispatch(addSuccess(`Данные организации ${newOrg.name} изменены`));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось редактировать данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const removeOrganization = createAsyncThunk('org/remove', async (params, thunk) => {
-    return await deleteOrganization(params);
-})
+export const removeOrganization = email => {
+    return dispatch => {
+        api.deleteOrganization(email)
+            .then(() => {
+                dispatch(deleteOrg(email));
+                dispatch(addSuccess(`Данные организации удалены`));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось удалить данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const fetchOrganizations = createAsyncThunk('org/fetchAll', async (params, thunk) => {
-    return await getOrganizations();
-})
+export const fetchOrganizations = () => {
+    return dispatch => {
+        api.getOrganizations()
+            .then(orgs => {
+                dispatch(setOrgs(orgs));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось получить список организаций${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const fetchOrganization = createAsyncThunk('org/fetch', async (params, thunk) => {
-    return await getOrganization(params);
-})
+export const fetchOrganization = email => {
+    return dispatch => {
+        api.getOrganization(email)
+            .then(orgs => {
+                dispatch(setCurrent(orgs));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось получить данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
 const orgSlice = createSlice({
     name: 'org',
     initialState: {
-        status: {
-            message: undefined,
-            code: undefined,
-        },
-        data: [{
-            name: "Ромашка",
-            email: "mail@mail.com"
-        }],
-        current: undefined,
-        progress: false,
+        list: [],
+        current: null,
     },
     reducers: {
-        resetStatus: (state, action) => {
-            state.status = {
-                message: undefined,
-                code: undefined,
+        addOrg: (state, action) => {
+            return {
+                ...state,
+                list: [...state.list, action.payload]
+            }
+        },
+        editOrg: (state, action) => {
+            return {
+                ...state,
+                list: state.list.filter(item => item.email !== action.payload.email).concat(action.payload)
+            }
+        },
+        deleteOrg: (state, action) => {
+            return {
+                ...state,
+                list: state.list.filter(item => item.email !== action.payload.email)
+            }
+        },
+        setOrgs: (state, action) => {
+            return {
+                ...state,
+                list: action.payload
+            }
+        },
+        setCurrent: (state, action) => {
+            return {
+                ...state,
+                current: action.payload
             }
         },
         resetCurrent: (state, action) => {
-            state.current = undefined;
+            return {
+                ...state,
+                current: null,
+            }
         }
     },
-    extraReducers(builder) {
-        builder
-            .addCase(addOrganization.fulfilled, (state, action) => {
-                state.status = {
-                    message: "Организация добавлена",
-                    code: 3,
-                }
-                state.progress = false;
-            })
-            .addCase(addOrganization.rejected, (state, action) => {
-                console.log(state, action)
-
-                state.status = {
-                    message: `Не удалось добавить организацию${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(updateOrganization.fulfilled, (state, action) => {
-                state.status = {
-                    message: "Организация изменена",
-                    code: 3,
-                }
-                state.progress = false;
-            })
-            .addCase(updateOrganization.rejected, (state, action) => {
-                state.status = {
-                    message: `Не удалось изменить данные организации${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(removeOrganization.fulfilled, (state, action) => {
-                state.status = {
-                    message: "Организация удалена",
-                    code: 3,
-                }
-                state.progress = false;
-            })
-            .addCase(removeOrganization.rejected, (state, action) => {
-                state.status = {
-                    message: `Не удалось удалить организацию${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(fetchOrganizations.fulfilled, (state, action) => {
-                state.data = action.payload;
-                console.log(action)
-                state.progress = false;
-            })
-            .addCase(fetchOrganizations.rejected, (state, action) => {
-                state.status = {
-                    message: `Не удалось получить список организаций ${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(fetchOrganization.fulfilled, (state, action) => {
-                var organization = action.payload;
-                state.current = organization;
-                state.progress = false;
-            })
-            .addCase(fetchOrganization.rejected, (state, action) => {
-                state.status = {
-                    message: `Не удалось получить данные организации${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(fetchOrganization.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(fetchOrganizations.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(removeOrganization.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(updateOrganization.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(addOrganization.pending, (state, action) => {
-                state.progress = true;
-            })
-    }
 })
 
-export const { resetStatus, resetCurrent } = orgSlice.actions;
+export const { addOrg, editOrg, deleteOrg, setOrgs, setCurrent, resetCurrent } = orgSlice.actions;
 
 export const selectCurrent = (state) => state.org.current;
-export const selectStatus = (state) => state.org.status;
-export const selectAll = (state) => state.org.data;
-export const selectProgress = (state) => state.org.progress;
+export const selectAll = (state) => state.org.list;
 
 export default orgSlice.reducer;

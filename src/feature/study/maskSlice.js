@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { middleware } from '../middleware';
-import { getMask, getResults } from '../../api/mock/maskApi';
+import api from '../../api/mock/maskApi';
 
 export const fecthMask = createAsyncThunk('mask/fetch', async (params, thunk) => {
     if (!thunk.getState().mask.maskRequested) {
-        return middleware(getMask, params, thunk, {});
+        return api.getMask()
     } else {
-        return middleware(getResults, params, thunk, {});
+        return api.getResults()
     }
 })
 

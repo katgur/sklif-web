@@ -23,4 +23,4 @@ const getOrganization = async (email) => {
     return request({ method: 'get', url: url + '/organizations/organization', params: { email: email }})
 }
 
-export { postOrganization, patchOrganization, deleteOrganization, getOrganizations, getOrganization };
+export default { postOrganization, patchOrganization, deleteOrganization, getOrganizations, getOrganization };

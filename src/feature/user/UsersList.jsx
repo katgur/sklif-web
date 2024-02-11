@@ -1,6 +1,9 @@
 import useUsers from '../../hook/useUsers';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers, selectAll } from './usersSlice';
+import { useEffect } from 'react';
 
 const schema = ["Почта", "Фамилия", "Имя", "Отчество", "Телефон", "Роль"];
 const contextMenu = [
@@ -9,8 +12,14 @@ const contextMenu = [
 ]
 
 function UsersList({ isGlobal }) {
-    const users = useUsers();
+    const dispatch = useDispatch();
+    const users = useSelector(selectAll); //useUsers();
+    
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, []);
 
+    console.log(users)
     var mapUser = (user) => {
         var res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {

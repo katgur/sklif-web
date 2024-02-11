@@ -126,4 +126,4 @@ const deleteDirectory = async ({ folderName }) => {
     await LS.set(value);
 }
 
-export { getFiles, deleteFile, postDirectory, deleteDirectory, postFile, getBytes };
+export default { getFiles, deleteFile, postDirectory, deleteDirectory, postFile, getBytes };
