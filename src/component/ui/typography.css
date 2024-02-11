@@ -24,6 +24,11 @@
 }
 
 @font-face {
+    font-family: 'Jost';
+    src: url('../assets/font/Jost-Regular.ttf');
+}
+
+@font-face {
     font-family: 'Jost Medium';
     src: url('../assets/font/Jost-Medium.ttf');
 }
@@ -82,6 +87,13 @@
     line-height: 30px;
     letter-spacing: 0;
     font-family: 'Inter SemiBold', sans-serif;
+}
+
+.font__jost--xs {
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-family: 'Jost', sans-serif;
 }
 
 .font__jost--sm {

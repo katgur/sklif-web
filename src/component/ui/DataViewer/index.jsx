@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './DataViewer.css';
 
-function DataViewer({ name, entity, schema, path }) {
+function DataViewer({ title, entity, schema, path }) {
     const [selected, setSelected] = useState(0);
     const navigate = useNavigate();
 
@@ -18,8 +18,8 @@ function DataViewer({ name, entity, schema, path }) {
 
     return (
         <div className="data-viewer font__inter--sm">
-            <h2>{name}</h2>
-            <ul className="data-viewer__tabs">
+            <h2 className='font__inter--m'>{title}</h2>
+            <ul className="data-viewer__tabs font__jost--xs">
                 {
                     schema.map((section, index) => {
                         const className = "data-viewer__tab data-viewer__tab--" + (index === selected ? "active" : "base");
@@ -29,7 +29,7 @@ function DataViewer({ name, entity, schema, path }) {
                     })
                 }
             </ul>
-            <ul className="data-viewer__data font__nunito--sm">
+            <ul className="data-viewer__data font__jost--xs">
                 {
                     schema[selected].tabs.map((tab) => {
                         const value = entity[tab.name];

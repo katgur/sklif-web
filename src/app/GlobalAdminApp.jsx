@@ -135,7 +135,6 @@ const editUserPage = (
       <Link to={'/home/users'}>Список</Link>
       <Link to={''}>Редактировать</Link>
     </Breadcrumbs>
-    <ProfileViewer searchable={true} />
     <TabLayout titles={["Общая информация", "Фотография профиля", "Привязка почты", "Права доступа"]}>
       <EditUserInfoForm />
       <UploadAvatarForm />
@@ -151,11 +150,11 @@ function App() {
       <Routes>
         <Route path="" element={homePage}>
           <Route path="users" element={usersListPage}>
-            <Route path="delete/:email" element={<DeleteUserForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_user" element={addUserPage} />
           <Route path="edit_user/:email" element={editUserPage} />
+          <Route path="delete_user/:email" element={<DeleteUserForm />} />
 
           <Route path="organizations" element={organizationsPage}>
             <Route path="delete/:email" element={<DeleteOrganizationForm />} />

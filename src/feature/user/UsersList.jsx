@@ -5,7 +5,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 const schema = ["Почта", "Фамилия", "Имя", "Отчество", "Телефон", "Роль"];
 const contextMenu = [
     (id) => { return <Link to={`/home/edit_user/${id}`}>Редактировать</Link> },
-    (id) => { return <Link to={`/home/users/delete/${id}`}>Удалить</Link> }
+    (id) => { return <Link to={`/home/delete_user/${id}`}>Удалить</Link> }
 ]
 
 function UsersList({ isGlobal }) {
