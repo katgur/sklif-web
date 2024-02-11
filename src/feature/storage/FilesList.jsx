@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFile, selectCurrent, selectCurrentDirectories, selectCurrentFiles, setCurrent } from "./storageSlice";
+import { deleteFile, selectCurrent, selectCurrentDirectories, selectCurrentFiles, setCurrent } from "./storageSlice";
 import { useState } from "react";
 import Modal from '../../component/ui/Modal';
 import { isDirectory } from "../../util/storageUtil";
@@ -84,7 +84,7 @@ function FilesList() {
 
     var onDeleteButtonClick = () => {
         if (selectedFiles.current.length !== 0) {
-            dispatch(removeFile({ fileNames: selectedFiles.current }));
+            dispatch(deleteFile({ fileNames: selectedFiles.current }));
             selectedFiles.current = [];
             setEditMode(false);
         }

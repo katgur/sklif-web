@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Viewport from "./Viewport";
 import DataViewer from "../../component/ui/DataViewer";
 import { useNavigate } from 'react-router-dom';
-import { getBytes } from "../../api/mock/storageApi";
+import api from "../../api/mock/storageApi";
 
 const schema = [
     {
@@ -84,7 +84,7 @@ function StudyViewer() {
         <div className="content__home-page-profile card">
             <div>
                 <Viewport viewport={viewport}
-                    imageId={'wadouri:' + getBytes(study.keys[0])}
+                    imageId={'wadouri:' + api.getBytes(study.keys[0])}
                     style={{ width: "200px", height: "200px", marginBottom: "20px" }} />
                 <div onClick={onViewButtonClick} className="filled-button">Просмотр</div>
             </div>

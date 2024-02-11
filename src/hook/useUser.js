@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { selectAuth, selectCurrent } from '../feature/user/usersSlice';
+import { selectCurrent } from '../feature/user/usersSlice';
 import { fetchUser } from '../feature/user/usersSlice';
 import { selectData } from '../feature/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ function useUser() {
     const params = useParams();
     const data = useSelector(selectData);
     const currentUser = useSelector(selectCurrent);
-    const authUser = useSelector(selectAuth);
+    // const authUser = useSelector(selectAuth);
 
     useEffect(() => {
         if (params.id) {
@@ -21,7 +21,7 @@ function useUser() {
         }
     }, [params, data, dispatch, currentUser])
 
-    return params.id ? currentUser : authUser;
+    return currentUser
 }
 
 export default useUser;

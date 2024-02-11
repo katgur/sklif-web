@@ -19,4 +19,4 @@ const getInfo = ({ key }) => {
     return request({ method: 'get', url: url + '/get-info', params: { key: key } })
 }
 
-export { getAll, getById, postComment, getInfo };
+export default { getAll, getById, postComment, getInfo };

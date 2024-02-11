@@ -1,7 +1,6 @@
 import Form from '../../component/ui/Form';
-import { useDispatch, useSelector } from 'react-redux';
-import { addUser, selectStatus } from './usersSlice';
-import useOrganizations from '../../hook/useOrganizations';
+import { useDispatch } from 'react-redux';
+import { addUser } from './usersSlice';
 import useUser from '../../hook/useUser';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input.jsx';
@@ -39,7 +38,6 @@ function RegisterUserForm({ isGlobal }) {
     ];
 
     const onSubmit = (data) => {
-        console.log(data)
         dispatch(addUser(data));
     }
 

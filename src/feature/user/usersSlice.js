@@ -1,15 +1,12 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { postUser, getUsers, deleteUser, postAvatar } from '../../api/mock/userApi'
-import { getUser } from '../../api/mock/userApi';
-import { changeEmail, changePassword, changeUserInfo, changeUserRole } from '../../api/mock/userApi';
+import { createSlice } from '@reduxjs/toolkit';
+import api from '../../api/mock/userApi';
 import { addError, addSuccess } from '../notification/notificationSlice';
-import { mapUserForServer } from '../../util/mapper'
 
-export const addUser = user => {
+export const createUser = user => {
   return dispatch => {
-    postUser(user)
+    api.postUser(user)
       .then(newUser => {
-        dispatch(addNewUser(newUser));
+        dispatch(addUser(newUser));
         dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
       })
       .catch((error) => {
@@ -20,20 +17,20 @@ export const addUser = user => {
 
 export const updateUserRole = user => {
   return dispatch => {
-    changeUserRole(user)
+    api.changeUserRole(user)
       .then(newUser => {
         dispatch(editUser(newUser));
         dispatch(addSuccess(`У пользователя ${user.firstName} ${user.lastName} изменены права доступа на ${newUser.role}`));
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось редактировать права доступа пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось изменить права доступа пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
       })
   }
 }
 
 export const fetchUsers = () => {
   return dispatch => {
-    getUsers({ filter: "" })
+    api.getUsers({ filter: "" })
       .then(users => {
         dispatch(setUsers(users));
       })
@@ -45,7 +42,7 @@ export const fetchUsers = () => {
 
 export const fetchUser = email => {
   return dispatch => {
-    getUser(email)
+    api.getUser(email)
       .then(user => {
         dispatch(setUser(user));
       })
@@ -55,38 +52,82 @@ export const fetchUser = email => {
   }
 }
 
-export const setPassword = createAsyncThunk('user/password', async (params, thunk) => {
-  return await changePassword();
-})
+export const setPassword = (email, newPassword) => {
+  return dispatch => {
+    api.changePassword(email, newPassword)
+      .then(() => {
+        dispatch(addSuccess("Пароль изменен"));
+      })
+      .catch(error => {
+        dispatch(addError(`Не удалось получить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
-export const updateUserInfo = createAsyncThunk('user/update', async (params, thunk) => {
-  return await changeUserInfo(params)
-})
+export const updateUserInfo = (email, userInfo) => {
+  return dispatch => {
+    api.changeUserInfo(email, userInfo)
+      .then(() => {
+        dispatch(addSuccess("Данные пользователя изменены"));
+        return api.fetchUser(email);
+      })
+      .then((newUser) => {
+        dispatch(addUser(newUser))
+      })
+      .catch((error) => {
+        dispatch(addError(`Не удалось изменить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
-export const updateUserEmail = createAsyncThunk('user/edit_email', async (params, thunk) => {
-  return await changeEmail(params);
-})
+export const updateUserEmail = (email, newEmail) => {
+  return dispatch => {
+    api.changeUserInfo(email, newEmail)
+      .then(() => {
+        dispatch(addSuccess("Почтовый адрес пользователя изменен"));
+        return api.fetchUser(email);
+      })
+      .then((newUser) => {
+        dispatch(addUser(newUser))
+      })
+      .catch((error) => {
+        dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
-export const removeUser = createAsyncThunk('user/delete', async (params, thunk) => {
-  return await deleteUser(params);
-})
+export const removeUser = (email) => {
+  return dispatch => {
+    api.deleteUser(email, newEmail)
+      .then(() => {
+        dispatch(addSuccess("Данные пользователя удалены"));
+      })
+      .catch((error) => {
+        dispatch(addError(`Не удалось удалить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
-export const uploadAvatar = createAsyncThunk('user/avatar', async (params, thunk) => {
-  return await postAvatar();
-})
-
-export const fetchAuthUser = createAsyncThunk('user/auth', async (params, thunk) => {
-  return await getUser(params);
-})
+export const uploadAvatar = (file) => {
+  return dispatch => {
+    api.postAvatar(file)
+      .then(() => {
+        dispatch(addSuccess("Фотография профиля пользователя загружен"));
+      })
+      .catch((error) => {
+        dispatch(addError(`Не удалось загрузить фотографию профиля пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
 const usersSlice = createSlice({
   name: 'users',
   initialState: {
     list: [],
-    current: undefined,
+    current: null,
   },
   reducers: {
-    addNewUser: (state, action) => {
+    addUser: (state, action) => {
       return {
         ...state,
         list: [...state.list, action.payload],
@@ -111,16 +152,16 @@ const usersSlice = createSlice({
       }
     },
     resetCurrent: (state, action) => {
-      state.current = undefined;
+      return {
+        ...state,
+        current: nullF
+      }
     }
   },
 })
-export const { resetStatus, resetCurrent, addNewUser, editUser, setUsers, setUser } = usersSlice.actions;
+export const { resetStatus, resetCurrent, addUser, editUser, setUsers, setUser } = usersSlice.actions;
 
 export const selectAll = (state) => state.users.list;
 export const selectCurrent = (state) => state.users.current;
-export const selectStatus = (state) => state.users.status;
-export const selectProgress = (state) => state.users.progress;
-export const selectAuth = (state) => state.users.auth;
 
 export default usersSlice.reducer;

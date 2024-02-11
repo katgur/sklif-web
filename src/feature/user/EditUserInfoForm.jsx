@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import Form from '../../component/ui/Form';
-import { selectStatus, updateUserInfo } from './usersSlice';
+import { updateUserInfo } from './usersSlice';
 import useUser from '../../hook/useUser';
 import useNavigateIfSuccess from '../../hook/useNavigateIfSuccess';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';

@@ -1,123 +1,107 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAll, getById, getInfo, postComment } from '../../api/mock/studyApi';
+import { createSlice } from '@reduxjs/toolkit';
+import api from '../../api/mock/studyApi';
 
-export const fetchStudies = createAsyncThunk('studies/fetch', async (params, thunk) => {
-    return  await getAll();
-})
+export const fetchStudies = () => {
+    return dispatch => {
+        api.getAll()
+            .then(studies => {
+                dispatch(setStudies(studies));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось получить список исследований${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const fetchStudy = createAsyncThunk('study/fetch', async (params, thunk) => {
-    return await getById(params);
-})
+export const fetchStudy = (key) => {
+    return dispatch => {
+        api.getById(key)
+            .then(study => {
+                dispatch(setCurrent(study));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось получить данные исследования${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const fetchInfo = createAsyncThunk('info/fetch', async (params, thunk) => {
-    return await getInfo(params);
-})
+export const fetchInfo = (key) => {
+    return dispatch => {
+        api.getById(key)
+            .then(info => {
+                dispatch(setInfo(info));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось получить данные исследования${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
-export const addComment = createAsyncThunk('study/comment', async (params, thunk) =>{
-    return await postComment(params);
-})
+export const addComment = (comment) => {
+    return dispatch => {
+        api.postComment(comment)
+            .then(() => {
+                dispatch(setCommentAdded());
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось добавить комментарий к исследованию${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
 
 const studiesSlice = createSlice({
     name: 'study',
     initialState: {
-        list: undefined,
-        current: undefined,
-        status: {
-            message: undefined,
-            code: undefined,
-        },
-        progress: false,
-        info: undefined,
+        list: [],
+        current: null,
+        info: null,
         commentAdded: false,
     },
     reducers: {
-        resetStatus: (state, action) => {
-            state.status = {
-                message: undefined,
-                code: undefined,
+        setStudies: (state, action) => {
+            return {
+                ...state,
+                list: action.payload
+            }
+        },
+        setCurrent: (state, action) => {
+            return {
+                ...state,
+                current: action.payload
             }
         },
         resetCurrent: (state, action) => {
-            state.current = undefined;
+            return {
+                ...state,
+                current: null
+            }
+        },
+        setInfo: (state, action) => {
+            return {
+                ...state,
+                info: action.payload
+            }
+        },
+        setCommentAdded: (state, action) => {
+            return {
+                ...state,
+                commentAdded: true
+            }
         },
         resetCommentAdded: (state, action) => {
-            state.commentAdded = false;
+            return {
+                ...state,
+                commentAdded: false
+            }
         }
     },
-    extraReducers(builder) {
-        builder
-            .addCase(fetchStudies.fulfilled, (state, action) => {
-                state.list = action.payload;
-                state.progress = false;
-            })
-            .addCase(fetchStudies.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(fetchStudies.rejected, (state, action) => {
-                state.status = {
-                    message: `Не удалось получить данные исследований${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(fetchStudy.fulfilled, (state, action) => {
-                state.current = action.payload;
-                state.progress = false;
-            })
-            .addCase(fetchStudy.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(fetchStudy.rejected, (state, action) => {
-                console.log(action)
-                state.status = {
-                    message: `Не удалось получить данные исследования${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(fetchInfo.fulfilled, (state, action) => {
-                state.info = action.payload;
-                state.progress = false;
-            })
-            .addCase(fetchInfo.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(fetchInfo.rejected, (state, action) => {
-                state.status = {
-                    message: `Не удалось получить данные снимка${action.payload.message}`,
-                    code: action.payload.code,
-                }
-                state.progress = false;
-            })
-            .addCase(addComment.fulfilled, (state, action) => {
-                state.progress = false;
-                state.commentAdded = true;
-                state.status = {
-                    message: 'Комментарий добавлен',
-                    code: 3,
-                }
-            })
-            .addCase(addComment.pending, (state, action) => {
-                state.progress = true;
-            })
-            .addCase(addComment.rejected, (state, action) => {
-                console.log(action)
-                state.progress = false;
-                state.status = {
-                    message: `Не удалось добавить комментарий${action.payload.message}`,
-                    code: action.payload.code,
-                }
-            })
-    }
 })
 
-export const { resetStatus, resetCurrent, resetCommentAdded } = studiesSlice.actions;
+export const { resetCurrent, resetCommentAdded, setCurrent, setInfo, setStudies } = studiesSlice.actions;
 
 export const selectAll = (state) => state.study.list;
 export const selectInfo = (state) => state.study.info;
-export const selectStatus = (state) => state.study.status;
 export const selectCurrent = (state) => state.study.current;
-export const selectProgress = (state) => state.study.progress;
 export const selectCommentAdded = (state) => state.study.commentAdded;
 
 export default studiesSlice.reducer;

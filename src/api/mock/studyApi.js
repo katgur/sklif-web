@@ -87,4 +87,4 @@ const getInfo = async ({ key }) => {
     return value[_key].find(study => study.key === key);
 }
 
-export { getAll, getById, postComment, getInfo };
+export default { getAll, getById, postComment, getInfo };

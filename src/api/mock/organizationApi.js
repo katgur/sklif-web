@@ -17,17 +17,17 @@ const postOrganization = async (organization) => {
     return organization;
 }
 
-const patchOrganization = async ({ organization, email }) => {
+const patchOrganization = async (organization) => {
     let value = await get();
-    value[key] = value[key].filter(org => org.email !== email);
+    value[key] = value[key].filter(org => org.email !== organization.email);
     value[key].push(organization);
     await LS.set(value);
     return organization;
 }
 
-const deleteOrganization = async (params) => {
+const deleteOrganization = async (email) => {
     const value = await get();
-    value[key] = value[key].filter(org => org.name !== params.organizationName);
+    value[key] = value[key].filter(org => org.email !== email);
     await LS.set(value);
 }
 
@@ -41,4 +41,4 @@ const getOrganization = async (email) => {
     return value[key].find(org => org.email === email);
 }
 
-export { postOrganization, patchOrganization, deleteOrganization, getOrganizations, getOrganization };
+export default { postOrganization, patchOrganization, deleteOrganization, getOrganizations, getOrganization };

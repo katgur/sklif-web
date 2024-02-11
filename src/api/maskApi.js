@@ -11,4 +11,4 @@ const getResults = (key) => {
     return request({ method: 'get', url: url + '/get_results', params: { key: key }})
 }
 
-export { getMask, getResults };
+export default { getMask, getResults };

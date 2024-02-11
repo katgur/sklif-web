@@ -3,7 +3,7 @@ import { selectData, setData } from '../feature/authSlice';
 import GlobalAdmin from '../app/GlobalAdminApp.jsx';
 import LocalAdmin from '../app/LocalAdminApp.jsx';
 import { clientUrl, protocol } from '../util/config';
-import { refreshToken } from '../api/authApi';
+import api from '../api/authApi';
 import Client from '../app/Client.jsx';
 import { useEffect } from 'react';
 
@@ -13,7 +13,7 @@ function AuthorizedPage() {
 
     useEffect(() => {
         var getNewToken = async (refresh_token) => {
-            return await refreshToken(refresh_token);
+            return await api.refreshToken(refresh_token);
         }
 
         if (!data) {

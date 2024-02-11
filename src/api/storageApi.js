@@ -42,4 +42,4 @@ const deleteDirectory = ({ folderName }) => {
     return request({ method: 'delete', url: url + '/delete-folder', params: params })
 }
 
-export { getFiles, deleteFile, postDirectory, deleteDirectory, postFile, getBytes };
+export default { getFiles, deleteFile, postDirectory, deleteDirectory, postFile, getBytes };

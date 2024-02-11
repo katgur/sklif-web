@@ -1,4 +1,4 @@
-import { removeDirectory, removeFile } from "./storageSlice";
+import { deleteDirectory, deleteFile } from "./storageSlice";
 import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
 import { useDispatch } from 'react-redux';
@@ -22,9 +22,9 @@ function DeleteFileForm() {
 
     const onSubmit = () => {
         if (isDirectory(id)) {
-            dispatch(removeDirectory({ folderName: id.slice(0, -1) }));
+            dispatch(deleteDirectory({ folderName: id.slice(0, -1) }));
         } else {
-            dispatch(removeFile({ fileNames: [id] }));
+            dispatch(deleteFile({ fileNames: [id] }));
         }
         onCancel();
     }

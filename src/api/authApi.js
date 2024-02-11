@@ -38,4 +38,4 @@ const refreshToken = (refresh_token) => {
     headers: { 'Authorization': `Basic ${Buffer.from(`${clientId}:secret`).toString('base64')}` } })
 }
 
-export { getToken, refreshToken };
+export default { getToken, refreshToken };

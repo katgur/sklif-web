@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFile, selectStatus, selectDirectories, addDirectory } from './storageSlice';
+import { uploadFiles, selectDirectories, createDirectory } from './storageSlice';
 import { useForm } from "react-hook-form";
 import useStorage from "../../hook/useStorage";
 
@@ -75,10 +75,10 @@ function UploadFileForm() {
 
     var onSubmit = (data) => {
         if (hasNewDirectory) {
-            dispatch(addDirectory({ path: data.dir + data.newDir }));
-            dispatch(addFile({ path: data.dir + data.newDir, files: files }));
+            dispatch(createDirectory({ path: data.dir + data.newDir }));
+            dispatch(uploadFiles({ path: data.dir + data.newDir, files: files }));
         } else {
-            dispatch(addFile({ path: data.dir.slice(0, -1), files: files }));
+            dispatch(uploadFiles({ path: data.dir.slice(0, -1), files: files }));
         }
     }
 

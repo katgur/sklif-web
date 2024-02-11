@@ -9,7 +9,7 @@ import CommentSection from './CommentSection';
 import MaskedImage from './MaskedImage';
 import { addComment } from './studiesSlice';
 import { isDirectory } from '../../util/storageUtil';
-import { getBytes } from '../../api/mock/storageApi';
+import api from '../../api/mock/storageApi';
 
 const schema = [
     {
@@ -73,7 +73,6 @@ function Viewer() {
 
     var key = window.location.href.split('viewer/')[1];
 
-    console.log(study, info)
     useEffect(() => {
         if (!study) {
             dispatch(fetchStudy({ key: key }));
@@ -107,7 +106,7 @@ function Viewer() {
             <div className="viewport-with-tools">
                 <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} maskState={maskState} />
                 <div className="viewports">
-                    <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + getBytes(key))} />
+                    <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + api.getBytes(key))} />
                     {maskState.enabled && <MaskedImage path={study.keys[index]} />}
                     {drawerState.enabled &&
                         <SideDataViewer schema={[...schema, commentSection]} entity={info} />

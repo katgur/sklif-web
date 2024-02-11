@@ -62,5 +62,5 @@ const postAvatar = ({ email, file }) => {
     return request({ method: 'post', url: url + '/user/upload-avatar', params: { email: email }, body: body })
 }
 
-export { getUser, changePassword, changeUserInfo, changeEmail, 
+export default { getUser, changePassword, changeUserInfo, changeEmail, 
     changeUserRole, postUser, getUsers, deleteUser, postAvatar };

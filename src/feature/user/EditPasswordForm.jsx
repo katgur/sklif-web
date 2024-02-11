@@ -1,6 +1,6 @@
 import Form from '../../component/ui/Form';
 import Input from '../../component/ui/Form/Input';
-import { setMessage, selectData } from '../authSlice';
+import { selectData } from '../authSlice';
 import { setPassword } from './usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +10,6 @@ function EditPasswordForm() {
 
     const onSubmit = ({ password, repeatedPassword }) => {
         if (password !== repeatedPassword) {
-            dispatch(setMessage({ code: 0, message: "Введенные пароли не совпадают" }));
             return;
         } else if (data) {
             dispatch(setPassword({ email: data.email, password: password }));
