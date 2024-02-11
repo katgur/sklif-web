@@ -39,9 +39,8 @@ const changeUserInfo = async (email, userInfo) => {
 
 const changeEmail = async (previousEmail, newEmail) => {
     const data = await getData();
-    const user = value.find(user => user.email === previousEmail);
-    user.email = newEmail;
-    await setData(data.filter(user => user.email !== previousEmail).concat(user));
+    const user = data.find(user => user.email === previousEmail);
+    await setData(data.filter(user => user.email !== previousEmail).concat({ ...user, email: newEmail }));
 }
 
 const changeUserRole = async (email, newRole) => {

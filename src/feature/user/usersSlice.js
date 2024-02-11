@@ -19,7 +19,7 @@ export const updateUserRole = user => {
   return dispatch => {
     api.changeUserRole(user)
       .then(newUser => {
-        dispatch(editUser(newUser));
+        dispatch(editUser({ email: user.email, newUser }));
         dispatch(addSuccess(`У пользователя ${user.firstName} ${user.lastName} изменены права доступа на ${newUser.role}`));
       })
       .catch((error) => {
@@ -30,7 +30,7 @@ export const updateUserRole = user => {
 
 export const fetchUsers = () => {
   return dispatch => {
-    api.getUsers("" )
+    api.getUsers("")
       .then(users => {
         dispatch(setUsers(users));
       })
@@ -60,9 +60,7 @@ export const updateUserInfo = (email, userInfo) => {
         return api.getUser(email);
       })
       .then((newUser) => {
-        console.log(newUser)
-
-        dispatch(editUser(newUser));
+        dispatch(editUser({ email, newUser }));
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -72,13 +70,13 @@ export const updateUserInfo = (email, userInfo) => {
 
 export const updateUserEmail = (email, newEmail) => {
   return dispatch => {
-    api.changeUserInfo(email, newEmail)
+    api.changeEmail(email, newEmail)
       .then(() => {
         dispatch(addSuccess("Почтовый адрес пользователя изменен"));
-        return api.fetchUser(email);
+        return api.getUser(newEmail);
       })
       .then((newUser) => {
-        dispatch(editUser(newUser))
+        dispatch(editUser({ email, newUser }))
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -119,7 +117,7 @@ const usersSlice = createSlice({
       return state ? [...state, action.payload] : [action.payload]
     },
     editUser: (state, action) => {
-      return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload) : [action.payload]
+      return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload.newUser) : [action.payload.newUser]
     },
     setUsers: (state, action) => {
       return action.payload
