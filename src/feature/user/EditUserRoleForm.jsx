@@ -4,29 +4,30 @@ import { updateUserRole } from './usersSlice';
 import useUser from '../../hook/useUser';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Radio from '../../component/ui/Form/Radio';
+import { useParams } from 'react-router';
+
+const fields = [
+    {
+        name: "role", text: "Новая роль", type: "radio", required: true
+    },
+]
 
 function EditUserRoleForm({ isGlobal }) {
     const dispatch = useDispatch();
-    const user = useUser();
+    const { email } = useParams();
+    const user = useUser(email);
 
-    const globalOptions = ["Врач", "Администратор", "Глобальный администратор"];
-    const localOptions = ["Врач", "Администратор"];
+    const options = isGlobal ? ["Врач", "Администратор", "Глобальный администратор"] : ["Врач", "Администратор"];
 
     const onSubmit = (data) => {
-        dispatch(updateUserRole({ previousRole: user.role, newRole: data.role, email: user.email }));
+        dispatch(updateUserRole(user.email, data.role));
     }
 
-    const fields = [
-        {
-            name: "role", text: "Новая роль", type: "radio", required: true
-        },
-    ]
-
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} entity={user}>
             <RadioGroup field={fields[0]}>
                 {
-                    globalOptions.map(option => <Radio key={option}>{option}</Radio>)
+                    options.map(option => <Radio key={option}>{option}</Radio>)
                 }
             </RadioGroup>
         </Form>

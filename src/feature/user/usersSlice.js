@@ -15,12 +15,15 @@ export const createUser = user => {
   }
 }
 
-export const updateUserRole = user => {
+export const updateUserRole = (email, newRole) => {
   return dispatch => {
-    api.changeUserRole(user)
-      .then(newUser => {
-        dispatch(editUser({ email: user.email, newUser }));
-        dispatch(addSuccess(`У пользователя ${user.firstName} ${user.lastName} изменены права доступа на ${newUser.role}`));
+    api.changeUserRole(email, newRole)
+      .then(() => {
+        dispatch(addSuccess(`Права доступа на ${newRole}`));
+        return api.getUser(email);
+      })
+      .then((newUser) => {
+        dispatch(editUser({ email, newUser }));
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить права доступа пользователя${error.response ? `: ${error.response.data.error}` : ""}`))

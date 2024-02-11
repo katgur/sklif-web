@@ -1,6 +1,6 @@
 import React from 'react'
 
-function RadioGroup({ register, field, entity, errors, children }) {
+function RadioGroup({ field, register, entity, errors, children }) {
     const validation = {
         required: field.required
     }
