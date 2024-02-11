@@ -30,9 +30,8 @@ export const updateUserRole = user => {
 
 export const fetchUsers = () => {
   return dispatch => {
-    api.getUsers({ filter: "" })
+    api.getUsers("" )
       .then(users => {
-        console.log(users)
         dispatch(setUsers(users));
       })
       .catch(error => {
@@ -58,10 +57,12 @@ export const updateUserInfo = (email, userInfo) => {
     api.changeUserInfo(email, userInfo)
       .then(() => {
         dispatch(addSuccess("Данные пользователя изменены"));
-        return api.fetchUser(email);
+        return api.getUser(email);
       })
       .then((newUser) => {
-        dispatch(addUser(newUser))
+        console.log(newUser)
+
+        dispatch(editUser(newUser));
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -77,7 +78,7 @@ export const updateUserEmail = (email, newEmail) => {
         return api.fetchUser(email);
       })
       .then((newUser) => {
-        dispatch(addUser(newUser))
+        dispatch(editUser(newUser))
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -115,16 +116,16 @@ const usersSlice = createSlice({
   initialState: null,
   reducers: {
     addUser: (state, action) => {
-      return [...state, action.payload]
+      return state ? [...state, action.payload] : [action.payload]
     },
     editUser: (state, action) => {
-      return state.filter(item => item.email !== action.payload.email).concat(action.payload)
+      return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload) : [action.payload]
     },
     setUsers: (state, action) => {
       return action.payload
     },
     removeUser: (state, action) => {
-      return state.filter(item => item.email !== action.payload)
+      return state ? state.filter(item => item.email !== action.payload) : []
     }
   },
 })

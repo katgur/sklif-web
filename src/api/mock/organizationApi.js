@@ -2,43 +2,46 @@ import LS from './LSRequest';
 
 const key = 'org';
 
-const get = async () => {
-    let value = await LS.get();
-    if (value[key] === undefined) {
-        value[key] = [];
-        await LS.set(value);
-    }
-    return value;
+const getData = async () => {
+    return await LS.get(key, [
+        {
+            "email": "hse@hse.ru",
+            "name": "HSE",
+            "administratorFullName": "Test Test Test",
+            "phoneNumber": "098",
+            "address": "Ulitsa Sezam"
+        }
+    ]);
 }
+
+const setData = async (data) => {
+    await LS.set(key, data);
+}
+
 const postOrganization = async (organization) => {
-    let value = await get();
-    value[key].push(organization);
-    await LS.set(value);
+    const data = await getData();
+    await setData(data.concat(organization));
     return organization;
 }
 
 const patchOrganization = async (organization) => {
-    let value = await get();
-    value[key] = value[key].filter(org => org.email !== organization.email);
-    value[key].push(organization);
-    await LS.set(value);
-    return organization;
+    const data = await getData();
+    await setData(data.filter(org => org.email !== organization.email).concat(organization));
 }
 
 const deleteOrganization = async (email) => {
-    const value = await get();
-    value[key] = value[key].filter(org => org.email !== email);
-    await LS.set(value);
+    const data = await getData();
+    await setData(data.filter(org => org.email !== email));
 }
 
-const getOrganizations = async (params) => {
-    const value = await get();
-    return value[key];
+const getOrganizations = async () => {
+    const data = await getData();
+    return data;
 }
 
 const getOrganization = async (email) => {
-    const value = await get();
-    return value[key].find(org => org.email === email);
+    const data = await get();
+    return data.find(org => org.email === email);
 }
 
 export default { postOrganization, patchOrganization, deleteOrganization, getOrganizations, getOrganization };

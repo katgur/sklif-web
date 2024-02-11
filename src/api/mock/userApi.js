@@ -2,76 +2,72 @@ import LS from './LSRequest';
 
 const key = 'user';
 
-const get = async () => {
-    let value = await LS.get();
-    if (value[key] === undefined) {
-        console.log(value);
-        value[key] = [];
-        console.log(value);
+const getData = async () => {
+    return await LS.get(key, [
+        {
+            "email": "lrezunic@gmail.com",
+            "firstName": "Людмила",
+            "lastName": "Резуник",
+            "patronymic": "Александровна",
+            "phoneNumber": "+79129329178",
+            "role": "Врач",
+            "organization": "HSE"
+        }
+    ]);
+}
 
-        await LS.set(value);
-    }
-    return value;
+const setData = async (data) => {
+    await LS.set(key, data);
 }
 
 const getUser = async (email) => {
-    const value = await get();
-
-    return value[key].find(user => user.email === email);
+    const data = await getData();
+    return data.find(user => user.email === email);
 }
 
-const changePassword = async () => {
-    return true;
+const changePassword = async (email, newPassword) => {
+    const data = await getData();
+    const user = { ...data.find(user => user.email === email), password: newPassword };
+    await setData(data.filter(user => user.email !== email).concat(user));
 }
 
-const changeUserInfo = async ({ userInfo, email }) => {
-    let value = await get();
-    const user = { ...value[key].find(user => user.email === email), ...userInfo };
-    value[key] = value[key].filter(user => user.email !== email);
-    value[key].push(user);
-    await LS.set(value);
-    return user;
+const changeUserInfo = async (email, userInfo) => {
+    const data = await getData();
+    const user = { ...data.find(user => user.email === email), ...userInfo };
+    await setData(data.filter(user => user.email !== email).concat(user));
 }
 
-const changeEmail = async ({ previousEmail, newEmail }) => {
-    let value = await get();
-    let user = value[key].find(user => user.email === previousEmail);
+const changeEmail = async (previousEmail, newEmail) => {
+    const data = await getData();
+    const user = value.find(user => user.email === previousEmail);
     user.email = newEmail;
-    value[key] = value[key].filter(user => user.email !== previousEmail);
-    value[key].push(user);
-    await LS.set(value);
-    return user;
+    await setData(data.filter(user => user.email !== previousEmail).concat(user));
 }
 
-const changeUserRole = async ({ newRole, email }) => {
-    let value = await get();
-    let user = value[key].find(user => user.email === email);
+const changeUserRole = async (email, newRole) => {
+    const data = await getData();
+    const user = data.find(user => user.email === email);
     user.role = newRole;
-    value[key] = value[key].filter(user => user.email !== email);
-    value[key].push(user);
-    await LS.set(value);
-    return user;
+    await setData(data.filter(user => user.email !== email).concat(user));
 }
 
 const postUser = async (user) => {
-    let value = await get();
-    value[key].push(user);
-    await LS.set(value);
+    const data = await getData();
+    await setData(data.concat(user));
     return user;
 }
 
-const getUsers = async ({ filter }) => {
-    const value = await get();
-    return value[key].filter(user => user.firstName.includes(filter));
+const getUsers = async (filter) => {
+    const data = await getData();
+    return data.filter(user => user.firstName.includes(filter));
 }
 
-const deleteUser = async ({ email }) => {
-    const value = await get();
-    value[key] = value[key].filter(user => user.email !== email);
-    await LS.set(value);
+const deleteUser = async (email) => {
+    const data = await getData();
+    await setData(data.filter(user => user.email !== email));
 }
 
-const postAvatar = () => {
+const postAvatar = (file) => {
     return true;
 }
 

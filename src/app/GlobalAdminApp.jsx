@@ -151,20 +151,20 @@ function App() {
       <Routes>
         <Route path="" element={homePage}>
           <Route path="users" element={usersListPage}>
-            <Route path="delete/:id" element={<DeleteUserForm />} />
+            <Route path="delete/:email" element={<DeleteUserForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_user" element={addUserPage} />
-          <Route path="edit_user/:id" element={editUserPage} />
+          <Route path="edit_user/:email" element={editUserPage} />
 
           <Route path="organizations" element={organizationsPage}>
-            <Route path="delete/:id" element={<DeleteOrganizationForm />} />
+            <Route path="delete/:email" element={<DeleteOrganizationForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_organization" element={addOrganizationPage} />
-          <Route path="edit_organization/:id" element={editOrganizationPage} />
+          <Route path="edit_organization/:email" element={editOrganizationPage} />
 
-          <Route path="profile/:id" element={profileViewer} />
+          <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profileViewer} />
           <Route path="settings" element={settingsPage} />
         </Route>

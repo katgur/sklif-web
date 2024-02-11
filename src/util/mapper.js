@@ -31,7 +31,6 @@ export const mapUsersForClient = (users) => {
 }
 
 export const mapUserForClient = (user) => {
-    console.log(user)
     return { ...user, role: mapRole[user.role] }
 }
 

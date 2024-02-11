@@ -72,7 +72,7 @@ function GlobalRegisterUserForm() {
                 <Radio>Глобальный администратор</Radio>
             </RadioGroup>
             {
-                organizations && <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations.map(org => org.organizationName)} />
+                organizations && <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations.map(org => org.name)} />
             }
             {
                 fields.slice(4).map(field => {
