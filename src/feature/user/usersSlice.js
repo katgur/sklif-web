@@ -7,7 +7,7 @@ import { mapUserForServer } from '../../util/mapper'
 
 export const addUser = user => {
   return dispatch => {
-    postUser(mapUserForServer(user))
+    postUser(user)
       .then(newUser => {
         dispatch(addNewUser(newUser));
         dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
@@ -20,7 +20,7 @@ export const addUser = user => {
 
 export const updateUserRole = user => {
   return dispatch => {
-    changeUserRole(mapUserForServer(user))
+    changeUserRole(user)
       .then(newUser => {
         dispatch(editUser(newUser));
         dispatch(addSuccess(`У пользователя ${user.firstName} ${user.lastName} изменены права доступа на ${newUser.role}`));
