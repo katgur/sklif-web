@@ -4,10 +4,23 @@ import { getUser } from '../../api/mock/userApi';
 import { changeEmail, changePassword, changeUserInfo, changeUserRole } from '../../api/mock/userApi';
 import { middleware } from '../middleware';
 import { mapChangeUserRole, mapUserForClient, mapUserForServer, mapUsersForClient } from '../../util/mapper';
+import { addSuccess } from '../notification/notificationSlice';
 
-export const addUser = createAsyncThunk('users/addUser', async (params, thunk) => {
-  return await postUser(params);
-})
+export const addUser = user => {
+  return dispatch => {
+    postUser(user)
+      .then(() => {
+        dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
+      })
+      .catch((error) => {
+        dispatch(setError("Ошибка при добавлении пользователя" + (error.response ? `: ${error.response.data.error}` : "")))
+      })
+  }
+}
+
+// export const addUser = createAsyncThunk('users/addUser', async (params, thunk) => {
+//   return await postUser(params);
+// })
 
 export const fetchUsers = createAsyncThunk('users/getUsers', async (params, thunk) => {
   console.log(params);
@@ -81,23 +94,8 @@ const usersSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(addUser.fulfilled, (state, action) => {
-        state.status = {
-          message: "Пользователь добавлен",
-          code: 3,
-        }
-        state.list = [...state.list, action.payload];
-        state.progress = false;
-      })
       .addCase(fetchAuthUser.fulfilled, (state, action) => {
         state.auth = action.payload;
-        state.progress = false;
-      })
-      .addCase(addUser.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось добавить пользователя${action.payload.message}`,
-          code: action.payload.code,
-        }
         state.progress = false;
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
@@ -207,9 +205,6 @@ const usersSlice = createSlice({
           code: action.payload.code,
         }
         state.progress = false;
-      })
-      .addCase(addUser.pending, (state, action) => {
-        state.progress = true;
       })
       .addCase(uploadAvatar.pending, (state, action) => {
         state.progress = true;
