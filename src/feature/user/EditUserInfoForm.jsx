@@ -30,8 +30,12 @@ const fields = [
 
 function EditUserInfoForm({ isGlobal }) {
     const dispatch = useDispatch();
-    const params = useParams();
-    const user = useUser(params.email);
+    const { email } = useParams();
+    const user = useUser(email);
+    
+    if (!user) {
+        return;
+    }
 
     const onSubmit = (data) => {
         dispatch(updateUserInfo(user.email, updateUserInfoMapper(data, isGlobal, user)));

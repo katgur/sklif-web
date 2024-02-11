@@ -22,30 +22,34 @@ const setData = async (data) => {
 
 const getUser = async (email) => {
     const data = await getData();
-    return data.find(user => user.email === email);
+    const user = data.find(user => user.email === email);
+    if (!user) {
+        throw new Error("Пользователь не найден");
+    }
+    return user;
 }
 
 const changePassword = async (email, newPassword) => {
     const data = await getData();
-    const user = { ...data.find(user => user.email === email), password: newPassword };
+    const user = { ...(await getUser(email)), password: newPassword };
     await setData(data.filter(user => user.email !== email).concat(user));
 }
 
 const changeUserInfo = async (email, userInfo) => {
     const data = await getData();
-    const user = { ...data.find(user => user.email === email), ...userInfo };
+    const user = { ...(await getUser(email)), ...userInfo };
     await setData(data.filter(user => user.email !== email).concat(user));
 }
 
 const changeEmail = async (previousEmail, newEmail) => {
     const data = await getData();
-    const user = data.find(user => user.email === previousEmail);
+    const user = await getUser(previousEmail);
     await setData(data.filter(user => user.email !== previousEmail).concat({ ...user, email: newEmail }));
 }
 
 const changeUserRole = async (email, newRole) => {
     const data = await getData();
-    const user = data.find(user => user.email === email);
+    const user = await getUser(email);
     await setData(data.filter(user => user.email !== email).concat({ ...user, role: newRole }));
 }
 

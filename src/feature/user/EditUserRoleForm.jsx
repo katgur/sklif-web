@@ -17,6 +17,10 @@ function EditUserRoleForm({ isGlobal }) {
     const { email } = useParams();
     const user = useUser(email);
 
+    if (!user) {
+        return;
+    }
+
     const options = isGlobal ? ["Врач", "Администратор", "Глобальный администратор"] : ["Врач", "Администратор"];
 
     const onSubmit = (data) => {

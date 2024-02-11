@@ -3,13 +3,23 @@
     padding: 11px 30px;
     min-width: 150px;
     text-align: center;
+    cursor: pointer;
 }
 
 .button_theme_primary {
     background-color: var(--primary-color);
 }
 
+.button_theme_primary:hover {
+    background-color: var(--hover-primary-color);
+}
+
 .button_theme_secondary {
     border: 1px solid var(--primary-color);
     background-color: var(--white);
+}
+
+.button_theme_secondary:hover {
+    border: 1px solid var(--hover-primary-color);
+    background-color: var(--hover-color);
 }

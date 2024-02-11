@@ -8,8 +8,9 @@ body {
     --notification-color: #DC3545;
     --black: #212B36;
     --text-color-2: #637381;
-    --backdrop-color: rgb(33, 43, 54, 0.75);
+    --backdrop-color: rgb(33, 43, 54, 0.85);
     --primary-color: #3C50E0;
+    --hover-primary-color: #3c4fe0a9;
     --text-color-color: #64748B;
     --hover-color: rgba(48, 86, 211, 0.04);
     --dark-color-color: #333A48;

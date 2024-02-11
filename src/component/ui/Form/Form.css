@@ -3,10 +3,22 @@
     padding: 26px;
 }
 
+.form__title {
+    text-align: center;
+}
+
 .form__buttons {
     margin-top: 24px;
     display: flex;
-    gap: 15px;
+    gap: 16px;
+}
+
+.form__buttons--left {
+    justify-content: flex-start;
+}
+
+.form__buttons--center {
+    justify-content: center;
 }
 
 .form__two-column-layout {

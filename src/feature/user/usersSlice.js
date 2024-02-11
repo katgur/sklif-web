@@ -89,7 +89,7 @@ export const updateUserEmail = (email, newEmail) => {
 
 export const deleteUser = (email) => {
   return dispatch => {
-    api.deleteUser(email, newEmail)
+    api.deleteUser(email)
       .then(() => {
         dispatch(removeUser(email));
         dispatch(addSuccess("Данные пользователя удалены"));

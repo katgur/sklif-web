@@ -7,7 +7,7 @@ const delay = (fn, ms) => {
 const setAll = async (value) => await delay(
     () => {
         localStorage.setItem(globalKey, JSON.stringify(value));
-    }, 500
+    }, 150
 )
 
 const getAll = async () => await delay(
@@ -18,7 +18,7 @@ const getAll = async () => await delay(
             return {};
         }
         return value;
-    }, 500
+    }, 150
 )
 
 const get = async (key, mock = []) => {

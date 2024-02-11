@@ -16,6 +16,10 @@ function EditUserEmailForm() {
     const { email } = useParams();
     const user = useUser(email);
 
+    if (!user) {
+        return;
+    }
+
     const onSubmit = (data) => {
         dispatch(updateUserEmail(user.email, data.email));
     }

@@ -34,7 +34,7 @@ menu {
   all: unset;
 }
 
-input {
+input, fieldset {
   all: unset;
 }
 
