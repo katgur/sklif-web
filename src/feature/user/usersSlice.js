@@ -100,9 +100,9 @@ export const deleteUser = (email) => {
   }
 }
 
-export const uploadAvatar = (file) => {
+export const uploadAvatar = (email, file) => {
   return dispatch => {
-    api.postAvatar(file)
+    api.postAvatar(email, file)
       .then(() => {
         dispatch(addSuccess("Фотография профиля пользователя загружен"));
       })

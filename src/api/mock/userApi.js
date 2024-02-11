@@ -69,8 +69,10 @@ const deleteUser = async (email) => {
     await setData(data.filter(user => user.email !== email));
 }
 
-const postAvatar = (file) => {
-    return true;
+const postAvatar = async (email, file) => {
+    const data = await getData();
+    const user = await getUser(email);
+    await setData(data.filter(user => user.email !== email).concat({ ...user, avatarURL: file }));
 }
 
 export default {

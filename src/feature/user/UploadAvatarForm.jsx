@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { uploadAvatar } from "./usersSlice";
 import useUser from '../../hook/useUser';
+import { useParams } from "react-router";
 
 function UploadAvatarForm() {
     const inputField = useRef();
@@ -10,10 +11,11 @@ function UploadAvatarForm() {
     const [file, setFile] = useState();
     const reader = useMemo(() => new FileReader(), []);
     const dispatch = useDispatch();
-    const user = useUser();
+    const { email } = useParams();
+    const user = useUser(email);
 
     useEffect(() => {
-        var onLoad = () => {
+        var onLoad = (e) => {
             preview.current.src = reader.result;
         }
 
@@ -31,7 +33,7 @@ function UploadAvatarForm() {
     }
 
     var onUploadButtonClick = () => {
-        dispatch(uploadAvatar({ email: user.email, file: file }));
+        dispatch(uploadAvatar(user.email, reader.result));
     }
 
     return (
