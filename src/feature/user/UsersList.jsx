@@ -25,7 +25,7 @@ function UsersList({ isGlobal }) {
     }
 
     return (
-        <div>
+        <>
             {
                 users &&
                 <SortableTableViewer
@@ -41,7 +41,8 @@ function UsersList({ isGlobal }) {
                         })} />
             }
             <Outlet />
-        </div>
+        </>
+
     )
 }
 
