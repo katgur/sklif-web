@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { middleware } from '../middleware';
 import { getAll, getById, getInfo, postComment } from '../../api/mock/studyApi';
 
 export const fetchStudies = createAsyncThunk('studies/fetch', async (params, thunk) => {

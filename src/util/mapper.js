@@ -27,15 +27,12 @@ export const mapUserForServer = (user) => {
 }
 
 export const mapUsersForClient = (users) => {
-    users.forEach(user => {
-        mapUserForClient(user);
-    });
-    return users;
+    return users.map(mapUserForClient);
 }
 
 export const mapUserForClient = (user) => {
-    user.role = mapRole[user.role];
-    return user;
+    console.log(user)
+    return { ...user, role: mapRole[user.role] }
 }
 
 export const mapChangeUserRole = (params) => {

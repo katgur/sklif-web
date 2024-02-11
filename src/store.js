@@ -7,7 +7,7 @@ import studySliceReducer from './feature/study/studiesSlice';
 import maskSliceReducer from './feature/study/maskSlice';
 import notificationReducer from './feature/notification/notificationSlice';
 import logger from 'redux-logger'
-import { testMiddleware } from './feature/middleware';
+import { mapMiddleware } from './feature/middleware';
 
 export default configureStore({
     reducer: {
@@ -19,5 +19,5 @@ export default configureStore({
         mask: maskSliceReducer,
         notifications: notificationReducer
     },
-    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, testMiddleware] //getDefaultMiddleware().concat(logger),
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, mapMiddleware]
 })

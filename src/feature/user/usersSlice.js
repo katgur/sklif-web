@@ -2,41 +2,58 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { postUser, getUsers, deleteUser, postAvatar } from '../../api/mock/userApi'
 import { getUser } from '../../api/mock/userApi';
 import { changeEmail, changePassword, changeUserInfo, changeUserRole } from '../../api/mock/userApi';
-import { addSuccess } from '../notification/notificationSlice';
+import { addError, addSuccess } from '../notification/notificationSlice';
+import { mapUserForServer } from '../../util/mapper'
 
 export const addUser = user => {
   return dispatch => {
-    postUser(user)
+    postUser(mapUserForServer(user))
       .then(newUser => {
         dispatch(addNewUser(newUser));
         dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
       })
       .catch((error) => {
-        dispatch(setError("Не удалось добавить пользователя" + (error.response ? `: ${error.response.data.error}` : "")))
+        dispatch(addError(`Не удалось добавить пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
       })
   }
 }
 
 export const updateUserRole = user => {
   return dispatch => {
-    changeUserRole(user)
+    changeUserRole(mapUserForServer(user))
       .then(newUser => {
         dispatch(editUser(newUser));
         dispatch(addSuccess(`У пользователя ${user.firstName} ${user.lastName} изменены права доступа на ${newUser.role}`));
       })
       .catch((error) => {
-        dispatch(setError("Не удалось редактировать права доступа пользователя" + (error.response ? `: ${error.response.data.error}` : "")))
+        dispatch(addError(`Не удалось редактировать права доступа пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
       })
   }
 }
 
-export const fetchUsers = createAsyncThunk('users/getUsers', async (params, thunk) => {
-  return await getUsers(params);
-})
+export const fetchUsers = () => {
+  return dispatch => {
+    getUsers({ filter: "" })
+      .then(users => {
+        dispatch(setUsers(users));
+      })
+      .catch(error => {
+        dispatch(addError(`Не удалось получить список пользователей${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
-export const fetchUser = createAsyncThunk('users/fetch', async (params, thunk) => {
-  return await getUser(params);
-})
+export const fetchUser = email => {
+  return dispatch => {
+    getUser(email)
+      .then(user => {
+        dispatch(setUser(user));
+      })
+      .catch(error => {
+        dispatch(addError(`Не удалось получить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+      })
+  }
+}
 
 export const setPassword = createAsyncThunk('user/password', async (params, thunk) => {
   return await changePassword();
@@ -65,17 +82,7 @@ export const fetchAuthUser = createAsyncThunk('user/auth', async (params, thunk)
 const usersSlice = createSlice({
   name: 'users',
   initialState: {
-    list: [
-      {
-        "email": "lrezunic@gmail.com",
-        "firstName": "Людмила",
-        "lastName": "Резуник",
-        "patronymic": "Александровна",
-        "phoneNumber": "+79129329178",
-        "role": "DOCTOR",
-        "organization": "HSE"
-      }
-    ],
+    list: [],
     current: undefined,
   },
   reducers: {
@@ -91,113 +98,24 @@ const usersSlice = createSlice({
         list: state.list.filter(item => item.id !== action.payload.id).concat(action.payload),
       }
     },
+    setUsers: (state, action) => {
+      return {
+        ...state,
+        list: action.payload,
+      }
+    },
+    setUser: (state, action) => {
+      return {
+        ...state,
+        current: action.payload,
+      }
+    },
     resetCurrent: (state, action) => {
       state.current = undefined;
     }
   },
-  extraReducers(builder) {
-    builder
-      .addCase(fetchAuthUser.fulfilled, (state, action) => {
-        state.auth = action.payload;
-        state.progress = false;
-      })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        console.log(action)
-        state.list = action.payload;
-        state.progress = false;
-      })
-      .addCase(fetchUsers.rejected, (state, action) => {
-        console.log(action)
-        state.status = {
-          message: `Не удалось получить список пользователей${action.payload.message}`,
-          code: action.payload.code,
-        }
-        state.progress = false;
-      })
-      .addCase(setPassword.fulfilled, (state, action) => {
-        state.status = {
-          message: "Пароль изменен",
-          code: 3
-        }
-        state.progress = false;
-      })
-      .addCase(setPassword.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось установить новый пароль${action.payload.message}`,
-          code: action.error.message,
-        }
-        state.progress = false;
-      })
-      .addCase(fetchUser.fulfilled, (state, action) => {
-        state.current = action.payload;
-        state.progress = false;
-      })
-      .addCase(fetchUser.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось получить данные пользователя${action.payload.message}`,
-          code: action.payload.code,
-        }
-        state.progress = false;
-      })
-      .addCase(updateUserInfo.fulfilled, (state, action) => {
-        state.status = {
-          message: "Данные профиля изменены",
-          code: 3
-        }
-        state.progress = false;
-      })
-      .addCase(updateUserInfo.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось изменить данные пользователя${action.payload.message}`,
-          code: action.payload.code,
-        }
-        state.progress = false;
-      })
-      .addCase(updateUserEmail.fulfilled, (state, action) => {
-        state.status = {
-          message: "Профиль привязан к новой почте",
-          code: 3
-        }
-        state.progress = false;
-      })
-      .addCase(updateUserEmail.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось привязать профиль к новой почте${action.payload.message}`,
-          code: action.payload.code,
-        }
-        state.progress = false;
-      })
-      .addCase(removeUser.fulfilled, (state, action) => {
-        state.status = {
-          message: "Пользователь удален",
-          code: 3
-        }
-        state.progress = false;
-      })
-      .addCase(removeUser.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось удалить пользователя${action.payload.message}`,
-          code: action.payload.code,
-        }
-        state.progress = false;
-      })
-      .addCase(uploadAvatar.fulfilled, (state, action) => {
-        state.status = {
-          message: "Фотография профиля загружена",
-          code: 3
-        }
-        state.progress = false;
-      })
-      .addCase(uploadAvatar.rejected, (state, action) => {
-        state.status = {
-          message: `Не удалось загрузить фотографию профиля${action.payload.message}`,
-          code: action.payload.code,
-        }
-        state.progress = false;
-      })
-  },
 })
-export const { resetStatus, resetCurrent, addNewUser, editUser } = usersSlice.actions;
+export const { resetStatus, resetCurrent, addNewUser, editUser, setUsers, setUser } = usersSlice.actions;
 
 export const selectAll = (state) => state.users.list;
 export const selectCurrent = (state) => state.users.current;

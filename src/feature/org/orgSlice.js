@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { deleteOrganization, getOrganization, getOrganizations, patchOrganization, postOrganization } from '../../api/mock/organizationApi';
-import { middleware } from '../middleware';
 import { mapUpdateOriganizationForServer } from '../../util/mapper';
 
 export const addOrganization = createAsyncThunk('org/add', async (params, thunk) => {

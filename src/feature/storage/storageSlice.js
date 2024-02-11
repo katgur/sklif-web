@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { deleteDirectory, deleteFile, getFiles, postDirectory, postFile } from '../../api/mock/storageApi';
-import { middleware } from '../middleware';
 
 export const fetchFiles = createAsyncThunk('files/get', async (params, thunk) => {
     return await getFiles();
