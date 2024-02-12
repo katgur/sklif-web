@@ -1,0 +1,11 @@
+.stack {
+    display: flex;
+}
+
+.stack_direction_horizontal {
+    flex-direction: row;
+}
+
+.stack_direction_vertical {
+    flex-direction: column;
+}
