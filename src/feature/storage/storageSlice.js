@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/storageApi';
-import { addSuccess } from '../notification/notificationSlice';
+import { addSuccess, addError } from '../notification/notificationSlice';
 
 export const fetchFiles = () => {
     return dispatch => {
@@ -41,9 +41,11 @@ export const deleteFiles = (keys) => {
 }
 
 export const createDirectory = (path, name) => {
+    console.log(path, name)
     return dispatch => {
         api.postDirectory(path, name)
             .then((key) => {
+                console.log(key)
                 dispatch(addFiles([key]));
                 dispatch(addSuccess("Новая директория создана"));
             })

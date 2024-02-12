@@ -130,16 +130,14 @@ function FilesList() {
                         }
                     </div>
                 </div>
-                <Modal state={modalState}>
-                    <ul className="list-context-menu">
-                        <li>
-                            <Link to='/home/add_directory'>Создать директорию</Link>
-                        </li>
-                        <li>
-                            <Link to='/home/add_file'>Загрузить файл</Link>
-                        </li>
-                    </ul>
-                </Modal>
+                <ul className="list-context-menu">
+                    <li>
+                        <Link to='/home/add_directory'>Создать директорию</Link>
+                    </li>
+                    <li>
+                        <Link to='/home/add_file'>Загрузить файл</Link>
+                    </li>
+                </ul>
             </div>
             {
                 items.length !== 0 &&
