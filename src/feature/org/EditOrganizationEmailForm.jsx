@@ -3,34 +3,29 @@ import Form from '../../component/ui/Form';
 import useOrganization from '../../hook/useOrganization';
 import { updateOrganization } from '../../feature/org/orgSlice';
 import Input from '../../component/ui/Form/Input.jsx';
+import { useParams } from 'react-router';
 
-var mapToUpdateOrganization = (data) => {
-    data.name = null;
-    data.phoneNumber = null;
-    data.administratorFirstName = null;
-    data.administratorLastName = null;
-    data.administratorPatronymic = null;
-    data.address = null;
-    return data;
-}
+const fields = [
+    {
+        name: "email", text: "Новая почта", type: "email", required: true
+    },
+]
 
 function EditOrganizationEmailForm() {
     const dispatch = useDispatch();
-    const organization = useOrganization();
+    const { email } = useParams();
+    const organization = useOrganization(email);
 
-    const onSubmit = (data) => {
-        var query = mapToUpdateOrganization(data);
-        dispatch(updateOrganization({ organization: query, email: organization.email }));
+    if (!organization) {
+        return;
     }
 
-    const fields = [
-        {
-            name: "email", text: "Новая почта", type: "email", required: true
-        },
-    ]
+    const onSubmit = (data) => {
+        dispatch(updateOrganization(organization.email, data));
+    }
 
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} entity={organization}>
             <Input field={fields[0]}></Input>
         </Form>
     )

@@ -39,3 +39,17 @@ export const mapChangeUserRole = (params) => {
     params.newRole = mapRole[params.newRole];
     return params;
 }
+
+export const splitAdminFullName = (org) => {
+    const [administratorFirstName, administratorLastName, administratorPatronymic] = org.administratorFullName.split(" ");
+    delete org.administratorFullName;
+    return { ...org, administratorFirstName, administratorLastName, administratorPatronymic };
+}
+
+export const joinAdminFullName = (org) => {
+    const administratorFullName = `${org.administratorFirstName} ${org.administratorLastName} ${org.administratorPatronymic}`;
+    delete org.administratorFirstName;
+    delete org.administratorLastName;
+    delete org.administratorPatronymic;
+    return { ...org, administratorFullName };
+}

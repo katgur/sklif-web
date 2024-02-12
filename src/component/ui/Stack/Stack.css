@@ -9,3 +9,7 @@
 .stack_direction_vertical {
     flex-direction: column;
 }
+
+.stack_gap_m {
+    gap: 12px;
+}
