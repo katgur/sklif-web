@@ -5,6 +5,7 @@ import { updateOrganization } from './orgSlice.js';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
 import { useParams } from 'react-router';
 import useOrganization from '../../hook/useOrganization.js'
+import { splitAdminFullName, joinAdminFullName } from '../../util/mapper.js';
 
 const fields = [
     {
@@ -27,19 +28,7 @@ const fields = [
     },
 ]
 
-const splitAdminFullName = (org) => {
-    const [administratorFirstName, administratorLastName, administratorPatronymic] = org.administratorFullName.split(" ");
-    delete org.administratorFullName;
-    return { ...org, administratorFirstName, administratorLastName, administratorPatronymic };
-}
 
-const joinAdminFullName = (org) => {
-    const administratorFullName = `${org.administratorFirstName} ${org.administratorLastName} ${org.administratorPatronymic}`;
-    delete org.administratorFirstName;
-    delete org.administratorLastName;
-    delete org.administratorPatronymic;
-    return { ...org, administratorFullName };
-}
 
 function EditOrganizationForm() {
     const dispatch = useDispatch();
