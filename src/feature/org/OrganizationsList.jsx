@@ -1,5 +1,5 @@
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useOrganizations from '../../hook/useOrganizations';
 
 const schema = ["Название", "Почта", "Администратор", "Телефон", "Адрес"];
@@ -9,7 +9,7 @@ const contextMenu = [
 ]
 
 function OrganizationsList() {
-    const organizations = useOrganizations(true);
+    const organizations = useOrganizations();
 
     if (!organizations) {
         return;
