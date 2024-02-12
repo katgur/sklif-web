@@ -15,15 +15,15 @@ export const addOrganization = org => {
     }
 }
 
-export const updateOrganization = org => {
+export const updateOrganization = (email, org) => {
     return dispatch => {
-        api.patchOrganization(org)
+        api.patchOrganization(email, org)
             .then(() => {
-                dispatch(addSuccess(`Данные организации ${newOrg.name} изменены`));
+                dispatch(addSuccess(`Данные организации изменены`));
                 return api.getOrganization(org.email);
             })
             .then(newOrg => {
-                dispatch(editOrg(newOrg));
+                dispatch(editOrg({ email, org: newOrg }));
             })
             .catch(error => {
                 dispatch(addError(`Не удалось редактировать данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -64,7 +64,7 @@ const orgSlice = createSlice({
             return state ? [...state, action.payload] : [action.payload]
         },
         editOrg: (state, action) => {
-            return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload) : [action.payload]
+            return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload.org) : [action.payload.org]
         },
         removeOrg: (state, action) => {
             return state ? state.filter(item => item.email !== action.payload) : []
@@ -75,7 +75,7 @@ const orgSlice = createSlice({
     },
 })
 
-export const { addOrg, editOrg, removeOrg, setOrgs} = orgSlice.actions;
+export const { addOrg, editOrg, removeOrg, setOrgs } = orgSlice.actions;
 
 export const selectAll = (state) => state.org;
 

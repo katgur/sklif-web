@@ -27,7 +27,7 @@ const postOrganization = async (organization) => {
 const patchOrganization = async (email, organization) => {
     const data = await getData();
     const oldOrganization = await getOrganization(email);
-    await setData(data.filter(org => org.email !== organization.email).concat({ ...oldOrganization, ...organization }));
+    await setData(data.filter(org => org.email !== email).concat({ ...oldOrganization, ...organization }));
 }
 
 const deleteOrganization = async (email) => {
