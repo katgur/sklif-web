@@ -31,7 +31,7 @@ export const deleteFiles = (keys) => {
     return dispatch => {
         api.deleteFile(keys)
             .then(() => {
-                dispatch(deleteFile(keys));
+                dispatch(removeFiles(keys));
                 dispatch(addSuccess("Файлы удалены из хранилища"));
             })
             .catch(error => {
@@ -41,7 +41,6 @@ export const deleteFiles = (keys) => {
 }
 
 export const createDirectory = (path, name) => {
-    console.log(path, name)
     return dispatch => {
         api.postDirectory(path, name)
             .then((key) => {
@@ -59,7 +58,7 @@ export const deleteDirectory = (key) => {
     return dispatch => {
         api.deleteDirectory(key)
             .then(() => {
-                dispatch(deleteFiles([key]));
+                dispatch(removeFiles([key]));
                 dispatch(addSuccess("Директория удалена"));
             })
             .catch(error => {
@@ -87,10 +86,11 @@ const storageSlice = createSlice({
                 list: [...state.list, ...action.payload]
             }
         },
-        deleteFiles: (state, action) => {
+        removeFiles: (state, action) => {
+            const set = new Set(action.payload);
             return {
                 ...state,
-                list: state.list.filter(item => action.payload.includes(item.key))
+                list: state.list.filter(item => !set.has(item.key))
             }
         },
         setCurrent: (state, action) => {
@@ -130,6 +130,6 @@ export const selectCurrentFiles = (state) => state.storage.list.filter((d) => {
 })
 
 
-export const { addFiles, editFile, deleteFile, setFiles, setCurrent } = storageSlice.actions;
+export const { addFiles, editFile, removeFiles, setFiles, setCurrent } = storageSlice.actions;
 
 export default storageSlice.reducer;

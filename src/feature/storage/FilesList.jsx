@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFile, selectCurrent, selectCurrentDirectories, selectCurrentFiles, setCurrent } from "./storageSlice";
+import { deleteFiles, selectCurrent, selectCurrentDirectories, selectCurrentFiles, setCurrent } from "./storageSlice";
 import { useState } from "react";
 import Modal from '../../component/ui/Modal';
 import { isDirectory } from "../../util/storageUtil";
