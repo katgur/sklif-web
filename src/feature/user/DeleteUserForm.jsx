@@ -11,6 +11,10 @@ function DeleteUserForm() {
     const { email } = useParams();
     const user = useUser(email);
 
+    if (!user) {
+        return;
+    }
+
     const onCancel = () => {
         navigate(-1);
     }
@@ -20,7 +24,7 @@ function DeleteUserForm() {
         onCancel();
     }
 
-    return (user &&
+    return (
         <Modal isVisible={true} onClose={onCancel}>
             <Form
                 title={`Вы уверены, что хотите удалить пользователя ${user.firstName} ${user.lastName} ${user.patronymic}?`}

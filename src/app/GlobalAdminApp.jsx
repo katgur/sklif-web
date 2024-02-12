@@ -157,11 +157,11 @@ function App() {
           <Route path="delete_user/:email" element={<DeleteUserForm />} />
 
           <Route path="organizations" element={organizationsPage}>
-            <Route path="delete/:email" element={<DeleteOrganizationForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_organization" element={addOrganizationPage} />
           <Route path="edit_organization/:email" element={editOrganizationPage} />
+          <Route path="delete_organization/:email" element={<DeleteOrganizationForm />} />
 
           <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profileViewer} />

@@ -12,6 +12,10 @@ function UsersList({ isGlobal }) {
     const users = useUsers();
     const navigate = useNavigate();
 
+    if (!users) {
+        return;
+    }
+    
     const mapUser = (user) => {
         const res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {
@@ -25,24 +29,17 @@ function UsersList({ isGlobal }) {
     }
 
     return (
-        <>
-            {
-                users &&
-                <SortableTableViewer
-                    columns={isGlobal ? [...schema, "Организация"] : schema}
-                    contextMenu={contextMenu}
-                    onItemClick={onItemClick}
-                    items={
-                        users.map((user) => {
-                            return {
-                                id: user.email,
-                                data: mapUser(user)
-                            }
-                        })} />
-            }
-            <Outlet />
-        </>
-
+        <SortableTableViewer
+            columns={isGlobal ? [...schema, "Организация"] : schema}
+            contextMenu={contextMenu}
+            onItemClick={onItemClick}
+            items={
+                users.map((user) => {
+                    return {
+                        id: user.email,
+                        data: mapUser(user)
+                    }
+                })} />
     )
 }
 

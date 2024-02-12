@@ -24,24 +24,29 @@ const postOrganization = async (organization) => {
     return organization;
 }
 
-const patchOrganization = async (organization) => {
+const patchOrganization = async (email, organization) => {
     const data = await getData();
-    await setData(data.filter(org => org.email !== organization.email).concat(organization));
+    const oldOrganization = await getOrganization(email);
+    await setData(data.filter(org => org.email !== organization.email).concat({ ...oldOrganization, ...organization }));
 }
 
 const deleteOrganization = async (email) => {
     const data = await getData();
-    await setData(data.filter(org => org.email !== email));
+    const organization = await getOrganization(email);
+    await setData(data.filter(org => org.email !== organization.email));
 }
 
 const getOrganizations = async () => {
-    const data = await getData();
-    return data;
+    return await getData();
 }
 
 const getOrganization = async (email) => {
-    const data = await get();
-    return data.find(org => org.email === email);
+    const data = await getData();
+    const organization = data.find(org => org.email === email);
+    if (!organization) {
+        throw new Error('Организация не найдена');
+    }
+    return organization;
 }
 
 export default { postOrganization, patchOrganization, deleteOrganization, getOrganizations, getOrganization };
