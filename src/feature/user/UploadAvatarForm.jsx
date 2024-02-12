@@ -14,7 +14,14 @@ function UploadAvatarForm() {
     const [file, setFile] = useState(null);
     const dispatch = useDispatch();
 
+    if (!user) {
+        return;
+    }
+
     const onUploadButtonClick = () => {
+        if (!file) {
+            return;
+        }
         dispatch(uploadAvatar(user.email, file.url));
     }
 
@@ -23,11 +30,16 @@ function UploadAvatarForm() {
             <FileUploadForm file={file} setFile={setFile}>
                 {
                     file &&
-                    <Preview fileURL={file.url} />
+                    <>
+                        <Preview fileURL={file.url} />
+                        <Button style="primary" onClick={onUploadButtonClick}>
+                            Загрузить
+                        </Button>
+                        <Button style="secondary" onClick={() => setFile(null)}>
+                            Отмена
+                        </Button>
+                    </>
                 }
-                <Button style="primary" onClick={onUploadButtonClick}>
-                    Загрузить
-                </Button>
             </FileUploadForm>
         </Card>
     )
