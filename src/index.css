@@ -374,39 +374,6 @@ textarea:focus {
     overflow: auto;
 }
 
-
-.file-chooser {
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    padding: 18px;
-    color: var(--text-color-color);
-}
-
-.file-chooser>* {
-    float: left;
-}
-
-.choose-file-button {
-    border-radius: 5px;
-    background-color: #eee;
-    cursor: pointer;
-    margin-right: 12px;
-    padding: 8px;
-}
-
-.file-chooser>img {
-    margin-top: 18px;
-    float: left;
-    clear: left;
-}
-
-.upload-avatar-form {
-    display: flex;
-    flex-flow: column;
-    gap: 8px;
-    margin: 24px;
-}
-
 .analytics {
     display: flex;
     font-size: smaller;

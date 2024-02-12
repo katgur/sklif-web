@@ -1,0 +1,31 @@
+.file-upload-form {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+    margin: 24px;
+}
+
+.file-upload-form__chooser {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 18px;
+    color: var(--text-color-color);
+}
+
+.file-upload-form__button {
+    border-radius: 5px;
+    background-color: #eee;
+    cursor: pointer;
+    margin-right: 12px;
+    padding: 8px;
+}
+
+.file-upload-form__image {
+    margin-top: 18px;
+    float: left;
+    clear: left;
+}
+
+.file-upload-form__preview-image {
+    max-width: 300px;
+}
