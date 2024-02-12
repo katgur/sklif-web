@@ -81,7 +81,7 @@ const usersListPage = (
     <Breadcrumbs title={'Пользователи'}>
       <Link to={''}>Список</Link>
     </Breadcrumbs>
-    <UsersList isGlobal={false} />
+    <UsersList />
   </>
 )
 
@@ -97,11 +97,10 @@ const addUserPage = (
 
 const editUserPage = (
   <>
-    <Breadcrumbs title='Редактирование данных пользователя'>
-      <Link to='/home/users'>Список</Link>
-      <Link to=''>Редактировать</Link>
+    <Breadcrumbs title={'Редактирование данных пользователя'}>
+      <Link to={'/home/users'}>Список</Link>
+      <Link to={''}>Редактировать</Link>
     </Breadcrumbs>
-    <ProfileViewer searchable={true} />
     <TabLayout titles={["Общая информация", "Фотография профиля", "Привязка почты", "Права доступа"]}>
       <EditUserInfoForm />
       <UploadAvatarForm />
@@ -155,11 +154,11 @@ function App() {
       <Routes>
         <Route path="" element={homePage}>
           <Route path="users" element={usersListPage}>
-            <Route path="delete/:id" element={<DeleteUserForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_user" element={addUserPage} />
-          <Route path="edit_user/:id" element={editUserPage} />
+          <Route path="edit_user/:email" element={editUserPage} />
+          <Route path="delete_user/:email" element={<DeleteUserForm />} />
 
           <Route path="files" element={filesPage}>
             <Route path="delete/*" element={<DeleteFileForm />} />
@@ -167,7 +166,7 @@ function App() {
           <Route path="add_file" element={uploadFilePage} />
           <Route path="add_directory" element={addDirectoryPage} />
 
-          <Route path="profile/:id" element={profileViewer} />
+          <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profilePage} />
           <Route path="settings" element={settingsPage} />
         </Route>

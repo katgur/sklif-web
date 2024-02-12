@@ -2,8 +2,8 @@ import './FileUploadForm.css';
 import { useRef, useEffect } from 'react';
 
 function FileUploadForm({ file, setFile, children }) {
-    const inputField = useRef();
     const readerRef = useRef(new FileReader());
+    const inputRef = useRef();
 
     useEffect(() => {
         const reader = readerRef.current;
@@ -21,8 +21,16 @@ function FileUploadForm({ file, setFile, children }) {
         }
     }, [file])
 
-    const onFileUploaded = () => {
-        const file = inputField.current.files[0];
+    useEffect(() => {
+        if (!file) {
+            const input = inputRef.current;
+            input.files = new DataTransfer().files;
+        }
+    }, [file])
+
+    const onFileUploaded = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
         setFile({ name: file.name });
         readerRef.current.readAsDataURL(file);
     }
@@ -30,9 +38,9 @@ function FileUploadForm({ file, setFile, children }) {
     return (
         <div className='file-upload-form'>
             <div className="file-upload-form__chooser">
-                <label className="file-upload-form__button">
+                <label className="file-upload-form__button" htmlFor="upload-avatar">
                     Выберите файл
-                    <input ref={inputField} id="avatar-upload" onChange={onFileUploaded} type="file" accept=".png,.jpg,.jpeg" />
+                    <input ref={inputRef} onChange={onFileUploaded} id="upload-avatar" type="file" accept=".png,.jpg,.jpeg" />
                 </label>
                 <span>
                     {file ? file.name : "Файл не выбран"}

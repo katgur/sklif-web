@@ -14,6 +14,7 @@ function UploadAvatarForm() {
     const [file, setFile] = useState(null);
     const dispatch = useDispatch();
 
+    console.log(file)
     if (!user) {
         return;
     }
