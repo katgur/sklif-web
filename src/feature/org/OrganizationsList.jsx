@@ -1,5 +1,5 @@
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useOrganizations from '../../hook/useOrganizations';
 
 const schema = ["Название", "Почта", "Администратор", "Телефон", "Адрес"];
@@ -9,6 +9,7 @@ const contextMenu = [
 ]
 
 function OrganizationsList() {
+    const navigate = useNavigate();
     const organizations = useOrganizations();
 
     if (!organizations) {
@@ -19,6 +20,7 @@ function OrganizationsList() {
         <SortableTableViewer
             columns={schema}
             contextMenu={contextMenu}
+            onItemClick={(id) => navigate(`/home/organization/${id}`)}
             items={
                 organizations.map((org) => {
                     return {

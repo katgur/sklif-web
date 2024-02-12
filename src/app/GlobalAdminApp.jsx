@@ -19,6 +19,7 @@ import { profileIcon, settingsIcon, usersIcon, orgsIcon } from '../res/svg';
 import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/ui/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
+import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
 
 const drawerMenu = [
   {
@@ -144,6 +145,15 @@ const editUserPage = (
   </>
 )
 
+const viewOrganizationPage = (
+  <>
+    <Breadcrumbs title="Просмотр данных организации">
+      <Link to={'/home/organizations'}>Список</Link>
+      <Link to={''}>Просмотр</Link>
+    </Breadcrumbs>
+    <OrganizationViewer />
+  </>
+)
 function App() {
   return (
     <>
@@ -163,6 +173,7 @@ function App() {
           <Route path="edit_organization/:email" element={editOrganizationPage} />
           <Route path="delete_organization/:email" element={<DeleteOrganizationForm />} />
 
+          <Route path="organization/:email" element={viewOrganizationPage} />
           <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profileViewer} />
           <Route path="settings" element={settingsPage} />
