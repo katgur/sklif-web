@@ -7,53 +7,53 @@ const getData = async () => {
     return await LS.get(key, [
         {
             key: 'S000001/',
-            date: new Date().toISOString(),
+            lastModified: new Date().toISOString(),
             size: 0,
         },
         {
             key: 'S000002/',
-            date: new Date().toISOString(),
+            lastModified: new Date().toISOString(),
             size: 0,
         },
         {
             key: 'S000001/000001',
-            date: new Date().toISOString(),
+            lastModified: new Date().toISOString(),
             size: 14,
         },
         {
             key: 'S000001/000002',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
         {
             key: 'S000001/000003',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
         {
             key: 'S000001/000004',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
         {
             key: 'S000001/000005',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
         {
             key: 'S000001/000006',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
         {
             key: 'S000001/000007',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
         {
             key: 'S000001/000008',
-            date: new Date().toISOString(),
-            size: 21,
+            lastModified: new Date().toISOString(),
+            size: 17532,
         },
     ]);
 }
@@ -86,7 +86,7 @@ const postDirectory = async (key, directoryName) => {
     const data = await getData();
     const file = {
         key: `${key}${directoryName}/`,
-        date: new Date().toISOString(),
+        lastModified: new Date().toISOString(),
         size: 0,
     }
     await setData([...data, file]);
@@ -105,7 +105,7 @@ const postFile = async (path, files) => {
         const file = files.item(i);
         files.push({
             key: path + file.name,
-            date: file.lastMofifiedDate,
+            lastModified: file.lastMofifiedDate,
             size: file.size,
         });
     }

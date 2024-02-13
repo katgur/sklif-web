@@ -1,0 +1,15 @@
+.tools {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 28px;
+}
+
+.tools__right {
+    margin-left: auto;
+}
+
+.tools__button {
+    margin-right: 18px;
+}

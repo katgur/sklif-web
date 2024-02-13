@@ -1,0 +1,21 @@
+.checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--text-color-color);
+    border-radius: 4px;
+    transform: translateY(-0.075em);
+}
+
+.checkbox:hover {
+    border-color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+.checkbox:checked {
+    border-color: var(--primary-color);
+    background: url('./res/checked.svg') var(--hover-color) no-repeat center;
+}

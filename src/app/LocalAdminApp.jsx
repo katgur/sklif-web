@@ -160,11 +160,10 @@ function App() {
           <Route path="edit_user/:email" element={editUserPage} />
           <Route path="delete_user/:email" element={<DeleteUserForm />} />
 
-          <Route path="files" element={filesPage}>
-            <Route path="delete/*" element={<DeleteFileForm />} />
-          </Route>
+          <Route path="files" element={filesPage} />
           <Route path="add_file" element={uploadFilePage} />
           <Route path="add_directory" element={addDirectoryPage} />
+          <Route path="delete_file/*" element={<DeleteFileForm />} />
 
           <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profilePage} />
