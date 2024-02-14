@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadFiles, selectDirectories, createDirectory } from './storageSlice';
 import { useForm } from "react-hook-form";
 import useStorage from "../../hook/useStorage";
+import DragAndDrop from "../../component/ui/DragAndDrop";
+import Card from '../../component/ui/Card';
 
 const chevronDownIcon = (
     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,69 +12,20 @@ const chevronDownIcon = (
     </svg>
 )
 
-function preventDefaults(e) {
-    e.preventDefault()
-    e.stopPropagation()
-}
+
 
 function UploadFileForm() {
-    useStorage();
+    // const files = useStorage();
 
-    const inputField = useRef();
-    const dropArea = useRef();
-    const [files, setFiles] = useState();
+    const [files, setFiles] = useState(null);
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const status = useSelector(selectStatus);
 
     const [hasNewDirectory, setHasNewDirectory] = useState(false);
 
-    const onFileUploaded = (files) => {
-        setFiles(files);
-    }
+    const directories = useSelector(selectDirectories);
 
-    var directories = useSelector(selectDirectories);
-
-    useEffect(() => {
-        function handleDrop(e) {
-            onFileUploaded(e.dataTransfer.files);
-        }
-        function handleDragEnter(e) {
-            dropArea.current.style.backgroundColor = "#3056d322"
-        }
-        function handleDragLeave(e) {
-            dropArea.current.style.backgroundColor = "#3056d311"
-        }
-
-        if (status.code === 200) {
-            setFiles(undefined);
-        }
-
-        var currentDropArea = dropArea.current;
-        if (currentDropArea) {
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                currentDropArea.addEventListener(eventName, preventDefaults, false)
-            })
-
-            currentDropArea.addEventListener('drop', handleDrop, false)
-            currentDropArea.addEventListener('dragenter', handleDragEnter, false)
-            currentDropArea.addEventListener('dragleave', handleDragLeave, false)
-        }
-
-        return () => {
-            if (currentDropArea) {
-                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                    currentDropArea.removeEventListener(eventName, preventDefaults, false)
-                })
-
-                currentDropArea.removeEventListener('drop', handleDrop, false)
-                currentDropArea.removeEventListener('dragenter', handleDragEnter, false)
-                currentDropArea.removeEventListener('dragleave', handleDragLeave, false)
-            }
-        }
-    }, [dropArea, dispatch, status])
-
-    var onSubmit = (data) => {
+    const onSubmit = (data) => {
         if (hasNewDirectory) {
             dispatch(createDirectory({ path: data.dir + data.newDir }));
             dispatch(uploadFiles({ path: data.dir + data.newDir, files: files }));
@@ -82,11 +34,11 @@ function UploadFileForm() {
         }
     }
 
-    var onCheckboxChanged = () => {
+    const onCheckboxChanged = () => {
         setHasNewDirectory(!hasNewDirectory);
     }
 
-    var uploadForm = (
+    const uploadForm = (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <p className="title-font">
@@ -141,28 +93,8 @@ function UploadFileForm() {
         </form>
     )
 
-    var dropFileForm = (
-        <>
-            <p className="title-font">
-                Загрузите файлы в формате <span className="accent">.dcm, .dicom</span>
-            </p>
-            <div>
-                <label ref={dropArea} className="text-font custom-file-upload" htmlFor="file-upload">
-                    Нажмите для выбора или перетащите файлы в выделенную область
-                </label>
-                <input id="file-upload" onChange={() => onFileUploaded(inputField.current.files)} ref={inputField} type="file" multiple />
-            </div>
-        </>
-    )
-
     return (
-        <>
-            <div className="card upload-form">
-                {
-                    files ? uploadForm : dropFileForm
-                }
-            </div>
-        </>
+        files ? uploadForm : <DragAndDrop setFiles={setFiles} accepts=".dcm, .dicom" />
     )
 }
 
