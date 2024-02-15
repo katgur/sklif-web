@@ -1,17 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import './Form.css';
 import Button from "../Button";
 
 function Form({ title, onSubmit, onCancel, entity, children }) {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const [dependencies, setDependencies] = useState();
 
     useEffect(() => {
         reset(entity);
     }, [entity]);
 
+    useEffect(() => {
+        React.Children.map(children, child => {
+            const newDependencies = {};
+            if (React.isValidElement(child) && child.props?.field?.dependsOn) {
+                newDependencies[child.props.field.name] = child.props.field.dependsOn;
+            }
+            setDependencies(newDependencies);
+        });
+    }, []);
+ 
+    if (!dependencies) {
+        return;
+    }
+
     const childrenWithProps = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
+            if (child.props?.field?.dependsOn && !watch(dependencies[child.props.field.name])) {
+                return;
+            }
             return React.cloneElement(child, { register, entity, errors });
         }
         return child;

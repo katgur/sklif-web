@@ -148,3 +148,31 @@
     width: 0;
     height: 0;
 }
+
+.form__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.form__checkbox-input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--white);
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--text-color-color);
+    border-radius: 4px;
+}
+
+.form__checkbox-input:hover {
+    border-color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+.form__checkbox-input:checked {
+    border-color: var(--primary-color);
+    background: url('./check.svg') var(--hover-color) no-repeat center;
+}

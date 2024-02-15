@@ -1,0 +1,51 @@
+.details {
+    max-width: 768px;
+}
+
+.details__details {
+    padding: 24px;
+    cursor: pointer;
+}
+
+.details__details:hover {
+    background-color: var(--hover-color);
+}
+
+.details__title {
+    position: relative;
+}
+
+.details__title::after {
+    background: url('./chevron.svg') no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    content: "";
+    width: 48px;
+    height: 24px;
+    rotate: 0deg;
+    transition: rotate 200ms ease-out;
+}
+
+.details__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 200ms ease-out;
+}
+
+.details__item {
+    display: block;
+    margin-top: 8px;
+    padding: 12px 24px;
+}
+
+details[open]+.details__content {
+    overflow-y: auto;
+    max-height: 300px;
+    transition: max-height 200ms ease-out;
+}
+
+details[open]>.details__title::after {
+    rotate: -180deg;
+    transition: rotate 200ms ease-out;
+}

@@ -82,97 +82,6 @@ summary svg {
     padding: 5px;
 }
 
-.tools {
-    display: flex;
-    flex-flow: row;
-    padding: 12px 24px;
-    justify-items: center;
-}
-
-.tools>div {
-    display: flex;
-    flex-flow: row;
-    gap: 10px;
-    align-self: center;
-}
-
-.tools>.right {
-    margin-left: auto;
-    flex-flow: column;
-}
-
-.tools .buttons {
-    display: flex;
-    flex-flow: row-reverse;
-    gap: 10px;
-}
-
-.checkbox {
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: white;
-    margin: 0;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--text-color-color);
-    border-radius: 4px;
-    transform: translateY(-0.075em);
-}
-
-.checkbox:hover {
-    border-color: var(--primary-color);
-    background-color: var(--hover-color);
-}
-
-.checkbox:checked {
-    border-color: var(--primary-color);
-    background: url('./res/checked.svg') var(--hover-color) no-repeat center;
-}
-
-.toggle {
-    position: relative;
-    display: inline-block;
-    width: 45px;
-    height: 25px;
-    background-color: #ddd;
-    border-radius: 25px;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 25px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 19px;
-    width: 19px;
-    left: 4px;
-    bottom: 3px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked+.slider {
-    background-color: var(--primary-color);
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(19px);
-    -ms-transform: translateX(19px);
-    transform: translateX(19px);
-}
-
 .error {
     background-color: var(--alert-background-color);
     border-color: var(--alert-text-color);
@@ -291,15 +200,7 @@ a:active {
     margin: 100px auto;
 }
 
-.content__home-page-table .toggle-wrapper {
-    display: flex;
-    flex-flow: row;
-    gap: 5px;
-    align-items: center;
-    margin-left: auto;
-    margin-bottom: 5px;
-    width: fit-content;
-}
+
 
 .upload-form {
     width: 90%;
