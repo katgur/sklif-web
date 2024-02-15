@@ -35,7 +35,7 @@ menu {
 }
 
 input, fieldset {
-  all: unset;
+  border: 0;
 }
 
 button {

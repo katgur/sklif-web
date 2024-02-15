@@ -103,9 +103,9 @@ const postFile = async (path, files) => {
     const newFiles = [];
     for (let i = 0; i < files.length; i++) {
         const file = files.item(i);
-        files.push({
+        newFiles.push({
             key: path + file.name,
-            lastModified: file.lastMofifiedDate,
+            lastModified: new Date().toISOString(),
             size: file.size,
         });
     }

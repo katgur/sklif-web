@@ -29,7 +29,7 @@ const drawerMenu = [
   {
     text: "Хранилище", icon: storageIcon, options: [
       <Link to="/home/files">Список</Link>,
-      <Link to="/home/add_file">Заргузить</Link>,
+      <Link to="/home/add_file">Загрузить</Link>,
     ]
   },
   {

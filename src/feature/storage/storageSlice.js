@@ -17,9 +17,9 @@ export const fetchFiles = () => {
 export const uploadFiles = (path, files) => {
     return dispatch => {
         api.postFile(path, files)
-            .then(keys => {
-                addFiles(keys);
-                dispatch(addSuccess(`Новые файлы (${keys.length}) загружены в хранилище`));
+            .then(files => {
+                addFiles(files);
+                dispatch(addSuccess(`Новые файлы (${files.length}) загружены в хранилище`));
             })
             .catch(error => {
                 dispatch(addError(`Не удалось загрузить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -43,13 +43,30 @@ export const deleteFiles = (keys) => {
 export const createDirectory = (path, name) => {
     return dispatch => {
         api.postDirectory(path, name)
-            .then((key) => {
-                console.log(key)
-                dispatch(addFiles([key]));
+            .then((file) => {
+                dispatch(addFiles([file]));
                 dispatch(addSuccess("Новая директория создана"));
             })
             .catch(error => {
                 dispatch(addError(`Не удалось создать директорию${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
+
+export const createDirectoryAndLoadFiles = (path, newDirectoryName, files) => {
+    return dispatch => {
+        api.postDirectory(path, newDirectoryName)
+            .then((file) => {
+                dispatch(addFiles([file]));
+                dispatch(addSuccess("Новая директория создана"));
+                return api.postFile(file.key, files);
+            })
+            .then((keys) => {
+                addFiles(keys);
+                dispatch(addSuccess(`Новые файлы (${keys.length}) загружены в хранилище`));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось загрузить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
             })
     }
 }
