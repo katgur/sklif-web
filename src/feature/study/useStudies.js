@@ -7,19 +7,12 @@ import { useRef } from 'react';
 function useStudies() {
     const dispatch = useDispatch();
     const studies = useSelector(selectAll);
-    const params = useParams();
-    const search = useRef();
 
     useEffect(() => {
-        if (params.search !== search.current) {
-            dispatch(fetchStudies({ filter: params.search }));
-            search.current = params.search;
-        } else {
-            if (!studies) {
-                dispatch(fetchStudies());
-            }
+        if (!studies) {
+            dispatch(fetchStudies());
         }
-    }, [dispatch, studies, params])
+    }, [studies])
 
     return studies;
 }

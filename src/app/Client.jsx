@@ -69,7 +69,7 @@ const drawerMenu = [
     {
         text: "Исследования", icon: studyIcon, options: [
             <Link to="/home/study">Список</Link>,
-            <Link to="/home/upload">Заргузить</Link>,
+            <Link to="/home/upload">Загрузить</Link>,
         ]
     },
 ]

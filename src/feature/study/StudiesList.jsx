@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import useStudies from './useStudies';
-import { studiesPlusIcon as plusIcon } from '../../res/svg';
+import StorageToolPanel from '../../component/ui/StorageToolPanel';
 
 const schema = [
     "patientId", "patientName", "birthDate", "studyDate", "modality",
@@ -20,43 +20,33 @@ function StudiesList() {
     const navigate = useNavigate();
     const studies = useStudies();
 
-    var onPlusButtonClick = () => {
-        navigate('/home/upload');
+    if (!studies) {
+        return;
     }
 
-    var onStudyClick = (id) => {
+    const onStudyClick = (id) => {
         navigate('/home/study/' + id)
     }
 
     return (
         <>
-            <div className="card toolbar-wrapper">
-                <div className="tools">
-                    <div className="right">
-                        <div className="buttons">
-                            <span onClick={onPlusButtonClick} className="filled-badge">
-                                {plusIcon}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {
-                studies &&
-                <SortableTableViewer
-                    columns={columns}
-                    contextMenu={contextMenu}
-                    onItemClick={onStudyClick}
-                    capacity={10}
-                    items={
-                        studies.map((study) => {
-                            return {
-                                id: study.key,
-                                data: schema.map((s) => study[s]),
-                            }
-                        })} />
-            }
-        </>)
+            <StorageToolPanel>
+                <Link to='/home/upload'>Загрузить исследование</Link>
+            </StorageToolPanel>
+            <SortableTableViewer
+                columns={columns}
+                contextMenu={contextMenu}
+                onItemClick={onStudyClick}
+                capacity={10}
+                items={
+                    studies.map((study) => {
+                        return {
+                            id: study.key,
+                            data: schema.map((s) => study[s]),
+                        }
+                    })} />
+        </>
+    )
 }
 
 export default StudiesList;

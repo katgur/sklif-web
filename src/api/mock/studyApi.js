@@ -1,6 +1,6 @@
 import LS from './LSRequest';
 
-const _key = 'study';
+const key = 'study';
 
 const mock = [
     {
@@ -51,40 +51,34 @@ const mock = [
     }
 ]
 
-const get = async () => {
-    let value = await LS.get();
-    if (value[_key] === undefined) {
-        value[_key] = [];
-        await LS.set(value);
-    }
-    return value;
+const getData = async () => {
+    return await LS.get(key, mock);
+}
+
+const setData = async (data) => {
+    await LS.set(key, data);
 }
 
 const getAll = async (params) => {
-    let value = await get();
-    if (value[_key].length === 0) {
-        value[_key] = mock;
-        await LS.set(value);
-    }
-    return value[_key];
+    return await getData();
 }
 
-const getById = async ({ key }) => {
-    const value = await get();
-    return value[_key].find(study => study.key === key);
+const getById = async (key) => {
+    const data = await getData();
+    return data.find(study => study.key === key);
 }
 
-const postComment = async ({ key, comment }) => {
-    const value = await get();
-    const study = value[_key].find(study => study.key === key);
+const postComment = async (key, comment) => {
+    const data = await getData();
+    const study = data.find(study => study.key === key);
     study.globalComments.push(comment);
-    await LS.set(value);
+    await setData(value);
     return study;
 }
 
-const getInfo = async ({ key }) => {
-    const value = await get();
-    return value[_key].find(study => study.key === key);
+const getInfo = async (key) => {
+    const data = await getData();
+    return data.find(study => study.key === key);
 }
 
 export default { getAll, getById, postComment, getInfo };

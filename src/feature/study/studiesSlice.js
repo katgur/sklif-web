@@ -5,6 +5,7 @@ export const fetchStudies = () => {
     return dispatch => {
         api.getAll()
             .then(studies => {
+                console.log(studies)
                 dispatch(setStudies(studies));
             })
             .catch(error => {
@@ -52,7 +53,7 @@ export const addComment = (comment) => {
 const studiesSlice = createSlice({
     name: 'study',
     initialState: {
-        list: [],
+        list: null,
         current: null,
         info: null,
         commentAdded: false,
