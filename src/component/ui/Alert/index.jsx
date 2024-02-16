@@ -14,7 +14,7 @@ const iconMap = {
     'notify': notifyIcon,
 }
 
-function Alert({ content, type, onClose }) {
+function Alert({ children, type, onClose }) {
     var title = titleMap[type];
     var icon = iconMap[type];
     return (
@@ -23,7 +23,7 @@ function Alert({ content, type, onClose }) {
                 {icon}
                 <div className='alert__text'>
                     <div className={`${type}-title`}>{title}</div>
-                    <p className={`${type}-text`}>{content}</p>
+                    <p className={`${type}-text`}>{children}</p>
                 </div>
             </div>
             {
