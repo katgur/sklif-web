@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import StackViewport from './StackViewport';
 import Toolbar from './Toolbar';
-import { fetchInfo, fetchStudy, selectCurrent, selectInfo } from './studiesSlice';
+import { fetchInfo, selectCurrent, selectInfo } from './studiesSlice';
 import SideDataViewer from '../../component/ui/SideDataViewer';
 import { useState } from 'react';
 import CommentSection from './CommentSection';
@@ -75,7 +75,7 @@ function Viewer() {
 
     useEffect(() => {
         if (!study) {
-            dispatch(fetchStudy({ key: key }));
+            // dispatch(fetchStudy({ key: key }));
         }
         if (study && !info) {
             dispatch(fetchInfo({ key: study.keys[0] }));

@@ -18,7 +18,10 @@ function DataViewer({ title, entity, schema, path, children }) {
 
     return (
         <div className="data-viewer font__inter--sm">
-            <h2 className='font__inter--m'>{title}{children}</h2>
+            {
+                (title || children) &&
+                <h2 className='font__inter--m'>{title}{children}</h2>
+            }
             <ul className="data-viewer__tabs font__jost--xs">
                 {
                     schema.map((section, index) => {

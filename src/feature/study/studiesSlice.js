@@ -14,18 +14,6 @@ export const fetchStudies = () => {
     }
 }
 
-export const fetchStudy = (key) => {
-    return dispatch => {
-        api.getById(key)
-            .then(study => {
-                dispatch(setCurrent(study));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось получить данные исследования${error.response ? `: ${error.response.data.error}` : ""}`))
-            })
-    }
-}
-
 export const fetchInfo = (key) => {
     return dispatch => {
         api.getById(key)
@@ -65,18 +53,6 @@ const studiesSlice = createSlice({
                 list: action.payload
             }
         },
-        setCurrent: (state, action) => {
-            return {
-                ...state,
-                current: action.payload
-            }
-        },
-        resetCurrent: (state, action) => {
-            return {
-                ...state,
-                current: null
-            }
-        },
         setInfo: (state, action) => {
             return {
                 ...state,
@@ -98,7 +74,7 @@ const studiesSlice = createSlice({
     },
 })
 
-export const { resetCurrent, resetCommentAdded, setCurrent, setInfo, setStudies } = studiesSlice.actions;
+export const { resetCommentAdded, setInfo, setStudies, setCommentAdded } = studiesSlice.actions;
 
 export const selectAll = (state) => state.study.list;
 export const selectInfo = (state) => state.study.info;
