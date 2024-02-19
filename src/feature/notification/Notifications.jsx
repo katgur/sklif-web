@@ -30,7 +30,9 @@ function Notifications() {
         <ul>
             {
                 notifications.map(notification => {
-                    return <Alert key={notification.id} {...notification} onClose={() => dispatch(removeNotification(notification.id))} />
+                    return <Alert key={notification.id} type={notification.type} onClose={() => dispatch(removeNotification(notification.id))}>
+                        {notification.content}
+                    </Alert>
                 })
             }
         </ul>, wrapper)
