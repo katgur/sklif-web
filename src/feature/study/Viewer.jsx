@@ -7,6 +7,8 @@ import api from '../../api/mock/studyApi';
 import useStudy from '../../hook/useStudy';
 import SideStudyViewer from './SideStudyViewer';
 import Stack from '../../component/ui/Stack';
+import { useSelector } from 'react-redux';
+import { selectResult } from '../mask/maskSlice';
 
 function Viewer() {
     const key = window.location.href.split('viewer/')[1];
@@ -17,6 +19,7 @@ function Viewer() {
         drawer: false,
     });
     const [index, setIndex] = useState(0);
+    const result = useSelector(selectResult);
 
     if (!study) {
         return;
@@ -42,7 +45,7 @@ function Viewer() {
             <Stack>
                 <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + api.getBytes(key))} />
                 {isOpen.mask && <Mask path={study.keys[index]} />}
-                {isOpen.drawer && <SideStudyViewer study={study} index={index} />}
+                {isOpen.drawer && <SideStudyViewer study={study} index={index} volume={result.volume} />}
             </Stack>
         </Stack>
     )

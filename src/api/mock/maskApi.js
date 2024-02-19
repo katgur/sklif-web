@@ -5,7 +5,7 @@ const delay = (mock, ms) => {
 const getMask = async (key) => {
     return delay({
         url: `https://storage.yandexcloud.net/news-platform-user-images/HSE/ai-masks/7777/${key.split("/").slice(-1)[0].split(".")[0]}_mask.jpg`,
-        totalVolume: 3304.25,
+        volume: (Math.random() * 2000 + 1000).toFixed(2),
     }, 500)
 }
 

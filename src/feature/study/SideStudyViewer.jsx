@@ -52,9 +52,16 @@ const schema = [
     },
 ];
 
-function SideStudyViewer({ study }) {
+function SideStudyViewer({ study, volume }) {
+    console.log(volume)
     return (
         <SideDataViewer schema={schema} entity={study}>
+            {
+                volume &&
+                <p>
+                    Объем пораженной ткани {volume} cm3
+                </p>
+            }
             <CommentSection _key={study.key} comments={study.globalComments} />
         </SideDataViewer>
     )
