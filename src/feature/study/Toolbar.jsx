@@ -2,8 +2,6 @@ import { getToolState, clearToolState, ProbeTool, CobbAngleTool, addToolState, r
 import { updateImage, reset } from 'cornerstone-core';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { selectResult } from '../mask/maskSlice';
 import ViewerToolbar from '../../component/ui/ViewerToolbar';
 
 const tools = {
@@ -19,18 +17,24 @@ const tools = {
     'FreehandRoi': FreehandRoiTool,
 }
 
-function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
-    const [enabledKey, setEnabledKey] = useState(null);
+function Toolbar({ viewport, onBurgerClick, onMaskClick }) {
+    const [enabledTool, setEnabledTool] = useState(null);
     const markings = useRef([]);
     const markingIndex = useRef(-1);
-    const element = viewport.current;
-    const isInit = useRef(false);
-    const result = useSelector(selectResult);
+
 
     useEffect(() => {
-        var onMeasurementCompleted = (e) => {
-            var id = e.detail.measurementData.uuid;
-            var toolName = e.detail.toolName;
+        init();
+        const element = viewport.current;
+        for (const key in tools) {
+            addToolForElement(element, tools[key]);
+        }
+    }, [])
+
+    useEffect(() => {
+        const onMeasurementCompleted = (e) => {
+            const id = e.detail.measurementData.uuid;
+            const toolName = e.detail.toolName;
             if (!markings.current.find(marking => marking.id === id)) {
                 if (markingIndex.current === markings.current.length - 1) {
                     markings.current.push({ id, toolName });
@@ -42,68 +46,54 @@ function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
             }
         }
 
-        if (!element) {
-            return;
-        }
-
-        if (!isInit.current) {
-            init();
-            for (var key in tools) {
-                addToolForElement(element, tools[key]);
-            }
-            isInit.current = true;
-        }
-
+        const element = viewport.current;
         element.addEventListener('cornerstonetoolsmeasurementcompleted', onMeasurementCompleted);
-
         return () => {
             element.removeEventListener('cornerstonetoolsmeasurementcompleted', onMeasurementCompleted);
         }
-    }, [element])
+    }, [])
 
-    var onToolClick = (toolName) => {
-        if (toolName === enabledKey) {
+    const element = viewport.current;
+
+    const onToolClick = (toolName) => {
+        if (toolName === enabledTool) {
             setToolPassive(toolName);
         } else {
             setToolActive(toolName, { mouseButtonMask: 1 })
         }
-        setEnabledKey(toolName);
+        setEnabledTool(toolName);
     }
 
-    var setVisibility = (id, toolName, visibility) => {
-        var data = Object.assign([], getToolState(element, toolName).data);
-        var current = data.map(d => d.uuid).indexOf(id);
+    const setVisibility = (id, toolName, visibility) => {
+        const data = Object.assign([], getToolState(element, toolName).data);
+        const current = data.map(d => d.uuid).indexOf(id);
         removeToolState(element, toolName, data[current]);
         data[current].visible = visibility;
         addToolState(element, toolName, data[current]);
     }
 
-    var undo = () => {
+    const undo = () => {
         if (markingIndex.current === -1) {
             return;
         }
-        var currentMarking = markings.current[markingIndex.current];
+        const currentMarking = markings.current[markingIndex.current];
         setVisibility(currentMarking.id, currentMarking.toolName, false);
         markingIndex.current = markingIndex.current - 1;
         updateImage(element);
     }
 
-    var redo = () => {
+    const redo = () => {
         if (markingIndex.current === markings.current.length - 1) {
             return;
         }
         markingIndex.current = markingIndex.current + 1;
-        var currentMarking = markings.current[markingIndex.current];
+        const currentMarking = markings.current[markingIndex.current];
         setVisibility(currentMarking.id, currentMarking.toolName, true);
         updateImage(element);
     }
 
-    var resetViewport = () => {
-        reset(element);
-    }
-
-    var clearViewport = () => {
-        for (var key in tools) {
+    const clearViewport = () => {
+        for (const key in tools) {
             clearToolState(element, key);
         }
         updateImage(element);
@@ -111,8 +101,20 @@ function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
         markingIndex.current = -1;
     }
 
+    const toolbarProps = {
+        enabledTool,
+        viewport,
+        undo,
+        redo,
+        resetViewport: () => reset(element),
+        clearViewport,
+        onBurgerClick,
+        onMaskClick,
+        onToolClick,
+    }
+
     return (
-        <ViewerToolbar enabledKey={enabledKey} viewport={viewport} undo={undo} redo={redo} resetViewport={resetViewport} clearViewport={clearViewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} onToolClick={onToolClick} maskState={maskState} result={result} />
+        <ViewerToolbar {...toolbarProps} />
     )
 }
 

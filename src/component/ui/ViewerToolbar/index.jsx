@@ -35,28 +35,26 @@ const titles = {
     'Wwwc': 'Яркость',
     'Length': 'Линейка',
     'Angle': 'Угломер',
+    'CobbAngle': 'Угломер 2',
     'RectangleRoi': 'Прямоугольник',
     'EllipticalRoi': 'Эллипс',
     'FreehandRoi': 'Произвольная область',
 }
 
-function ViewerToolbar({ result, onBurgerClick, onMaskClick, maskState, onToolClick, enabledKey, undo, redo, resetViewport, clearViewport }) {
+function ViewerToolbar({ onBurgerClick, onMaskClick, onToolClick, enabledTool, undo, redo, resetViewport, clearViewport }) {
     return (
         <div className="toolbar-wrapper" style={{height: "15vh"}}>
             <div className="toolbar">
 
                 {
                     Object.keys(titles).map((key) => {
-                        var className = "viewer-button" + (key === enabledKey ? "__selected" : "");
+                        var className = "viewer-button" + (key === enabledTool ? "__selected" : "");
                         return <img key={key}
                             onClick={() => onToolClick(key)}
                             className={className} src={icons[key]} alt={key} title={titles[key]} />
                     })
                 }
                 <img key="mask" onClick={onMaskClick} src={magicIcon} className="viewer-button" alt="mask" title="Разметка ИИ" />
-            </div>
-            <div className="comment-section">
-                {result.volume && maskState.enabled && <p className="white-font">{`Объем пораженной ткани: ${result.volume} cm3`}</p>}
             </div>
             <div className="toolbar">
                 <img onClick={undo} className="viewer-button" src={undoIcon} alt="undo" />
