@@ -1,0 +1,13 @@
+.card {
+    background-color: white;
+    border: 1px solid var(--stroke-color);
+    box-shadow: 1px 2px 3px var(--stroke-color);
+}
+
+.card_padding_m {
+    padding: 24px;
+}
+
+.card_padding_sm {
+    padding: 12px;
+}

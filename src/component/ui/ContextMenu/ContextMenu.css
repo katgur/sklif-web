@@ -1,0 +1,34 @@
+.context-menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+}
+
+.context-menu--light {
+    background-color: white;
+    box-shadow: 1px 2px 3px #E5E9FF;
+}
+
+.context-menu--dark {
+    background-color: var(--hover-color);
+    box-shadow: 1px 2px 3px var(--dark-color);
+}
+
+.context-menu__item {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.context-menu--dark>.context-menu__item {
+    color: var(--white);
+}
+
+.context-menu--light>.context-menu__item:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+.context-menu--dark>.context-menu__item:hover {
+    color: var(--secondary-color);
+    background-color: var(--hover-color);
+}

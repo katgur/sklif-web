@@ -34,14 +34,20 @@ menu {
   all: unset;
 }
 
-input {
-  all: unset;
+input, fieldset {
+  border: 0;
 }
 
 button {
   border: 0;
   cursor: pointer;
   all: unset;
+}
+
+button:has(img) {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 a:link,

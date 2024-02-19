@@ -31,7 +31,6 @@ export const mapUsersForClient = (users) => {
 }
 
 export const mapUserForClient = (user) => {
-    console.log(user)
     return { ...user, role: mapRole[user.role] }
 }
 
@@ -39,4 +38,18 @@ export const mapChangeUserRole = (params) => {
     params.previousRole = mapRole[params.previousRole];
     params.newRole = mapRole[params.newRole];
     return params;
+}
+
+export const splitAdminFullName = (org) => {
+    const [administratorFirstName, administratorLastName, administratorPatronymic] = org.administratorFullName.split(" ");
+    delete org.administratorFullName;
+    return { ...org, administratorFirstName, administratorLastName, administratorPatronymic };
+}
+
+export const joinAdminFullName = (org) => {
+    const administratorFullName = `${org.administratorFirstName} ${org.administratorLastName} ${org.administratorPatronymic}`;
+    delete org.administratorFirstName;
+    delete org.administratorLastName;
+    delete org.administratorPatronymic;
+    return { ...org, administratorFullName };
 }

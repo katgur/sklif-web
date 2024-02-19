@@ -15,12 +15,15 @@ export const createUser = user => {
   }
 }
 
-export const updateUserRole = user => {
+export const updateUserRole = (email, newRole) => {
   return dispatch => {
-    api.changeUserRole(user)
-      .then(newUser => {
-        dispatch(editUser(newUser));
-        dispatch(addSuccess(`У пользователя ${user.firstName} ${user.lastName} изменены права доступа на ${newUser.role}`));
+    api.changeUserRole(email, newRole)
+      .then(() => {
+        dispatch(addSuccess(`Права доступа на ${newRole}`));
+        return api.getUser(email);
+      })
+      .then((newUser) => {
+        dispatch(editUser({ email, newUser }));
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить права доступа пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -30,24 +33,12 @@ export const updateUserRole = user => {
 
 export const fetchUsers = () => {
   return dispatch => {
-    api.getUsers({ filter: "" })
+    api.getUsers("")
       .then(users => {
         dispatch(setUsers(users));
       })
       .catch(error => {
         dispatch(addError(`Не удалось получить список пользователей${error.response ? `: ${error.response.data.error}` : ""}`))
-      })
-  }
-}
-
-export const fetchUser = email => {
-  return dispatch => {
-    api.getUser(email)
-      .then(user => {
-        dispatch(setUser(user));
-      })
-      .catch(error => {
-        dispatch(addError(`Не удалось получить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
       })
   }
 }
@@ -69,10 +60,10 @@ export const updateUserInfo = (email, userInfo) => {
     api.changeUserInfo(email, userInfo)
       .then(() => {
         dispatch(addSuccess("Данные пользователя изменены"));
-        return api.fetchUser(email);
+        return api.getUser(email);
       })
       .then((newUser) => {
-        dispatch(addUser(newUser))
+        dispatch(editUser({ email, newUser }));
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -82,13 +73,13 @@ export const updateUserInfo = (email, userInfo) => {
 
 export const updateUserEmail = (email, newEmail) => {
   return dispatch => {
-    api.changeUserInfo(email, newEmail)
+    api.changeEmail(email, newEmail)
       .then(() => {
         dispatch(addSuccess("Почтовый адрес пользователя изменен"));
-        return api.fetchUser(email);
+        return api.getUser(newEmail);
       })
       .then((newUser) => {
-        dispatch(addUser(newUser))
+        dispatch(editUser({ email, newUser }))
       })
       .catch((error) => {
         dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -96,10 +87,11 @@ export const updateUserEmail = (email, newEmail) => {
   }
 }
 
-export const removeUser = (email) => {
+export const deleteUser = (email) => {
   return dispatch => {
-    api.deleteUser(email, newEmail)
+    api.deleteUser(email)
       .then(() => {
+        dispatch(removeUser(email));
         dispatch(addSuccess("Данные пользователя удалены"));
       })
       .catch((error) => {
@@ -108,9 +100,9 @@ export const removeUser = (email) => {
   }
 }
 
-export const uploadAvatar = (file) => {
+export const uploadAvatar = (email, file) => {
   return dispatch => {
-    api.postAvatar(file)
+    api.postAvatar(email, file)
       .then(() => {
         dispatch(addSuccess("Фотография профиля пользователя загружен"));
       })
@@ -122,46 +114,25 @@ export const uploadAvatar = (file) => {
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: {
-    list: [],
-    current: null,
-  },
+  initialState: null,
   reducers: {
     addUser: (state, action) => {
-      return {
-        ...state,
-        list: [...state.list, action.payload],
-      }
+      return state ? [...state, action.payload] : [action.payload]
     },
     editUser: (state, action) => {
-      return {
-        ...state,
-        list: state.list.filter(item => item.id !== action.payload.id).concat(action.payload),
-      }
+      return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload.newUser) : [action.payload.newUser]
     },
     setUsers: (state, action) => {
-      return {
-        ...state,
-        list: action.payload,
-      }
+      return action.payload
     },
-    setUser: (state, action) => {
-      return {
-        ...state,
-        current: action.payload,
-      }
-    },
-    resetCurrent: (state, action) => {
-      return {
-        ...state,
-        current: nullF
-      }
+    removeUser: (state, action) => {
+      return state ? state.filter(item => item.email !== action.payload) : []
     }
   },
 })
-export const { resetStatus, resetCurrent, addUser, editUser, setUsers, setUser } = usersSlice.actions;
 
-export const selectAll = (state) => state.users.list;
-export const selectCurrent = (state) => state.users.current;
+const { addUser, editUser, setUsers, removeUser } = usersSlice.actions;
+
+export const selectAll = (state) => state.users;
 
 export default usersSlice.reducer;

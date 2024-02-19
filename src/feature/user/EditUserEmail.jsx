@@ -3,23 +3,29 @@ import Form from '../../component/ui/Form';
 import { updateUserEmail } from './usersSlice';
 import useUser from '../../hook/useUser';
 import Input from '../../component/ui/Form/Input';
+import { useParams } from 'react-router';
+
+const fields = [
+    {
+        name: "email", text: "Новая почта", type: "email", required: true
+    },
+]
 
 function EditUserEmailForm() {
     const dispatch = useDispatch();
-    const user = useUser();
+    const { email } = useParams();
+    const user = useUser(email);
 
-    const onSubmit = (data) => {
-        dispatch(updateUserEmail({ previousEmail: user.email, newEmail: data.email }));
+    if (!user) {
+        return;
     }
 
-    const fields = [
-        {
-            name: "email", text: "Новая почта", type: "email", required: true
-        },
-    ]
+    const onSubmit = (data) => {
+        dispatch(updateUserEmail(user.email, data.email));
+    }
 
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} entity={user}>
             <Input field={fields[0]} />
         </Form>
     )

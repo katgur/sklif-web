@@ -1,59 +1,45 @@
 import useUsers from '../../hook/useUsers';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, selectAll } from './usersSlice';
-import { useEffect } from 'react';
 
 const schema = ["Почта", "Фамилия", "Имя", "Отчество", "Телефон", "Роль"];
 const contextMenu = [
     (id) => { return <Link to={`/home/edit_user/${id}`}>Редактировать</Link> },
-    (id) => { return <Link to={`/home/users/delete/${id}`}>Удалить</Link> }
+    (id) => { return <Link to={`/home/delete_user/${id}`}>Удалить</Link> }
 ]
 
 function UsersList({ isGlobal }) {
-    const dispatch = useDispatch();
-    const users = useSelector(selectAll); //useUsers();
-    
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, []);
+    const users = useUsers();
+    const navigate = useNavigate();
 
-    console.log(users)
-    var mapUser = (user) => {
-        var res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
+    if (!users) {
+        return;
+    }
+    
+    const mapUser = (user) => {
+        const res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {
-            res = res.concat(user.organization);
+            return res.concat(user.organization);
         }
         return res;
     }
 
-    const navigate = useNavigate();
-    var onItemClick = (id) => {
+    const onItemClick = (id) => {
         navigate(`/home/profile/${id}`);
     }
 
     return (
-        <div className="content__home-page-table">
-            {
-                users &&
-                <SortableTableViewer
-                    columns={isGlobal ? [...schema, "Организация"] : schema}
-                    contextMenu={contextMenu}
-                    onItemClick={onItemClick}
-                    items={
-                        users.map((user) => {
-                            return {
-                                id: user.email,
-                                data: mapUser(user)
-                            }
-                        })} />
-            }
-            {
-                !users && <span className="text-font">Пусто</span>
-            }
-            <Outlet />
-        </div>
+        <SortableTableViewer
+            columns={isGlobal ? [...schema, "Организация"] : schema}
+            contextMenu={contextMenu}
+            onItemClick={onItemClick}
+            items={
+                users.map((user) => {
+                    return {
+                        id: user.email,
+                        data: mapUser(user)
+                    }
+                })} />
     )
 }
 

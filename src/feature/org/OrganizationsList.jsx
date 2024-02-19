@@ -1,40 +1,33 @@
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useOrganizations from '../../hook/useOrganizations';
 
-const schema = ["Почта", "Название", "Имя администратора", "Телефон", "Адрес"];
+const schema = ["Название", "Почта", "Администратор", "Телефон", "Адрес"];
 const contextMenu = [
     (id) => { return <Link to={`/home/edit_organization/${id}`}>Редактировать</Link> },
-    (id) => { return <Link to={`/home/organizations/delete/${id}`}>Удалить</Link> }
+    (id) => { return <Link to={`/home/delete_organization/${id}`}>Удалить</Link> }
 ]
 
 function OrganizationsList() {
-    const organizations = useOrganizations(true);
+    const navigate = useNavigate();
+    const organizations = useOrganizations();
 
-    console.log(organizations)
+    if (!organizations) {
+        return;
+    }
+
     return (
-        <>
-            <div className="content__home-page-table">
-                {
-                    organizations &&
-                    <SortableTableViewer
-                        columns={schema}
-                        contextMenu={contextMenu}
-                        onItemClick={() => {}}
-                        items={
-                            organizations.map((org) => {
-                                return {
-                                    id: org.email,
-                                    data: [org.email, org.organizationName, org.administratorFullName, org.phoneNumber, org.address]
-                                }
-                            })} />
-                }
-                {
-                    !organizations && <span className="text-font">Пусто</span>
-                }
-                <Outlet />
-            </div>
-        </>
+        <SortableTableViewer
+            columns={schema}
+            contextMenu={contextMenu}
+            onItemClick={(id) => navigate(`/home/organization/${id}`)}
+            items={
+                organizations.map((org) => {
+                    return {
+                        id: org.email,
+                        data: [org.name, org.email, org.administratorFullName, org.phoneNumber, org.address]
+                    }
+                })} />
     )
 }
 

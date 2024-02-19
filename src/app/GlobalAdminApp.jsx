@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from '../page/HomePage.jsx';
 import UsersList from '../feature/user/UsersList';
-import RegisterUserForm from '../feature/user/RegisterUserForm';
+import GlobalRegisterUserForm from '../feature/user/GlobalRegisterUserForm.jsx';
 import RegisterOrganizationForm from '../feature/org/RegisterOrganizationForm.jsx';
 import EditOrganizationForm from '../feature/org/EditOrganizationForm.jsx';
 import ProfileViewer from '../feature/user/ProfileViewer';
@@ -19,6 +19,7 @@ import { profileIcon, settingsIcon, usersIcon, orgsIcon } from '../res/svg';
 import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/ui/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
+import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
 
 const drawerMenu = [
   {
@@ -125,7 +126,7 @@ const addUserPage = (
       <Link to={'/home/users'}>Список</Link>
       <Link to={''}>Добавить</Link>
     </Breadcrumbs>
-    <RegisterUserForm isGlobal={true} />
+    <GlobalRegisterUserForm />
   </>
 )
 
@@ -135,7 +136,6 @@ const editUserPage = (
       <Link to={'/home/users'}>Список</Link>
       <Link to={''}>Редактировать</Link>
     </Breadcrumbs>
-    <ProfileViewer searchable={true} />
     <TabLayout titles={["Общая информация", "Фотография профиля", "Привязка почты", "Права доступа"]}>
       <EditUserInfoForm />
       <UploadAvatarForm />
@@ -145,26 +145,36 @@ const editUserPage = (
   </>
 )
 
+const viewOrganizationPage = (
+  <>
+    <Breadcrumbs title="Просмотр данных организации">
+      <Link to={'/home/organizations'}>Список</Link>
+      <Link to={''}>Просмотр</Link>
+    </Breadcrumbs>
+    <OrganizationViewer />
+  </>
+)
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={homePage}>
           <Route path="users" element={usersListPage}>
-            <Route path="delete/:id" element={<DeleteUserForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_user" element={addUserPage} />
-          <Route path="edit_user/:id" element={editUserPage} />
+          <Route path="edit_user/:email" element={editUserPage} />
+          <Route path="delete_user/:email" element={<DeleteUserForm />} />
 
           <Route path="organizations" element={organizationsPage}>
-            <Route path="delete/:id" element={<DeleteOrganizationForm />} />
             <Route path="search/:search" />
           </Route>
           <Route path="add_organization" element={addOrganizationPage} />
-          <Route path="edit_organization/:id" element={editOrganizationPage} />
+          <Route path="edit_organization/:email" element={editOrganizationPage} />
+          <Route path="delete_organization/:email" element={<DeleteOrganizationForm />} />
 
-          <Route path="profile/:id" element={profileViewer} />
+          <Route path="organization/:email" element={viewOrganizationPage} />
+          <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profileViewer} />
           <Route path="settings" element={settingsPage} />
         </Route>

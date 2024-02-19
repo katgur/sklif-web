@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectData } from "../feature/authSlice";
-import { fetchUser } from "../feature/user/usersSlice";
 import { useEffect } from "react";
 
 function useAuthUser() {
@@ -10,7 +9,7 @@ function useAuthUser() {
 
     useEffect(() => {
         if (data) {
-            dispatch(fetchUser(data.email));
+            // dispatch(fetchUser(data.email));
         }
     }, [data, dispatch]);
 

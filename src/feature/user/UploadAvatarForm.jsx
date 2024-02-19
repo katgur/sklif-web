@@ -1,61 +1,48 @@
-import { useEffect, useMemo, useState } from "react";
-import { useRef } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { uploadAvatar } from "./usersSlice";
 import useUser from '../../hook/useUser';
+import { useParams } from "react-router";
+import FileUploadForm from "../../component/ui/FileUploadForm";
+import Preview from "../../component/ui/FileUploadForm/Preview";
+import Button from '../../component/ui/Button';
+import Card from '../../component/ui/Card';
 
 function UploadAvatarForm() {
-    const inputField = useRef();
-    const preview = useRef();
-    const [file, setFile] = useState();
-    const reader = useMemo(() => new FileReader(), []);
+    const { email } = useParams();
+    const user = useUser(email);
+    const [file, setFile] = useState(null);
     const dispatch = useDispatch();
-    const user = useUser();
 
-    useEffect(() => {
-        var onLoad = () => {
-            preview.current.src = reader.result;
-        }
-
-        reader.addEventListener("load", onLoad, false);
-
-        return () => {
-            reader.removeEventListener("load", onLoad);
-        }
-    }, [reader])
-
-    var onFileUploaded = () => {
-        var file = inputField.current.files[0];
-        setFile(file);
-        reader.readAsDataURL(file);
+    console.log(file)
+    if (!user) {
+        return;
     }
 
-    var onUploadButtonClick = () => {
-        dispatch(uploadAvatar({ email: user.email, file: file }));
+    const onUploadButtonClick = () => {
+        if (!file) {
+            return;
+        }
+        dispatch(uploadAvatar(user.email, file.url));
     }
 
     return (
-        <div className="upload-avatar-form">
-            <div className="file-chooser">
-                <label className="choose-file-button">
-                    Выберите файл
-                    <input ref={inputField} id="avatar-upload" onChange={onFileUploaded} type="file" accept=".png,.jpg,.jpeg" />
-                </label>
-                <span className="text-font">
-                    {file ? file.name : "Файл не выбран"}
-                </span>
+        <Card>
+            <FileUploadForm file={file} setFile={setFile}>
                 {
                     file &&
-                    <img width="200" ref={preview} alt="preview" />
+                    <>
+                        <Preview fileURL={file.url} />
+                        <Button style="primary" onClick={onUploadButtonClick}>
+                            Загрузить
+                        </Button>
+                        <Button style="secondary" onClick={() => setFile(null)}>
+                            Отмена
+                        </Button>
+                    </>
                 }
-            </div>
-            {
-                file &&
-                <div onClick={onUploadButtonClick} className="filled-button">
-                    Загрузить
-                </div>
-            }
-        </div>
+            </FileUploadForm>
+        </Card>
     )
 }
 

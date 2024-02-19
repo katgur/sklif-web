@@ -1,28 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAll, fetchOrganizations } from '../feature/org/orgSlice';
-import { useEffect, useRef } from 'react';
-import { useParams } from 'react-router';
+import { useEffect } from 'react';
 
-function useOrganizations(isGlobal) {
+function useOrganizations() {
     const dispatch = useDispatch();
     const organizations = useSelector(selectAll);
-    const search = useRef();
-    const params = useParams();
 
-    console.log(organizations)
     useEffect(() => {
-        if (!isGlobal) {
-            return;
+        if (!organizations) {
+            dispatch(fetchOrganizations());
         }
-        if (params.search !== search.current) {
-            dispatch(fetchOrganizations({ filter: params.search }));
-            search.current = params.search;
-        } else {
-            if (!organizations) {
-                dispatch(fetchOrganizations());
-            }
-        }
-    }, [dispatch, organizations, isGlobal, params])
+    }, [organizations])
 
     return organizations;
 }

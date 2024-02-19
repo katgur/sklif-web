@@ -26,13 +26,16 @@ function Notifications() {
         }
     }, [])
 
-    return wrapper && createPortal(notifications.length !== 0 && <ul>
-        {
-            notifications.map(notification => {
-                return <Alert key={notification.id} {...notification} onClose={() => dispatch(removeNotification(notification.id))} />
-            })
-        }
-    </ul>, wrapper)
+    return wrapper && createPortal(notifications.length !== 0 &&
+        <ul>
+            {
+                notifications.map(notification => {
+                    return <Alert key={notification.id} type={notification.type} onClose={() => dispatch(removeNotification(notification.id))}>
+                        {notification.content}
+                    </Alert>
+                })
+            }
+        </ul>, wrapper)
 }
 
 export default Notifications

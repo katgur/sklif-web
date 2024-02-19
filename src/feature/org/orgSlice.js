@@ -15,12 +15,15 @@ export const addOrganization = org => {
     }
 }
 
-export const updateOrganization = org => {
+export const updateOrganization = (email, org) => {
     return dispatch => {
-        api.patchOrganization(org)
+        api.patchOrganization(email, org)
+            .then(() => {
+                dispatch(addSuccess(`Данные организации изменены`));
+                return api.getOrganization(org.email);
+            })
             .then(newOrg => {
-                dispatch(editOrg(newOrg));
-                dispatch(addSuccess(`Данные организации ${newOrg.name} изменены`));
+                dispatch(editOrg({ email, org: newOrg }));
             })
             .catch(error => {
                 dispatch(addError(`Не удалось редактировать данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -28,11 +31,11 @@ export const updateOrganization = org => {
     }
 }
 
-export const removeOrganization = email => {
+export const deleteOrganization = email => {
     return dispatch => {
         api.deleteOrganization(email)
             .then(() => {
-                dispatch(deleteOrg(email));
+                dispatch(removeOrg(email));
                 dispatch(addSuccess(`Данные организации удалены`));
             })
             .catch(error => {
@@ -53,67 +56,27 @@ export const fetchOrganizations = () => {
     }
 }
 
-export const fetchOrganization = email => {
-    return dispatch => {
-        api.getOrganization(email)
-            .then(orgs => {
-                dispatch(setCurrent(orgs));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось получить данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
-            })
-    }
-}
-
 const orgSlice = createSlice({
     name: 'org',
-    initialState: {
-        list: [],
-        current: null,
-    },
+    initialState: null,
     reducers: {
         addOrg: (state, action) => {
-            return {
-                ...state,
-                list: [...state.list, action.payload]
-            }
+            return state ? [...state, action.payload] : [action.payload]
         },
         editOrg: (state, action) => {
-            return {
-                ...state,
-                list: state.list.filter(item => item.email !== action.payload.email).concat(action.payload)
-            }
+            return state ? state.filter(item => item.email !== action.payload.email).concat(action.payload.org) : [action.payload.org]
         },
-        deleteOrg: (state, action) => {
-            return {
-                ...state,
-                list: state.list.filter(item => item.email !== action.payload.email)
-            }
+        removeOrg: (state, action) => {
+            return state ? state.filter(item => item.email !== action.payload) : []
         },
         setOrgs: (state, action) => {
-            return {
-                ...state,
-                list: action.payload
-            }
+            return action.payload
         },
-        setCurrent: (state, action) => {
-            return {
-                ...state,
-                current: action.payload
-            }
-        },
-        resetCurrent: (state, action) => {
-            return {
-                ...state,
-                current: null,
-            }
-        }
     },
 })
 
-export const { addOrg, editOrg, deleteOrg, setOrgs, setCurrent, resetCurrent } = orgSlice.actions;
+export const { addOrg, editOrg, removeOrg, setOrgs } = orgSlice.actions;
 
-export const selectCurrent = (state) => state.org.current;
-export const selectAll = (state) => state.org.list;
+export const selectAll = (state) => state.org;
 
 export default orgSlice.reducer;

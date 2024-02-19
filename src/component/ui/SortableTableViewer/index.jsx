@@ -52,7 +52,7 @@ const pagination = (showingItemsLength, itemsCount, pageNum, setPageNum, capacit
     )
 }
 
-function SortableTableViewer({ columns, items, contextMenu, onItemClick, capacity = 5 }) {
+function SortableTableViewer({ columns, items, contextMenu, onItemClick, onItemDoubleClick, capacity = 5 }) {
     const [page, setPage] = useState(0);
     const [sortableItems, setSortableItems] = useState();
     const sortDirection = useRef(-1);
@@ -93,7 +93,7 @@ function SortableTableViewer({ columns, items, contextMenu, onItemClick, capacit
                 })}
                 <span className="table-viewer__header table-viewer__cell"></span>
                 {showingItems.map((item, index) => {
-                    return <TableItem key={index} item={item} contextMenu={contextMenu} onClick={onItemClick} />
+                    return <TableItem key={index} item={item} contextMenu={contextMenu} onClick={onItemClick} onDoubleClick={onItemDoubleClick} />
                 })}
             </div>
             {pagination(showingItems.length, sortableItems.length, page, setPage, capacity)}

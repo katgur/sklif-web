@@ -1,48 +1,50 @@
 import Form from '../../component/ui/Form';
 import { useDispatch } from 'react-redux';
-import { addUser } from './usersSlice';
-import useUser from '../../hook/useUser';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input.jsx';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
-import Select from '../../component/ui/Form/Select'
 import Radio from '../../component/ui/Form/Radio.jsx';
+import { addError } from '../notification/notificationSlice.js';
+import { createUser } from './usersSlice.js';
 
-function RegisterUserForm({ isGlobal }) {
+const fields = [
+    {
+        name: "firstName", text: "Имя", type: "text", required: true
+    },
+    {
+        name: "lastName", text: "Фамилия", type: "text", required: true
+    },
+    {
+        name: "patronymic", text: "Отчество", type: "text", required: false
+    },
+    {
+        name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", required: true
+    },
+    {
+        name: "email", text: "Почта", type: "email", required: true
+    },
+    {
+        name: "password", text: "Пароль", type: "password", required: true
+    },
+    {
+        name: "repeatPassword", text: "Повторите пароль", type: "password", required: true
+    }
+];
+
+function RegisterUserForm() {
     const dispatch = useDispatch();
-    const organizations = ["Ромашка", "Romashka"]
-    const user = useUser();
-
-    const fields = [
-        {
-            name: "firstName", text: "Имя", type: "text", required: true
-        },
-        {
-            name: "lastName", text: "Фамилия", type: "text", required: true
-        },
-        {
-            name: "patronymic", text: "Отчество", type: "text", required: false
-        },
-        {
-            name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", required: true
-        },
-        {
-            name: "email", text: "Почта", type: "email", required: true
-        },
-        {
-            name: "password", text: "Пароль", type: "password", required: true
-        },
-        {
-            name: "repeatPassword", text: "Повторите пароль", type: "password", required: true
-        }
-    ];
 
     const onSubmit = (data) => {
-        dispatch(addUser(data));
+        if (data.password !== data.repeatPassword) {
+            dispatch(addError("Введенные пароли не совпадают, попробуйте снова"));
+            return;
+        }
+        delete data.repeatPassword;
+        dispatch(createUser(data));
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={user}>
+        <Form onSubmit={onSubmit}>
             <TwoColumnLayout>
                 {
                     fields.slice(0, 4).map(field => {
@@ -54,7 +56,7 @@ function RegisterUserForm({ isGlobal }) {
                 <Radio>Врач</Radio>
                 <Radio>Администратор</Radio>
             </RadioGroup>
-            <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations} />
+
             {
                 fields.slice(4).map(field => {
                     return <Input key={field.name} field={field} />

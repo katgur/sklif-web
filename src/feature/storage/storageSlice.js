@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/storageApi';
-import { addSuccess } from '../notification/notificationSlice';
+import { addSuccess, addError } from '../notification/notificationSlice';
 
 export const fetchFiles = () => {
     return dispatch => {
@@ -17,9 +17,9 @@ export const fetchFiles = () => {
 export const uploadFiles = (path, files) => {
     return dispatch => {
         api.postFile(path, files)
-            .then(keys => {
-                addFiles(keys);
-                dispatch(addSuccess(`Новые файлы (${keys.length}) загружены в хранилище`));
+            .then(files => {
+                addFiles(files);
+                dispatch(addSuccess(`Новые файлы (${files.length}) загружены в хранилище`));
             })
             .catch(error => {
                 dispatch(addError(`Не удалось загрузить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -31,7 +31,7 @@ export const deleteFiles = (keys) => {
     return dispatch => {
         api.deleteFile(keys)
             .then(() => {
-                dispatch(deleteFile(keys));
+                dispatch(removeFiles(keys));
                 dispatch(addSuccess("Файлы удалены из хранилища"));
             })
             .catch(error => {
@@ -43,8 +43,8 @@ export const deleteFiles = (keys) => {
 export const createDirectory = (path, name) => {
     return dispatch => {
         api.postDirectory(path, name)
-            .then((key) => {
-                dispatch(addFiles([key]));
+            .then((file) => {
+                dispatch(addFiles([file]));
                 dispatch(addSuccess("Новая директория создана"));
             })
             .catch(error => {
@@ -53,11 +53,29 @@ export const createDirectory = (path, name) => {
     }
 }
 
+export const createDirectoryAndLoadFiles = (path, newDirectoryName, files) => {
+    return dispatch => {
+        api.postDirectory(path, newDirectoryName)
+            .then((file) => {
+                dispatch(addFiles([file]));
+                dispatch(addSuccess("Новая директория создана"));
+                return api.postFile(file.key, files);
+            })
+            .then((keys) => {
+                addFiles(keys);
+                dispatch(addSuccess(`Новые файлы (${keys.length}) загружены в хранилище`));
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось загрузить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
+            })
+    }
+}
+
 export const deleteDirectory = (key) => {
     return dispatch => {
         api.deleteDirectory(key)
             .then(() => {
-                dispatch(deleteFiles([key]));
+                dispatch(removeFiles([key]));
                 dispatch(addSuccess("Директория удалена"));
             })
             .catch(error => {
@@ -85,10 +103,11 @@ const storageSlice = createSlice({
                 list: [...state.list, ...action.payload]
             }
         },
-        deleteFiles: (state, action) => {
+        removeFiles: (state, action) => {
+            const set = new Set(action.payload);
             return {
                 ...state,
-                list: state.list.filter(item => action.payload.includes(item.key))
+                list: state.list.filter(item => !set.has(item.key))
             }
         },
         setCurrent: (state, action) => {
@@ -128,6 +147,6 @@ export const selectCurrentFiles = (state) => state.storage.list.filter((d) => {
 })
 
 
-export const { addFiles, editFile, deleteFile, setFiles, setCurrent } = storageSlice.actions;
+export const { addFiles, editFile, removeFiles, setFiles, setCurrent } = storageSlice.actions;
 
 export default storageSlice.reducer;

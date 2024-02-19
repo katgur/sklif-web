@@ -1,10 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrent, fetchStudy } from "./studiesSlice";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Viewport from "./Viewport";
 import DataViewer from "../../component/ui/DataViewer";
-import { useNavigate } from 'react-router-dom';
 import api from "../../api/mock/storageApi";
+import useStudy from '../../hook/useStudy';
+import Card from '../../component/ui/Card';
+import Link from '../../component/ui/Link';
+import { Link as RouteLink } from 'react-router-dom';
+import Stack from "../../component/ui/Stack";
 
 const schema = [
     {
@@ -63,39 +65,33 @@ const schema = [
 ];
 
 function StudyViewer() {
-    const study = useSelector(selectCurrent);
-    const dispatch = useDispatch();
+    const study = useStudy(window.location.href.split('study/')[1]);
     const viewport = useRef();
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        var key = window.location.href.split('study/')[1];
-        if (!study) {
-            dispatch(fetchStudy({ key: key }));
-        }
-    }, [dispatch, study])
-
-    var onViewButtonClick = () => {
-        navigate(`/home/viewer/${study.key}`)
+    if (!study) {
+        return;
     }
 
     return (
-        study &&
-        <div className="content__home-page-profile card">
-            <div>
-                <Viewport viewport={viewport}
-                    imageId={'wadouri:' + api.getBytes(study.keys[0])}
-                    style={{ width: "200px", height: "200px", marginBottom: "20px" }} />
-                <div onClick={onViewButtonClick} className="filled-button">Просмотр</div>
-            </div>
-            {
+        <Card padding="m">
+            <Stack gap="m">
+                <Stack direction="vertical" gap="m">
+                    <Viewport viewport={viewport}
+                        imageId={'wadouri:' + api.getBytes(study.keys[0])}
+                        style={{ width: "200px", height: "200px" }} />
+                    <Link style="primary">
+                        <RouteLink to={`/home/viewer/${study.key}`}>
+                            Просмотр
+                        </RouteLink>
+                    </Link>
+                </Stack>
                 <DataViewer
                     path='studies'
                     name=""
                     entity={study}
                     schema={schema} />
-            }
-        </div>
+            </Stack>
+        </Card>
     )
 }
 

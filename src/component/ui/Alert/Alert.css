@@ -33,6 +33,7 @@
     overflow: hidden;
     overflow-wrap: break-word;
     margin-left: 12px;
+    text-align: left;
 }
 
 .alert__icon {

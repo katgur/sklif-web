@@ -1,21 +1,26 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrent } from '../feature/org/orgSlice';
-import { fetchOrganization } from '../feature/org/orgSlice';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import api from '../api/mock/organizationApi';
+import { addError } from '../feature/notification/notificationSlice';
 
-function useOrganization() {
+function useOrganization(email) {
+    const [organization, setOrganization] = useState();
     const dispatch = useDispatch();
-    const params = useParams();
-    const currentOrg = useSelector(selectCurrent);
 
     useEffect(() => {
-        if (!currentOrg && params.id) {
-            dispatch(fetchOrganization(params.id));
+        if (!email) {
+            return;
         }
-    }, [params, dispatch, currentOrg])
+        api.getOrganization(email)
+            .then(newOrganization => {
+                setOrganization(newOrganization);
+            })
+            .catch(error => {
+                dispatch(addError(`Не удалось получить данные организации${error.response ? `: ${error.response.data.error}` : ""}`));
+            })
+    }, [])
 
-    return currentOrg;
+    return organization;
 }
 
 export default useOrganization;

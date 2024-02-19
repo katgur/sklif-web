@@ -11,6 +11,15 @@
     color: var(--text-color);
 }
 
+.table-viewer__cell:hover {
+    color: var(--primary-color);
+}
+
+.table-viewer__cell--selected {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
 .table-viewer__header {
     display: flex;
     justify-content: space-between;

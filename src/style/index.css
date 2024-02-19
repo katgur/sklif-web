@@ -129,24 +129,3 @@ header li svg {
       opacity: 1;
     }
 }
-
-
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    border: 1px dashed var(--primary-color);
-    display: block;
-    padding: 40px 75px;
-    cursor: pointer;
-    border-radius: 4px;
-    background-color: var(--hover-color);
-    font-size: small;
-    text-align: center;
-    margin: 10px auto;
-}
-
-.accent {
-    color: var(--primary-color);
-}

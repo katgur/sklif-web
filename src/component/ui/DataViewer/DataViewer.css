@@ -1,5 +1,6 @@
 .data-viewer {
     padding: 20px;
+    max-width: 768px;
 }
 
 .data-viewer__header {
@@ -8,13 +9,14 @@
 
 .data-viewer__tabs {
     display: flex;
+    margin-top: 24px;
 }
 
 .data-viewer__tab {
     cursor: pointer;
     transition: 0.5s;
-    padding-right: 32px;
-    padding-bottom: 12px;
+    padding-right: 4em;
+    padding-bottom: 0.5em;
 }
 
 .data-viewer__tab--base {
@@ -28,7 +30,7 @@
 }
 
 .data-viewer__data {
-    margin-top: 1em;
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
     gap: 16px;
