@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fecthMask, selectMaskRequested, selectResult } from "./maskSlice";
+import { fetchMask, selectResult } from "./maskSlice";
 import MaskedImage from "../../component/ui/MaskedImage";
+import { useEffect } from "react";
 
 function Mask({ path }) {
-    var result = useSelector(selectResult);
-    var maskRequested = useSelector(selectMaskRequested);
+    const result = useSelector(selectResult);
     const dispatch = useDispatch();
 
-    var onRequestMaskClick = () => {
-        dispatch(fecthMask(path));
-    }
+    useEffect(() => {
+        dispatch(fetchMask(path));
+    }, [path])
 
     return (
-        <MaskedImage result={result} maskRequested={maskRequested} />
+        <MaskedImage url={result.url} />
     )
 }
 

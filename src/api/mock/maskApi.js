@@ -1,11 +1,12 @@
-import maskMock from "../test/mock/maskMock"
+const delay = (mock, ms) => {
+    return new Promise(resolve => setTimeout(() => resolve(mock), ms));
+}
 
 const getMask = async (key) => {
-    return await maskMock('/get_mask');
+    return delay({
+        url: `https://storage.yandexcloud.net/news-platform-user-images/HSE/ai-masks/7777/${key.split("/").slice(-1)[0].split(".")[0]}_mask.jpg`,
+        totalVolume: 3304.25,
+    }, 500)
 }
 
-const getResults = async (key) => {
-    return await maskMock('/get_results');
-}
-
-export default { getMask, getResults };
+export default { getMask };

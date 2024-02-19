@@ -38,7 +38,7 @@ function Viewer() {
 
     return (
         <Stack direction="vertical">
-            <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} maskState={isOpen.mask} />
+            <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} />
             <Stack>
                 <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + api.getBytes(key))} />
                 {isOpen.mask && <Mask path={study.keys[index]} />}
