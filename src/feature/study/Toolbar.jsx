@@ -3,7 +3,7 @@ import { updateImage, reset } from 'cornerstone-core';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { selectResult } from './maskSlice';
+import { selectResult } from '../mask/maskSlice';
 import ViewerToolbar from '../../component/ui/ViewerToolbar';
 
 const tools = {
@@ -18,7 +18,6 @@ const tools = {
     'EllipticalRoi': EllipticalRoiTool,
     'FreehandRoi': FreehandRoiTool,
 }
-
 
 function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
     const [enabledKey, setEnabledKey] = useState(null);

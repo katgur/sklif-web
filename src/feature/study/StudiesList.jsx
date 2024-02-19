@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
-import useStudies from './useStudies';
+import useStudies from '../../hook/useStudies';
 import StorageToolPanel from '../../component/ui/StorageToolPanel';
 
 const schema = [

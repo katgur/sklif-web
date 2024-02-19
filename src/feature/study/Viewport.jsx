@@ -13,10 +13,10 @@ function Viewport({ imageId, viewport, style }) {
     loadImage(imageId).then(image => {
       displayImage(element, image);
     });
-  }, [viewport, imageId]);
+  }, [imageId]);
 
   return (
-      <div className="viewport" ref={viewport} style={style}></div>
+      <div ref={viewport} style={style}></div>
   );
 }
 

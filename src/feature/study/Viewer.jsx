@@ -2,9 +2,8 @@ import { useRef } from 'react';
 import StackViewport from './StackViewport';
 import Toolbar from './Toolbar';
 import { useState } from 'react';
-import MaskedImage from './Mask';
-import { isDirectory } from '../../util/storageUtil';
-import api from '../../api/mock/storageApi';
+import Mask from '../mask/Mask';
+import api from '../../api/mock/studyApi';
 import useStudy from '../../hook/useStudy';
 import SideStudyViewer from './SideStudyViewer';
 import Stack from '../../component/ui/Stack';
@@ -42,7 +41,7 @@ function Viewer() {
             <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} maskState={isOpen.mask} />
             <Stack>
                 <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + api.getBytes(key))} />
-                {isOpen.mask && <MaskedImage path={study.keys[index]} />}
+                {isOpen.mask && <Mask path={study.keys[index]} />}
                 {isOpen.drawer && <SideStudyViewer study={study} index={index} />}
             </Stack>
         </Stack>
