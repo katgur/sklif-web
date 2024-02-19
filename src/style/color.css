@@ -1,6 +1,6 @@
 body {
     --white: #fff;
-    --dark-color: #333A48;
+    --dark-color: #1C2434;
     --text-color: #64748B;
     --stroke-color: #E2E8F0;
     --gray-color: #EFF4FB;
@@ -13,7 +13,6 @@ body {
     --hover-primary-color: #3c4fe0a9;
     --text-color-color: #64748B;
     --hover-color: rgba(48, 86, 211, 0.04);
-    --dark-color-color: #333A48;
     --dark-color-text-color-1: #DEE4EE;
     --dark-color-text-color-2: #8A99AF;
     --hover-color-2: rgba(138, 153, 175, 0.2);

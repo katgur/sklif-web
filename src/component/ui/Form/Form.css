@@ -1,6 +1,5 @@
 .form {
     max-width: 768px;
-    padding: 26px;
 }
 
 .form__title {
@@ -175,4 +174,13 @@
 .form__checkbox-input:checked {
     border-color: var(--primary-color);
     background: url('./check.svg') var(--hover-color) no-repeat center;
+}
+
+.form__textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.form__textarea--error {
+    border: 1px solid var(--alert-text-color);
 }

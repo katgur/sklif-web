@@ -44,6 +44,12 @@ button {
   all: unset;
 }
 
+button:has(img) {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
 a:link,
 a:visited,
 a:hover,

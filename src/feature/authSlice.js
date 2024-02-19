@@ -6,7 +6,7 @@ const authSlice = createSlice({
     initialState: {
         data: {
             email: 'mail@mail.com',
-            authorities: 'ADMIN_LOCAL',
+            authorities: 'DOCTOR',
             accessToken: ''
         },
     },

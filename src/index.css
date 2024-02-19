@@ -96,85 +96,13 @@ summary svg {
     overflow-y: auto;
 }
 
-.toolbar {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 5px;
-    margin: 15px;
-    padding: 5px 10px;
-    height: 50px;
-}
-
-.stack-viewport {
-    display: flex;
-    flex-flow: column;
-    position: relative;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-}
-
-.masked-image {
-    flex: 1;
-    background-color: var(--dark-color-color);
-    height: 85vh;
-}
-
-.stack-viewport-layer>span {
-    display: inline-block;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.stack-viewport-layer>span:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.viewport {
-    height: 85vh;
-    width: 600px;
-}
-
-.viewer-button {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.viewer-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.viewer-button__selected {
-    background-color: var(--primary-color);
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-}
-
 .viewer {
-    background-color: var(--dark-color-color);
+    background-color: var(--dark-color);
     display: flex;
     flex-flow: row;
     min-height: 100vh;
     margin: 0;
     overflow: hidden visible;
-}
-
-.toolbar-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.toolbar-wrapper>div {
-    width: fit-content;
-    height: fit-content;
 }
 
 .link-text {
@@ -216,13 +144,6 @@ a:active {
     margin: 24px;
 }
 
-.stack-viewport-layer {
-    position: absolute;
-    color: white;
-    font-size: small;
-    margin: 24px;
-}
-
 .white-font {
     font-size: medium;
     color: white;
@@ -248,31 +169,6 @@ textarea {
 
 textarea:focus {
     background: #232832;
-}
-
-.comment-section {
-    display: flex;
-    flex-flow: column;
-}
-
-.comment-section>p {
-    padding: 12px 18px;
-    border-radius: 5px;
-}
-
-.comment-section>p:hover {
-    background-color: #282e39;
-}
-
-.comment-section>img {
-    margin-left: auto;
-}
-
-.comment-section>textarea {
-    flex: 1;
-    margin: 16px 0;
-    min-height: 100px;
-    overflow: auto;
 }
 
 .analytics {
