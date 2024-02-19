@@ -1,0 +1,5 @@
+.masked-image {
+    flex: 1;
+    background-color: var(--dark-color);
+    height: 85vh;
+}

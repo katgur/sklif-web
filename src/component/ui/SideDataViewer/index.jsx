@@ -1,7 +1,7 @@
 import React from "react";
 import './SideDataViewer.css';
 
-function SideDataViewer({ schema, entity }) {
+function SideDataViewer({ schema, entity, children }) {
     if (!schema || !entity) {
         return;
     }
@@ -32,6 +32,7 @@ function SideDataViewer({ schema, entity }) {
                     })
                 }
             </ul>
+            {children}
         </div>
     )
 }

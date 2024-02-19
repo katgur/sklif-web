@@ -1,16 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { fecthMask, selectMaskRequested, selectResult } from "./maskSlice";
+import './MaskedImage.css';
 
-function MaskedImage({ path }) {
-    var result = useSelector(selectResult);
-    var maskRequested = useSelector(selectMaskRequested);
-    const dispatch = useDispatch();
-
-    var onRequestMaskClick = () => {
-        dispatch(fecthMask(path));
-    }
-
-    console.log(result)
+function MaskedImage({ onRequestMaskClick, result, maskRequested }) {
     return (
         <div className="masked-image">
             {!result.url &&
@@ -25,4 +15,4 @@ function MaskedImage({ path }) {
     )
 }
 
-export default MaskedImage;
+export default MaskedImage

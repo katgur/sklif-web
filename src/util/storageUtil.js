@@ -1,5 +1,5 @@
 export const isDirectory = (key) => {
-    return key.split('/').slice(-1)[0] === "";
+    return key.slice(-1) === "/";
 }
 
 export const isFile = (key) => {

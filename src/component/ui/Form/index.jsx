@@ -36,7 +36,7 @@ function Form({ title, onSubmit, onCancel, entity, children }) {
     });
 
     return (
-        <form onSubmit={handleSubmit((data) => onSubmit(data))} onReset={onCancel} className="form card">
+        <form onSubmit={handleSubmit((data) => onSubmit(data))} onReset={onCancel} className="form">
             {
                 title && <h2 className="form__title font__inter--m">{title}</h2>
             }

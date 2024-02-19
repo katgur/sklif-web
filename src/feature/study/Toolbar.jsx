@@ -2,24 +2,9 @@ import { getToolState, clearToolState, ProbeTool, CobbAngleTool, addToolState, r
 import { updateImage, reset } from 'cornerstone-core';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-import zoomIcon from '../../res/Zoom.svg';
-import panIcon from '../../res/Pan.svg';
-import wwwcIcon from '../../res/Wwwc.svg';
-import lengthIcon from '../../res/Length.svg';
-import angleIcon from '../../res/Angle.svg';
-import rectangleIcon from '../../res/RectangleRoi.svg';
-import ellipseIcon from '../../res/EllipseRoi.svg';
-import freehandIcon from '../../res/FreehandRoi.svg';
-import probeIcon from '../../res/probe.svg';
-import cobbAngleIcon from '../../res/cobb-angle.svg';
-import undoIcon from '../../res/undo.svg';
-import redoIcon from '../../res/redo.svg';
-import resetIcon from '../../res/reset-svgrepo-com.svg';
-import deleteIcon from '../../res/delete.svg';
-import burgerIcon from '../../res/burger.svg';
-import magicIcon from '../../res/magic-wand-svgrepo-com.svg';
 import { useSelector } from 'react-redux';
 import { selectResult } from './maskSlice';
+import ViewerToolbar from '../../component/ui/ViewerToolbar';
 
 const tools = {
     'Zoom': ZoomTool,
@@ -34,32 +19,9 @@ const tools = {
     'FreehandRoi': FreehandRoiTool,
 }
 
-const icons = {
-    'Zoom': zoomIcon,
-    'Pan': panIcon,
-    'Wwwc': wwwcIcon,
-    'Length': lengthIcon,
-    'Angle': angleIcon,
-    'CobbAngle': cobbAngleIcon,
-    'Probe': probeIcon,
-    'RectangleRoi': rectangleIcon,
-    'EllipticalRoi': ellipseIcon,
-    'FreehandRoi': freehandIcon,
-}
-
-const titles = {
-    'Zoom': 'Зум',
-    'Pan': 'Перетаскивание',
-    'Wwwc': 'Яркость',
-    'Length': 'Линейка',
-    'Angle': 'Угломер',
-    'RectangleRoi': 'Прямоугольник',
-    'EllipticalRoi': 'Эллипс',
-    'FreehandRoi': 'Произвольная область',
-}
 
 function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
-    const [isEnabled, setEnabled] = useState({});
+    const [enabledKey, setEnabledKey] = useState(null);
     const markings = useRef([]);
     const markingIndex = useRef(-1);
     const element = viewport.current;
@@ -98,18 +60,15 @@ function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
         return () => {
             element.removeEventListener('cornerstonetoolsmeasurementcompleted', onMeasurementCompleted);
         }
-    }, [element, isEnabled, setEnabled])
+    }, [element])
 
     var onToolClick = (toolName) => {
-        var newIsEnabled = {};
-        if (isEnabled[toolName]) {
+        if (toolName === enabledKey) {
             setToolPassive(toolName);
-            newIsEnabled[toolName] = false;
         } else {
             setToolActive(toolName, { mouseButtonMask: 1 })
-            newIsEnabled[toolName] = true;
         }
-        setEnabled(newIsEnabled);
+        setEnabledKey(toolName);
     }
 
     var setVisibility = (id, toolName, visibility) => {
@@ -154,30 +113,7 @@ function Toolbar({ viewport, onBurgerClick, onMaskClick, maskState }) {
     }
 
     return (
-        <div className="toolbar-wrapper" style={{height: "15vh"}}>
-            <div className="toolbar">
-
-                {
-                    Object.keys(tools).map((key) => {
-                        var className = "viewer-button" + (isEnabled[key] ? "__selected" : "");
-                        return <img key={key}
-                            onClick={() => onToolClick(key)}
-                            className={className} src={icons[key]} alt={key} title={titles[key]} />
-                    })
-                }
-                <img key="mask" onClick={onMaskClick} src={magicIcon} className="viewer-button" alt="mask" title="Разметка ИИ" />
-            </div>
-            <div className="comment-section">
-                {result.volume && maskState.enabled && <p className="white-font">{`Объем пораженной ткани: ${result.volume} cm3`}</p>}
-            </div>
-            <div className="toolbar">
-                <img onClick={undo} className="viewer-button" src={undoIcon} alt="undo" />
-                <img onClick={redo} className="viewer-button" src={redoIcon} alt="redo" />
-                <img onClick={resetViewport} className="viewer-button" src={resetIcon} alt="reset" />
-                <img onClick={clearViewport} className="viewer-button" src={deleteIcon} alt="clear" />
-                <img onClick={onBurgerClick} className="viewer-button" src={burgerIcon} alt="burger" />
-            </div>
-        </div>
+        <ViewerToolbar enabledKey={enabledKey} viewport={viewport} undo={undo} redo={redo} resetViewport={resetViewport} clearViewport={clearViewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} onToolClick={onToolClick} maskState={maskState} result={result} />
     )
 }
 

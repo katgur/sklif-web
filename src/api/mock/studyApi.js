@@ -71,14 +71,9 @@ const getById = async (key) => {
 const postComment = async (key, comment) => {
     const data = await getData();
     const study = data.find(study => study.key === key);
-    study.globalComments.push(comment);
-    await setData(value);
+    study.globalComments = comment;
+    await setData([...data.filter(d => d.key === study.key), study]);
     return study;
 }
 
-const getInfo = async (key) => {
-    const data = await getData();
-    return data.find(study => study.key === key);
-}
-
-export default { getAll, getById, postComment, getInfo };
+export default { getAll, getById, postComment };

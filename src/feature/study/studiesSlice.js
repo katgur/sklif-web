@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/studyApi';
+import { addError, addSuccess } from '../../feature/notification/notificationSlice';
 
 export const fetchStudies = () => {
     return dispatch => {
         api.getAll()
             .then(studies => {
-                console.log(studies)
                 dispatch(setStudies(studies));
             })
             .catch(error => {
@@ -14,23 +14,12 @@ export const fetchStudies = () => {
     }
 }
 
-export const fetchInfo = (key) => {
+export const addComment = (key, comment) => {
     return dispatch => {
-        api.getById(key)
-            .then(info => {
-                dispatch(setInfo(info));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось получить данные исследования${error.response ? `: ${error.response.data.error}` : ""}`))
-            })
-    }
-}
-
-export const addComment = (comment) => {
-    return dispatch => {
-        api.postComment(comment)
+        api.postComment(key, comment)
             .then(() => {
                 dispatch(setCommentAdded());
+                dispatch(addSuccess("Комментарий добавлен"))
             })
             .catch(error => {
                 dispatch(addError(`Не удалось добавить комментарий к исследованию${error.response ? `: ${error.response.data.error}` : ""}`))
@@ -53,12 +42,6 @@ const studiesSlice = createSlice({
                 list: action.payload
             }
         },
-        setInfo: (state, action) => {
-            return {
-                ...state,
-                info: action.payload
-            }
-        },
         setCommentAdded: (state, action) => {
             return {
                 ...state,
@@ -74,11 +57,9 @@ const studiesSlice = createSlice({
     },
 })
 
-export const { resetCommentAdded, setInfo, setStudies, setCommentAdded } = studiesSlice.actions;
+export const { resetCommentAdded, setStudies, setCommentAdded } = studiesSlice.actions;
 
 export const selectAll = (state) => state.study.list;
-export const selectInfo = (state) => state.study.info;
-export const selectCurrent = (state) => state.study.current;
 export const selectCommentAdded = (state) => state.study.commentAdded;
 
 export default studiesSlice.reducer;

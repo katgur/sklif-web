@@ -16,7 +16,7 @@ function StorageToolPanel({ children, current, isEditMode, onDeleteButtonClick, 
     }
 
     return (
-        <Card padding="sm">
+        <>
             {
                 isEditMode ?
                     <ul className="tools">
@@ -48,11 +48,9 @@ function StorageToolPanel({ children, current, isEditMode, onDeleteButtonClick, 
                     </div>
             }
             <Popup target={target} setTarget={setTarget} position="left bottom">
-                <ContextMenu>
-                    {children}
-                </ContextMenu>
+                {children}
             </Popup>
-        </Card>
+        </>
     )
 }
 
