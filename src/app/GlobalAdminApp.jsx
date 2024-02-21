@@ -17,7 +17,7 @@ import EditOrganizationEmailForm from '../feature/org/EditOrganizationEmailForm'
 import ProgressBar from '../component/ui/ProgressBar';
 import { profileIcon, settingsIcon, usersIcon, orgsIcon } from '../res/svg';
 import TabLayout from '../component/ui/TabLayout';
-import NotFoundPage from '../page/ui/NotFoundPage.jsx';
+import NotFoundPage from '../page/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
 

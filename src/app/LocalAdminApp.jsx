@@ -15,7 +15,7 @@ import ProgressBar from '../component/ui/ProgressBar';
 import AddDirectoryForm from '../feature/storage/AddDirectoryForm';
 import UploadAvatarForm from '../feature/user/UploadAvatarForm';
 import TabLayout from '../component/ui/TabLayout';
-import NotFoundPage from '../page/ui/NotFoundPage.jsx';
+import NotFoundPage from '../page/NotFoundPage.jsx';
 import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 
