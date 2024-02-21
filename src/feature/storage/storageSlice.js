@@ -9,7 +9,7 @@ export const fetchFiles = () => {
                 dispatch(setFiles(files));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось получить список файлов${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось получить список файлов${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -22,7 +22,7 @@ export const uploadFiles = (path, files) => {
                 dispatch(addSuccess(`Новые файлы (${files.length}) загружены в хранилище`));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось загрузить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось загрузить файлы${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -35,7 +35,7 @@ export const deleteFiles = (keys) => {
                 dispatch(addSuccess("Файлы удалены из хранилища"));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось удалить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось удалить файлы${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -48,7 +48,7 @@ export const createDirectory = (path, name) => {
                 dispatch(addSuccess("Новая директория создана"));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось создать директорию${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось создать директорию${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -66,7 +66,7 @@ export const createDirectoryAndLoadFiles = (path, newDirectoryName, files) => {
                 dispatch(addSuccess(`Новые файлы (${keys.length}) загружены в хранилище`));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось загрузить файлы${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось загрузить файлы${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -79,7 +79,7 @@ export const deleteDirectory = (key) => {
                 dispatch(addSuccess("Директория удалена"));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось удалить директорию${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось удалить директорию${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }

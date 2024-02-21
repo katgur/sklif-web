@@ -10,7 +10,7 @@ export const addOrganization = org => {
                 dispatch(addSuccess(`Организация ${newOrg.name} добавлена`));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось добавить организацию${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось добавить организацию${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -26,7 +26,7 @@ export const updateOrganization = (email, org) => {
                 dispatch(editOrg({ email, org: newOrg }));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось редактировать данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось редактировать данные организации${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -39,7 +39,7 @@ export const deleteOrganization = email => {
                 dispatch(addSuccess(`Данные организации удалены`));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось удалить данные организации${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось удалить данные организации${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -51,7 +51,7 @@ export const fetchOrganizations = () => {
                 dispatch(setOrgs(orgs));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось получить список организаций${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось получить список организаций${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }

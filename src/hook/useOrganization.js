@@ -16,7 +16,7 @@ function useOrganization(email) {
                 setOrganization(newOrganization);
             })
             .catch(error => {
-                dispatch(addError(`Не удалось получить данные организации${error.response ? `: ${error.response.data.error}` : ""}`));
+                dispatch(addError(`Не удалось получить данные организации${error.message ? `: ${error.message}` : ""}`));
             })
     }, [])
 

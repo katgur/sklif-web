@@ -6,11 +6,15 @@ import useAuth from '../hook/useAuth.js';
 function AuthorizedPage() {
     const auth = useAuth();
 
+    if (!auth) {
+        return;
+    }
+
     return (
         <>
-            {auth && auth.authorities === "ADMIN_GLOBAL" && <GlobalAdmin />}
-            {auth && auth.authorities === "ADMIN_LOCAL" && <LocalAdmin />}
-            {auth && auth.authorities === "DOCTOR" && <Client />}
+            {auth.authorities === "ADMIN_GLOBAL" && <GlobalAdmin />}
+            {auth.authorities === "ADMIN_LOCAL" && <LocalAdmin />}
+            {auth.authorities === "DOCTOR" && <Client />}
         </>
     )
 }

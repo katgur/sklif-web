@@ -1,28 +1,67 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Buffer } from 'buffer';
+import api from '../../api/mock/authApi';
+import { addError } from '../notification/notificationSlice';
+
+export const login = (code, redirectUri, codeVerifier, navigate) => {
+    return dispatch => {
+        api.getToken(code, redirectUri, codeVerifier)
+            .then(data => {
+                navigate("/home");
+                localStorage.setItem('srt', data.refresh_token);
+                dispatch(setData(data));
+            })
+            .catch(error => {
+                navigate("/login");
+                dispatch(addError(`Не удалось выполнить авторизацию${error.message ? `: ${error.message}` : ""}`))
+            })
+    }
+}
+
+export const refresh = (refreshToken, navigate) => {
+    return dispatch => {
+        api.refreshToken(refreshToken)
+            .then(data => {
+                localStorage.setItem('srt', data.refresh_token);
+                dispatch(setData(data));
+            })
+            .catch(error => {
+                navigate("/login");
+                dispatch(addError(`Не удалось выполнить авторизацию${error.message ? `: ${error.message}` : ""}`))
+            })
+    }
+}
+
+export const logout = () => {
+    return dispatch => {
+        localStorage.removeItem('srt');
+        dispatch(resetData());
+    }
+}
 
 const authSlice = createSlice({
-    name: 'auth', 
-    initialState: {
-        data: null
-    },
+    name: 'auth',
+    initialState: null,
     reducers: {
         setData: (state, action) => {
-            const id_token = action.payload.id_token;
-            const access_token = action.payload.access_token;
-            const data = JSON.parse(Buffer.from(id_token.split('.')[1], 'base64').toString());
-            state.data = {
+            const idToken = action.payload.id_token;
+            const accessToken = action.payload.access_token;
+            const data = JSON.parse(Buffer.from(idToken.split('.')[1], 'base64').toString());
+            return {
                 email: data.email,
                 authorities: data.authorities,
-                idToken: id_token,
-                accessToken: access_token,
+                idToken: idToken,
+                accessToken: accessToken,
             }
-        }
+        },
+        resetData: () => {
+            return null
+        },
     },
 })
 
-export const { setData } = authSlice.actions;
+const { setData, resetData } = authSlice.actions;
 
-export const selectData = (state) => state.auth.data;
+export const selectData = (state) => state.auth;
 
 export default authSlice.reducer;

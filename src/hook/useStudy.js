@@ -8,7 +8,7 @@ function useStudy(key) {
         useEffect(() => {
             api.getById(key)
                 .then(study => setStudy(study))
-                .catch(error => dispatch(addError(`Не удалось получить список исследований${error.response ? `: ${error.response.data.error}` : ""}`)))
+                .catch(error => dispatch(addError(`Не удалось получить список исследований${error.message ? `: ${error.message}` : ""}`)))
         }, [])
 
     return study
