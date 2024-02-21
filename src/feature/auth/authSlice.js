@@ -4,11 +4,7 @@ import { Buffer } from 'buffer';
 const authSlice = createSlice({
     name: 'auth', 
     initialState: {
-        data: {
-            email: 'mail@mail.com',
-            authorities: 'DOCTOR',
-            accessToken: ''
-        },
+        data: null
     },
     reducers: {
         setData: (state, action) => {
@@ -16,7 +12,7 @@ const authSlice = createSlice({
             const access_token = action.payload.access_token;
             const data = JSON.parse(Buffer.from(id_token.split('.')[1], 'base64').toString());
             state.data = {
-                email: data.sub,
+                email: data.email,
                 authorities: data.authorities,
                 idToken: id_token,
                 accessToken: access_token,

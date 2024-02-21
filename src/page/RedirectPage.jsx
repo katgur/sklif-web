@@ -1,30 +1,29 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import api from '../api/authApi';
+import api from '../api/mock/authApi';
 import { clientUrl, protocol, serverUrl, clientId } from '../util/config';
-import { setData } from '../feature/authSlice';
+import { setData } from '../feature/auth/authSlice';
 import { useDispatch } from 'react-redux';
 
-const redirectToLoginScreen = () => {
+const redirectToLoginScreen = (navigate) => {
     var codeChallenge = sessionStorage.getItem('codeChallenge');
-    var link = `${protocol}://auth.platformed.ru/oauth2/authorize?` +
+    navigate(`/oauth2/authorize?` +
         `response_type=code&` +
         `client_id=${clientId}&` +
         `scope=openid&` +
         `redirect_uri=${protocol}://${clientUrl}/redirect&` +
         `code_challenge=${codeChallenge}&` +
-        `code_challenge_method=S256`;
-    window.location.href = link;
+        `code_challenge_method=S256`)
 }
 
 const redirectToHomeScreen = async (code, navigate, dispatch) => {
     const codeVerifier = sessionStorage.getItem('codeVerifier');
     const redirectUri = `${protocol}://${clientUrl}/redirect`
     api.getToken(code, redirectUri, codeVerifier)
-        .then((response) => {
-            if (response.data.id_token) {
-                localStorage.setItem('srt', response.data.refresh_token);
-                dispatch(setData(response.data));
+        .then((data) => {
+            if (data.id_token) {
+                localStorage.setItem('srt', data.refresh_token);
+                dispatch(setData(data));
                 navigate('/home');
             }
         })
@@ -38,7 +37,7 @@ function RedirectPage() {
     useEffect(() => {
         const code = searchParams.get('code');
         if (!code) {
-            redirectToLoginScreen();
+            redirectToLoginScreen(navigate);
         } else {
             redirectToHomeScreen(code, navigate, dispatch);
         }

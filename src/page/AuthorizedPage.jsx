@@ -1,40 +1,41 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectData, setData } from '../feature/authSlice';
+import { selectData, setData } from '../feature/auth/authSlice';
 import GlobalAdmin from '../app/GlobalAdminApp.jsx';
 import LocalAdmin from '../app/LocalAdminApp.jsx';
-import { clientUrl, protocol } from '../util/config';
-import api from '../api/authApi';
+import api from '../api/mock/authApi';
 import Client from '../app/Client.jsx';
 import { useEffect } from 'react';
 import { setAccessToken } from '../api/client.js';
+import { useNavigate } from 'react-router';
 
 function AuthorizedPage() {
     const data = useSelector(selectData);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (!data) {
-            var refresh_token = localStorage.getItem('srt');
-            if (!refresh_token) {
-                window.location.href = `${protocol}://${clientUrl}/login`;
-            }
-            api.refreshToken(refresh_token)
-                .then(response => {
-                    dispatch(setData(response.data));
-                })
-                .catch(error => {
-                    window.location.href = `${protocol}://${clientUrl}/login`;
-                });
-        } else {
+        if (data) {
             setAccessToken(data.accessToken);
+            return;
         }
-    }, [data, dispatch])
+        const refresh_token = localStorage.getItem('srt');
+        if (!refresh_token) {
+            navigate("/login");
+        }
+        api.refreshToken(refresh_token)
+            .then(data => {
+                dispatch(setData(data));
+            })
+            .catch(error => {
+                navigate("/login");
+            });
+    }, [data])
 
     return (
         <>
-            {data && data.authorities.includes("ADMIN_GLOBAL") && <GlobalAdmin />}
-            {data && data.authorities.includes("ADMIN_LOCAL") && <LocalAdmin />}
-            {data && data.authorities.includes("DOCTOR") && <Client accessToken={data.accessToken} />}
+            {data && data.authorities === "ADMIN_GLOBAL" && <GlobalAdmin />}
+            {data && data.authorities === "ADMIN_LOCAL" && <LocalAdmin />}
+            {data && data.authorities === "DOCTOR" && <Client accessToken={data.accessToken} />}
         </>
     )
 }

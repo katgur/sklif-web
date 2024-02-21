@@ -1,6 +1,6 @@
 import Form from '../../component/ui/Form';
 import Input from '../../component/ui/Form/Input';
-import { selectData } from '../authSlice';
+import { selectData } from '../auth/authSlice';
 import { setPassword } from './usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
