@@ -12,9 +12,9 @@ function AuthorizedPage() {
 
     return (
         <>
-            {auth.authorities === "ADMIN_GLOBAL" && <GlobalAdmin />}
-            {auth.authorities === "ADMIN_LOCAL" && <LocalAdmin />}
-            {auth.authorities === "DOCTOR" && <Client />}
+            {auth.authorities === "global.admin" && <GlobalAdmin />}
+            {auth.authorities === "admin" && <LocalAdmin />}
+            {auth.authorities === "doctor" && <Client />}
         </>
     )
 }

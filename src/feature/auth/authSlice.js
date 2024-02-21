@@ -46,12 +46,12 @@ const authSlice = createSlice({
         setData: (state, action) => {
             const idToken = action.payload.id_token;
             const accessToken = action.payload.access_token;
-            const data = JSON.parse(Buffer.from(idToken.split('.')[1], 'base64').toString());
+            const data = JSON.parse(atob(idToken.split('.')[1], 'base64'));
             return {
                 email: data.email,
                 authorities: data.authorities,
-                idToken: idToken,
-                accessToken: accessToken,
+                idToken,
+                accessToken,
             }
         },
         resetData: () => {
