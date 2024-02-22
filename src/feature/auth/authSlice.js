@@ -41,7 +41,10 @@ export const logout = () => {
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: null,
+    initialState: {
+        email: "global.admin@mail.com",
+        authorities: "global.admin"
+    },
     reducers: {
         setData: (state, action) => {
             const idToken = action.payload.id_token;

@@ -2,7 +2,6 @@
     background-color: white;
     border: 1px solid var(--stroke-color);
     box-shadow: 1px 2px 3px var(--stroke-color);
-    width: fit-content;
 }
 
 .card_padding_m {
@@ -11,4 +10,8 @@
 
 .card_padding_sm {
     padding: 12px;
+}
+
+.card--fit {
+    width: fit-content;
 }

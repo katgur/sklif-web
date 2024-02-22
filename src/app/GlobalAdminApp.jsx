@@ -20,6 +20,8 @@ import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
+import BarChart from '../feature/dashboard/BarChart.jsx';
+import Card from '../component/ui/Card/index.jsx';
 
 const drawerMenu = [
   {
@@ -32,6 +34,11 @@ const drawerMenu = [
     text: "Организации", icon: orgsIcon, options: [
       <Link to="/home/organizations">Список</Link>,
       <Link to="/home/add_organization">Добавить</Link>,
+    ]
+  },
+  {
+    text: "Статистика", options: [
+      <Link to="/home/dashboard">Дашборд</Link>
     ]
   },
   {
@@ -154,11 +161,13 @@ const viewOrganizationPage = (
     <OrganizationViewer />
   </>
 )
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="dashboard" element={<BarChart />} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />
           </Route>
