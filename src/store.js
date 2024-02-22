@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './feature/authSlice';
+import authReducer from './feature/auth/authSlice';
 import usersSliceReducer from './feature/user/usersSlice';
 import orgSliceReducer from './feature/org/orgSlice';
 import storageSliceReducer from './feature/storage/storageSlice';

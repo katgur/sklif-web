@@ -7,10 +7,11 @@ import LinkProvider from '../feature/study/LinkProvider';
 import UploadFileForm from '../feature/storage/UploadFileForm';
 import StudyViewer from '../feature/study/StudyViewer';
 import HomePage from '../page/HomePage.jsx';
-import NotFoundPage from '../page/ui/NotFoundPage.jsx';
+import NotFoundPage from '../page/NotFoundPage.jsx';
 import { Link } from 'react-router-dom';
 import { profileIcon, studyIcon } from '../res/svg';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
+import useAuth from '../hook/useAuth.js';
 
 import * as cornerstone from "cornerstone-core";
 import * as cornerstoneMath from "cornerstone-math";
@@ -118,8 +119,14 @@ const profilePage = (
         <ProfileViewer searchable={false} />
     </>
 )
-function Client({ accessToken }) {
-    initCornerstone(accessToken);
+function Client() {
+    const auth = useAuth();
+
+    if (!auth) {
+        return;
+    }
+
+    initCornerstone(auth.accessToken);
 
     return (
         <Routes>

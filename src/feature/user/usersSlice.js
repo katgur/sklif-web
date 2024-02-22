@@ -10,7 +10,7 @@ export const createUser = user => {
         dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось добавить пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось добавить пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -26,7 +26,7 @@ export const updateUserRole = (email, newRole) => {
         dispatch(editUser({ email, newUser }));
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось изменить права доступа пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось изменить права доступа пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -38,7 +38,7 @@ export const fetchUsers = () => {
         dispatch(setUsers(users));
       })
       .catch(error => {
-        dispatch(addError(`Не удалось получить список пользователей${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось получить список пользователей${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -50,7 +50,7 @@ export const setPassword = (email, newPassword) => {
         dispatch(addSuccess("Пароль изменен"));
       })
       .catch(error => {
-        dispatch(addError(`Не удалось получить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось получить данные пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -66,7 +66,7 @@ export const updateUserInfo = (email, userInfo) => {
         dispatch(editUser({ email, newUser }));
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось изменить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось изменить данные пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -82,7 +82,7 @@ export const updateUserEmail = (email, newEmail) => {
         dispatch(editUser({ email, newUser }))
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -95,7 +95,7 @@ export const deleteUser = (email) => {
         dispatch(addSuccess("Данные пользователя удалены"));
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось удалить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось удалить данные пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }
@@ -107,7 +107,7 @@ export const uploadAvatar = (email, file) => {
         dispatch(addSuccess("Фотография профиля пользователя загружен"));
       })
       .catch((error) => {
-        dispatch(addError(`Не удалось загрузить фотографию профиля пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+        dispatch(addError(`Не удалось загрузить фотографию профиля пользователя${error.message ? `: ${error.message}` : ""}`))
       })
   }
 }

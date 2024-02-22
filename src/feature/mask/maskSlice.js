@@ -8,7 +8,7 @@ export const fetchMask = (path) => {
             dispatch(setResult(mask));
         })
         .catch(error => {
-            dispatch(addError(`Не удалось обработать снимок${error.response ? `: ${error.response.data.error}` : ""}`))
+            dispatch(addError(`Не удалось обработать снимок${error.message ? `: ${error.message}` : ""}`))
         })
 }
 

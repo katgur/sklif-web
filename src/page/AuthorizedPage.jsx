@@ -1,40 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { selectData, setData } from '../feature/authSlice';
 import GlobalAdmin from '../app/GlobalAdminApp.jsx';
 import LocalAdmin from '../app/LocalAdminApp.jsx';
-import { clientUrl, protocol } from '../util/config';
-import api from '../api/authApi';
 import Client from '../app/Client.jsx';
-import { useEffect } from 'react';
-import { setAccessToken } from '../api/client.js';
+import useAuth from '../hook/useAuth.js';
 
 function AuthorizedPage() {
-    const data = useSelector(selectData);
-    const dispatch = useDispatch();
+    const auth = useAuth();
 
-    useEffect(() => {
-        if (!data) {
-            var refresh_token = localStorage.getItem('srt');
-            if (!refresh_token) {
-                window.location.href = `${protocol}://${clientUrl}/login`;
-            }
-            api.refreshToken(refresh_token)
-                .then(response => {
-                    dispatch(setData(response.data));
-                })
-                .catch(error => {
-                    window.location.href = `${protocol}://${clientUrl}/login`;
-                });
-        } else {
-            setAccessToken(data.accessToken);
-        }
-    }, [data, dispatch])
+    if (!auth) {
+        return;
+    }
 
     return (
         <>
-            {data && data.authorities.includes("ADMIN_GLOBAL") && <GlobalAdmin />}
-            {data && data.authorities.includes("ADMIN_LOCAL") && <LocalAdmin />}
-            {data && data.authorities.includes("DOCTOR") && <Client accessToken={data.accessToken} />}
+            {auth.authorities === "global.admin" && <GlobalAdmin />}
+            {auth.authorities === "admin" && <LocalAdmin />}
+            {auth.authorities === "doctor" && <Client />}
         </>
     )
 }

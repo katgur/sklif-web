@@ -18,7 +18,7 @@ function useUser(email) {
           setUser(user);
         })
         .catch(error => {
-          dispatch(addError(`Не удалось получить данные пользователя${error.response ? `: ${error.response.data.error}` : ""}`))
+          dispatch(addError(`Не удалось получить данные пользователя${error.message ? `: ${error.message}` : ""}`))
         })
     }
   }, [user])

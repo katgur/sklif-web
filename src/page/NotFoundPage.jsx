@@ -2,12 +2,12 @@ import React from 'react'
 
 function NotFoundPage({ link }) {
     return (
-        <div className="not-found-page">
-            <h2>Страница не найдена</h2>
-            <p className="text-font">
+        <div>
+            <h1>Страница не найдена</h1>
+            <p>
                 Страница, которую вы ищете, перемещена, удалена или не существует.
             </p>
-            <div className="filled-button">
+            <div>
                 {link}
             </div>
         </div>

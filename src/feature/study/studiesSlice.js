@@ -9,7 +9,7 @@ export const fetchStudies = () => {
                 dispatch(setStudies(studies));
             })
             .catch(error => {
-                dispatch(addError(`Не удалось получить список исследований${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось получить список исследований${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
@@ -22,7 +22,7 @@ export const addComment = (key, comment) => {
                 dispatch(addSuccess("Комментарий добавлен"))
             })
             .catch(error => {
-                dispatch(addError(`Не удалось добавить комментарий к исследованию${error.response ? `: ${error.response.data.error}` : ""}`))
+                dispatch(addError(`Не удалось добавить комментарий к исследованию${error.message ? `: ${error.message}` : ""}`))
             })
     }
 }
