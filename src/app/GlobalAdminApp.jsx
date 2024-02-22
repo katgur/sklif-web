@@ -22,6 +22,7 @@ import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
 import BarChart from '../feature/dashboard/BarChart.jsx';
 import Card from '../component/ui/Card/index.jsx';
+import VisitorsChart from '../feature/dashboard/VisitorsChart.jsx';
 
 const drawerMenu = [
   {
@@ -162,12 +163,20 @@ const viewOrganizationPage = (
   </>
 )
 
+const charts = (
+  <>
+    <BarChart />
+    <div style={{ width: "30%" }}>
+      <VisitorsChart />
+    </div>
+  </>
+)
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={homePage}>
-          <Route path="dashboard" element={<BarChart />} />
+          <Route path="dashboard" element={charts} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />
           </Route>
