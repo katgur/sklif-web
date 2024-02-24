@@ -1,6 +1,7 @@
 import { Bar, BarChart as UIBarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
+import Heading from '../../component/ui/Heading';
 
 const data = Array.from(Array(30).keys()).map(i => {
     return {
@@ -19,11 +20,11 @@ function BarChart() {
     }
     return (
         <Card padding="m">
-            <Stack gap="m" direction="vertical">
-                <h1>
+            <Stack gap="xl" direction="vertical">
+                <Heading variant="h3">
                     Visitors Analytics
-                </h1>
-                <ResponsiveContainer width="100%" height={264}>
+                </Heading>
+                <ResponsiveContainer width="100%" height={264} marginLeft={-100}>
 
                     <UIBarChart {...args}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />

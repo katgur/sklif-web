@@ -13,3 +13,7 @@
 .stack_gap_m {
     gap: 12px;
 }
+
+.stack_gap_xl {
+    gap: 32px;
+}
