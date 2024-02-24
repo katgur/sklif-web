@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 import Popup from '../Popup';
 import { countries } from '../../../util/country';
 
-let scale = 0.6333333333333333;
+let prevMouse = null;
 
 function Map({ data }) {
     const [target, setTarget] = useState(null);
+    const [scale, setScale] = useState(0.63);
+    const [translate, setTranslate] = useState([0, 80]);
 
     useEffect(() => {
         function onMouseOver(e) {
@@ -32,21 +34,39 @@ function Map({ data }) {
         }
     }, [])
 
-    const mapGroup = document.querySelector("#map__regions-group");
+    function onMouseDown(e) {
+        prevMouse = { x: e.screenX, y: e.screenY };
+    }
+
+    function onMouseUp() {
+        prevMouse = null;
+    }
+
+    function onMouseMove(e) {
+        if (!prevMouse) {
+            return;
+        }
+        const { screenX, screenY } = e;
+        setTranslate([translate[0] + screenX - prevMouse.x, translate[1] + screenY - prevMouse.y]);
+        prevMouse.x = screenX;
+        prevMouse.y = screenY;
+    }
 
     const onPlusClick = () => {
-        scale *= 1.5;
-        mapGroup.style.transform = `scale(${scale})`;
+        setScale(scale * 1.5);
     }
 
     const onMinusClick = () => {
-        scale /= 1.5;
-        mapGroup.style.transform = `scale(${scale})`;
+        setScale(scale / 1.5);
     }
 
     return (
         <div className="map">
-            <MapPicture />
+            <svg width="570" height="380" onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+                <defs></defs>
+                <g id="map__regions-group" transform={`scale(${scale}) translate(${translate[0]}, ${translate[1]})`}>
+                    <MapPicture />
+                </g></svg>
             <div className="map__panel">
                 <button className="map__button" onClick={onPlusClick}>
                     <PlusIcon />
@@ -55,7 +75,7 @@ function Map({ data }) {
                     <MinusIcon />
                 </button>
             </div>
-            <Popup target={target} setTarget={setTarget} position="center center">
+            <Popup target={target} setTarget={setTarget} position="center bottom">
                 <div className="map__tooltip font__jost--xs">
                     {countries[target && target.dataset.code]}    {data[target && target.dataset.code]}
                 </div>
