@@ -4,7 +4,7 @@ import MinusIcon from './minus.svg?react';
 import './Map.css';
 import { useEffect, useState } from 'react';
 import Popup from '../Popup';
-import ContextMenu from '../ContextMenu';
+import { countries } from '../../../util/country';
 
 function Map({ data }) {
     const [target, setTarget] = useState(null);
@@ -41,10 +41,10 @@ function Map({ data }) {
                     <MinusIcon />
                 </button>
             </div>
-            <Popup target={target} setTarget={setTarget}>
-                <ContextMenu>
-                    {data[target && target.dataset.code]}
-                </ContextMenu>
+            <Popup target={target} setTarget={setTarget} position="center center">
+                <div className="map__tooltip font__jost--xs">
+                    {countries[target && target.dataset.code]}    {data[target && target.dataset.code]}
+                </div>
             </Popup>
         </div>
     )

@@ -31,3 +31,10 @@
 .map__button:hover>svg {
     fill: var(--white);
 }
+
+.map__tooltip {
+    background-color: #F8FAFC;
+    border: 1px solid var(--stroke-color);
+    border-radius: 4px;
+    padding: 8px 12px;
+}
