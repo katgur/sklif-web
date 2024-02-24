@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import Popup from '../Popup';
 import { countries } from '../../../util/country';
 
+let scale = 0.6333333333333333;
+
 function Map({ data }) {
     const [target, setTarget] = useState(null);
 
@@ -30,14 +32,26 @@ function Map({ data }) {
         }
     }, [])
 
+    const mapGroup = document.querySelector("#map__regions-group");
+
+    const onPlusClick = () => {
+        scale *= 1.5;
+        mapGroup.style.transform = `scale(${scale})`;
+    }
+
+    const onMinusClick = () => {
+        scale /= 1.5;
+        mapGroup.style.transform = `scale(${scale})`;
+    }
+
     return (
         <div className="map">
             <MapPicture />
             <div className="map__panel">
-                <button className="map__button">
+                <button className="map__button" onClick={onPlusClick}>
                     <PlusIcon />
                 </button>
-                <button className="map__button">
+                <button className="map__button" onClick={onMinusClick}>
                     <MinusIcon />
                 </button>
             </div>
