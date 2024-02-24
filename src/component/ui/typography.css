@@ -90,8 +90,8 @@
 }
 
 .font__jost--xs {
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 22px;
     letter-spacing: 0;
     font-family: 'Jost', sans-serif;
 }
@@ -119,6 +119,14 @@
     font-size: 22px;
     line-height: 28px;
     font-family: 'Inter SemiBold', sans-serif;
+}
+
+.font_color_green {
+    color: var(--green-color);
+}
+
+.font_color_yellow {
+    color: var(--yellow-color);
 }
 
 .font_color_error {

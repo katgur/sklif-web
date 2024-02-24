@@ -23,6 +23,7 @@ import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
 import BarChart from '../feature/dashboard/BarChart.jsx';
 import VisitorsChart from '../feature/dashboard/VisitorsChart.jsx';
 import LineChart from '../feature/dashboard/LineChart.jsx';
+import ViewStatistics from '../feature/dashboard/ViewStatistics.jsx';
 
 const drawerMenu = [
   {
@@ -166,6 +167,7 @@ const viewOrganizationPage = (
 const charts = (
   <div className="dashboard-layout">
     <BarChart />
+    <ViewStatistics />
     <VisitorsChart />
     <LineChart />
   </div>

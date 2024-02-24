@@ -257,17 +257,7 @@ header {
     row-gap: 30px;
 }
 
-.dashboard-layout>div:nth-child(1) {
-    grid-column-start: 1;
-    grid-column-end: 5;
-}
-
-.dashboard-layout>div:nth-child(2) {
-    grid-column-start: 1;
-    grid-column-end: 5;
-}
-
-.dashboard-layout>div:nth-child(3) {
+.dashboard-layout>div {
     grid-column-start: 1;
     grid-column-end: 5;
 }
@@ -277,13 +267,18 @@ header {
         grid-column-start: 1;
         grid-column-end: 5;
     }
-    
+
     .dashboard-layout>div:nth-child(2) {
+        grid-column-start: 1;
+        grid-column-end: 5;
+    }
+    
+    .dashboard-layout>div:nth-child(3) {
         grid-column-start: 1;
         grid-column-end: 2;
     }
     
-    .dashboard-layout>div:nth-child(3) {
+    .dashboard-layout>div:nth-child(4) {
         grid-column-start: 2;
         grid-column-end: 5;
     }
