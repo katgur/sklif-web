@@ -14,6 +14,7 @@ function computePosition(rect, selfRect, position) {
     function layoutWithBottomBorder(bottom) {
         return Math.min(window.innerHeight - selfRect.height - 4, bottom);
     }
+    const scroll = window.scrollY;
     const [x, y] = position.split(' ');
     const res = [];
     switch (x) {
@@ -31,13 +32,13 @@ function computePosition(rect, selfRect, position) {
     }
     switch (y) {
         case 'top':
-            res[1] = layoutWithTopBorder(rect.top - selfRect.height - 4);
+            res[1] = layoutWithTopBorder(scroll + rect.top - selfRect.height - 4);
             break;
         case 'center':
-            res[1] = layoutWithBottomBorder(layoutWithTopBorder(rect.top - selfRect.height / 2 + rect.height / 2));
+            res[1] = layoutWithBottomBorder(layoutWithTopBorder(scroll + rect.top - selfRect.height / 2 + rect.height / 2));
             break;
         case 'bottom':
-            res[1] = layoutWithBottomBorder(rect.bottom + 4);
+            res[1] = layoutWithBottomBorder(scroll + rect.bottom + 4);
             break;
         default:
             throw new Error('Invalid position value ' + y);

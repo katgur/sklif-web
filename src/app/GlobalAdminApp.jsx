@@ -24,6 +24,8 @@ import BarChart from '../feature/dashboard/BarChart.jsx';
 import VisitorsChart from '../feature/dashboard/VisitorsChart.jsx';
 import LineChart from '../feature/dashboard/LineChart.jsx';
 import ViewStatistics from '../feature/dashboard/ViewStatistics.jsx';
+import Map from '../component/ui/Map/index.jsx';
+import MapStats from '../feature/dashboard/MapStats.jsx';
 
 const drawerMenu = [
   {
@@ -168,6 +170,7 @@ const charts = (
   <div className="dashboard-layout">
     <BarChart />
     <ViewStatistics />
+    <MapStats />
     <VisitorsChart />
     <LineChart />
   </div>
