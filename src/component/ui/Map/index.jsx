@@ -14,25 +14,19 @@ function Map({ data }) {
     const [translate, setTranslate] = useState([0, 80]);
 
     useEffect(() => {
-        function onMouseOver(e) {
-            setTarget(e.target);
-        }
-        function onMouseOut() {
-            setTarget(null);
-        }
         const regions = document.querySelectorAll(".map__region");
         regions.forEach(region => {
-            region.addEventListener("mouseover", onMouseOver);
-            region.addEventListener("mouseout", onMouseOut);
             region.style.opacity = (data[region.dataset.code] / 200 || 0) + 0.5;
         })
-        return () => {
-            regions.forEach(region => {
-                region.removeEventListener("mouseover", onMouseOver);
-                region.removeEventListener("mouseout", onMouseOut);
-            })
-        }
     }, [])
+
+    function onMouseOver(e) {
+        setTarget(e.target);
+    }
+
+    function onMouseOut() {
+        setTarget(null);
+    }
 
     function onMouseDown(e) {
         prevMouse = { x: e.screenX, y: e.screenY };
@@ -64,7 +58,7 @@ function Map({ data }) {
         <div className="map">
             <svg width="570" height="380" onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
                 <defs></defs>
-                <g id="map__regions-group" transform={`scale(${scale}) translate(${translate[0]}, ${translate[1]})`}>
+                <g onMouseOver={onMouseOver} onMouseOut={onMouseOut} transform={`scale(${scale}) translate(${translate[0]}, ${translate[1]})`}>
                     <MapPicture />
                 </g></svg>
             <div className="map__panel">
