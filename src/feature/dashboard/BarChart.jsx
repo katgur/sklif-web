@@ -24,7 +24,7 @@ function BarChart() {
                 <Heading variant="h3">
                     Visitors Analytics
                 </Heading>
-                <ResponsiveContainer width="100%" height={264} marginLeft={-100}>
+                <ResponsiveContainer width="100%" height={264}>
 
                     <UIBarChart {...args}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />

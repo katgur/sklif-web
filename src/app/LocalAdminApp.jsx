@@ -19,6 +19,7 @@ import NotFoundPage from '../page/NotFoundPage.jsx';
 import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import FileStatistics from '../component/ui/FileStatistics/index.jsx';
+import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 
 const drawerMenu = [
   {
@@ -161,6 +162,7 @@ const dashboard = (
     </Breadcrumbs>
     <div className="dashboard-layout">
       <FileStatistics />
+      <ActivityChart />
     </div>
   </>
 )
