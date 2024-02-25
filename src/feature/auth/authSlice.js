@@ -43,7 +43,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         email: "global.admin@mail.com",
-        authorities: "global.admin"
+        authorities: "admin"
     },
     reducers: {
         setData: (state, action) => {

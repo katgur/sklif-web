@@ -252,14 +252,13 @@ header {
 
 .dashboard-layout {
     display: grid;
-    grid-template-columns: repeat(1fr, 5);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 30px;
     row-gap: 30px;
 }
 
-.dashboard-layout>div {
-    grid-column-start: 1;
-    grid-column-end: 5;
+.dashboard-layout>* {
+    grid-column-start: span 5;
 }
 
 @media (min-width: 1280px) {

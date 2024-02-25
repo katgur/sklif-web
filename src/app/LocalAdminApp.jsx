@@ -18,6 +18,7 @@ import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
 import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
+import FileStatistics from '../component/ui/FileStatistics/index.jsx';
 
 const drawerMenu = [
   {
@@ -30,6 +31,11 @@ const drawerMenu = [
     text: "Хранилище", icon: storageIcon, options: [
       <Link to="/home/files">Список</Link>,
       <Link to="/home/add_file">Загрузить</Link>,
+    ]
+  },
+  {
+    text: "Статистика", options: [
+      <Link to="/home/dashboard">Менеджер файлов</Link>,
     ]
   },
   {
@@ -148,11 +154,23 @@ const addDirectoryPage = (
   </>
 )
 
+const dashboard = (
+  <>
+    <Breadcrumbs title='Статистика'>
+      <Link to={''}>Менеджер файлов</Link>
+    </Breadcrumbs>
+    <div className="dashboard-layout">
+      <FileStatistics />
+    </div>
+  </>
+)
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="dashboard" element={dashboard} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />
           </Route>

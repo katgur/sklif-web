@@ -1,0 +1,39 @@
+.file-stat {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.file-stat__item {
+    width: 100%;
+}
+
+.file-stat__text {
+    text-transform: capitalize;
+}
+
+.file-stat__content {
+    display: flex;
+    gap: 12px;
+}
+
+.file-stat__icon {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color-mix(in srgb, currentColor 10%, transparent);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.file-stat__memory {
+    font-weight: 600;
+    margin-left: auto;
+}
+
+@media (min-width: 1280px) {
+    .file-stat {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -155,3 +155,19 @@
 .font_color_white {
     color: var(--white);
 }
+
+.font_color_purple {
+    color: var(--purple-color);
+}
+
+.font_color_dark-green {
+    color: var(--dark-green-color);
+}
+
+.font_color_blue {
+    color: var(--blue-color);
+}
+
+.font_color_dark-yellow {
+    color: var(--dark-yellow-color)
+}
