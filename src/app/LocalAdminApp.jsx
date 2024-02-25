@@ -21,6 +21,7 @@ import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import FileStatistics from '../component/ui/FileStatistics/index.jsx';
 import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
+import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
 
 const drawerMenu = [
   {
@@ -165,6 +166,7 @@ const dashboard = (
       <FileStatistics />
       <ActivityChart />
       <SpaceChart />
+      <AvailableChart />
     </div>
   </>
 )
