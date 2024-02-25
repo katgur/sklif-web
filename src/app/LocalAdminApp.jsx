@@ -20,6 +20,7 @@ import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import FileStatistics from '../component/ui/FileStatistics/index.jsx';
 import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
+import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 
 const drawerMenu = [
   {
@@ -163,6 +164,7 @@ const dashboard = (
     <div className="dashboard-layout">
       <FileStatistics />
       <ActivityChart />
+      <SpaceChart />
     </div>
   </>
 )

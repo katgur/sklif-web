@@ -17,3 +17,7 @@
 .stack_gap_xl {
     gap: 32px;
 }
+
+.stack_align_center {
+    align-items: center;
+}
