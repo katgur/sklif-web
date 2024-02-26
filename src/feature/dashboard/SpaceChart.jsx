@@ -3,6 +3,7 @@ import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import Article from '../../component/ui/Article';
 import useStats from '../../hook/useStats';
+import LabelButton from '../../component/ui/LabelButton';
 
 function SpaceChart() {
     const data = useStats("space");
@@ -27,9 +28,9 @@ function SpaceChart() {
                 <Article title="Available Storage">
                     150 GB / 250 GB
                 </Article>
-                <button className="label">
+                <LabelButton>
                     Clean
-                </button>
+                </LabelButton>
             </Stack>
         </Card>
     )
