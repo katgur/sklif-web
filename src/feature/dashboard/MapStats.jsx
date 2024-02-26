@@ -3,19 +3,16 @@ import Heading from "../../component/ui/Heading";
 import Map from "../../component/ui/Map";
 import Rating from "../../component/ui/Rating";
 import Stack from "../../component/ui/Stack";
-import { codes } from "../../util/country";
-
-const getData = () => {
-    const res = {};
-    for (const code of codes) {
-        res[code] = (Math.random() * Math.random() * 100).toFixed(0);
-    }
-    return res;
-}
-
-const data = getData();
+import useStats from '../../hook/useStats';
 
 function MapStats() {
+    const data = useStats("map");
+
+    if (!data) {
+        return;
+    }
+
+
     return (
         <Card padding="m">
             <Stack gap="xl" direction="vertical">

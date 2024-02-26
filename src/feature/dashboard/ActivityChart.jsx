@@ -2,17 +2,15 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import Heading from '../../component/ui/Heading';
-
-const data = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"].map(i => {
-    return {
-        name: i,
-        media: Math.random() * 400,
-        photos: Math.random() * 400,
-        docs: Math.random() * 400,
-    }
-})
+import useStats from '../../hook/useStats';
 
 function ActivityChart() {
+    const data = useStats("activity");
+
+    if (!data) {
+        return;
+    }
+    
     return (
         <Card padding="m">
             <Stack gap="m" direction="vertical">

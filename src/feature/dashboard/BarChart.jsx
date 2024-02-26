@@ -1,16 +1,16 @@
-import { Bar, BarChart as UIBarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart as UIBarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import Heading from '../../component/ui/Heading';
-
-const data = Array.from(Array(30).keys()).map(i => {
-    return {
-        name: i + 1,
-        views: Math.random() * 400,
-    }
-})
+import useStats from '../../hook/useStats';
 
 function BarChart() {
+    const data = useStats("visits");
+
+    if (!data) {
+        return;
+    }
+
     const args = {
         data,
         style: {

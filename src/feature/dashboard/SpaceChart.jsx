@@ -2,19 +2,16 @@ import { Pie, PieChart, ResponsiveContainer, Cell, Label } from 'recharts';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import Article from '../../component/ui/Article';
-
-const data = [
-    {
-        "name": "Used",
-        "uv": 85,
-    },
-    {
-        "name": "Available",
-        "uv": 15,
-    },
-]
+import useStats from '../../hook/useStats';
 
 function SpaceChart() {
+    const data = useStats("space");
+
+    if (!data) {
+        return;
+    }
+
+
     return (
         <Card padding="m">
             <Stack gap="m" align="center">

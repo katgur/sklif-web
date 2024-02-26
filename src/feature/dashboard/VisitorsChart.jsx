@@ -2,31 +2,15 @@ import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip, Cell } from 'recha
 import Card from '../../component/ui/Card';
 import Heading from '../../component/ui/Heading';
 import Stack from '../../component/ui/Stack';
-
-const data = [
-    {
-        "name": "Desktop",
-        "uv": 25,
-    },
-    {
-        "name": "Mobile",
-        "uv": 52,
-    },
-    {
-        "name": "Tablet",
-        "uv": 21,
-    },
-    {
-        "name": "Unknown",
-        "uv": 2,
-    },
-]
+import useStats from '../../hook/useStats';
 
 const colors = ["#80CAEE", "#6577F3", "#0FADCF", "#3C50E0"]
 
 function VisitorsChart() {
-    const args = {
-        data
+    const data = useStats("visitors");
+
+    if (!data) {
+        return;
     }
 
     return (
