@@ -2,6 +2,7 @@
     background-color: white;
     border: 1px solid var(--stroke-color);
     box-shadow: 1px 2px 3px var(--stroke-color);
+    height: 100%;
 }
 
 .card_padding_m {

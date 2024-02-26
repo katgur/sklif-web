@@ -28,6 +28,8 @@ import Map from '../component/ui/Map/index.jsx';
 import MapStats from '../feature/dashboard/MapStats.jsx';
 import TopContent from '../feature/dashboard/TopContent.jsx';
 import TopChannels from '../feature/dashboard/TopChannels.jsx';
+import GridLayout from '../component/ui/GridLayout/index.jsx';
+import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 
 const drawerMenu = [
   {
@@ -169,15 +171,29 @@ const viewOrganizationPage = (
 )
 
 const charts = (
-  <div className="dashboard-layout">
-    <BarChart />
-    <ViewStatistics />
-    <MapStats />
-    <TopContent />
-    <TopChannels />
-    <VisitorsChart />
-    <LineChart />
-  </div>
+  <GridLayout areas={`'bar bar bar' 'views views views' 'map map content' 'map map channels' 'visitors line line'`}>
+    <GridCell area="bar">
+      <BarChart />
+    </GridCell>
+    <GridCell area="views">
+      <ViewStatistics />
+    </GridCell>
+    <GridCell area="map">
+      <MapStats />
+    </GridCell>
+    <GridCell area="content">
+      <TopContent />
+    </GridCell>
+    <GridCell area="channels">
+      <TopChannels />
+    </GridCell>
+    <GridCell area="visitors">
+      <VisitorsChart />
+    </GridCell>
+    <GridCell area="line">
+      <LineChart />
+    </GridCell>
+  </GridLayout>
 )
 
 function App() {

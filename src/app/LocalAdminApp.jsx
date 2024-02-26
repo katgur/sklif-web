@@ -22,6 +22,8 @@ import FileStatistics from '../component/ui/FileStatistics/index.jsx';
 import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
+import GridLayout from '../component/ui/GridLayout/index.jsx';
+import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 
 const drawerMenu = [
   {
@@ -162,12 +164,20 @@ const dashboard = (
     <Breadcrumbs title='Статистика'>
       <Link to={''}>Менеджер файлов</Link>
     </Breadcrumbs>
-    <div className="dashboard-layout">
-      <FileStatistics />
-      <ActivityChart />
-      <SpaceChart />
-      <AvailableChart />
-    </div>
+    <GridLayout areas={`'files files files' 'activity activity space' 'activity activity available'`}>
+      <GridCell area="files">
+        <FileStatistics />
+      </GridCell>
+      <GridCell area="activity">
+        <ActivityChart />
+      </GridCell>
+      <GridCell area="space">
+        <SpaceChart />
+      </GridCell>
+      <GridCell area="available">
+        <AvailableChart />
+      </GridCell>
+    </GridLayout>
   </>
 )
 

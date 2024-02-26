@@ -56,7 +56,7 @@ function Map({ data }) {
 
     return (
         <div className="map">
-            <svg width="570" height="380" onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+            <svg width="100%" height="380px" onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
                 <defs></defs>
                 <g onMouseOver={onMouseOver} onMouseOut={onMouseOut} transform={`scale(${scale}) translate(${translate[0]}, ${translate[1]})`}>
                     <MapPicture />
