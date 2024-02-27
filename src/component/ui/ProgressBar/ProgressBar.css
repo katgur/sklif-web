@@ -3,23 +3,24 @@
     width: 100vw;
     background: var(--stroke-color);
     position: absolute;
+    left: 0;
     top: 0;
+    z-index: 100;
 }
 
 @keyframes progress-bar {
     from {
-        width: 0%;
-        margin-left: 0;
+        transform: translateX(0);
     }
 
     to {
-        width: 50%;
-        margin-left: 100%;
+        transform: translateX(100vw) scaleX(3);
     }
 }
 
 .progress__value {
-    height: 5px;
+    width: 10%;
+    height: 100%;
     background: var(--primary-color);
     animation-name: progress-bar;
     animation-duration: 2s;

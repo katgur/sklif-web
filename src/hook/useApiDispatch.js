@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
 import { addSuccess, addError } from "../feature/notification/notificationSlice";
+import { resetProgress, setProgress } from "../feature/progress/progressSlice";
 
 function useApiDispatch() {
     const dispatch = useDispatch();
 
     return async (apiAction) => {
-        // set progress
+        dispatch(setProgress(apiAction.action.type));
         try {
             const data = await apiAction.api();
             dispatch(apiAction.action(data));
@@ -19,7 +20,7 @@ function useApiDispatch() {
             }
             // add status error
         } finally {
-            // reset progress
+            dispatch(resetProgress(apiAction.action.type));
         }
     }
 }

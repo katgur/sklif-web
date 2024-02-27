@@ -14,7 +14,6 @@ import DeleteOrganizationForm from '../feature/org/DeleteOrganizationForm';
 import OrganizationsList from '../feature/org/OrganizationsList';
 import UploadAvatarForm from '../feature/user/UploadAvatarForm';
 import EditOrganizationEmailForm from '../feature/org/EditOrganizationEmailForm';
-import ProgressBar from '../component/ui/ProgressBar';
 import { profileIcon, settingsIcon, usersIcon, orgsIcon } from '../res/svg';
 import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
@@ -24,12 +23,12 @@ import BarChart from '../feature/dashboard/BarChart.jsx';
 import VisitorsChart from '../feature/dashboard/VisitorsChart.jsx';
 import LineChart from '../feature/dashboard/LineChart.jsx';
 import ViewStatistics from '../feature/dashboard/ViewStatistics.jsx';
-import Map from '../component/ui/Map/index.jsx';
 import MapStats from '../feature/dashboard/MapStats.jsx';
 import TopContent from '../feature/dashboard/TopContent.jsx';
 import TopChannels from '../feature/dashboard/TopChannels.jsx';
 import GridLayout from '../component/ui/GridLayout/index.jsx';
 import GridCell from '../component/ui/GridLayout/GridCell.jsx';
+import Progress from '../feature/progress/Progress.jsx';
 
 const drawerMenu = [
   {
@@ -65,7 +64,7 @@ const drawerMenu = [
 
 const homePage = (
   <>
-    <ProgressBar />
+    <Progress />
     <HomePage drawerMenu={drawerMenu} />
   </>
 )
