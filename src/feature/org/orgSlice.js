@@ -2,18 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/organizationApi';
 import { addSuccess, addError } from '../notification/notificationSlice';
 
-const wrapper = (api, action, message) => (...args) => dispatch => {
-    api(...args)
-        .then(data => {
-            dispatch(action(data));
-            dispatch(addSuccess(message));
-        })
-        .catch(error => {
-            dispatch(addError(`${message}: {${error.message}`))
-        })
-}
-
-
 
 // org => {
 //     return dispatch => {
@@ -90,7 +78,25 @@ const orgSlice = createSlice({
 
 export const { addOrg, editOrg, removeOrg, setOrgs } = orgSlice.actions;
 
-export const addOrganization = wrapper(api.postOrganization, addOrg, "Регистрация организации");
+const wrapper = (api, action, message) => (...args) => dispatch => {
+    api(...args)
+        .then(data => {
+            dispatch(action(data));
+            dispatch(addSuccess(message));
+        })
+        .catch(error => {
+            dispatch(addError(`${message}: {${error.message}`))
+        })
+}
+
+export const addOrganization = (org) => {
+    return {
+        api: () => api.postOrganization(org),
+        message: "Регистрация организации",
+        reduxAction: addOrg,
+    }
+}
+// export const addOrganization = wrapper(api.postOrganization, addOrg, "Регистрация организации");
 
 export const selectAll = (state) => state.org;
 

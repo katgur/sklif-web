@@ -7,8 +7,8 @@ import studySliceReducer from './feature/study/studiesSlice';
 import maskSliceReducer from './feature/mask/maskSlice';
 import notificationReducer from './feature/notification/notificationSlice';
 import logger from 'redux-logger'
-
-export default configureStore({
+import { addSuccess } from './feature/notification/notificationSlice';
+const store = configureStore({
     reducer: {
         auth: authReducer,
         users: usersSliceReducer,
@@ -20,3 +20,28 @@ export default configureStore({
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 })
+
+const next = store.dispatch
+store.dispatch = function dispatchAndLogSuccess(action) {
+    const { api, message, reduxAction } = action;
+    api()
+        .then(data => {
+            next(addSuccess(message));
+            next(reduxAction(data));
+        })
+}
+
+//  (api, action, message) => (...args) => dispatch => {
+//     api(...args)
+//         .then(data => {
+//             dispatch(action(data));
+//             dispatch(addSuccess(message));
+//         })
+//         .catch(error => {
+//             dispatch(addError(`${message}: {${error.message}`))
+//         })
+// }
+
+export default store;
+
+
