@@ -6,6 +6,8 @@ import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Radio from '../../component/ui/Form/Radio.jsx';
 import { addError } from '../notification/notificationSlice.js';
 import { createUser } from './usersSlice.js';
+import useApiDispatch from "../../hook/useApiDispatch.js";
+import { useNavigate } from 'react-router';
 
 const fields = [
     {
@@ -33,6 +35,8 @@ const fields = [
 
 function RegisterUserForm() {
     const dispatch = useDispatch();
+    const apiDispatch = useApiDispatch();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         if (data.password !== data.repeatPassword) {
@@ -40,7 +44,10 @@ function RegisterUserForm() {
             return;
         }
         delete data.repeatPassword;
-        dispatch(createUser(data));
+        const isSuccess = apiDispatch(createUser(data));
+        if (isSuccess) {
+            navigate("/home/success/user");
+        }
     }
 
     return (

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import Form from '../../component/ui/Form';
 import { updateUserEmail } from './usersSlice';
 import useUser from '../../hook/useUser';
@@ -12,7 +12,7 @@ const fields = [
 ]
 
 function EditUserEmailForm() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const { email } = useParams();
     const user = useUser(email);
 

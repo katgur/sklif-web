@@ -1,7 +1,7 @@
 import { useState } from "react";
 import editIcon from '../../res/edit.svg';
 import { addComment } from "./studiesSlice";
-import { useDispatch } from "react-redux";
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import Form from '../../component/ui/Form';
 import TextArea from "../../component/ui/Form/TextArea";
 import StorageToolPanel from '../../component/ui/StorageToolPanel';
@@ -9,7 +9,7 @@ import ContextMenu from "../../component/ui/ContextMenu";
 
 function CommentSection({ _key, comments }) {
     const [isEditMode, setIsEditMode] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
 
     const onSubmit = (data) => {
         dispatch(addComment(_key, data.comments))

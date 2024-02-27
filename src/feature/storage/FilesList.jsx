@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { deleteFiles, selectCurrent, setCurrent } from "./storageSlice";
 import { useState } from "react";
 import useStorage from "../../hook/useStorage";
 import SortableTableViewer from "../../component/ui/SortableTableViewer";
 import { folderIcon, fileIcon } from '../../res/svg';
 import StorageToolPanel from "../../component/ui/StorageToolPanel";
+import useApiDispatch from "../../hook/useApiDispatch.js";
 
 const schema = ["Название", "Дата изменения", "Размер"];
 
@@ -76,7 +77,7 @@ const mapFilesForTable = (files, selected) => {
 function FilesList() {
     const files = useStorage();
     const current = useSelector(selectCurrent);
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const [selected, setSelected] = useState(new Set());
 
     if (!files) {

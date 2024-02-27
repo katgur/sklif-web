@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import Form from '../../component/ui/Form';
 import useOrganization from '../../hook/useOrganization';
 import { updateOrganization } from '../../feature/org/orgSlice';
@@ -12,7 +12,7 @@ const fields = [
 ]
 
 function EditOrganizationEmailForm() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const { email } = useParams();
     const organization = useOrganization(email);
 

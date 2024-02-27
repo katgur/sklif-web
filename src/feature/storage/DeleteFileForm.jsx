@@ -1,13 +1,13 @@
 import { deleteDirectory, deleteFiles } from "./storageSlice";
 import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
-import { useDispatch } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import { useNavigate } from 'react-router';
 import { isDirectory } from '../../util/storageUtil';
 
 function DeleteFileForm() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const id = window.location.href.split('?id=')[1];
 
     const onCancel = () => {

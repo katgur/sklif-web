@@ -1,5 +1,6 @@
 import Form from '../../component/ui/Form';
 import { useDispatch } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input.jsx';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
@@ -36,9 +37,8 @@ const fields = [
 
 function GlobalRegisterUserForm() {
     const dispatch = useDispatch();
+    const apiDispatch = useApiDispatch();
     const organizations = useOrganizations();
-
-    console.log(organizations)
 
     if (!organizations) {
         return;
@@ -54,7 +54,7 @@ function GlobalRegisterUserForm() {
             return;
         }
         delete data.repeatPassword;
-        dispatch(createUser(data));
+        apiDispatch(createUser(data));
     }
 
     return (

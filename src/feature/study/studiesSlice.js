@@ -1,29 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/studyApi';
-import { addError, addSuccess } from '../../feature/notification/notificationSlice';
 
 export const fetchStudies = () => {
-    return dispatch => {
-        api.getAll()
-            .then(studies => {
-                dispatch(setStudies(studies));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось получить список исследований${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: api.getAll,
+        action: setStudies,
+        message: {
+            error: "Не удалось получить список исследований",
+        },
     }
 }
 
 export const addComment = (key, comment) => {
-    return dispatch => {
-        api.postComment(key, comment)
-            .then(() => {
-                dispatch(setCommentAdded());
-                dispatch(addSuccess("Комментарий добавлен"))
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось добавить комментарий к исследованию${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: async () => {
+            await api.postComment(key, comment);
+            const newStudy = await api.getById(key);
+            return newStudy;
+        },
+        action: editStudy,
+        message: {
+            success: "Комментарий добавлен",
+            error: "Не удалось добавить комментарий к исследованию",
+        },
     }
 }
 
@@ -33,7 +32,6 @@ const studiesSlice = createSlice({
         list: null,
         current: null,
         info: null,
-        commentAdded: false,
     },
     reducers: {
         setStudies: (state, action) => {
@@ -42,24 +40,17 @@ const studiesSlice = createSlice({
                 list: action.payload
             }
         },
-        setCommentAdded: (state, action) => {
+        editStudy: (state, action) => {
             return {
                 ...state,
-                commentAdded: true
+                list: state.list.filter(item => item.key !== item.payload.key).concat(item.payload),
             }
         },
-        resetCommentAdded: (state, action) => {
-            return {
-                ...state,
-                commentAdded: false
-            }
-        }
     },
 })
 
-export const { resetCommentAdded, setStudies, setCommentAdded } = studiesSlice.actions;
+export const { setStudies } = studiesSlice.actions;
 
 export const selectAll = (state) => state.study.list;
-export const selectCommentAdded = (state) => state.study.commentAdded;
 
 export default studiesSlice.reducer;

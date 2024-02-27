@@ -2,10 +2,11 @@ import Form from '../../component/ui/Form';
 import Input from '../../component/ui/Form/Input';
 import { selectData } from '../auth/authSlice';
 import { setPassword } from './usersSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 
 function EditPasswordForm() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const data = useSelector(selectData);
 
     const onSubmit = ({ password, repeatedPassword }) => {

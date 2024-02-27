@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Form from '../../component/ui/Form';
 import Input from '../../component/ui/Form/Input';
 import { createDirectory, selectCurrent } from './storageSlice';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 
 const fields = [
     {
@@ -10,7 +11,7 @@ const fields = [
 ]
 
 function AddDirectoryForm() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const currentDirectory = useSelector(selectCurrent);
 
     const onSubmit = (data) => {

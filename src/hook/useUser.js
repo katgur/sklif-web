@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import api from '../api/mock/userApi';
 import { addError } from '../feature/notification/notificationSlice';
+import useApiDispatch from "./useApiDispatch.js";
 
 function useUser(email) {
   const [user, setUser] = useState(null);
-  const dispatch = useDispatch();
+  const dispatch = useApiDispatch();
 
   useEffect(() => {
     if (!email) {

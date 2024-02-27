@@ -6,21 +6,25 @@ function useApiDispatch() {
     const dispatch = useDispatch();
 
     return async (apiAction) => {
-        dispatch(setProgress(apiAction.action.type));
+        const { api, action, message } = apiAction;
+        const id = Date.now();
+        dispatch(setProgress(id));
         try {
-            const data = await apiAction.api();
-            dispatch(apiAction.action(data));
-            if (apiAction.message && apiAction.message.success) {
-                dispatch(addSuccess(apiAction.message.success));
+            const data = await api();
+            if (action) {
+                dispatch(action(data));
+            }
+            if (message && message.success) {
+                dispatch(addSuccess(message.success));
             }
             return true;
         } catch (error) {
-            if (apiAction.message && apiAction.message.error) {
-                dispatch(addError(`${apiAction.message.error}: ${error.message}`));
+            if (message && message.error) {
+                dispatch(addError(`${message.error}: ${error.message}`));
             }
             return false;
         } finally {
-            dispatch(resetProgress(apiAction.action.type));
+            dispatch(resetProgress(id));
         }
     }
 }

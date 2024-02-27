@@ -1,10 +1,10 @@
-import { useDispatch } from 'react-redux';
 import Form from '../../component/ui/Form';
 import { updateUserInfo } from './usersSlice';
 import useUser from '../../hook/useUser';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import Input from '../../component/ui/Form/Input';
 import { useParams } from 'react-router';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 
 const updateUserInfoMapper = (data, isGlobal, user) => {
     if (!isGlobal) {
@@ -29,7 +29,7 @@ const fields = [
 ]
 
 function EditUserInfoForm({ isGlobal }) {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const { email } = useParams();
     const user = useUser(email);
     

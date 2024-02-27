@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import { uploadAvatar } from "./usersSlice";
 import useUser from '../../hook/useUser';
 import { useParams } from "react-router";
@@ -12,9 +12,8 @@ function UploadAvatarForm() {
     const { email } = useParams();
     const user = useUser(email);
     const [file, setFile] = useState(null);
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
 
-    console.log(file)
     if (!user) {
         return;
     }

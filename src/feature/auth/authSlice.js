@@ -1,50 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Buffer } from 'buffer';
 import api from '../../api/mock/authApi';
-import { addError } from '../notification/notificationSlice';
 
-export const login = (code, redirectUri, codeVerifier, navigate) => {
-    return dispatch => {
-        api.getToken(code, redirectUri, codeVerifier)
-            .then(data => {
-                navigate("/home");
-                localStorage.setItem('srt', data.refresh_token);
-                dispatch(setData(data));
-            })
-            .catch(error => {
-                navigate("/login");
-                dispatch(addError(`Не удалось выполнить авторизацию${error.message ? `: ${error.message}` : ""}`))
-            })
+export const login = (code, redirectUri, codeVerifier) => {
+    return {
+        api: async () => {
+            const data = await api.getToken(code, redirectUri, codeVerifier);
+            localStorage.setItem('srt', data.refresh_token);
+            return data;
+        },
+        action: setData,
+        message: {
+            error: "Не удалось выполнить авторизацию",
+        },
     }
 }
 
-export const refresh = (refreshToken, navigate) => {
-    return dispatch => {
-        api.refreshToken(refreshToken)
-            .then(data => {
-                localStorage.setItem('srt', data.refresh_token);
-                dispatch(setData(data));
-            })
-            .catch(error => {
-                navigate("/login");
-                dispatch(addError(`Не удалось выполнить авторизацию${error.message ? `: ${error.message}` : ""}`))
-            })
+export const refresh = refreshToken => {
+    return {
+        api: async () => {
+            const data = await api.refreshToken(refreshToken);
+            localStorage.setItem('srt', data.refresh_token);
+            return data;
+        },
+        action: setData,
+        message: {
+            error: "Не удалось выполнить авторизацию",
+        },
     }
 }
 
 export const logout = () => {
-    return dispatch => {
-        localStorage.removeItem('srt');
-        dispatch(resetData());
+    return {
+        api: () => {
+            localStorage.removeItem('srt');
+        },
+        action: resetData,
     }
 }
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        email: "global.admin@mail.com",
-        authorities: "global.admin"
-    },
+    initialState: null,
     reducers: {
         setData: (state, action) => {
             const idToken = action.payload.id_token;

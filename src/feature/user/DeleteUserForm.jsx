@@ -2,12 +2,12 @@ import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
 import { useNavigate, useParams } from 'react-router';
 import useUser from '../../hook/useUser';
-import { useDispatch } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import { deleteUser } from './usersSlice';
 
 function DeleteUserForm() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const { email } = useParams();
     const user = useUser(email);
 

@@ -4,8 +4,8 @@ import { addOrganization } from './orgSlice.js';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
 import { joinAdminFullName } from '../../util/mapper.js';
 import { addError } from '../notification/notificationSlice.js';
-import useApiDispatch from '../../hook/useApiDispatch.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import { useNavigate } from 'react-router';
 
 const fields = [

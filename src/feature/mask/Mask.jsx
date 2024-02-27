@@ -1,11 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchMask, selectResult } from "./maskSlice";
 import MaskedImage from "../../component/ui/MaskedImage";
 import { useEffect } from "react";
+import useApiDispatch from "../../hook/useApiDispatch.js";
 
 function Mask({ path }) {
     const result = useSelector(selectResult);
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
 
     useEffect(() => {
         dispatch(fetchMask(path));

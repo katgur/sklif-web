@@ -4,7 +4,7 @@ import DataViewer from "../../component/ui/DataViewer";
 import api from "../../api/mock/storageApi";
 import useStudy from '../../hook/useStudy';
 import Card from '../../component/ui/Card';
-import Link from '../../component/ui/Link';
+import Link from '../../component/ui/LinkButton';
 import { Link as RouteLink } from 'react-router-dom';
 import Stack from "../../component/ui/Stack";
 

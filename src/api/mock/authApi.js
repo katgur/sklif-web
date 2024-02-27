@@ -1,12 +1,12 @@
 export const _code = "test";
-export let idToken;
 
-export const setClientLogin = (login) => {
+const getIdToken = () => {
+    const login = sessionStorage.getItem("login");
     const payload = btoa(JSON.stringify({
         email: `${login}@mail.com`,
         authorities: login,
     }));
-    idToken = ["header", payload, "sign"].join('.');
+    return ["header", payload, "sign"].join('.');
 }
 
 const getToken = async (code) => {
@@ -14,7 +14,7 @@ const getToken = async (code) => {
         throw new Error("Unauthorized");
     }
     return {
-        id_token: idToken,
+        id_token: getIdToken(),
         access_token: "",
         refresh_token: "refresh_token",
     }
@@ -25,7 +25,7 @@ const refreshToken = async (refresh_token) => {
         throw new Error("Unauthorized");
     }
     return {
-        id_token: idToken,
+        id_token: getIdToken(),
         access_token: "",
         refresh_token: "refresh_token",
     }

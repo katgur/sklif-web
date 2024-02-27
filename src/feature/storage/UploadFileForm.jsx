@@ -1,6 +1,5 @@
-import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { uploadFiles, selectDirectories, createDirectory, createDirectoryAndLoadFiles } from './storageSlice';
+import { useState } from "react";
+import { uploadFiles, createDirectoryAndLoadFiles } from './storageSlice';
 import useStorage from "../../hook/useStorage";
 import DragAndDrop from "../../component/ui/DragAndDrop";
 import Form from '../../component/ui/Form';
@@ -8,6 +7,8 @@ import Select from '../../component/ui/Form/Select';
 import Input from '../../component/ui/Form/Input';
 import Checkbox from '../../component/ui/Form/Checkbox';
 import Details from '../../component/ui/Details';
+import useApiDispatch from "../../hook/useApiDispatch";
+import { useNavigate } from "react-router";
 
 const isDirectory = (key) => {
     return key.slice(-1) === "/";
@@ -16,15 +17,17 @@ const isDirectory = (key) => {
 function UploadFileForm() {
     const storage = useStorage();
     const [files, setFiles] = useState();
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
+    const navigate = useNavigate();
 
     const directories = storage.map(file => file.key).filter(isDirectory);
 
     const onSubmit = (data) => {
-        if (data.hasNewDirectory) {
-            dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files));
-        } else {
+        const isSuccess = data.hasNewDirectory ?
+            dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files)) :
             dispatch(uploadFiles(data.directory, files));
+        if (isSuccess) {
+            navigate("/home/success/file");
         }
     }
 

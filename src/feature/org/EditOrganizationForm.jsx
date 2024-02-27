@@ -1,6 +1,6 @@
 import Form from '../../component/ui/Form';
 import Input from '../../component/ui/Form/Input.jsx';
-import { useDispatch } from 'react-redux';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import { updateOrganization } from './orgSlice.js';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
 import { useParams } from 'react-router';
@@ -28,10 +28,8 @@ const fields = [
     },
 ]
 
-
-
 function EditOrganizationForm() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const { email } = useParams();
     const organization = useOrganization(email);
 
