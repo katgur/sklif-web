@@ -6,6 +6,8 @@ body {
     --gray-color: #EFF4FB;
     --white-hover-color: #DEE4EE;
     --notification-color: #DC3545;
+    --yellow-color: #F0950C;
+    --green-color: #10B981;
     --black: #212B36;
     --text-color-2: #637381;
     --backdrop-color: rgb(33, 43, 54, 0.85);
@@ -24,4 +26,8 @@ body {
     --success-color: #34D399;
     --success-title-color: #004434;
     --success-text-color: #637381;
+    --purple-color: #9b51e0;
+    --dark-green-color: #219653;
+    --blue-color: #2f80ed;
+    --dark-yellow-color: #f2994a;
 }

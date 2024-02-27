@@ -18,6 +18,12 @@ import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
 import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
+import FileStatistics from '../component/ui/FileStatistics/index.jsx';
+import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
+import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
+import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
+import GridLayout from '../component/ui/GridLayout/index.jsx';
+import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 
 const drawerMenu = [
   {
@@ -30,6 +36,11 @@ const drawerMenu = [
     text: "Хранилище", icon: storageIcon, options: [
       <Link to="/home/files">Список</Link>,
       <Link to="/home/add_file">Загрузить</Link>,
+    ]
+  },
+  {
+    text: "Статистика", options: [
+      <Link to="/home/dashboard">Менеджер файлов</Link>,
     ]
   },
   {
@@ -148,11 +159,34 @@ const addDirectoryPage = (
   </>
 )
 
+const dashboard = (
+  <>
+    <Breadcrumbs title='Статистика'>
+      <Link to={''}>Менеджер файлов</Link>
+    </Breadcrumbs>
+    <GridLayout areas={`'files files files' 'activity activity space' 'activity activity available'`}>
+      <GridCell area="files">
+        <FileStatistics />
+      </GridCell>
+      <GridCell area="activity">
+        <ActivityChart />
+      </GridCell>
+      <GridCell area="space">
+        <SpaceChart />
+      </GridCell>
+      <GridCell area="available">
+        <AvailableChart />
+      </GridCell>
+    </GridLayout>
+  </>
+)
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="dashboard" element={dashboard} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />
           </Route>

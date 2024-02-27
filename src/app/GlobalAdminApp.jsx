@@ -20,6 +20,16 @@ import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
+import BarChart from '../feature/dashboard/BarChart.jsx';
+import VisitorsChart from '../feature/dashboard/VisitorsChart.jsx';
+import LineChart from '../feature/dashboard/LineChart.jsx';
+import ViewStatistics from '../feature/dashboard/ViewStatistics.jsx';
+import Map from '../component/ui/Map/index.jsx';
+import MapStats from '../feature/dashboard/MapStats.jsx';
+import TopContent from '../feature/dashboard/TopContent.jsx';
+import TopChannels from '../feature/dashboard/TopChannels.jsx';
+import GridLayout from '../component/ui/GridLayout/index.jsx';
+import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 
 const drawerMenu = [
   {
@@ -32,6 +42,11 @@ const drawerMenu = [
     text: "Организации", icon: orgsIcon, options: [
       <Link to="/home/organizations">Список</Link>,
       <Link to="/home/add_organization">Добавить</Link>,
+    ]
+  },
+  {
+    text: "Статистика", options: [
+      <Link to="/home/dashboard">Дашборд</Link>
     ]
   },
   {
@@ -154,11 +169,39 @@ const viewOrganizationPage = (
     <OrganizationViewer />
   </>
 )
+
+const charts = (
+  <GridLayout areas={`'bar bar bar' 'views views views' 'map map content' 'map map channels' 'visitors line line'`}>
+    <GridCell area="bar">
+      <BarChart />
+    </GridCell>
+    <GridCell area="views">
+      <ViewStatistics />
+    </GridCell>
+    <GridCell area="map">
+      <MapStats />
+    </GridCell>
+    <GridCell area="content">
+      <TopContent />
+    </GridCell>
+    <GridCell area="channels">
+      <TopChannels />
+    </GridCell>
+    <GridCell area="visitors">
+      <VisitorsChart />
+    </GridCell>
+    <GridCell area="line">
+      <LineChart />
+    </GridCell>
+  </GridLayout>
+)
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="dashboard" element={charts} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />
           </Route>

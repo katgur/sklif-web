@@ -1,0 +1,10 @@
+.label {
+    background-color: var(--green-color);
+    border-radius: 8px 0 0 8px;
+    padding: 8px 4px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: white;
+    margin-left: auto;
+    transform: translateX(24px);
+}

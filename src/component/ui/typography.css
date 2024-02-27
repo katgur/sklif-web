@@ -89,9 +89,16 @@
     font-family: 'Inter SemiBold', sans-serif;
 }
 
+.font__jost--xxs {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+    font-family: 'Jost', sans-serif;
+}
+
 .font__jost--xs {
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 22px;
     letter-spacing: 0;
     font-family: 'Jost', sans-serif;
 }
@@ -101,6 +108,32 @@
     line-height: 24px;
     letter-spacing: 0;
     font-family: 'Jost Medium', sans-serif;
+}
+
+.font--h1 {
+    font-size: 28px;
+    line-height: 34px;
+    font-family: 'Inter SemiBold', sans-serif;
+}
+
+.font--h2 {
+    font-size: 24px;
+    line-height: 30px;
+    font-family: 'Inter SemiBold', sans-serif;
+}
+
+.font--h3 {
+    font-size: 22px;
+    line-height: 28px;
+    font-family: 'Inter SemiBold', sans-serif;
+}
+
+.font_color_green {
+    color: var(--green-color);
+}
+
+.font_color_yellow {
+    color: var(--yellow-color);
 }
 
 .font_color_error {
@@ -117,4 +150,24 @@
 
 .font_color_text {
     color: var(--text-color);
+}
+
+.font_color_white {
+    color: var(--white);
+}
+
+.font_color_purple {
+    color: var(--purple-color);
+}
+
+.font_color_dark-green {
+    color: var(--dark-green-color);
+}
+
+.font_color_blue {
+    color: var(--blue-color);
+}
+
+.font_color_dark-yellow {
+    color: var(--dark-yellow-color)
 }

@@ -1,0 +1,40 @@
+.map {
+    width: 100%;
+    height: 100%;
+}
+
+.map__region:hover {
+    opacity: 1;
+}
+
+.map__panel {
+    display: flex;
+    gap: 10px;
+}
+
+.map__button {
+    display: flex;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: #E7E7E7;
+}
+
+.map__button>svg {
+    fill: #637381;
+}
+
+.map__button:hover {
+    background-color: var(--primary-color);
+}
+
+.map__button:hover>svg {
+    fill: var(--white);
+}
+
+.map__tooltip {
+    background-color: #F8FAFC;
+    border: 1px solid var(--stroke-color);
+    border-radius: 4px;
+    padding: 8px 12px;
+}

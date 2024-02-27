@@ -20,7 +20,7 @@ function ServerLoginPage() {
 
     return (
         <Card padding="m">
-            <Form title="Авторизация" entity={{ login: "doctor", password: "test" }} onSubmit={onSubmit}>
+            <Form title="Авторизация" entity={{ login: "global.admin", password: "test" }} onSubmit={onSubmit}>
                 <Input field={{ name: "login", text: "Логин", type: "text", required: true }} />
                 <Input field={{ name: "password", text: "Пароль", type: "password", required: true }} />
             </Form>
