@@ -1,59 +1,50 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/organizationApi';
-import { addSuccess, addError } from '../notification/notificationSlice';
 
-
-// org => {
-//     return dispatch => {
-//         api.postOrganization(org)
-//             .then(newOrg => {
-//                 dispatch(addOrg(newOrg));
-//                 dispatch(addSuccess(`Организация ${newOrg.name} добавлена`));
-//             })
-//             .catch(error => {
-//                 dispatch(addError(`Не удалось добавить организацию${error.message ? `: ${error.message}` : ""}`))
-//             })
-//     }
-// }
+export const addOrganization = (org) => {
+    return {
+        api: async () => await api.postOrganization(org),
+        action: addOrg,
+        message: {
+            success: "Организация зарегистрирована",
+            error: "Не удалось зарегистрировать организацию",
+        }
+    }
+}
 
 export const updateOrganization = (email, org) => {
-    return dispatch => {
-        api.patchOrganization(email, org)
-            .then(() => {
-                dispatch(addSuccess(`Данные организации изменены`));
-                return api.getOrganization(org.email);
-            })
-            .then(newOrg => {
-                dispatch(editOrg({ email, org: newOrg }));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось редактировать данные организации${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: async () => {
+            await api.patchOrganization(email, org);
+            const newOrg = await api.getOrganization(org.email);
+            return { email, newOrg };
+        },
+        action: editOrg,
+        message: {
+            success: "Данные организации обновлены",
+            error: "Не удалось обновить данные организации",
+        }
     }
 }
 
 export const deleteOrganization = email => {
-    return dispatch => {
-        api.deleteOrganization(email)
-            .then(() => {
-                dispatch(removeOrg(email));
-                dispatch(addSuccess(`Данные организации удалены`));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось удалить данные организации${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: async () => await api.deleteOrganization(email),
+        action: removeOrg,
+        message: {
+            success: "Данные организации удалены",
+            error: "Не удалось удалить данные организации",
+        }
     }
 }
 
 export const fetchOrganizations = () => {
-    return dispatch => {
-        api.getOrganizations()
-            .then(orgs => {
-                dispatch(setOrgs(orgs));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось получить список организаций${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: api.getOrganizations,
+        action: setOrgs,
+        message: {
+            error: "Не удалось получить список организаций",
+        }
     }
 }
 
@@ -77,26 +68,6 @@ const orgSlice = createSlice({
 })
 
 export const { addOrg, editOrg, removeOrg, setOrgs } = orgSlice.actions;
-
-const wrapper = (api, action, message) => (...args) => dispatch => {
-    api(...args)
-        .then(data => {
-            dispatch(action(data));
-            dispatch(addSuccess(message));
-        })
-        .catch(error => {
-            dispatch(addError(`${message}: {${error.message}`))
-        })
-}
-
-export const addOrganization = (org) => {
-    return {
-        api: () => api.postOrganization(org),
-        message: "Регистрация организации",
-        reduxAction: addOrg,
-    }
-}
-// export const addOrganization = wrapper(api.postOrganization, addOrg, "Регистрация организации");
 
 export const selectAll = (state) => state.org;
 

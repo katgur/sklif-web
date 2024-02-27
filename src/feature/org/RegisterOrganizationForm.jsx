@@ -1,10 +1,11 @@
 import Form from '../../component/ui/Form/index.jsx';
 import Input from '../../component/ui/Form/Input.jsx';
-import { useDispatch } from 'react-redux';
 import { addOrganization } from './orgSlice.js';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
 import { joinAdminFullName } from '../../util/mapper.js';
 import { addError } from '../notification/notificationSlice.js';
+import useApiDispatch from '../../hook/useApiDispatch.js';
+import { useDispatch } from 'react-redux';
 
 const fields = [
     {
@@ -38,6 +39,7 @@ const fields = [
 
 function RegisterOrganizationForm() {
     const dispatch = useDispatch();
+    const apiDispatch = useApiDispatch();
 
     const onSubmit = (data) => {
         if (data.password !== data.repeatPassword) {
@@ -45,7 +47,7 @@ function RegisterOrganizationForm() {
             return;
         }
         delete data.repeatPassword;
-        dispatch(addOrganization(joinAdminFullName(data)));
+        apiDispatch(addOrganization(joinAdminFullName(data)));
     }
 
     return (
