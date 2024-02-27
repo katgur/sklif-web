@@ -20,10 +20,10 @@ const fields = [
         name: "administratorPatronymic", text: "Отчество администратора", type: "text", required: false
     },
     {
-        name: "address", text: "Адрес", type: "text", required: true
+        name: "address", text: "Адрес", type: "text"
     },
     {
-        name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", required: true
+        name: "phoneNumber", text: "Номер телефона", type: "phoneNumber"
     },
     {
         name: "email", text: "Почта", type: "email", required: true
