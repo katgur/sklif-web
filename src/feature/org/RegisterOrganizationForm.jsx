@@ -6,6 +6,7 @@ import { joinAdminFullName } from '../../util/mapper.js';
 import { addError } from '../notification/notificationSlice.js';
 import useApiDispatch from '../../hook/useApiDispatch.js';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 const fields = [
     {
@@ -40,14 +41,18 @@ const fields = [
 function RegisterOrganizationForm() {
     const dispatch = useDispatch();
     const apiDispatch = useApiDispatch();
+    const navigate = useNavigate();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.password !== data.repeatPassword) {
             dispatch(addError("Введенные пароли не совпадают, попробуйте снова"));
             return;
         }
         delete data.repeatPassword;
-        apiDispatch(addOrganization(joinAdminFullName(data)));
+        const isSuccess = await apiDispatch(addOrganization(joinAdminFullName(data)));
+        if (isSuccess) {
+            navigate("/home/success/org");
+        }
     }
 
     return (

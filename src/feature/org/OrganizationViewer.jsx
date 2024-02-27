@@ -1,7 +1,7 @@
 import DataViewer from '../../component/ui/DataViewer';
 import { useParams } from 'react-router';
 import { Link as RouteLink } from 'react-router-dom';
-import Link from '../../component/ui/Link';
+import LinkButton from '../../component/ui/LinkButton';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import useOrganization from '../../hook/useOrganization';
@@ -43,12 +43,12 @@ function OrganizationViewer({ searchable }) {
         <Card padding="m">
             <Stack direction="horizontal" gap="m">
                 <Picture avatarURL={avatarURL}>
-                    <Link style="primary">
-                        <RouteLink to={`/home/edit_organization/${email}`}>Редактировать</RouteLink>
-                    </Link>
-                    <Link style="secondary">
-                        <RouteLink to={`/home/delete_organization/${email}`}>Удалить</RouteLink>
-                    </Link>
+                    <LinkButton style="primary">
+                        <RouteLink to={`/home/edit_org/${email}`}>Редактировать</RouteLink>
+                    </LinkButton>
+                    <LinkButton style="secondary">
+                        <RouteLink to={`/home/delete_org/${email}`}>Удалить</RouteLink>
+                    </LinkButton>
                 </Picture>
                 <DataViewer
                     path={searchable && 'organizations'}

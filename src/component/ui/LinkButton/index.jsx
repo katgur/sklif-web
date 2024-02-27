@@ -1,6 +1,6 @@
 import './Link.css';
 
-function Link({ children, style }) {
+function LinkButton({ children, style }) {
     return (
         <div className={`link link_theme_${style} font__inter--sm font_color_${style === "primary" ? "gray" : "primary"}`}>
             {children}
@@ -8,4 +8,4 @@ function Link({ children, style }) {
     )
 }
 
-export default Link
+export default LinkButton

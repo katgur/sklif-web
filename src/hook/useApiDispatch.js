@@ -13,12 +13,12 @@ function useApiDispatch() {
             if (apiAction.message && apiAction.message.success) {
                 dispatch(addSuccess(apiAction.message.success));
             }
-            // add status ok
+            return true;
         } catch (error) {
             if (apiAction.message && apiAction.message.error) {
                 dispatch(addError(`${apiAction.message.error}: ${error.message}`));
             }
-            // add status error
+            return false;
         } finally {
             dispatch(resetProgress(apiAction.action.type));
         }

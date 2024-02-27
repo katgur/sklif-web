@@ -29,6 +29,7 @@ import TopChannels from '../feature/dashboard/TopChannels.jsx';
 import GridLayout from '../component/ui/GridLayout/index.jsx';
 import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 import Progress from '../feature/progress/Progress.jsx';
+import Success from '../component/Success.jsx';
 
 const drawerMenu = [
   {
@@ -40,7 +41,7 @@ const drawerMenu = [
   {
     text: "Организации", icon: orgsIcon, options: [
       <Link to="/home/organizations">Список</Link>,
-      <Link to="/home/add_organization">Добавить</Link>,
+      <Link to="/home/add_org">Добавить</Link>,
     ]
   },
   {
@@ -211,14 +212,16 @@ function App() {
           <Route path="organizations" element={organizationsPage}>
             <Route path="search/:search" />
           </Route>
-          <Route path="add_organization" element={addOrganizationPage} />
-          <Route path="edit_organization/:email" element={editOrganizationPage} />
-          <Route path="delete_organization/:email" element={<DeleteOrganizationForm />} />
+          <Route path="add_org" element={addOrganizationPage} />
+          <Route path="edit_org/:email" element={editOrganizationPage} />
+          <Route path="delete_org/:email" element={<DeleteOrganizationForm />} />
 
           <Route path="organization/:email" element={viewOrganizationPage} />
           <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profileViewer} />
           <Route path="settings" element={settingsPage} />
+
+          <Route path="success/:feature" element={<Success />} />
         </Route>
         <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
       </Routes>

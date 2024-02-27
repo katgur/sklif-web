@@ -2,7 +2,7 @@ import useUser from '../../hook/useUser';
 import DataViewer from '../../component/ui/DataViewer';
 import { useParams } from 'react-router';
 import { Link as RouteLink } from 'react-router-dom';
-import Link from '../../component/ui/Link';
+import LinkButton from '../../component/ui/LinkButton';
 import Picture from '../../component/ui/Picture';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
@@ -41,12 +41,12 @@ function ProfileViewer({ searchable }) {
                     {
                         auth.authorities !== "DOCTOR" &&
                         <>
-                            <Link style="primary">
+                            <LinkButton style="primary">
                                 <RouteLink to={`/home/edit_user/${user.email}`}>Редактировать</RouteLink>
-                            </Link>
-                            <Link style="secondary">
+                            </LinkButton>
+                            <LinkButton style="secondary">
                                 <RouteLink to={`/home/delete_user/${user.email}`}>Удалить профиль</RouteLink>
-                            </Link>
+                            </LinkButton>
                         </>
                     }
                 </Picture>
