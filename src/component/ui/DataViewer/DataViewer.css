@@ -35,3 +35,16 @@
     flex-direction: column;
     gap: 16px;
 }
+
+.outline-badge {
+    background-color: var(--gray-color);
+    font-size: small;
+    color: var(--primary-color);
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.outline-badge:hover {
+    background-color: var(--stroke-color);
+}

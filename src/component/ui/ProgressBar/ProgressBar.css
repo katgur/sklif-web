@@ -1,5 +1,5 @@
 .progress__track {
-    height: 5px;
+    height: var(--progress-bar-height);
     width: 100vw;
     background: var(--stroke-color);
     position: absolute;

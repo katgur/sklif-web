@@ -39,7 +39,7 @@ function DataViewer({ title, entity, schema, path, children }) {
                         return (
                             value && value.length !== 0 && value[0] &&
                             <li>
-                                <span className="title-font">{tab.text}&emsp;</span>
+                                <span>{tab.text}&emsp;</span>
                                 <span onClick={() => onValueClick(value)} className="outline-badge">{value}</span>
                             </li>
                         )

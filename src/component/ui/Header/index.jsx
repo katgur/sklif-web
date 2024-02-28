@@ -12,7 +12,7 @@ function Header({ user, onSearchClick, onLogoutButtonClick }) {
     }
 
     return (
-        <header>
+        <header className='header'>
             <div className='header__user'>
                 <p className='header__user-name'>
                     <span className='header__title font__nunito--sm'>

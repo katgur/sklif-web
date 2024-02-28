@@ -3,6 +3,7 @@ import Card from "../../ui/Card"
 import Form from "../../ui/Form"
 import Input from "../../ui/Form/Input"
 import { _code as code } from "../../../api/mock/authApi"
+import Box from "../../ui/Box"
 
 function ServerLoginPage() {
     const [params] = useSearchParams();
@@ -18,12 +19,14 @@ function ServerLoginPage() {
     }
 
     return (
-        <Card padding="m">
-            <Form title="Авторизация" entity={{ login: "global.admin", password: "test" }} onSubmit={onSubmit}>
-                <Input field={{ name: "login", text: "Логин", type: "text", required: true }} />
-                <Input field={{ name: "password", text: "Пароль", type: "password", required: true }} />
-            </Form>
-        </Card>
+        <Box>
+            <Card padding="m">
+                <Form title="Авторизация" entity={{ login: "global.admin", password: "test" }} onSubmit={onSubmit}>
+                    <Input field={{ name: "login", text: "Логин", type: "text", required: true }} />
+                    <Input field={{ name: "password", text: "Пароль", type: "password", required: true }} />
+                </Form>
+            </Card>
+        </Box>
     )
 }
 

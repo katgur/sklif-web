@@ -1,4 +1,6 @@
-body {
+:root {
+    --header-height: 80px;
+    --progress-bar-height: 5px;
     --white: #fff;
     --dark-color: #1C2434;
     --text-color: #64748B;

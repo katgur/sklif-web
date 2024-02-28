@@ -1,6 +1,8 @@
 import React from "react";
 import './Drawer.css';
+import '../nullify.css';
 import '../typography.css';
+import '../index.css';
 
 function Drawer({ menu, logo }) {
     if (!menu) {
