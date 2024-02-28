@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchFiles, selectAll } from "../feature/storage/storageSlice";
+import useApiDispatch from "./useApiDispatch.js";
 
 function useStorage() {
     const isFetched = useRef(false);
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const files = useSelector(selectAll);
 
     useEffect(() => {

@@ -1,86 +1,72 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/storageApi';
-import { addSuccess, addError } from '../notification/notificationSlice';
 
 export const fetchFiles = () => {
-    return dispatch => {
-        api.getFiles()
-            .then(files => {
-                dispatch(setFiles(files));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось получить список файлов${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: api.getFiles,
+        action: setFiles,
+        message: {
+            error: "Не удалось получить список файлов",
+        },
     }
 }
 
 export const uploadFiles = (path, files) => {
-    return dispatch => {
-        api.postFile(path, files)
-            .then(files => {
-                addFiles(files);
-                dispatch(addSuccess(`Новые файлы (${files.length}) загружены в хранилище`));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось загрузить файлы${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: async () => await api.postFile(path, files),
+        action: addFiles,
+        message: {
+            success: "Новые файлы загружены в хранилище",
+            error: "Не удалось загрузить файлы",
+        },
     }
 }
 
-export const deleteFiles = (keys) => {
-    return dispatch => {
-        api.deleteFile(keys)
-            .then(() => {
-                dispatch(removeFiles(keys));
-                dispatch(addSuccess("Файлы удалены из хранилища"));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось удалить файлы${error.message ? `: ${error.message}` : ""}`))
-            })
+export const deleteFiles = keys => {
+    return {
+        api: async () => await api.deleteFile(keys),
+        action: removeFiles,
+        message: {
+            success: "Файлы удалены из хранилища",
+            error: "Не удалось удалить файлы",
+        },
     }
 }
 
 export const createDirectory = (path, name) => {
-    return dispatch => {
-        api.postDirectory(path, name)
-            .then((file) => {
-                dispatch(addFiles([file]));
-                dispatch(addSuccess("Новая директория создана"));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось создать директорию${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: async () => await api.postDirectory(path, name),
+        action: addFile,
+        message: {
+            success: "Новая директория создана",
+            error: "Не удалось создать директорию",
+        },
     }
 }
 
 export const createDirectoryAndLoadFiles = (path, newDirectoryName, files) => {
-    return dispatch => {
-        api.postDirectory(path, newDirectoryName)
-            .then((file) => {
-                dispatch(addFiles([file]));
-                dispatch(addSuccess("Новая директория создана"));
-                return api.postFile(file.key, files);
-            })
-            .then((keys) => {
-                addFiles(keys);
-                dispatch(addSuccess(`Новые файлы (${keys.length}) загружены в хранилище`));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось загрузить файлы${error.message ? `: ${error.message}` : ""}`))
-            })
+    return {
+        api: async () => {
+            const dir = await api.postDirectory(path, newDirectoryName);
+            const newFiles = await api.postFile(dir.key, files);
+            return [dir, ...newFiles];
+        },
+        action: addFiles,
+        message: {
+            success: "Новые файлы загружены в хранилище",
+            error: "Не удалось загрузить файлы",
+        },
     }
 }
 
-export const deleteDirectory = (key) => {
-    return dispatch => {
-        api.deleteDirectory(key)
-            .then(() => {
-                dispatch(removeFiles([key]));
-                dispatch(addSuccess("Директория удалена"));
-            })
-            .catch(error => {
-                dispatch(addError(`Не удалось удалить директорию${error.message ? `: ${error.message}` : ""}`))
-            })
+export const deleteDirectory = key => {
+    return {
+        api: async () => await api.deleteDirectory(key),
+        action: removeFile,
+        message: {
+            success: "Директория удалена",
+            error: "Не удалось удалить директорию",
+        },
     }
 }
 
@@ -97,10 +83,22 @@ const storageSlice = createSlice({
                 list: action.payload
             }
         },
+        addFile: (state, action) => {
+            return {
+                ...state,
+                list: [...state.list, action.payload]
+            }
+        },
         addFiles: (state, action) => {
             return {
                 ...state,
                 list: [...state.list, ...action.payload]
+            }
+        },
+        removeFile: (state, action) => {
+            return {
+                ...state,
+                list: state.list.filter(item => item.key !== action.payload.key)
             }
         },
         removeFiles: (state, action) => {
@@ -122,31 +120,6 @@ const storageSlice = createSlice({
 export const selectAll = (state) => state.storage.list;
 export const selectCurrent = (state) => state.storage.current;
 
-export const selectDirectories = (state) => state.storage.list.filter((d) => {
-    var path = d.key.split('/');
-    return path[path.length - 1] === "";
-})
-
-export const selectFiles = (state) => state.storage.list.filter((d) => {
-    var path = d.key.split('/');
-    return path[path.length - 1] !== "";
-})
-
-export const selectCurrentDirectories = (state) => state.storage.list.filter((d) => {
-    var path = d.key.split('/');
-    return path[path.length - 1] === ""
-        && d.key.includes(state.storage.current)
-        && d.key.replace(state.storage.current, "").split('/').length === 2;
-})
-
-export const selectCurrentFiles = (state) => state.storage.list.filter((d) => {
-    var path = d.key.split('/');
-    return path[path.length - 1] !== ""
-        && d.key.includes(state.storage.current)
-        && d.key.replace(state.storage.current, "").split('/').length === 1;
-})
-
-
-export const { addFiles, editFile, removeFiles, setFiles, setCurrent } = storageSlice.actions;
+export const { addFiles, removeFiles, addFile, setFiles, removeFile, setCurrent } = storageSlice.actions;
 
 export default storageSlice.reducer;

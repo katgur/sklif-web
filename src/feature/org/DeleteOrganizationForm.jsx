@@ -1,13 +1,12 @@
 import Form from '../../component/ui/Form';
 import Modal from '../../component/ui/Modal';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 import { deleteOrganization } from './orgSlice';
 import useOrganization from '../../hook/useOrganization';
 import { useNavigate, useParams } from 'react-router';
 
 function DeleteOrganizationForm() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const navigate = useNavigate();
     const { email } = useParams();
     const organization = useOrganization(email);

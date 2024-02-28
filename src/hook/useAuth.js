@@ -1,24 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { refresh, selectData } from "../feature/auth/authSlice";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router';
-import { setAccessToken } from '../api/client.js';
+import useApiDispatch from "./useApiDispatch.js";
 
 function useAuth() {
     const auth = useSelector(selectData);
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (auth) {
-            setAccessToken(auth.accessToken);
             return;
         }
-        const refreshToken = localStorage.getItem('srt');
+        const refreshToken = sessionStorage.getItem('srt');
         if (!refreshToken) {
             navigate("/login");
         }
-        dispatch(refresh(refreshToken, navigate));
+        dispatch(refresh(refreshToken));
     }, [auth])
 
     return auth;

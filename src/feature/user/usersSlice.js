@@ -1,114 +1,105 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/userApi';
-import { addError, addSuccess } from '../notification/notificationSlice';
 
 export const createUser = user => {
-  return dispatch => {
-    api.postUser(user)
-      .then(newUser => {
-        dispatch(addUser(newUser));
-        dispatch(addSuccess(`Пользователь ${user.firstName} ${user.lastName} добавлен`))
-      })
-      .catch((error) => {
-        dispatch(addError(`Не удалось добавить пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => await api.postUser(user),
+    action: addUser,
+    message: {
+      success: "Пользователь добавлен",
+      error: "Не удалось добавить пользователя",
+    },
   }
 }
 
 export const updateUserRole = (email, newRole) => {
-  return dispatch => {
-    api.changeUserRole(email, newRole)
-      .then(() => {
-        dispatch(addSuccess(`Права доступа на ${newRole}`));
-        return api.getUser(email);
-      })
-      .then((newUser) => {
-        dispatch(editUser({ email, newUser }));
-      })
-      .catch((error) => {
-        dispatch(addError(`Не удалось изменить права доступа пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => {
+      await api.changeUserRole(email, newRole);
+      const newUser = api.getUser(email);
+      return newUser;
+    },
+    action: editUser,
+    message: {
+      success: "Права доступа пользователя изменены",
+      error: "Не удалось изменить права доступа пользователя",
+    },
   }
 }
 
 export const fetchUsers = () => {
-  return dispatch => {
-    api.getUsers("")
-      .then(users => {
-        dispatch(setUsers(users));
-      })
-      .catch(error => {
-        dispatch(addError(`Не удалось получить список пользователей${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => await api.getUsers(""),
+    action: setUsers,
+    message: {
+      error: "Не удалось получить список пользователей",
+    },
   }
 }
 
 export const setPassword = (email, newPassword) => {
-  return dispatch => {
-    api.changePassword(email, newPassword)
-      .then(() => {
-        dispatch(addSuccess("Пароль изменен"));
-      })
-      .catch(error => {
-        dispatch(addError(`Не удалось получить данные пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => await api.changePassword(email, newPassword),
+    message: {
+      success: "Пароль изменен",
+      error: "е удалось получить данные пользователя",
+    }
   }
 }
 
 export const updateUserInfo = (email, userInfo) => {
-  return dispatch => {
-    api.changeUserInfo(email, userInfo)
-      .then(() => {
-        dispatch(addSuccess("Данные пользователя изменены"));
-        return api.getUser(email);
-      })
-      .then((newUser) => {
-        dispatch(editUser({ email, newUser }));
-      })
-      .catch((error) => {
-        dispatch(addError(`Не удалось изменить данные пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => {
+      await api.changeUserInfo(email, userInfo);
+      const newUser = await api.getUser(email);
+      return newUser;
+    },
+    action: editUser,
+    message: {
+      success: "Данные пользователя изменены",
+      error: "Не удалось изменить данные пользователя",
+    }
   }
 }
 
 export const updateUserEmail = (email, newEmail) => {
-  return dispatch => {
-    api.changeEmail(email, newEmail)
-      .then(() => {
-        dispatch(addSuccess("Почтовый адрес пользователя изменен"));
-        return api.getUser(newEmail);
-      })
-      .then((newUser) => {
-        dispatch(editUser({ email, newUser }))
-      })
-      .catch((error) => {
-        dispatch(addError(`Не удалось изменить почтовый адрес пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => {
+      await api.changeEmail(email, newEmail);
+      const newUser = api.getUser(newEmail);
+      return newUser;
+    },
+    action: editUser,
+    message: {
+      success: "Почтовый адрес пользователя изменен",
+      error: "Не удалось изменить почтовый адрес пользователя",
+    },
   }
 }
 
-export const deleteUser = (email) => {
-  return dispatch => {
-    api.deleteUser(email)
-      .then(() => {
-        dispatch(removeUser(email));
-        dispatch(addSuccess("Данные пользователя удалены"));
-      })
-      .catch((error) => {
-        dispatch(addError(`Не удалось удалить данные пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+export const deleteUser = email => {
+  return {
+    api: async () => await api.deleteUser(email),
+    action: removeUser,
+    message: {
+      success: "Данные пользователя удалены",
+      error: "Не удалось удалить данные пользователя",
+    }
   }
 }
 
 export const uploadAvatar = (email, file) => {
-  return dispatch => {
-    api.postAvatar(email, file)
-      .then(() => {
-        dispatch(addSuccess("Фотография профиля пользователя загружен"));
-      })
-      .catch((error) => {
-        dispatch(addError(`Не удалось загрузить фотографию профиля пользователя${error.message ? `: ${error.message}` : ""}`))
-      })
+  return {
+    api: async () => {
+      await api.postAvatar(email, file);
+      const newUser = api.getUser(email);
+      return newUser;
+    },
+    action: editUser,
+    message: {
+      success: "Фотография профиля пользователя загружен",
+      error: "Не удалось загрузить фотографию профиля пользователя",
+    },
   }
 }
 

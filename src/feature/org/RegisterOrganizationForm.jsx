@@ -1,10 +1,12 @@
 import Form from '../../component/ui/Form/index.jsx';
 import Input from '../../component/ui/Form/Input.jsx';
-import { useDispatch } from 'react-redux';
 import { addOrganization } from './orgSlice.js';
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
 import { joinAdminFullName } from '../../util/mapper.js';
 import { addError } from '../notification/notificationSlice.js';
+import { useDispatch } from "react-redux";
+import useApiDispatch from "../../hook/useApiDispatch.js";
+import { useNavigate } from 'react-router';
 
 const fields = [
     {
@@ -20,10 +22,10 @@ const fields = [
         name: "administratorPatronymic", text: "Отчество администратора", type: "text", required: false
     },
     {
-        name: "address", text: "Адрес", type: "text", required: true
+        name: "address", text: "Адрес", type: "text"
     },
     {
-        name: "phoneNumber", text: "Номер телефона", type: "phoneNumber", required: true
+        name: "phoneNumber", text: "Номер телефона", type: "phoneNumber"
     },
     {
         name: "email", text: "Почта", type: "email", required: true
@@ -38,14 +40,19 @@ const fields = [
 
 function RegisterOrganizationForm() {
     const dispatch = useDispatch();
+    const apiDispatch = useApiDispatch();
+    const navigate = useNavigate();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.password !== data.repeatPassword) {
             dispatch(addError("Введенные пароли не совпадают, попробуйте снова"));
             return;
         }
         delete data.repeatPassword;
-        dispatch(addOrganization(joinAdminFullName(data)));
+        const isSuccess = await apiDispatch(addOrganization(joinAdminFullName(data)));
+        if (isSuccess) {
+            navigate("/home/success/org");
+        }
     }
 
     return (

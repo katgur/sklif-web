@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import Card from "../../ui/Card"
 import Form from "../../ui/Form"
 import Input from "../../ui/Form/Input"
-import { _code as code, setClientLogin } from "../../../api/mock/authApi"
+import { _code as code } from "../../../api/mock/authApi"
 
 function ServerLoginPage() {
     const [params] = useSearchParams();
@@ -13,8 +13,7 @@ function ServerLoginPage() {
             return;
         }
         const redirectUri = params.get("redirect_uri");
-        const clientId = params.get("cliend_id");
-        setClientLogin(data.login);
+        sessionStorage.setItem("login", data.login);
         navigate(`/${redirectUri.split("/").slice(-1)[0]}?code=${code}`);
     }
 

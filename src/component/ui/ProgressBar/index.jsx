@@ -2,8 +2,8 @@ import './ProgressBar.css';
 
 function ProgressBar({ isProgress }) {
     return (
-        <div className="progress-track">
-            {isProgress && <div className="progress-value"></div>}
+        <div className="progress__track">
+            {isProgress && <div className="progress__value"></div>}
         </div>
     )
 }

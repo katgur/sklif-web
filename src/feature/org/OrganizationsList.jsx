@@ -4,8 +4,8 @@ import useOrganizations from '../../hook/useOrganizations';
 
 const schema = ["Название", "Почта", "Администратор", "Телефон", "Адрес"];
 const contextMenu = [
-    (id) => { return <Link to={`/home/edit_organization/${id}`}>Редактировать</Link> },
-    (id) => { return <Link to={`/home/delete_organization/${id}`}>Удалить</Link> }
+    (id) => { return <Link to={`/home/edit_org/${id}`}>Редактировать</Link> },
+    (id) => { return <Link to={`/home/delete_org/${id}`}>Удалить</Link> }
 ]
 
 function OrganizationsList() {

@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { clientUrl, protocol, clientId } from '../util/config';
 import { login } from '../feature/auth/authSlice';
-import { useDispatch } from 'react-redux';
+import useApiDispatch from '../hook/useApiDispatch';
 
 function RedirectPage() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const redirectUri = `${protocol}://${clientUrl}/redirect`;
 
     useEffect(() => {
@@ -23,7 +23,10 @@ function RedirectPage() {
                 `code_challenge_method=S256`)
         } else {
             const codeVerifier = sessionStorage.getItem('codeVerifier');
-            dispatch(login(code, redirectUri, codeVerifier, navigate));
+            const isSuccess = dispatch(login(code, redirectUri, codeVerifier));
+            if (isSuccess) {
+                navigate("/home")
+            }
         }
     }, [searchParams])
 

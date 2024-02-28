@@ -1,10 +1,10 @@
-import { useDispatch } from "react-redux"
+import useApiDispatch from "../hook/useApiDispatch";
 import { logout } from "../feature/auth/authSlice";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
 function LogoutPage() {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {

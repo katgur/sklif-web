@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from '../../api/mock/maskApi';
-import { addError } from '../notification/notificationSlice';
 
-export const fetchMask = (path) => {
-    return dispatch => api.getMask(path)
-        .then(mask => {
-            dispatch(setResult(mask));
-        })
-        .catch(error => {
-            dispatch(addError(`Не удалось обработать снимок${error.message ? `: ${error.message}` : ""}`))
-        })
+export const fetchMask = path => {
+    return {
+        api: async () => api.getMask(path),
+        action: setResult,
+        message: {
+            success: "Снимок обработан",
+            error: "Не удалось обработать снимок",
+        }
+    }
 }
 
 const maskSlice = createSlice({

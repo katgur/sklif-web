@@ -1,10 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import Form from '../../component/ui/Form';
 import { updateUserRole } from './usersSlice';
 import useUser from '../../hook/useUser';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Radio from '../../component/ui/Form/Radio';
 import { useParams } from 'react-router';
+import useApiDispatch from "../../hook/useApiDispatch.js";
 
 const fields = [
     {
@@ -13,7 +14,7 @@ const fields = [
 ]
 
 function EditUserRoleForm({ isGlobal }) {
-    const dispatch = useDispatch();
+    const dispatch = useApiDispatch();
     const { email } = useParams();
     const user = useUser(email);
 
