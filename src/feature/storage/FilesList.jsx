@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { deleteFiles, selectCurrent, setCurrent } from "./storageSlice";
 import { useState } from "react";
 import useStorage from "../../hook/useStorage";
 import SortableTableViewer from "../../component/ui/SortableTableViewer";
-import { folderIcon, fileIcon } from '../../res/svg';
+import FolderIcon from '../../assets/folder.svg?react';
+import FileIcon from '../../assets/file.svg?react';
 import StorageToolPanel from "../../component/ui/StorageToolPanel";
 import useApiDispatch from "../../hook/useApiDispatch.js";
 
@@ -47,7 +48,7 @@ const mapDirsForTable = (dirs, selected) => {
             isSelected: selected.has(dir.key),
             data: [
                 <span>
-                    <span>{folderIcon}</span>
+                    <FolderIcon />
                     <span>{dir.key.split('/').slice(-2)}</span>
                 </span>,
                 parseDate(dir.lastModified),
@@ -64,7 +65,7 @@ const mapFilesForTable = (files, selected) => {
             isSelected: selected.has(file.key),
             data: [
                 <span>
-                    <span>{fileIcon}</span>
+                    <FileIcon />
                     <span>{file.key.split('/').slice(-1)}</span>
                 </span>,
                 parseDate(file.lastModified),

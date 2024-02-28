@@ -103,7 +103,7 @@
     border: 1.5px solid var(--stroke-color);
     padding: 15px;
     border-radius: 4px;
-    background: url("../../../res/chevron-down.svg") no-repeat;
+    background: url("./chevron-down.svg") no-repeat;
     background-position: right 20px center;
     width: 100%;
     transition: 250ms ease-in;

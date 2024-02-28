@@ -1,11 +1,9 @@
 import { useState } from "react";
-import ContextMenu from "../ContextMenu";
 import Popup from "../Popup";
-import Card from '../Card';
-import moreIcon from '../../../res/more-alt.svg';
-import refreshIcon from '../../../res/idea-reload.svg';
-import deleteIcon from '../../../res/trash-can.svg';
-import { backIcon } from '../../../res/svg';
+import MoreIcon from './more-alt.svg?react';
+import RefreshIcon from './idea-reload.svg?react';
+import DeleteIcon from './trash-can.svg?react';
+import BackIcon from './back.svg?react';
 import './StorageToolPanel.css';
 
 function StorageToolPanel({ children, current, isEditMode, onDeleteButtonClick, onRefreshButtonClick, onBackButtonClick }) {
@@ -22,12 +20,12 @@ function StorageToolPanel({ children, current, isEditMode, onDeleteButtonClick, 
                     <ul className="tools">
                         <li>
                             <button onClick={onDeleteButtonClick}>
-                                <img src={deleteIcon} />
+                                <DeleteIcon />
                             </button>
                         </li>
                         <li>
                             <button onClick={onRefreshButtonClick}>
-                                <img src={refreshIcon} />
+                                <RefreshIcon />
                             </button>
                         </li>
                     </ul> :
@@ -35,14 +33,14 @@ function StorageToolPanel({ children, current, isEditMode, onDeleteButtonClick, 
                         {current &&
                             <span>
                                 <button className="tools__button" onClick={onBackButtonClick}>
-                                    {backIcon}
+                                    <BackIcon />
                                 </button>
                                 {current}
                             </span>
                         }
                         <span className="tools__right">
                             <button onClick={onPlusButtonClick}>
-                                <img src={moreIcon} />
+                                <MoreIcon />
                             </button>
                         </span>
                     </div>

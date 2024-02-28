@@ -1,5 +1,6 @@
 import { useState } from "react";
-import editIcon from '../../res/edit.svg';
+import EditIcon from '../../assets/edit.svg?react';
+import CloseIcon from '../../assets/close.svg?react';
 import { addComment } from "./studiesSlice";
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import Form from '../../component/ui/Form';
@@ -20,11 +21,11 @@ function CommentSection({ _key, comments }) {
             <StorageToolPanel>
                 <ContextMenu style="dark">
                     <button onClick={() => setIsEditMode(true)}>
-                        <img src={editIcon} width="24" height="24" alt="Редактировать комментарии к исследованию." />
+                        <EditIcon />
                         <span>Редактировать</span>
                     </button>
                     <button onClick={() => setIsEditMode(false)} disabled={!isEditMode}>
-                        <img src={editIcon} width="24" height="24" alt="Отменить редактирование комментариев к исследованию." />
+                        <CloseIcon />
                         <span>Отмена</span>
                     </button>
                 </ContextMenu>

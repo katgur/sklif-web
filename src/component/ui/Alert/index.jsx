@@ -1,5 +1,8 @@
 import React from 'react'
-import { successIcon, errorIcon, notifyIcon, closeIcon } from '../../../res/svg';
+import SuccessIcon from './success.svg?react';
+import ErrorIcon from './error.svg?react';
+import NotifyIcon from './notify.svg?react';
+import CloseIcon from './close.svg?react';
 import './Alert.css'
 
 const titleMap = {
@@ -9,9 +12,9 @@ const titleMap = {
 }
 
 const iconMap = {
-    'success': successIcon,
-    'error': errorIcon,
-    'notify': notifyIcon,
+    'success': <SuccessIcon />,
+    'error': <ErrorIcon />,
+    'notify': <NotifyIcon />,
 }
 
 function Alert({ children, type, onClose }) {
@@ -27,7 +30,7 @@ function Alert({ children, type, onClose }) {
                 </div>
             </div>
             {
-                onClose && <span className="alert__icon" onClick={onClose}>{closeIcon}</span>
+                onClose && <span className="alert__icon" onClick={onClose}><CloseIcon /></span>
             }
         </div>
     )

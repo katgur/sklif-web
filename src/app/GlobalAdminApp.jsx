@@ -14,7 +14,11 @@ import DeleteOrganizationForm from '../feature/org/DeleteOrganizationForm';
 import OrganizationsList from '../feature/org/OrganizationsList';
 import UploadAvatarForm from '../feature/user/UploadAvatarForm';
 import EditOrganizationEmailForm from '../feature/org/EditOrganizationEmailForm';
-import { profileIcon, settingsIcon, usersIcon, orgsIcon } from '../res/svg';
+import ProfileIcon from '../assets/profile.svg?react';
+import SettingsIcon from '../assets/settings.svg?react';
+import UsersIcon from '../assets/users.svg?react';
+import OrgsIcon from '../assets/orgs.svg?react';
+import DashboardIcon from '../assets/dashboard.svg?react';
 import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
 import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
@@ -33,31 +37,31 @@ import Success from '../component/Success.jsx';
 
 const drawerMenu = [
   {
-    text: "Пользователи", icon: usersIcon, options: [
+    text: "Пользователи", icon: <UsersIcon />, options: [
       <Link to="/home/users">Список</Link>,
       <Link to="/home/add_user">Добавить</Link>,
     ]
   },
   {
-    text: "Организации", icon: orgsIcon, options: [
+    text: "Организации", icon: <OrgsIcon />, options: [
       <Link to="/home/organizations">Список</Link>,
       <Link to="/home/add_org">Добавить</Link>,
     ]
   },
   {
-    text: "Статистика", options: [
+    text: "Статистика", icon: <DashboardIcon />, options: [
       <Link to="/home/dashboard">Дашборд</Link>
     ]
   },
   {
-    text: "Профиль", icon: profileIcon, options: [
+    text: "Профиль", icon: <ProfileIcon />, options: [
       <Link to="/home/profile">Перейти</Link>,
       <Link to="/home/settings">Редактировать</Link>,
       <Link to="/logout">Выйти</Link>,
     ]
   },
   {
-    text: "Настройки", icon: settingsIcon, options: [
+    text: "Настройки", icon: <SettingsIcon />, options: [
       <Link to="/home/settings">Профиль</Link>,
     ]
   }

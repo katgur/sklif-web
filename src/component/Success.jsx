@@ -1,5 +1,5 @@
 import Card from "./ui/Card";
-import successImage from "../res/success.svg";
+import successImage from "../assets/success.svg";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Heading from "./ui/Heading";
