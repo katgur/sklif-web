@@ -1,11 +1,11 @@
-import './ContextMenu.css';
+import _style from './style.module.css'
 import React from 'react';
 
 function ContextMenu({ children, style = "light" }) {
     return (
-        <ul className={`context-menu ${style ? "context-menu--" + style : ""} font__inter--sm font_color_text`}>
+        <ul className={`${style.contextMen} ${_style[style]} font__inter--sm font_color_text`}>
             {
-                React.Children.map(children, child => <li className='context-menu__item'>{child}</li>)
+                React.Children.map(children, child => <li className={style.item}>{child}</li>)
             }
         </ul>
     )

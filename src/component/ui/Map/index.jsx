@@ -1,7 +1,7 @@
 import MapPicture from './map.svg?react';
 import PlusIcon from './plus.svg?react';
 import MinusIcon from './minus.svg?react';
-import './Map.css';
+import style from './style.module.css'
 import { useEffect, useState } from 'react';
 import Popup from '../Popup';
 import { countries } from '../../../util/country';
@@ -55,22 +55,22 @@ function Map({ data }) {
     }
 
     return (
-        <div className="map">
+        <div className={style.wrapper}>
             <svg width="100%" height="380px" onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
                 <defs></defs>
                 <g onMouseOver={onMouseOver} onMouseOut={onMouseOut} transform={`scale(${scale}) translate(${translate[0]}, ${translate[1]})`}>
                     <MapPicture />
                 </g></svg>
-            <div className="map__panel">
-                <button className="map__button" onClick={onPlusClick}>
+            <div className={style.panel}>
+                <button className={style.button} onClick={onPlusClick}>
                     <PlusIcon />
                 </button>
-                <button className="map__button" onClick={onMinusClick}>
+                <button className={style.button} onClick={onMinusClick}>
                     <MinusIcon />
                 </button>
             </div>
             <Popup target={target} setTarget={setTarget} position="center bottom">
-                <div className="map__tooltip font__jost--xs">
+                <div className={`${style.tooltip} font__jost--xs`}>
                     {countries[target && target.dataset.code]}    {data[target && target.dataset.code]}
                 </div>
             </Popup>

@@ -1,8 +1,8 @@
-import './Stack.css';
+import style from './style.module.css'
 
-function Stack({ direction, gap, align, children }) {
+function Stack({ direction = "vertical", gap = "m", align = "center", children }) {
     return (
-        <div className={`stack stack_direction_${direction} stack_gap_${gap} stack_align_${align}`}>
+        <div className={`${style.stack} ${style[`stack_direction_${direction}`]} ${style[`stack_gap_${gap}`]} ${style[`stack_align_${align}`]}`}>
             {children}
         </div>
     )

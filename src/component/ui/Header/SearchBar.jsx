@@ -1,3 +1,5 @@
+import style from './style.module.css';
+
 function SearchBar({ onSearchClick }) {
     const onSubmit = (e) => {
         e.preventDefault();
@@ -6,7 +8,7 @@ function SearchBar({ onSearchClick }) {
 
     return (
         <form onSubmit={onSubmit}>
-            <input className="header__input font__nunito--xs" type="text" placeholder="Поиск..." />
+            <input className={`${style.input} font__nunito--xs`} type="text" placeholder="Поиск..." />
         </form>
     )
 }

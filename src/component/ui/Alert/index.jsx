@@ -3,7 +3,7 @@ import SuccessIcon from './success.svg?react';
 import ErrorIcon from './error.svg?react';
 import NotifyIcon from './notify.svg?react';
 import CloseIcon from './close.svg?react';
-import './Alert.css'
+import style from './style.module.css'
 
 const titleMap = {
     'success': 'Успешно',
@@ -21,16 +21,16 @@ function Alert({ children, type, onClose }) {
     var title = titleMap[type];
     var icon = iconMap[type];
     return (
-        <div className={`alert alert--${type}`}>
-            <div className='alert__content'>
+        <div className={`${style.alert} ${style[type]} font__jost--sm font_color_text`}>
+            <div className={style.content}>
                 {icon}
-                <div className='alert__text'>
-                    <div className={`${type}-title`}>{title}</div>
-                    <p className={`${type}-text`}>{children}</p>
-                </div>
+                <article className={style.text}>
+                    <h1 className={`font_color_${type} font__jost--sm`}>{title}</h1>
+                    <p>{children}</p>
+                </article>
             </div>
             {
-                onClose && <span className="alert__icon" onClick={onClose}><CloseIcon /></span>
+                onClose && <span className={style.icon} onClick={onClose}><CloseIcon /></span>
             }
         </div>
     )

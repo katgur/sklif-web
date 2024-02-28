@@ -14,7 +14,7 @@ import resetIcon from './reset-svgrepo-com.svg';
 import deleteIcon from './delete.svg';
 import burgerIcon from './burger.svg';
 import magicIcon from './magic-wand-svgrepo-com.svg';
-import './ViewerToolbar.css';
+import style from './style.module.css'
 
 const icons = {
     'Zoom': zoomIcon,
@@ -43,25 +43,25 @@ const titles = {
 
 function ViewerToolbar({ onBurgerClick, onMaskClick, onToolClick, enabledTool, undo, redo, resetViewport, clearViewport }) {
     return (
-        <div className="toolbar-wrapper" style={{height: "15vh"}}>
-            <div className="toolbar">
+        <div className={style.wrapper}>
+            <div className={style.toolbar}>
 
                 {
                     Object.keys(titles).map((key) => {
-                        var className = "viewer-button" + (key === enabledTool ? "__selected" : "");
+                        var className = `${style.button}${key === enabledTool ? " " + style.selected : ""}`;
                         return <img key={key}
                             onClick={() => onToolClick(key)}
                             className={className} src={icons[key]} alt={key} title={titles[key]} />
                     })
                 }
-                <img key="mask" onClick={onMaskClick} src={magicIcon} className="viewer-button" alt="mask" title="Разметка ИИ" />
+                <img key="mask" onClick={onMaskClick} src={magicIcon} className={style.button} alt="mask" title="Разметка ИИ" />
             </div>
-            <div className="toolbar">
-                <img onClick={undo} className="viewer-button" src={undoIcon} alt="undo" />
-                <img onClick={redo} className="viewer-button" src={redoIcon} alt="redo" />
-                <img onClick={resetViewport} className="viewer-button" src={resetIcon} alt="reset" />
-                <img onClick={clearViewport} className="viewer-button" src={deleteIcon} alt="clear" />
-                <img onClick={onBurgerClick} className="viewer-button" src={burgerIcon} alt="burger" />
+            <div className={style.toolbar}>
+                <img onClick={undo} className={style.button} src={undoIcon} alt="undo" />
+                <img onClick={redo} className={style.button} src={redoIcon} alt="redo" />
+                <img onClick={resetViewport} className={style.button} src={resetIcon} alt="reset" />
+                <img onClick={clearViewport} className={style.button} src={deleteIcon} alt="clear" />
+                <img onClick={onBurgerClick} className={style.button} src={burgerIcon} alt="burger" />
             </div>
         </div>
     )

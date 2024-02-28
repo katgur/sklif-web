@@ -1,0 +1,74 @@
+.wrapper {
+    background-color: #1C2434;
+    color: #8A99AF;
+    display: flex;
+    flex-flow: column;
+    padding: 40px 20px;
+}
+
+.section {
+    width: 100%;
+    cursor: pointer;
+}
+
+.title {
+    color: #DEE4EE;
+    margin-top: 8px;
+    padding: 8px 12px;
+    padding-right: 48px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 4px;
+}
+
+.title:hover {
+    background-color: #333A48;
+}
+
+.title::after {
+    background: url('./chevron.svg') no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    content: "";
+    width: 48px;
+    height: 24px;
+    rotate: 0deg;
+    transition: rotate 200ms ease-out;
+}
+
+.item {
+    padding: 4px 0;
+    padding-left: 45px;
+    width: 100%;
+}
+
+.item:hover {
+    color: #DEE4EE;
+}
+
+.item:first-child {
+    margin-top: 20px;
+}
+
+.item:last-child {
+    margin-bottom: 20px;
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 200ms ease-out;
+}
+
+details[open]+.content {
+    max-height: 100px;
+    transition: max-height 200ms ease-out;
+}
+
+details[open] .title::after {
+    rotate: -180deg;
+    transition: rotate 200ms ease-out;
+}

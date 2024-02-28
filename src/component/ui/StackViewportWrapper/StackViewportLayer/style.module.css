@@ -1,0 +1,16 @@
+.wrapper {
+    position: absolute;
+    color: var(--white);
+    margin: 24px;
+}
+
+.wrapper>button {
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+}
+
+.wrapper>button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}

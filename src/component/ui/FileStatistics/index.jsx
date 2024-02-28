@@ -1,5 +1,5 @@
 import Card from '../Card';
-import './FileStatistics.css';
+import style from './style.module.css'
 import DesignIcon from './design.svg?react';
 import DocsIcon from './docs.svg?react';
 import ImageIcon from './image.svg?react';
@@ -41,24 +41,24 @@ const data = [
 
 function FileStatistics() {
     return (
-        <ul className="file-stat">
+        <ul className={style.wrapper}>
             {
                 data.map(item => (
-                    <li key={item.name} className="file-stat__item">
+                    <li key={item.name} className={style.item}>
                         <Card padding="m">
-                            <div className="file-stat__content">
-                                <span className={`file-stat__icon font_color_${item.color}`}>
+                            <div className={style.content}>
+                                <span className={`${style.icon} font_color_${item.color}`}>
                                     {icons[item.name]}
                                 </span>
                                 <div>
-                                    <p className={`font__jost--sm file-stat__text font_color_${item.color}`}>
+                                    <p className={`font__jost--sm ${style.text} font_color_${item.color}`}>
                                         {item.name}
                                     </p>
-                                    <p className="font_color_text">
+                                    <p className={style.text}>
                                         {item.count} files
                                     </p>
                                 </div>
-                                <span className="file-stat__memory">
+                                <span className={style.memory}>
                                     {item.memory} MB
                                 </span>
                             </div>

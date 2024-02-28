@@ -2,10 +2,10 @@ import Form from '../../component/ui/Form';
 import { useDispatch } from 'react-redux';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
-import Input from '../../component/ui/Form/Input.jsx';
+import Input from '../../component/ui/Form/Input';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
 import Select from '../../component/ui/Form/Select'
-import Radio from '../../component/ui/Form/Radio.jsx';
+import Radio from '../../component/ui/Form/RadioGroup/Radio';
 import useOrganizations from '../../hook/useOrganizations.js';
 import Alert from '../../component/ui/Alert';
 import { createUser } from './usersSlice.js';

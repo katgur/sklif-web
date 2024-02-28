@@ -1,4 +1,4 @@
-import './Toggle.css';
+import style from './style.module.css'
 
 function Toggle({ onChange, children }) {
     return (

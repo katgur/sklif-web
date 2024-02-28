@@ -1,9 +1,9 @@
-import './ProgressBar.css';
+import style from './style.module.css'
 
 function ProgressBar({ isProgress }) {
     return (
-        <div className="progress__track">
-            {isProgress && <div className="progress__value"></div>}
+        <div className={style.track}>
+            {isProgress && <div className={style.progress}></div>}
         </div>
     )
 }

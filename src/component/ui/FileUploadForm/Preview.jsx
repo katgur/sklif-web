@@ -1,7 +1,9 @@
+import style from './style.module.css'
+
 function Preview({ fileURL }) {
     return (fileURL &&
         <div>
-            <img className="file-upload-form__preview-image" src={fileURL} alt="preview" />
+            <img className={style.previewImage} src={fileURL} alt="Preview." />
         </div>
     )
 }

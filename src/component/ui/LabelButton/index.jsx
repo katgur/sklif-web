@@ -1,4 +1,4 @@
-import style from './LabelButton.module.css';
+import style from './style.module.css'
 
 function LabelButton({ children }) {
     return (

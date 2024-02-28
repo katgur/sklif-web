@@ -1,5 +1,5 @@
 import React from 'react';
-import './Top.css';
+import style from './style.module.css'
 
 function Top({ children, columns }) {
     const childrenWithProps = React.Children.map(children, child => {
@@ -10,7 +10,7 @@ function Top({ children, columns }) {
     });
 
     return (
-        <table className="font__jost--xs top">
+        <table className={`font__jost--xs ${style.top}`}>
             {childrenWithProps}
         </table>
     )

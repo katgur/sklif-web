@@ -1,5 +1,6 @@
 import { useLayoutEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
+import style from './style.module.css'
 
 function computePosition(rect, selfRect, position) {
     function layoutWithLeftBorder(left) {
@@ -59,7 +60,7 @@ function PopupContent({ targetRect, children, position = 'center bottom' }) {
     const [x, y] = computePosition(targetRect, tooltipRect, position);
 
     return createPortal(
-        <div className="popup" style={{ transform: `translate(${x}px, ${y}px)` }} ref={ref}>
+        <div className={style.popup} style={{ transform: `translate(${x}px, ${y}px)` }} ref={ref}>
             {children}
         </div>,
         document.body,

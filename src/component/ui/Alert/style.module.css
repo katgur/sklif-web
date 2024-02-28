@@ -1,0 +1,41 @@
+.alert {
+    border-radius: 4px;
+    padding: 24px;
+    width: fit-content;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row;
+}
+
+.error {
+    background-color: var(--alert-background-color);
+    border-left: 5px solid var(--alert-color);
+
+}
+
+.success {
+    background-color: var(--success-background-color);
+    border-left: 5px solid var(--success-color);
+}
+
+.notify {
+    background-color: #FEF5DE;
+    border-left: 5px solid #FFB800;
+}
+
+.content {
+    display: flex;
+    flex-flow: row;
+}
+
+.text {
+    width: 300px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    margin-left: 12px;
+    text-align: left;
+}
+
+.icon {
+    cursor: pointer;
+}

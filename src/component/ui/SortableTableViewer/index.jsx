@@ -5,7 +5,7 @@ import sortIcon from './sort.svg';
 import { useEffect } from 'react';
 import chevronLeft from './chevron-left.svg';
 import chevronRight from './chevron-right.svg';
-import './SortableTableViewer.css';
+import style from './style.module.css'
 
 function calcPages(pageCount, page) {
     const pages = [];
@@ -34,14 +34,14 @@ const pagination = (showingItemsLength, itemsCount, pageNum, setPageNum, capacit
     const onForwardButtonClick = () => setPageNum(pageNum + 1);
     const onPageButtonClick = (page) => page !== "..." && setPageNum(page - 1);
     return (
-        <div className="table-viewer__pagination">
-            <span className="table-value">{`${showingItemsLength} из ${itemsCount}`}</span>
+        <div className={style.pagination}>
+            <span>{`${showingItemsLength} из ${itemsCount}`}</span>
             <div>
                 {pageNum !== 0 && <button onClick={onBackButtonClick}><img src={chevronLeft} alt="left" /></button>}
                 {pages.map((page1) => {
-                    const style = "table-viewer__page" + (pageNum === (page1 - 1) ? "--selected" : "");
+                    const style1 = `${style.page}${pageNum === (page1 - 1) ? " " + style.selected : ""}`;
                     return (
-                        <span key={page1} className={style} onClick={() => onPageButtonClick(page1)}>
+                        <span key={page1} className={style1} onClick={() => onPageButtonClick(page1)}>
                             {page1}
                         </span>
                     )
@@ -77,24 +77,22 @@ function SortableTableViewer({ columns, items, contextMenu, onItemClick, onItemD
     const showingItems = sortableItems.slice(capacity * page, Math.min(capacity * page + capacity, sortableItems.length));
 
     return (
-        <div className="card font__nunito--sm">
-            <div className="table-viewer__list" style={{ gridTemplateColumns: "10fr ".repeat(columns.length) + "1fr" }}>
+        <div className={`${style.card} font__nunito--sm`}>
+            <div className={style.list} style={{ gridTemplateColumns: "10fr ".repeat(columns.length) + "1fr" }}>
                 {columns.map((column, index) => {
                     return (
-                        <span key={column} className="table-viewer__header table-viewer__cell">
+                        <span key={column} className={`${style.header} ${style.cell}`}>
                             <span>
                                 {column}
                             </span>
-                            <span onClick={() => onSort(index)} className="table-viewer__sort">
+                            <span onClick={() => onSort(index)} className={style.sort}>
                                 <img width="18" height="18" src={sortIcon} alt="sort" />
                             </span>
                         </span>
                     )
                 })}
-                <span className="table-viewer__header table-viewer__cell"></span>
-                {showingItems.map((item, index) => {
-                    return <TableItem key={index} item={item} contextMenu={contextMenu} onClick={onItemClick} onDoubleClick={onItemDoubleClick} />
-                })}
+                <span className={`${style.header} ${style.cell}`}></span>
+                {showingItems.map(item => <TableItem key={item.id} item={item} contextMenu={contextMenu} onClick={onItemClick} onDoubleClick={onItemDoubleClick} />)}
             </div>
             {pagination(showingItems.length, sortableItems.length, page, setPage, capacity)}
         </div>

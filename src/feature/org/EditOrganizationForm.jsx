@@ -1,8 +1,8 @@
 import Form from '../../component/ui/Form';
-import Input from '../../component/ui/Form/Input.jsx';
+import Input from '../../component/ui/Form/Input';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { updateOrganization } from './orgSlice.js';
-import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
+import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import { useParams } from 'react-router';
 import useOrganization from '../../hook/useOrganization.js'
 import { splitAdminFullName, joinAdminFullName } from '../../util/mapper.js';

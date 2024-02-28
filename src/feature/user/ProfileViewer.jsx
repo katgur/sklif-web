@@ -3,7 +3,6 @@ import DataViewer from '../../component/ui/DataViewer';
 import { useParams } from 'react-router';
 import { Link as RouteLink } from 'react-router-dom';
 import LinkButton from '../../component/ui/LinkButton';
-import Picture from '../../component/ui/Picture';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import useAuth from '../../hook/useAuth';
@@ -37,7 +36,8 @@ function ProfileViewer({ searchable }) {
     return (
         <Card padding="m">
             <Stack direction="horizontal">
-                <Picture avatarURL={user.avatarURL}>
+                <Stack gap="sm">
+                    <img width="200" height="200" src={user.avatarURL} alt="Фотография профиля." />
                     {
                         auth.authorities !== "DOCTOR" &&
                         <>
@@ -49,7 +49,7 @@ function ProfileViewer({ searchable }) {
                             </LinkButton>
                         </>
                     }
-                </Picture>
+                </Stack>
                 <DataViewer
                     path={searchable && 'users'}
                     title={`${user.lastName} ${user.firstName} ${user.patronymic}`}

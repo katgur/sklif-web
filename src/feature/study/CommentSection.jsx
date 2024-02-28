@@ -5,7 +5,7 @@ import { addComment } from "./studiesSlice";
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import Form from '../../component/ui/Form';
 import TextArea from "../../component/ui/Form/TextArea";
-import StorageToolPanel from '../../component/ui/StorageToolPanel';
+import StorageToolPanel from '../../component/ui/ToolPanel';
 import ContextMenu from "../../component/ui/ContextMenu";
 
 function CommentSection({ _key, comments }) {

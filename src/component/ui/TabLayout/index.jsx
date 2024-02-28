@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import './TabLayout.css';
+import style from './style.module.css'
 
 function TabLayout({ titles, children }) {
     const [page, setPage] = useState(0);
@@ -8,15 +8,15 @@ function TabLayout({ titles, children }) {
     const validation = titles && children && children.length > 0 && titles.length === children.length;
 
     return (validation &&
-        <div className="tab-layout font__inter--sm">
-            <div className="tab-layout__content">
+        <div className={`${style.wrapper} font__inter--sm`}>
+            <div className={style.content}>
                 {children[page]}
             </div>
-            <ul className="card tab-layout__tabs">
+            <ul className={style.tabs}>
                 {titles.map((title, index) => {
-                    const style = "tab-layout__tab" + (page === index ? " tab-layout__tab--selected" : "");
+                    const style1 = style.tab + (page === index ? " " + style.selected : "");
                     return (
-                        <li className={style} key={title} onClick={() => setPage(index)}>{title}</li>
+                        <li className={style1} key={title} onClick={() => setPage(index)}>{title}</li>
                     )
                 })}
             </ul>

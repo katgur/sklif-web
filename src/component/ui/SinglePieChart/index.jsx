@@ -1,4 +1,4 @@
-import style from './SinglePieChart.module.css';
+import style from './style.module.css'
 import MediaIcon from './media.svg?react';
 import DocsIcon from './docs.svg?react';
 
@@ -8,7 +8,6 @@ const icons = {
 }
 
 function SinglePieChart({ title, value, percent, color }) {
-    console.log(title, icons[title])
     return (
         <div className={`${style.wrapper} font_color_${color}`}>
             <span className={style.icon}>

@@ -1,8 +1,8 @@
 import React from "react";
-import './Drawer.css';
 import '../nullify.css';
 import '../typography.css';
 import '../index.css';
+import style from './style.module.css'
 
 function Drawer({ menu, logo }) {
     if (!menu) {
@@ -10,26 +10,26 @@ function Drawer({ menu, logo }) {
     }
 
     return (
-        <aside className="drawer font__inter--sm">
+        <aside className={`${style.wrapper} font__inter--sm`}>
             <a href="/">
-                <img className="drawer__logo" src={logo} alt="Logo" />
+                <img className={style.logo} src={logo} alt="Logo" />
             </a>
-            <nav className="drawer__navigation">
+            <nav className={style.navigation}>
                 <ul>
                     {
-                        menu.map(item => {
+                        menu.map((item, index) => {
                             return (
-                                <li key={item.text} className="drawer__section">
+                                <li key={index} className={style.section}>
                                     <details>
-                                        <summary className="drawer__title">
+                                        <summary className={style.title}>
                                             {item.icon}
                                             {item.text}
                                         </summary>
                                     </details>
-                                    <ul className="drawer__content">
-                                        {item.options.map(option => {
+                                    <ul className={style.content}>
+                                        {item.options.map((option, index) => {
                                             return (
-                                                <li key={option.text} className="drawer__link">
+                                                <li key={index} className={style.link}>
                                                     {option}
                                                 </li>
                                             )

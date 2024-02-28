@@ -1,0 +1,50 @@
+.data-viewer {
+    padding: 20px;
+    max-width: 768px;
+}
+
+.header {
+    margin-bottom: 15px;
+}
+
+.tabs {
+    display: flex;
+    margin-top: 24px;
+}
+
+.tab {
+    cursor: pointer;
+    transition: 0.5s;
+    padding-right: 4em;
+    padding-bottom: 0.5em;
+}
+
+.base {
+    color: var(--text-color-color);
+    border-bottom: 2px solid var(--stroke-color);
+}
+
+.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.data {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.outline-badge {
+    background-color: var(--gray-color);
+    font-size: small;
+    color: var(--primary-color);
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.outline-badge:hover {
+    background-color: var(--stroke-color);
+}

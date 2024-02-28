@@ -6,7 +6,7 @@ import useStorage from "../../hook/useStorage";
 import SortableTableViewer from "../../component/ui/SortableTableViewer";
 import FolderIcon from '../../assets/folder.svg?react';
 import FileIcon from '../../assets/file.svg?react';
-import StorageToolPanel from "../../component/ui/StorageToolPanel";
+import StorageToolPanel from "../../component/ui/ToolPanel";
 import useApiDispatch from "../../hook/useApiDispatch.js";
 
 const schema = ["Название", "Дата изменения", "Размер"];

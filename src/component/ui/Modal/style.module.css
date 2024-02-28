@@ -1,0 +1,15 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--backdrop-color);
+}

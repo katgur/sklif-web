@@ -1,4 +1,4 @@
-import './Article.css';
+import style from './style.module.css'
 
 function Article({ title, children }) {
     return (
@@ -6,7 +6,7 @@ function Article({ title, children }) {
             <h1 className="font__inter--m">
                 {title}
             </h1>
-            <p className="article__text font__inter--sm font_color_text">
+            <p className={`${style.text} font__inter--sm font_color_text`}>
                 {children}
             </p>
         </article>

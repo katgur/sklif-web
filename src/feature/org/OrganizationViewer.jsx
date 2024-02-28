@@ -5,7 +5,6 @@ import LinkButton from '../../component/ui/LinkButton';
 import Card from '../../component/ui/Card';
 import Stack from '../../component/ui/Stack';
 import useOrganization from '../../hook/useOrganization';
-import Picture from '../../component/ui/Picture';
 
 const schema = [
     {
@@ -42,14 +41,15 @@ function OrganizationViewer({ searchable }) {
     return (
         <Card padding="m">
             <Stack direction="horizontal" gap="m">
-                <Picture avatarURL={avatarURL}>
+                <Stack gap="sm">
+                    <img width="150" height="150" src={avatarURL} alt="Фотография организации." />
                     <LinkButton style="primary">
                         <RouteLink to={`/home/edit_org/${email}`}>Редактировать</RouteLink>
                     </LinkButton>
                     <LinkButton style="secondary">
                         <RouteLink to={`/home/delete_org/${email}`}>Удалить</RouteLink>
                     </LinkButton>
-                </Picture>
+                </Stack>
                 <DataViewer
                     path={searchable && 'organizations'}
                     title={`${organization.name}`}

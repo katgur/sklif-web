@@ -3,7 +3,7 @@ import Form from '../../component/ui/Form';
 import { updateUserRole } from './usersSlice';
 import useUser from '../../hook/useUser';
 import RadioGroup from '../../component/ui/Form/RadioGroup';
-import Radio from '../../component/ui/Form/Radio';
+import Radio from '../../component/ui/Form/RadioGroup/Radio';
 import { useParams } from 'react-router';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 

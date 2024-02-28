@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import SortableTableViewer from '../../component/ui/SortableTableViewer';
 import useStudies from '../../hook/useStudies';
-import StorageToolPanel from '../../component/ui/StorageToolPanel';
+import StorageToolPanel from '../../component/ui/ToolPanel';
 
 const schema = [
     "patientId", "patientName", "birthDate", "studyDate", "modality",

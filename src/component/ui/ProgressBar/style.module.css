@@ -1,0 +1,29 @@
+.track {
+    height: var(--progress-bar-height);
+    width: 100vw;
+    background: var(--stroke-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+@keyframes progress-bar {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100vw) scaleX(3);
+    }
+}
+
+.progress {
+    width: 10%;
+    height: 100%;
+    background: var(--primary-color);
+    animation-name: progress-bar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}

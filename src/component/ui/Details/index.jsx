@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import './Details.css';
+import style from './style.module.css'
 
 function Details({ title, items }) {
     if (!items) {
@@ -7,15 +6,15 @@ function Details({ title, items }) {
     }
 
     return (
-        <div className="card font_color_text details">
-            <details className="details__details">
-                <summary className="details__title font__jost--sm">{title}</summary>
+        <div className={`${style.wrapper} font_color_text`}>
+            <details className={style.details}>
+                <summary className={`${style.title} font__jost--sm`}>{title}</summary>
             </details>
-            <ul className="details__content">
+            <ul className={style.content}>
                 {
                     items.map(item => {
                         return (
-                            <li key={item} className="details__item font__inter--sm">{item}</li>
+                            <li key={item} className={`${style.item} font__inter--sm`}>{item}</li>
                         )
                     })
                 }

@@ -1,4 +1,4 @@
-import './FileUploadForm.css';
+import style from './style.module.css'
 import { useRef, useEffect } from 'react';
 
 function FileUploadForm({ file, setFile, children }) {
@@ -36,9 +36,9 @@ function FileUploadForm({ file, setFile, children }) {
     }
 
     return (
-        <div className='file-upload-form'>
-            <div className="file-upload-form__chooser">
-                <label className="file-upload-form__button" htmlFor="upload-avatar">
+        <div className={style.wrapper}>
+            <div className={style.chooser}>
+                <label className={style.button} htmlFor="upload-avatar">
                     Выберите файл
                     <input ref={inputRef} onChange={onFileUploaded} id="upload-avatar" type="file" accept=".png,.jpg,.jpeg" />
                 </label>

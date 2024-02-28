@@ -1,4 +1,4 @@
-import './Scroll.css';
+import style from './style.module.css'
 
 function Scroll({ total, current }) {
 
@@ -6,8 +6,8 @@ function Scroll({ total, current }) {
     var width = Math.round((1 / total * 100));
 
     return (
-        <div className="scroll">
-            <div className="scroll__track" style={{ marginLeft: `${marginLeft}%`, width: `${width}%` }}></div>
+        <div className={style.track}>
+            <div className={style.scroll} style={{ marginLeft: `${marginLeft}%`, width: `${width}%` }}></div>
         </div>
     )
 }

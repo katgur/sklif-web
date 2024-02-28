@@ -1,7 +1,6 @@
-import style from './GridLayout.module.css';
+import style from './style.module.css'
 
 function GridLayout({ areas, children }) {
-    console.log(areas)
     return (
         <div className={style.wrapper} style={{ gridTemplateAreas: areas }}>
             {children}

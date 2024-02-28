@@ -1,19 +1,19 @@
-import './Rating.css';
+import style from './style.module.css'
 import { countries } from '../../../util/country';
 
 function Rating({ data, limit }) {
     const top = Object.keys(data).sort((key1, key2) => data[key2] - data[key1]).slice(0, limit);
 
     return (
-        <ul className="font__jost--sm rating">
+        <ul className={`font__jost--sm ${style.wrapper}`}>
             {
                 top.map(code => (
-                    <li className="rating__item">
-                        <span className="rating__text">
+                    <li className={style.item}>
+                        <span className={style.text}>
                             {countries[code]}
                         </span>
-                        <div className="rating__track">
-                            <div className="rating__thumb" style={{ width: `${data[code]}%` }}>
+                        <div className={style.track}>
+                            <div className={style.thumb} style={{ width: `${data[code]}%` }}>
                                 <span className="font__jost--xxs font_color_white">
                                     {data[code]}%
                                 </span>

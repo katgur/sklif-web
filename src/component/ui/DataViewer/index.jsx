@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './DataViewer.css';
+import style from './style.module.css'
 
 function DataViewer({ title, entity, schema, path, children }) {
     const [selected, setSelected] = useState(0);
@@ -17,22 +17,22 @@ function DataViewer({ title, entity, schema, path, children }) {
     }
 
     return (
-        <div className="data-viewer font__inter--sm">
+        <div className={`${style.dataViewer} font__inter--sm`}>
             {
                 (title || children) &&
                 <h2 className='font__inter--m'>{title}{children}</h2>
             }
-            <ul className="data-viewer__tabs font__jost--xs">
+            <ul className={`${style.tabs} font__jost--xs`}>
                 {
                     schema.map((section, index) => {
-                        const className = "data-viewer__tab data-viewer__tab--" + (index === selected ? "active" : "base");
+                        const className = `${style.tab} ${style[index === selected ? "active" : "base"]}`;
                         return (
                             <li className={className} onClick={() => { onTabClick(index) }}>{section.text}</li>
                         )
                     })
                 }
             </ul>
-            <ul className="data-viewer__data font__jost--xs">
+            <ul className={`${style.data} font__jost--xs`}>
                 {
                     schema[selected].tabs.map((tab) => {
                         const value = entity[tab.name];
@@ -40,7 +40,7 @@ function DataViewer({ title, entity, schema, path, children }) {
                             value && value.length !== 0 && value[0] &&
                             <li>
                                 <span>{tab.text}&emsp;</span>
-                                <span onClick={() => onValueClick(value)} className="outline-badge">{value}</span>
+                                <span onClick={() => onValueClick(value)} className={style.outlineBadge}>{value}</span>
                             </li>
                         )
                     })

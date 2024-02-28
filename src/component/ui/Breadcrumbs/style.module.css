@@ -1,0 +1,19 @@
+.breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.link {
+    color: var(--text-color);
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.active {
+    color: var(--primary-color);
+}

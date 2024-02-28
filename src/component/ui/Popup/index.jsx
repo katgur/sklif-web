@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import './Popup.css'
 import PopupContent from './PopupContent';
 
 function Popup({ target, setTarget, children, position = 'center bottom' }) {

@@ -1,17 +1,17 @@
 import React from 'react'
-import './DrawerLayout.css'
+import style from './style.module.css'
 import Drawer from '../Drawer';
 import Header from '../Header';
 
 function DrawerLayout({ drawerMenu, user, logo, children }) {
 
     return (
-        <div className="layout">
-            <div className='layout__drawer'>
+        <div className={style.layout}>
+            <div className={style.drawer}>
                 <Drawer menu={drawerMenu} logo={logo} />
             </div>
             <Header user={user} />
-            <main className='layout__content'>
+            <main className={style.content}>
                 {children}
             </main>
         </div>

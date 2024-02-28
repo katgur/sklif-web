@@ -1,4 +1,4 @@
-import './Link.css';
+import style from './style.module.css'
 
 function LinkButton({ children, style }) {
     return (

@@ -1,12 +1,12 @@
 import ModalWrapper from "./ModalWrapper";
-import './Modal.css';
+import style from './style.module.css'
 
 function Modal({ isVisible, onClose, children }) {
     return (
         isVisible &&
         <ModalWrapper>
-            <div onClick={onClose} className="modal__backdrop"></div>
-            <div className="modal">
+            <div onClick={onClose} className={style.backdrop}></div>
+            <div className={style.modal}>
                 {children}
             </div>
         </ModalWrapper>

@@ -1,0 +1,85 @@
+.card {
+    background-color: white;
+    border: 1px solid var(--stroke-color);
+    box-shadow: 1px 2px 3px var(--stroke-color);
+}
+
+.list {
+    display: grid;
+    grid-auto-rows: minmax(50px, auto);
+}
+
+.cell {
+    padding: 16px 20px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    border-bottom: 1px solid var(--stroke-color);
+    color: var(--text-color);
+}
+
+.cell:hover {
+    color: var(--primary-color);
+}
+
+.cell--selected {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sort {
+    border-radius: 4px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.sort:hover {
+    background-color: var(--hover-color-2);
+}
+
+.value {
+    cursor: pointer;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 1px 2px 3px #E5E9FF;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    color: var(--text-color);
+}
+
+.page {
+    margin: 5px;
+}
+
+.page--selected {
+    border-radius: 3px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 5px 8px;
+    margin: 5px;
+}
+

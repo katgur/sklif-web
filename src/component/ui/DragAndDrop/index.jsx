@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import './DragAndDrop.css';
+import style from './style.module.css'
 import uploadIcon from './upload.svg';
 
 function DragAndDrop({ setFiles, accepts }) {
@@ -46,10 +46,10 @@ function DragAndDrop({ setFiles, accepts }) {
     }, [])
 
     return (
-        <div className="card drag-and-drop">
-            <label ref={dropAreaRef} className="drag-and-drop__area" htmlFor="file-upload">
+        <div className={style.wrapper}>
+            <label ref={dropAreaRef} className={style.area} htmlFor="file-upload">
                 <span className="font__jost--sm font_color_text">
-                    <span className="drag-and-drop__icon">
+                    <span className={style.icon}>
                         <img src={uploadIcon} alt="upload-icon" />
                     </span>
                     Нажмите для загрузки или перетащите файлы в формате <span className="font_color_primary">{accepts}</span>

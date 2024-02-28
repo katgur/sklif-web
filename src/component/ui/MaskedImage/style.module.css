@@ -1,0 +1,11 @@
+.wrapper {
+    flex: 1;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+.mask {
+    object-fit: contain;
+    height: 600px;
+}

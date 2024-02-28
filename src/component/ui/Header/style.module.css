@@ -1,0 +1,85 @@
+.header {
+    padding-top: var(--progress-bar-height);
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid var(--stroke-color);
+    height: var(--header-height);
+    padding-left: 35px;
+    padding-right: 30px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-name {
+    text-align: right;
+}
+
+.avatar {
+    border-radius: 9999px;
+    object-fit: cover;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.user::after {
+    content: "";
+    background: url('./chevron.svg') no-repeat;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.title {
+    float: right;
+    color: var(--black);
+}
+
+.subtitle {
+    float: right;
+    clear: right;
+    color: var(--text-color-2);
+}
+
+.input {
+    background: url('./search.svg') no-repeat;
+    background-position: left center;
+    color: var(--dark-text-color-2);
+    padding-left: 40px;
+}
+
+.input::placeholder {
+    color: var(--text-color-2);
+}
+
+.popup {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 1px 2px 3px #E5E9FF;
+    width: 100px;
+}
+
+.item {
+    padding: 8px 12px;
+    color: #637381;
+    width: 100%;
+    cursor: pointer;
+}
+
+.item:hover {
+    color: #3C50E0;
+    background-color: #E5E9FF;
+}
+
+.caution {
+    color: #F87171;
+}
+

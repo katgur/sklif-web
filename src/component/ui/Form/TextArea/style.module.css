@@ -1,0 +1,12 @@
+.wrapper {
+    margin-top: 18px;
+}
+
+.textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.error {
+    border: 1px solid var(--alert-text-color);
+}

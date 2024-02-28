@@ -1,8 +1,8 @@
-import './StackViewport.css';
+import style from './style.module.css'
 
 function StackViewportWrapper({ children }) {
     return (
-        <div className="stack-viewport font__inter--xs font_color_white">
+        <div className={`${style.wrapper} font__inter--xs font_color_white`}>
             {children}
         </div>
     )

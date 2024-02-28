@@ -1,4 +1,4 @@
-import style from './Box.module.css';
+import style from './style.module.css'
 
 function Box({ children, align = "center" }) {
     return (
