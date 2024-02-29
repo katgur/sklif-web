@@ -6,7 +6,7 @@ import Mask from '../mask/Mask';
 import api from '../../api/mock/studyApi';
 import useStudy from '../../hook/useStudy';
 import SideStudyViewer from './SideStudyViewer';
-import Stack from '../../component/ui/Stack';
+import { Stack } from 'tailwind-admin';
 import { useSelector } from 'react-redux';
 import { selectResult } from '../mask/maskSlice';
 

@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
-import LinkButton from '../component/ui/LinkButton';
-import Card from '../component/ui/Card';
-import Stack from '../component/ui/Stack';
+import { LinkButton, Card, Stack, Box } from 'tailwind-admin';
 import generateCodes from '../util/pkce';
-import Box from '../component/ui/Box';
 
 function LoginPage() {
     generateCodes();

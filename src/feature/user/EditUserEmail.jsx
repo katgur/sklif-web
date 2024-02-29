@@ -1,8 +1,7 @@
 import useApiDispatch from "../../hook/useApiDispatch.js";
-import Form from '../../component/ui/Form';
+import { Form, Input } from 'tailwind-admin';
 import { updateUserEmail } from './usersSlice';
 import useUser from '../../hook/useUser';
-import Input from '../../component/ui/Form/Input';
 import { useParams } from 'react-router';
 
 const fields = [

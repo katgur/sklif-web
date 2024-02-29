@@ -1,12 +1,9 @@
 import { useRef } from "react";
 import Viewport from "./Viewport";
-import DataViewer from "../../component/ui/DataViewer";
+import { DataViewer, Card, LinkButton, Stack } from "tailwind-admin";
 import api from "../../api/mock/storageApi";
 import useStudy from '../../hook/useStudy';
-import Card from '../../component/ui/Card';
-import Link from '../../component/ui/LinkButton';
 import { Link as RouteLink } from 'react-router-dom';
-import Stack from "../../component/ui/Stack";
 
 const schema = [
     {
@@ -79,11 +76,11 @@ function StudyViewer() {
                     <Viewport viewport={viewport}
                         imageId={'wadouri:' + api.getBytes(study.keys[0])}
                         style={{ width: "200px", height: "200px" }} />
-                    <Link style="primary">
+                    <LinkButton style="primary">
                         <RouteLink to={`/home/viewer/${study.key}`}>
                             Просмотр
                         </RouteLink>
-                    </Link>
+                    </LinkButton>
                 </Stack>
                 <DataViewer
                     path='studies'

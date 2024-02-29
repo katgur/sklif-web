@@ -1,5 +1,4 @@
-import Form from '../../component/ui/Form';
-import Modal from '../../component/ui/Modal';
+import { Form, Modal } from 'tailwind-admin';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { deleteOrganization } from './orgSlice';
 import useOrganization from '../../hook/useOrganization';

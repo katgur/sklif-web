@@ -1,9 +1,6 @@
 import { Pie, PieChart, ResponsiveContainer, Cell, Label } from 'recharts';
-import Card from '../../component/ui/Card';
-import Stack from '../../component/ui/Stack';
-import Article from '../../component/ui/Article';
+import { Card, Stack, Article, LabelButton } from 'tailwind-admin';
 import useStats from '../../hook/useStats';
-import LabelButton from '../../component/ui/LabelButton';
 
 function SpaceChart() {
     const data = useStats("space");

@@ -1,5 +1,4 @@
-import Form from '../../component/ui/Form';
-import Modal from '../../component/ui/Modal';
+import { Form, Modal } from 'tailwind-admin';
 import { useNavigate, useParams } from 'react-router';
 import useUser from '../../hook/useUser';
 import useApiDispatch from "../../hook/useApiDispatch.js";

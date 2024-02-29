@@ -1,9 +1,7 @@
-import Card from "./ui/Card";
+import { Card, Heading, LinkButton } from "tailwind-admin";
 import successImage from "../assets/success.svg";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Heading from "./ui/Heading";
-import LinkButton from "./ui/LinkButton";
 
 function Success() {
     const { feature } = useParams();

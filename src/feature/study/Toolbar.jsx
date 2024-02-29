@@ -2,7 +2,7 @@ import { getToolState, clearToolState, ProbeTool, CobbAngleTool, addToolState, r
 import { updateImage, reset } from 'cornerstone-core';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-import ViewerToolbar from '../../component/ui/ViewerToolbar';
+import { ViewerToolbar } from 'tailwind-admin';
 
 const tools = {
     'Zoom': ZoomTool,

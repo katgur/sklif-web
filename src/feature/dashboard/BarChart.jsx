@@ -1,7 +1,5 @@
 import { Bar, BarChart as UIBarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import Card from '../../component/ui/Card';
-import Stack from '../../component/ui/Stack';
-import Heading from '../../component/ui/Heading';
+import { Card, Stack, Heading } from 'tailwind-admin';
 import useStats from '../../hook/useStats';
 
 function BarChart() {

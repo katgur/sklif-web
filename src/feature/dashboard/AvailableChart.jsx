@@ -1,6 +1,4 @@
-import SinglePieChart from "../../component/ui/SinglePieChart";
-import Stack from '../../component/ui/Stack';
-import Card from '../../component/ui/Card';
+import { SinglePieChart, Stack, Card } from "tailwind-admin";
 import useStats from '../../hook/useStats';
 
 const colors = ["primary", "dark-yellow"];

@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { uploadFiles, createDirectoryAndLoadFiles } from './storageSlice';
 import useStorage from "../../hook/useStorage";
-import DragAndDrop from "../../component/ui/DragAndDrop";
-import Form from '../../component/ui/Form';
-import Select from '../../component/ui/Form/Select';
-import Input from '../../component/ui/Form/Input';
-import Checkbox from '../../component/ui/Form/Checkbox';
-import Details from '../../component/ui/Details';
+import { DragAndDrop, Form, Select, Input, Checkbox, Details } from "tailwind-admin";
 import useApiDispatch from "../../hook/useApiDispatch";
 import { useNavigate } from "react-router";
 

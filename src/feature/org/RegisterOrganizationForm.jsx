@@ -1,7 +1,5 @@
-import Form from '../../component/ui/Form/index.jsx';
-import Input from '../../component/ui/Form/Input';
+import { Form, Input, TwoColumnLayout } from 'tailwind-admin';
 import { addOrganization } from './orgSlice.js';
-import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
 import { joinAdminFullName } from '../../util/mapper.js';
 import { addError } from '../notification/notificationSlice.js';
 import { useDispatch } from "react-redux";

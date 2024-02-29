@@ -1,10 +1,7 @@
 import useUser from '../../hook/useUser';
-import DataViewer from '../../component/ui/DataViewer';
+import { DataViewer, LinkButton, Card, Stack } from 'tailwind-admin';
 import { useParams } from 'react-router';
 import { Link as RouteLink } from 'react-router-dom';
-import LinkButton from '../../component/ui/LinkButton';
-import Card from '../../component/ui/Card';
-import Stack from '../../component/ui/Stack';
 import useAuth from '../../hook/useAuth';
 
 const schema = [

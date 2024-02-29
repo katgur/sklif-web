@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import SortableTableViewer from '../../component/ui/SortableTableViewer';
+import { SortableTableViewer, ToolPanel } from 'tailwind-admin';
 import useStudies from '../../hook/useStudies';
-import StorageToolPanel from '../../component/ui/ToolPanel';
 
 const schema = [
     "patientId", "patientName", "birthDate", "studyDate", "modality",
@@ -30,9 +29,9 @@ function StudiesList() {
 
     return (
         <>
-            <StorageToolPanel>
+            <ToolPanel>
                 <Link to='/home/upload'>Загрузить исследование</Link>
-            </StorageToolPanel>
+            </ToolPanel>
             <SortableTableViewer
                 columns={columns}
                 contextMenu={contextMenu}

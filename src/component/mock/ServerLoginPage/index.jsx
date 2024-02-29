@@ -1,9 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
-import Card from "../../ui/Card"
-import Form from "../../ui/Form"
-import Input from "../../ui/Form/Input"
+import { Card, Form, Input, Box } from "tailwind-admin"
 import { _code as code } from "../../../api/mock/authApi"
-import Box from "../../ui/Box"
 
 function ServerLoginPage() {
     const [params] = useSearchParams();

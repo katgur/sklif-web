@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Viewer from '../feature/study/Viewer';
 import StudiesList from '../feature/study/StudiesList';
-import ProgressBar from '../component/ui/ProgressBar';
+import { ProgressBar, Breadcrumbs } from 'tailwind-admin';
 import ProfileViewer from '../feature/user/ProfileViewer';
 import LinkProvider from '../feature/study/LinkProvider';
 import UploadFileForm from '../feature/storage/UploadFileForm';
@@ -11,7 +11,6 @@ import NotFoundPage from '../page/NotFoundPage.jsx';
 import { Link } from 'react-router-dom';
 import ProfileIcon from '../assets/profile.svg?react';
 import StudyIcon from '../assets/study.svg?react';
-import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import useAuth from '../hook/useAuth.js';
 
 import * as cornerstone from "cornerstone-core";

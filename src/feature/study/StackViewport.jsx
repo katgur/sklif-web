@@ -2,11 +2,9 @@ import { useEffect } from "react";
 import Viewport from "./Viewport";
 import { useState } from "react";
 import { init, StackScrollMouseWheelTool, addStackStateManager, addToolState, addToolForElement, setToolActive } from 'cornerstone-tools';
-import Scroll from "../../component/ui/Scroll";
+import { Scroll, StackViewportLayer, StackViewportWrapper } from "tailwind-admin";
 import ChevronRightIcon from '../../assets/chevron-right.svg?react';
 import ChevronLeftIcon from '../../assets/chevron-left.svg?react';
-import StackViewportWrapper from "../../component/ui/StackViewportWrapper";
-import StackViewportLayer from "../../component/ui/StackViewportWrapper/StackViewportLayer";
 
 const info = [
     'Zoom', 'Горизонтальное смещение', 'Вертикальное смещение', 'WW/WC'

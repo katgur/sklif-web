@@ -1,5 +1,4 @@
-import Form from '../../component/ui/Form';
-import Input from '../../component/ui/Form/Input';
+import { Form, Input } from 'tailwind-admin';
 import { selectData } from '../auth/authSlice';
 import { setPassword } from './usersSlice';
 import { useSelector } from 'react-redux';
