@@ -23,6 +23,7 @@ import StorageIcon from '../assets/storage.svg?react';
 import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
+import Search from '../feature/search/Search.jsx';
 
 const drawerMenu = [
   {
@@ -180,6 +181,15 @@ const dashboard = (
   </>
 )
 
+const searchPage = (
+  <>
+      <Breadcrumbs title='Поиск'>
+          <Link to=''>Список</Link>
+      </Breadcrumbs>
+      <Search />
+  </>
+)
+
 function App() {
   return (
     <>
@@ -201,6 +211,8 @@ function App() {
           <Route path="profile/:email" element={profileViewer} />
           <Route path="profile" element={profilePage} />
           <Route path="settings" element={settingsPage} />
+
+          <Route path="search/:filter" element={searchPage} />
         </Route>
         <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
       </Routes>

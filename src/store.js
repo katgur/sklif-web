@@ -7,6 +7,7 @@ import studySliceReducer from './feature/study/studiesSlice';
 import maskSliceReducer from './feature/mask/maskSlice';
 import notificationReducer from './feature/notification/notificationSlice';
 import progressReducer from './feature/progress/progressSlice';
+import searchReducer from './feature/search/searchSlice';
 import logger from 'redux-logger'
 
 export default configureStore({
@@ -19,6 +20,7 @@ export default configureStore({
         mask: maskSliceReducer,
         notifications: notificationReducer,
         progress: progressReducer,
+        search: searchReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 })
