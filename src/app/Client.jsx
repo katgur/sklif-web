@@ -19,6 +19,7 @@ import * as cornerstoneTools from "cornerstone-tools";
 import Hammer from "hammerjs";
 import * as cornerstoneWADOImageLoader from "cornerstone-wado-image-loader";
 import * as dicomParser from "dicom-parser";
+import Search from '../feature/search/Search.jsx';
 
 function getBlobUrl(url) {
     const baseUrl = window.URL || window.webkitURL;
@@ -119,6 +120,16 @@ const profilePage = (
         <ProfileViewer searchable={false} />
     </>
 )
+
+const searchPage = (
+    <>
+        <Breadcrumbs title='Поиск'>
+            <Link to=''>Список</Link>
+        </Breadcrumbs>
+        <Search />
+    </>
+)
+
 function Client() {
     const auth = useAuth();
 
@@ -138,6 +149,7 @@ function Client() {
                 <Route path="profile" element={profilePage} />
                 <Route path="upload" element={uploadPage} />
                 <Route path="study/*" element={studyPage} />
+                <Route path="search/:filter" element={searchPage} />
             </Route>
             <Route path="viewer/*" element={<Viewer />} />
             <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
