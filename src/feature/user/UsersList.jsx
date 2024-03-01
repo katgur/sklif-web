@@ -1,6 +1,6 @@
 import useUsers from '../../hook/useUsers';
-import SortableTableViewer from '../../component/ui/SortableTableViewer';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { SortableTableViewer } from 'tailwind-admin';
+import { Link, useNavigate } from 'react-router-dom';
 
 const schema = ["Почта", "Фамилия", "Имя", "Отчество", "Телефон", "Роль"];
 const contextMenu = [
@@ -15,7 +15,7 @@ function UsersList({ isGlobal }) {
     if (!users) {
         return;
     }
-    
+
     const mapUser = (user) => {
         const res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
         if (isGlobal) {

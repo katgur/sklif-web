@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
-import Form from '../../component/ui/Form';
-import Input from '../../component/ui/Form/Input';
+import { Form, Input } from 'tailwind-admin';
 import { createDirectory, selectCurrent } from './storageSlice';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 

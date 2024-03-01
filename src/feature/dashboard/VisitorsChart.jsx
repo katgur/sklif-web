@@ -1,7 +1,5 @@
 import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip, Cell } from 'recharts';
-import Card from '../../component/ui/Card';
-import Heading from '../../component/ui/Heading';
-import Stack from '../../component/ui/Stack';
+import { Card, Heading, Stack } from 'tailwind-admin';
 import useStats from '../../hook/useStats';
 
 const colors = ["#80CAEE", "#6577F3", "#0FADCF", "#3C50E0"]

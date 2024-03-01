@@ -1,6 +1,4 @@
-import SinglePieChart from "../../component/ui/SinglePieChart";
-import Stack from '../../component/ui/Stack';
-import Card from '../../component/ui/Card';
+import { SinglePieChart, Stack, Card } from "tailwind-admin";
 import useStats from '../../hook/useStats';
 
 const colors = ["primary", "dark-yellow"];
@@ -17,9 +15,7 @@ function AvailableChart() {
             <Stack direction="vertical" gap="m">
                 {
                     data.map((item, i) => (
-                        <SinglePieChart {...item} color={colors[i % colors.length]}>
-
-                        </SinglePieChart>
+                        <SinglePieChart key={i} {...item} color={colors[i % colors.length]} />
                     ))
                 }
             </Stack>

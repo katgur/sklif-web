@@ -1,4 +1,4 @@
-import SideDataViewer from '../../component/ui/SideDataViewer'
+import { SideDataViewer } from 'tailwind-admin'
 import CommentSection from './CommentSection';
 
 const schema = [

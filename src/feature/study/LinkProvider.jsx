@@ -1,12 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
-import Modal from '../../component/ui/Modal';
+import { Modal, Alert, Button, Card, Article, Stack } from 'tailwind-admin';
 import { clientUrl, protocol } from '../../util/config';
-import Alert from '../../component/ui/Alert';
-import Button from '../../component/ui/Button';
-import Card from '../../component/ui/Card';
-import Article from '../../component/ui/Article';
-import Stack from '../../component/ui/Stack';
 
 function LinkProvider() {
     const navigate = useNavigate();

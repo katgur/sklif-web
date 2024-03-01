@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import ProgressBar from "../../component/ui/ProgressBar";
+import { ProgressBar } from "tailwind-admin";
 import { selectIsProgress } from "./progressSlice";
 
 function Progress() {
     const isProgress = useSelector(selectIsProgress);
-    
+
     return (
         <ProgressBar isProgress={isProgress} />
     )

@@ -1,4 +1,4 @@
-import SortableTableViewer from '../../component/ui/SortableTableViewer';
+import { SortableTableViewer } from 'tailwind-admin';
 import { Link, useNavigate } from 'react-router-dom';
 import useOrganizations from '../../hook/useOrganizations';
 

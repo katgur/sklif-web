@@ -8,9 +8,7 @@ import {
     Tooltip,
     Legend,
 } from 'recharts';
-import Card from '../../component/ui/Card';
-import Heading from '../../component/ui/Heading';
-import Stack from '../../component/ui/Stack';
+import { Card, Heading, Stack } from 'tailwind-admin';
 import useStats from '../../hook/useStats';
 
 function LineChart() {

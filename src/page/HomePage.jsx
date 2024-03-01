@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
-import DrawerLayout from '../component/ui/DrawerLayout';
-import logo from '../res/Logo.svg'
+import { DrawerLayout } from 'tailwind-admin';
+import logo from '../assets/logo.svg'
 import useUser from '../hook/useUser';
 import useAuth from '../hook/useAuth';
 

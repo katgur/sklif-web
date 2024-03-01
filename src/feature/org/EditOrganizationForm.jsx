@@ -1,8 +1,6 @@
-import Form from '../../component/ui/Form';
-import Input from '../../component/ui/Form/Input.jsx';
+import { Form, Input, TwoColumnLayout } from 'tailwind-admin';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { updateOrganization } from './orgSlice.js';
-import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout.jsx';
 import { useParams } from 'react-router';
 import useOrganization from '../../hook/useOrganization.js'
 import { splitAdminFullName, joinAdminFullName } from '../../util/mapper.js';

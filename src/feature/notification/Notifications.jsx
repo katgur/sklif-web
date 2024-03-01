@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { getNotifications } from "./notificationSlice"
-import Alert from '../../component/ui/Alert'
+import { Alert } from 'tailwind-admin'
 import { removeNotification } from "./notificationSlice";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";

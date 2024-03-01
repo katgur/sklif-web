@@ -1,7 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
-import Card from "../../ui/Card"
-import Form from "../../ui/Form"
-import Input from "../../ui/Form/Input"
+import { Card, Form, Input, Box } from "tailwind-admin"
 import { _code as code } from "../../../api/mock/authApi"
 
 function ServerLoginPage() {
@@ -18,12 +16,14 @@ function ServerLoginPage() {
     }
 
     return (
-        <Card padding="m">
-            <Form title="Авторизация" entity={{ login: "global.admin", password: "test" }} onSubmit={onSubmit}>
-                <Input field={{ name: "login", text: "Логин", type: "text", required: true }} />
-                <Input field={{ name: "password", text: "Пароль", type: "password", required: true }} />
-            </Form>
-        </Card>
+        <Box>
+            <Card padding="m">
+                <Form title="Авторизация" entity={{ login: "global.admin", password: "test" }} onSubmit={onSubmit}>
+                    <Input field={{ name: "login", text: "Логин", type: "text", required: true }} />
+                    <Input field={{ name: "password", text: "Пароль", type: "password", required: true }} />
+                </Form>
+            </Card>
+        </Box>
     )
 }
 

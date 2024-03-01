@@ -1,8 +1,6 @@
-import Form from '../../component/ui/Form';
+import { Form, TwoColumnLayout, Input } from 'tailwind-admin';
 import { updateUserInfo } from './usersSlice';
 import useUser from '../../hook/useUser';
-import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
-import Input from '../../component/ui/Form/Input';
 import { useParams } from 'react-router';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 
@@ -32,7 +30,7 @@ function EditUserInfoForm({ isGlobal }) {
     const dispatch = useApiDispatch();
     const { email } = useParams();
     const user = useUser(email);
-    
+
     if (!user) {
         return;
     }

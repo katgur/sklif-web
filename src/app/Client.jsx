@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Viewer from '../feature/study/Viewer';
 import StudiesList from '../feature/study/StudiesList';
-import ProgressBar from '../component/ui/ProgressBar';
+import { ProgressBar, Breadcrumbs } from 'tailwind-admin';
 import ProfileViewer from '../feature/user/ProfileViewer';
 import LinkProvider from '../feature/study/LinkProvider';
 import UploadFileForm from '../feature/storage/UploadFileForm';
@@ -9,8 +9,8 @@ import StudyViewer from '../feature/study/StudyViewer';
 import HomePage from '../page/HomePage.jsx';
 import NotFoundPage from '../page/NotFoundPage.jsx';
 import { Link } from 'react-router-dom';
-import { profileIcon, studyIcon } from '../res/svg';
-import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
+import ProfileIcon from '../assets/profile.svg?react';
+import StudyIcon from '../assets/study.svg?react';
 import useAuth from '../hook/useAuth.js';
 
 import * as cornerstone from "cornerstone-core";
@@ -62,13 +62,13 @@ const initCornerstone = (accessToken) => {
 
 const drawerMenu = [
     {
-        text: "Профиль", icon: profileIcon, options: [
+        text: "Профиль", icon: <ProfileIcon />, options: [
             <Link to="/home/profile">Перейти</Link>,
             <Link to="/logout">Выйти</Link>,
         ]
     },
     {
-        text: "Исследования", icon: studyIcon, options: [
+        text: "Исследования", icon: <StudyIcon />, options: [
             <Link to="/home/studies">Список</Link>,
             <Link to="/home/upload">Загрузить</Link>,
         ]

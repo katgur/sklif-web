@@ -1,6 +1,5 @@
 import { deleteDirectory, deleteFiles } from "./storageSlice";
-import Form from '../../component/ui/Form';
-import Modal from '../../component/ui/Modal';
+import { Form, Modal } from 'tailwind-admin';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { useNavigate } from 'react-router';
 import { isDirectory } from '../../util/storageUtil';

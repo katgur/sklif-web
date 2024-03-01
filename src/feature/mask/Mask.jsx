@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { fetchMask, selectResult } from "./maskSlice";
-import MaskedImage from "../../component/ui/MaskedImage";
+import { MaskedImage } from "tailwind-admin";
 import { useEffect } from "react";
 import useApiDispatch from "../../hook/useApiDispatch.js";
 

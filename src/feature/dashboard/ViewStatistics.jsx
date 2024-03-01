@@ -1,5 +1,4 @@
-import Card from "../../component/ui/Card";
-import Statistics from "../../component/ui/Statistics";
+import { Card, Statistics } from "tailwind-admin";
 import useStats from '../../hook/useStats';
 
 function ViewStatistics() {

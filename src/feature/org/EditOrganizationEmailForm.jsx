@@ -1,8 +1,7 @@
 import useApiDispatch from "../../hook/useApiDispatch.js";
-import Form from '../../component/ui/Form';
+import { Form, Input } from 'tailwind-admin';
 import useOrganization from '../../hook/useOrganization';
 import { updateOrganization } from '../../feature/org/orgSlice';
-import Input from '../../component/ui/Form/Input.jsx';
 import { useParams } from 'react-router';
 
 const fields = [

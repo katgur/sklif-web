@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import Viewport from "./Viewport";
 import { useState } from "react";
 import { init, StackScrollMouseWheelTool, addStackStateManager, addToolState, addToolForElement, setToolActive } from 'cornerstone-tools';
-import Scroll from "../../component/ui/Scroll";
-import { chevronLeftIcon, chevronRightIcon } from "../../res/svg";
-import StackViewportWrapper from "../../component/ui/StackViewportWrapper";
-import StackViewportLayer from "../../component/ui/StackViewportWrapper/StackViewportLayer";
+import { Scroll, StackViewportLayer, StackViewportWrapper } from "tailwind-admin";
+import ChevronRightIcon from '../../assets/chevron-right.svg?react';
+import ChevronLeftIcon from '../../assets/chevron-left.svg?react';
 
 const info = [
     'Zoom', 'Горизонтальное смещение', 'Вертикальное смещение', 'WW/WC'
@@ -71,10 +70,14 @@ function StackViewport({ imageIds, viewport, index, setIndex }) {
             <Scroll total={imageIds.length} current={index} />
             <Viewport imageId={imageIds[index]} viewport={viewport} style={{ height: "85vh", width: "600px" }} />
             <StackViewportLayer style={{ left: "0", top: window.innerHeight / 2 - 90 }}>
-                <button onClick={onBackButtonClick}>{chevronLeftIcon}</button>
+                <button onClick={onBackButtonClick}>
+                    <ChevronLeftIcon />
+                </button>
             </StackViewportLayer>
             <StackViewportLayer style={{ right: "0", top: window.innerHeight / 2 - 90 }}>
-                <button onClick={onForwardButtonClick}>{chevronRightIcon}</button>
+                <button onClick={onForwardButtonClick}>
+                    <ChevronRightIcon />
+                </button>
             </StackViewportLayer>
             <StackViewportLayer style={{ top: "0", right: "0" }}>
                 {`${index + 1}/${imageIds.length}`}

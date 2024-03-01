@@ -1,9 +1,5 @@
-import Form from '../../component/ui/Form';
+import { Form, TwoColumnLayout, Input, Radio, RadioGroup } from 'tailwind-admin';
 import { useDispatch } from 'react-redux';
-import TwoColumnLayout from '../../component/ui/Form/TwoColumnLayout';
-import Input from '../../component/ui/Form/Input.jsx';
-import RadioGroup from '../../component/ui/Form/RadioGroup';
-import Radio from '../../component/ui/Form/Radio.jsx';
 import { addError } from '../notification/notificationSlice.js';
 import { createUser } from './usersSlice.js';
 import useApiDispatch from "../../hook/useApiDispatch.js";

@@ -11,47 +11,46 @@ import DeleteUserForm from '../feature/user/DeleteUserForm';
 import UploadFileForm from '../feature/storage/UploadFileForm';
 import DeleteFileForm from '../feature/storage/DeleteFileForm';
 import FilesList from '../feature/storage/FilesList';
-import ProgressBar from '../component/ui/ProgressBar';
+import { ProgressBar, TabLayout, Breadcrumbs, FileStatistics, GridLayout, GridCell } from 'tailwind-admin';
 import AddDirectoryForm from '../feature/storage/AddDirectoryForm';
 import UploadAvatarForm from '../feature/user/UploadAvatarForm';
-import TabLayout from '../component/ui/TabLayout';
 import NotFoundPage from '../page/NotFoundPage.jsx';
-import { profileIcon, settingsIcon, usersIcon, storageIcon } from '../res/svg';
-import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
-import FileStatistics from '../component/ui/FileStatistics/index.jsx';
+import ProfileIcon from '../assets/profile.svg?react';
+import SettingsIcon from '../assets/settings.svg?react';
+import DashboardIcon from '../assets/dashboard.svg?react';
+import UsersIcon from '../assets/users.svg?react';
+import StorageIcon from '../assets/storage.svg?react';
 import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
-import GridLayout from '../component/ui/GridLayout/index.jsx';
-import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 
 const drawerMenu = [
   {
-    text: "Пользователи", icon: usersIcon, options: [
+    text: "Пользователи", icon: <UsersIcon />, options: [
       <Link to="/home/users">Список</Link>,
       <Link to="/home/add_user">Добавить</Link>,
     ]
   },
   {
-    text: "Хранилище", icon: storageIcon, options: [
+    text: "Хранилище", icon: <StorageIcon />, options: [
       <Link to="/home/files">Список</Link>,
       <Link to="/home/add_file">Загрузить</Link>,
     ]
   },
   {
-    text: "Статистика", options: [
+    text: "Статистика", icon: <DashboardIcon />, options: [
       <Link to="/home/dashboard">Менеджер файлов</Link>,
     ]
   },
   {
-    text: "Профиль", icon: profileIcon, options: [
+    text: "Профиль", icon: <ProfileIcon />, options: [
       <Link to="/home/profile">Перейти</Link>,
       <Link to="/home/settings">Редактировать</Link>,
       <Link to="/logout">Выйти</Link>,
     ]
   },
   {
-    text: "Настройки", icon: settingsIcon, options: [
+    text: "Настройки", icon: <SettingsIcon />, options: [
       <Link to="/home/settings">Профиль</Link>,
     ]
   }

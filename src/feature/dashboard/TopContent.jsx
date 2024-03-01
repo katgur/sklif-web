@@ -1,8 +1,4 @@
-import Card from "../../component/ui/Card";
-import Top from "../../component/ui/Top";
-import TopHeader from "../../component/ui/Top/TopHeader";
-import TopRow from "../../component/ui/Top/TopRow";
-import Heading from "../../component/ui/Heading";
+import { Card, Top, TopHeader, TopRow, Heading } from "tailwind-admin";
 import useStats from '../../hook/useStats';
 
 function TopContent() {

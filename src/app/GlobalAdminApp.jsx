@@ -14,10 +14,13 @@ import DeleteOrganizationForm from '../feature/org/DeleteOrganizationForm';
 import OrganizationsList from '../feature/org/OrganizationsList';
 import UploadAvatarForm from '../feature/user/UploadAvatarForm';
 import EditOrganizationEmailForm from '../feature/org/EditOrganizationEmailForm';
-import { profileIcon, settingsIcon, usersIcon, orgsIcon } from '../res/svg';
-import TabLayout from '../component/ui/TabLayout';
+import ProfileIcon from '../assets/profile.svg?react';
+import SettingsIcon from '../assets/settings.svg?react';
+import UsersIcon from '../assets/users.svg?react';
+import OrgsIcon from '../assets/orgs.svg?react';
+import DashboardIcon from '../assets/dashboard.svg?react';
+import { TabLayout, Breadcrumbs, GridLayout, GridCell } from 'tailwind-admin';
 import NotFoundPage from '../page/NotFoundPage.jsx';
-import Breadcrumbs from '../component/ui/Breadcrumbs/index.jsx';
 import OrganizationViewer from '../feature/org/OrganizationViewer.jsx';
 import BarChart from '../feature/dashboard/BarChart.jsx';
 import VisitorsChart from '../feature/dashboard/VisitorsChart.jsx';
@@ -26,38 +29,36 @@ import ViewStatistics from '../feature/dashboard/ViewStatistics.jsx';
 import MapStats from '../feature/dashboard/MapStats.jsx';
 import TopContent from '../feature/dashboard/TopContent.jsx';
 import TopChannels from '../feature/dashboard/TopChannels.jsx';
-import GridLayout from '../component/ui/GridLayout/index.jsx';
-import GridCell from '../component/ui/GridLayout/GridCell.jsx';
 import Progress from '../feature/progress/Progress.jsx';
 import Success from '../component/Success.jsx';
 
 const drawerMenu = [
   {
-    text: "Пользователи", icon: usersIcon, options: [
+    text: "Пользователи", icon: <UsersIcon />, options: [
       <Link to="/home/users">Список</Link>,
       <Link to="/home/add_user">Добавить</Link>,
     ]
   },
   {
-    text: "Организации", icon: orgsIcon, options: [
+    text: "Организации", icon: <OrgsIcon />, options: [
       <Link to="/home/organizations">Список</Link>,
       <Link to="/home/add_org">Добавить</Link>,
     ]
   },
   {
-    text: "Статистика", options: [
+    text: "Статистика", icon: <DashboardIcon />, options: [
       <Link to="/home/dashboard">Дашборд</Link>
     ]
   },
   {
-    text: "Профиль", icon: profileIcon, options: [
+    text: "Профиль", icon: <ProfileIcon />, options: [
       <Link to="/home/profile">Перейти</Link>,
       <Link to="/home/settings">Редактировать</Link>,
       <Link to="/logout">Выйти</Link>,
     ]
   },
   {
-    text: "Настройки", icon: settingsIcon, options: [
+    text: "Настройки", icon: <SettingsIcon />, options: [
       <Link to="/home/settings">Профиль</Link>,
     ]
   }

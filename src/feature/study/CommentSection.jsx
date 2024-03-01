@@ -1,11 +1,9 @@
 import { useState } from "react";
-import editIcon from '../../res/edit.svg';
+import EditIcon from '../../assets/edit.svg?react';
+import CloseIcon from '../../assets/close.svg?react';
 import { addComment } from "./studiesSlice";
 import useApiDispatch from "../../hook/useApiDispatch.js";
-import Form from '../../component/ui/Form';
-import TextArea from "../../component/ui/Form/TextArea";
-import StorageToolPanel from '../../component/ui/StorageToolPanel';
-import ContextMenu from "../../component/ui/ContextMenu";
+import { Form, TextArea, ToolPanel, ContextMenu } from 'tailwind-admin';
 
 function CommentSection({ _key, comments }) {
     const [isEditMode, setIsEditMode] = useState(false);
@@ -17,18 +15,18 @@ function CommentSection({ _key, comments }) {
 
     return (
         <>
-            <StorageToolPanel>
+            <ToolPanel>
                 <ContextMenu style="dark">
                     <button onClick={() => setIsEditMode(true)}>
-                        <img src={editIcon} width="24" height="24" alt="Редактировать комментарии к исследованию." />
+                        <EditIcon />
                         <span>Редактировать</span>
                     </button>
                     <button onClick={() => setIsEditMode(false)} disabled={!isEditMode}>
-                        <img src={editIcon} width="24" height="24" alt="Отменить редактирование комментариев к исследованию." />
+                        <CloseIcon />
                         <span>Отмена</span>
                     </button>
                 </ContextMenu>
-            </StorageToolPanel>
+            </ToolPanel>
             {
                 isEditMode ?
                     <Form onSubmit={onSubmit} entity={{ comments }}>

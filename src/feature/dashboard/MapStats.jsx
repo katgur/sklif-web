@@ -1,8 +1,4 @@
-import Card from "../../component/ui/Card";
-import Heading from "../../component/ui/Heading";
-import Map from "../../component/ui/Map";
-import Rating from "../../component/ui/Rating";
-import Stack from "../../component/ui/Stack";
+import { Card, Heading, Map, Rating, Stack } from "tailwind-admin";
 import useStats from '../../hook/useStats';
 
 function MapStats() {

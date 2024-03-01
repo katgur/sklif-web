@@ -3,10 +3,7 @@ import useApiDispatch from "../../hook/useApiDispatch.js";
 import { uploadAvatar } from "./usersSlice";
 import useUser from '../../hook/useUser';
 import { useParams } from "react-router";
-import FileUploadForm from "../../component/ui/FileUploadForm";
-import Preview from "../../component/ui/FileUploadForm/Preview";
-import Button from '../../component/ui/Button';
-import Card from '../../component/ui/Card';
+import { FileUploadForm, Preview, Button, Card } from "tailwind-admin";
 
 function UploadAvatarForm() {
     const { email } = useParams();
