@@ -1,5 +1,5 @@
 import { deleteDirectory, deleteFiles } from "./storageSlice";
-import { Form, Modal } from 'tailwind-admin';
+import { Form, Modal, Card } from 'tailwind-admin';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { useNavigate } from 'react-router';
 import { isDirectory } from '../../util/storageUtil';
@@ -24,9 +24,11 @@ function DeleteFileForm() {
 
     return (
         <Modal isVisible={true}>
-            <Form
-                title={`Вы уверены, что хотите удалить файл ${id}?`}
-                onSubmit={onSubmit} onCancel={onCancel} />
+            <Card>
+                <Form
+                    title={`Вы уверены, что хотите удалить файл ${id}?`}
+                    onSubmit={onSubmit} onCancel={onCancel} />
+            </Card>
         </Modal>
     )
 }

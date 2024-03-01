@@ -1,5 +1,5 @@
 import useApiDispatch from "../../hook/useApiDispatch.js";
-import { Form, Input } from 'tailwind-admin';
+import { Form, Input, Card } from 'tailwind-admin';
 import { updateUserEmail } from './usersSlice';
 import useUser from '../../hook/useUser';
 import useAuth from '../../hook/useAuth';
@@ -26,9 +26,11 @@ function EditUserEmailForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={user}>
-            <Input field={fields[0]} />
-        </Form>
+        <Card>
+            <Form onSubmit={onSubmit} entity={user}>
+                <Input field={fields[0]} />
+            </Form>
+        </Card>
     )
 }
 

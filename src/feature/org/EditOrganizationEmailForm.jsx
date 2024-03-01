@@ -1,5 +1,5 @@
 import useApiDispatch from "../../hook/useApiDispatch.js";
-import { Form, Input } from 'tailwind-admin';
+import { Form, Input, Card } from 'tailwind-admin';
 import useOrganization from '../../hook/useOrganization';
 import { updateOrganization } from '../../feature/org/orgSlice';
 import { useParams } from 'react-router';
@@ -24,9 +24,11 @@ function EditOrganizationEmailForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={organization}>
-            <Input field={fields[0]}></Input>
-        </Form>
+        <Card>
+            <Form onSubmit={onSubmit} entity={organization}>
+                <Input field={fields[0]}></Input>
+            </Form>
+        </Card>
     )
 }
 

@@ -1,4 +1,4 @@
-import { Form, Input } from 'tailwind-admin';
+import { Form, Input, Card } from 'tailwind-admin';
 import { selectData } from '../auth/authSlice';
 import { setPassword } from './usersSlice';
 import { useSelector } from 'react-redux';
@@ -26,11 +26,13 @@ function EditPasswordForm() {
     ]
 
     return (
-        <Form onSubmit={onSubmit}>
-            {
-                fields.map(field => <Input field={field} />)
-            }
-        </Form>
+        <Card>
+            <Form onSubmit={onSubmit}>
+                {
+                    fields.map(field => <Input field={field} />)
+                }
+            </Form>
+        </Card>
     )
 }
 

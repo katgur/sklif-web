@@ -1,4 +1,4 @@
-import { Form, Modal } from 'tailwind-admin';
+import { Form, Modal, Card } from 'tailwind-admin';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { deleteOrganization } from './orgSlice';
 import useOrganization from '../../hook/useOrganization';
@@ -25,10 +25,12 @@ function DeleteOrganizationForm() {
 
     return (
         <Modal isVisible={true} onClose={onCancel}>
-            <Form
-                title={`Вы уверены, что хотите удалить данные организации ${organization.name}?`}
-                onSubmit={onSubmit}
-                onCancel={onCancel} />
+            <Card>
+                <Form
+                    title={`Вы уверены, что хотите удалить данные организации ${organization.name}?`}
+                    onSubmit={onSubmit}
+                    onCancel={onCancel} />
+            </Card>
         </Modal>
     )
 }

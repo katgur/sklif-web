@@ -1,4 +1,4 @@
-import { Form, Input, TwoColumnLayout } from 'tailwind-admin';
+import { Form, Input, TwoColumnLayout, Card } from 'tailwind-admin';
 import { addOrganization } from './orgSlice.js';
 import { joinAdminFullName } from '../../util/mapper.js';
 import { addError } from '../notification/notificationSlice.js';
@@ -54,20 +54,22 @@ function RegisterOrganizationForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit}>
-            <TwoColumnLayout>
+        <Card>
+            <Form onSubmit={onSubmit}>
+                <TwoColumnLayout>
+                    {
+                        fields.slice(0, 6).map(field => {
+                            return <Input key={field.name} field={field} />
+                        })
+                    }
+                </TwoColumnLayout>
                 {
-                    fields.slice(0, 6).map(field => {
+                    fields.slice(6).map(field => {
                         return <Input key={field.name} field={field} />
                     })
                 }
-            </TwoColumnLayout>
-            {
-                fields.slice(6).map(field => {
-                    return <Input key={field.name} field={field} />
-                })
-            }
-        </Form>
+            </Form>
+        </Card>
     )
 }
 

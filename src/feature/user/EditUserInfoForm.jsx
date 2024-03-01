@@ -1,4 +1,4 @@
-import { Form, TwoColumnLayout, Input } from 'tailwind-admin';
+import { Form, TwoColumnLayout, Input, Card } from 'tailwind-admin';
 import { updateUserInfo } from './usersSlice';
 import useUser from '../../hook/useUser';
 import useAuth from '../../hook/useAuth';
@@ -42,13 +42,15 @@ function EditUserInfoForm({ isGlobal }) {
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={user}>
-            <TwoColumnLayout>
-                {
-                    fields.map(field => <Input key={field.name} field={field} />)
-                }
-            </TwoColumnLayout>
-        </Form>
+        <Card>
+            <Form onSubmit={onSubmit} entity={user}>
+                <TwoColumnLayout>
+                    {
+                        fields.map(field => <Input key={field.name} field={field} />)
+                    }
+                </TwoColumnLayout>
+            </Form>
+        </Card>
     )
 }
 

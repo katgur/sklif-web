@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { uploadFiles, createDirectoryAndLoadFiles } from './storageSlice';
 import useStorage from "../../hook/useStorage";
-import { DragAndDrop, Form, Select, Input, Checkbox, Details } from "tailwind-admin";
+import { DragAndDrop, Form, Select, Input, Checkbox, Details, Card } from "tailwind-admin";
 import useApiDispatch from "../../hook/useApiDispatch";
 import { useNavigate } from "react-router";
 
@@ -28,15 +28,19 @@ function UploadFileForm() {
 
     return (files ?
         <>
-            <Form onSubmit={onSubmit}>
-                <Select field={{ name: "directory", text: "Директория для загрузки", required: true }} options={directories} />
-                <Checkbox field={{ name: "hasNewDirectory", text: "Загрузить в новую директорию" }} />
-                <Input field={{ name: "newDirectory", text: "Название новой директории", dependsOn: "hasNewDirectory" }} />
-            </Form>
+            <Card>
+                <Form onSubmit={onSubmit}>
+                    <Select field={{ name: "directory", text: "Директория для загрузки", required: true }} options={directories} />
+                    <Checkbox field={{ name: "hasNewDirectory", text: "Загрузить в новую директорию" }} />
+                    <Input field={{ name: "newDirectory", text: "Название новой директории", dependsOn: "hasNewDirectory" }} />
+                </Form>
+            </Card>
             <Details title="Просмотреть список файлов" items={Array.from(files).map(file => file.name)} />
         </>
         :
-        <DragAndDrop setFiles={setFiles} accepts=".dcm, .dicom" />
+        <Card>
+            <DragAndDrop setFiles={setFiles} accepts=".dcm, .dicom" />
+        </Card>
     )
 }
 

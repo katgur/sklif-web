@@ -1,4 +1,4 @@
-import { Form, Input, TwoColumnLayout } from 'tailwind-admin';
+import { Form, Input, TwoColumnLayout, Card } from 'tailwind-admin';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import { updateOrganization } from './orgSlice.js';
 import { useParams } from 'react-router';
@@ -40,20 +40,22 @@ function EditOrganizationForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={splitAdminFullName(organization)}>
-            <TwoColumnLayout>
+        <Card>
+            <Form onSubmit={onSubmit} entity={splitAdminFullName(organization)}>
+                <TwoColumnLayout>
+                    {
+                        fields.slice(0, 4).map(field => {
+                            return <Input key={field.name} field={field} />
+                        })
+                    }
+                </TwoColumnLayout>
                 {
-                    fields.slice(0, 4).map(field => {
+                    fields.slice(4).map(field => {
                         return <Input key={field.name} field={field} />
                     })
                 }
-            </TwoColumnLayout>
-            {
-                fields.slice(4).map(field => {
-                    return <Input key={field.name} field={field} />
-                })
-            }
-        </Form>
+            </Form>
+        </Card>
     )
 }
 

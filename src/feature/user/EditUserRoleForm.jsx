@@ -1,4 +1,4 @@
-import { Form, Radio, RadioGroup } from 'tailwind-admin';
+import { Form, Radio, RadioGroup, Card } from 'tailwind-admin';
 import { updateUserRole } from './usersSlice';
 import useUser from '../../hook/useUser';
 import useAuth from '../../hook/useAuth';
@@ -28,13 +28,15 @@ function EditUserRoleForm({ isGlobal }) {
     }
 
     return (
-        <Form onSubmit={onSubmit} entity={user}>
-            <RadioGroup field={fields[0]}>
-                {
-                    options.map(option => <Radio key={option}>{option}</Radio>)
-                }
-            </RadioGroup>
-        </Form>
+        <Card>
+            <Form onSubmit={onSubmit} entity={user}>
+                <RadioGroup field={fields[0]}>
+                    {
+                        options.map(option => <Radio key={option}>{option}</Radio>)
+                    }
+                </RadioGroup>
+            </Form>
+        </Card>
     )
 }
 

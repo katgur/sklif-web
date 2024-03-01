@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Form, Input } from 'tailwind-admin';
+import { Form, Input, Card } from 'tailwind-admin';
 import { createDirectory, selectCurrent } from './storageSlice';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 
@@ -18,9 +18,11 @@ function AddDirectoryForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit}>
-            <Input field={fields[0]} />
-        </Form>
+        <Card>
+            <Form onSubmit={onSubmit}>
+                <Input field={fields[0]} />
+            </Form>
+        </Card>
     )
 }
 

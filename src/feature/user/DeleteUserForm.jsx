@@ -1,4 +1,4 @@
-import { Form, Modal } from 'tailwind-admin';
+import { Form, Modal, Card } from 'tailwind-admin';
 import { useNavigate, useParams } from 'react-router';
 import useUser from '../../hook/useUser';
 import useApiDispatch from "../../hook/useApiDispatch.js";
@@ -24,12 +24,14 @@ function DeleteUserForm() {
     }
 
     return (
-        <Modal isVisible={true} onClose={onCancel}>
-            <Form
-                title={`Вы уверены, что хотите удалить пользователя ${user.firstName} ${user.lastName} ${user.patronymic}?`}
-                onSubmit={onSubmit}
-                onCancel={onCancel} />
-        </Modal>
+        <Card>
+            <Modal isVisible={true} onClose={onCancel}>
+                <Form
+                    title={`Вы уверены, что хотите удалить пользователя ${user.firstName} ${user.lastName} ${user.patronymic}?`}
+                    onSubmit={onSubmit}
+                    onCancel={onCancel} />
+            </Modal>
+        </Card>
     )
 }
 

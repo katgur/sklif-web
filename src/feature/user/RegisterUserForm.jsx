@@ -1,4 +1,4 @@
-import { Form, TwoColumnLayout, Input, Radio, RadioGroup } from 'tailwind-admin';
+import { Form, TwoColumnLayout, Input, Radio, RadioGroup, Card } from 'tailwind-admin';
 import { useDispatch } from 'react-redux';
 import { addError } from '../notification/notificationSlice.js';
 import { createUser } from './usersSlice.js';
@@ -47,25 +47,27 @@ function RegisterUserForm() {
     }
 
     return (
-        <Form onSubmit={onSubmit}>
-            <TwoColumnLayout>
+        <Card>
+            <Form onSubmit={onSubmit}>
+                <TwoColumnLayout>
+                    {
+                        fields.slice(0, 4).map(field => {
+                            return <Input key={field.name} field={field} />
+                        })
+                    }
+                </TwoColumnLayout>
+                <RadioGroup field={{ required: true, name: "role", text: "Роль" }}>
+                    <Radio>Врач</Radio>
+                    <Radio>Администратор</Radio>
+                </RadioGroup>
+
                 {
-                    fields.slice(0, 4).map(field => {
+                    fields.slice(4).map(field => {
                         return <Input key={field.name} field={field} />
                     })
                 }
-            </TwoColumnLayout>
-            <RadioGroup field={{ required: true, name: "role", text: "Роль" }}>
-                <Radio>Врач</Radio>
-                <Radio>Администратор</Radio>
-            </RadioGroup>
-
-            {
-                fields.slice(4).map(field => {
-                    return <Input key={field.name} field={field} />
-                })
-            }
-        </Form>
+            </Form>
+        </Card>
     )
 }
 
