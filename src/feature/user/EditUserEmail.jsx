@@ -2,6 +2,7 @@ import useApiDispatch from "../../hook/useApiDispatch.js";
 import { Form, Input } from 'tailwind-admin';
 import { updateUserEmail } from './usersSlice';
 import useUser from '../../hook/useUser';
+import useAuth from '../../hook/useAuth';
 import { useParams } from 'react-router';
 
 const fields = [
@@ -13,7 +14,8 @@ const fields = [
 function EditUserEmailForm() {
     const dispatch = useApiDispatch();
     const { email } = useParams();
-    const user = useUser(email);
+    const auth = useAuth();
+    const user = useUser(email || auth.email);
 
     if (!user) {
         return;

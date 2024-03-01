@@ -1,6 +1,7 @@
 import { Form, Radio, RadioGroup } from 'tailwind-admin';
 import { updateUserRole } from './usersSlice';
 import useUser from '../../hook/useUser';
+import useAuth from '../../hook/useAuth';
 import { useParams } from 'react-router';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 
@@ -13,7 +14,8 @@ const fields = [
 function EditUserRoleForm({ isGlobal }) {
     const dispatch = useApiDispatch();
     const { email } = useParams();
-    const user = useUser(email);
+    const auth = useAuth();
+    const user = useUser(email || auth.email);
 
     if (!user) {
         return;

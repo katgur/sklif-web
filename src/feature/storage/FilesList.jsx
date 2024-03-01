@@ -128,10 +128,10 @@ function FilesList() {
 
     return (
         <>
-            <StorageToolPanel {...storageToolPanelProps}>
+            <ToolPanel {...storageToolPanelProps}>
                 <Link to='/home/add_directory'>Создать директорию</Link>
                 <Link to='/home/add_file'>Загрузить файл</Link>
-            </StorageToolPanel>
+            </ToolPanel>
             <SortableTableViewer
                 capacity={10}
                 columns={schema}
