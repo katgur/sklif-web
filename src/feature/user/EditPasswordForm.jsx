@@ -29,7 +29,7 @@ function EditPasswordForm() {
         <Card>
             <Form onSubmit={onSubmit}>
                 {
-                    fields.map(field => <Input field={field} />)
+                    fields.map(field => <Input key={field.name} field={field} />)
                 }
             </Form>
         </Card>

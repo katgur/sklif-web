@@ -46,7 +46,7 @@ const mapDirsForTable = (dirs, selected) => {
             id: dir.key,
             isSelected: selected.has(dir.key),
             data: [
-                <span>
+                <span key={dir.key}>
                     <FolderIcon />
                     <span>{dir.key.split('/').slice(-2)}</span>
                 </span>,
@@ -63,7 +63,7 @@ const mapFilesForTable = (files, selected) => {
             id: file.key,
             isSelected: selected.has(file.key),
             data: [
-                <span>
+                <span key={file.key}>
                     <FileIcon />
                     <span>{file.key.split('/').slice(-1)}</span>
                 </span>,

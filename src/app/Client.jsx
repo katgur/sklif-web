@@ -61,6 +61,7 @@ const initCornerstone = (accessToken) => {
     });
 }
 
+/* eslint-disable react/jsx-key */
 const drawerMenu = [
     {
         text: "Профиль", icon: <ProfileIcon />, options: [
@@ -75,6 +76,7 @@ const drawerMenu = [
         ]
     },
 ]
+/* eslint-enable react/jsx-key */
 
 const homePage = (
     <>

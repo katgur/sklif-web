@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import api from '../api/mock/studyApi'
+import { addError } from '../feature/notification/notificationSlice'
 
 function useStudy(key) {
     const [study, setStudy] = useState(null);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/mock/statsApi";
 import { useDispatch } from "react-redux";
+import { addError } from '../feature/notification/notificationSlice'
 
 function useStats(key) {
     const dispatch = useDispatch();

@@ -43,13 +43,13 @@ const studiesSlice = createSlice({
         editStudy: (state, action) => {
             return {
                 ...state,
-                list: state.list.filter(item => item.key !== item.payload.key).concat(item.payload),
+                list: state.list.filter(item => item.key !== item.payload.key).concat(action.payload),
             }
         },
     },
 })
 
-export const { setStudies } = studiesSlice.actions;
+export const { setStudies, editStudy } = studiesSlice.actions;
 
 export const selectAll = (state) => state.study.list;
 

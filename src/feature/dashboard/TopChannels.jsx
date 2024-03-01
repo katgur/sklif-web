@@ -17,7 +17,7 @@ function TopChannels() {
             <Top columns={["Name", "Views", "Uniques"]}>
                 <TopHeader />
                 {
-                    data.map(item => <TopRow data={item} />)
+                    data.map((item, index) => <TopRow key={index} data={item} />)
                 }
             </Top>
         </Card>

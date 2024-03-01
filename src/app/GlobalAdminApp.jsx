@@ -32,6 +32,7 @@ import TopChannels from '../feature/dashboard/TopChannels.jsx';
 import Progress from '../feature/progress/Progress.jsx';
 import Success from '../component/Success.jsx';
 
+/* eslint-disable react/jsx-key */
 const drawerMenu = [
   {
     text: "Пользователи", icon: <UsersIcon />, options: [
@@ -63,6 +64,7 @@ const drawerMenu = [
     ]
   }
 ]
+/* eslint-enable react/jsx-key */
 
 const homePage = (
   <>

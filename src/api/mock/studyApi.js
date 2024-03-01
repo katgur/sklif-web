@@ -89,7 +89,7 @@ const setData = async (data) => {
     await LS.set(key, data);
 }
 
-const getAll = async (params) => {
+const getAll = async () => {
     return await getData();
 }
 

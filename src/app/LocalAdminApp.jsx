@@ -25,6 +25,7 @@ import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
 import Search from '../feature/search/Search.jsx';
 
+/* eslint-disable react/jsx-key */
 const drawerMenu = [
   {
     text: "Пользователи", icon: <UsersIcon />, options: [
@@ -56,6 +57,7 @@ const drawerMenu = [
     ]
   }
 ]
+/* eslint-enable react/jsx-key */
 
 const homePage = (
   <>
@@ -183,10 +185,10 @@ const dashboard = (
 
 const searchPage = (
   <>
-      <Breadcrumbs title='Поиск'>
-          <Link to=''>Список</Link>
-      </Breadcrumbs>
-      <Search />
+    <Breadcrumbs title='Поиск'>
+      <Link to=''>Список</Link>
+    </Breadcrumbs>
+    <Search />
   </>
 )
 

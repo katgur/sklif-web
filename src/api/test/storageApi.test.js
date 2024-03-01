@@ -1,6 +1,6 @@
 import { serverUrl, protocol } from '../../util/config';
 import request from '../client';
-import { deleteDirectory, deleteFile, getFiles, postDirectory, postFile } from '../storageApi';
+import { deleteDirectory, deleteFile, getFiles, postDirectory } from '../storageApi';
 
 jest.mock('axios');
 jest.mock('../client');

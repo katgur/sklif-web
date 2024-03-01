@@ -1,5 +1,4 @@
 import axios from 'axios';
-import maskMock from './test/mock/maskMock';
 
 export let accessToken;
 
