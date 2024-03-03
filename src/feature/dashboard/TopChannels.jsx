@@ -10,7 +10,7 @@ function TopChannels() {
 
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Heading variant="h3">
                 Top Channels
             </Heading>

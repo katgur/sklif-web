@@ -31,6 +31,7 @@ import TopContent from '../feature/dashboard/TopContent.jsx';
 import TopChannels from '../feature/dashboard/TopChannels.jsx';
 import Progress from '../feature/progress/Progress.jsx';
 import Success from '../component/Success.jsx';
+import Welcome from '../component/Welcome.jsx';
 
 /* eslint-disable react/jsx-key */
 const drawerMenu = [
@@ -204,6 +205,7 @@ function App() {
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="/" element={<Welcome />} />
           <Route path="dashboard" element={charts} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />

@@ -24,6 +24,7 @@ import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
 import Search from '../feature/search/Search.jsx';
+import Welcome from '../component/Welcome.jsx';
 
 /* eslint-disable react/jsx-key */
 const drawerMenu = [
@@ -197,6 +198,7 @@ function App() {
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="/" element={<Welcome />} />
           <Route path="dashboard" element={dashboard} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />

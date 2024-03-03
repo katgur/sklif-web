@@ -28,7 +28,7 @@ function UploadFileForm() {
 
     return (files ?
         <>
-            <Card>
+            <Card width="full">
                 <Form onSubmit={onSubmit}>
                     <Select field={{ name: "directory", text: "Директория для загрузки", required: true }} options={directories} />
                     <Checkbox field={{ name: "hasNewDirectory", text: "Загрузить в новую директорию" }} />
@@ -38,7 +38,7 @@ function UploadFileForm() {
             <Details title="Просмотреть список файлов" items={Array.from(files).map(file => file.name)} />
         </>
         :
-        <Card>
+        <Card width="full">
             <DragAndDrop setFiles={setFiles} accepts=".dcm, .dicom" />
         </Card>
     )

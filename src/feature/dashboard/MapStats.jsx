@@ -10,7 +10,7 @@ function MapStats() {
 
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack gap="xl" direction="vertical">
                 <Heading variant="h3">
                     Top Countries

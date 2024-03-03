@@ -11,7 +11,7 @@ function AvailableChart() {
     }
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack direction="vertical" gap="m">
                 {
                     data.map((item, i) => (

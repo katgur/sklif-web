@@ -70,7 +70,7 @@ function StudyViewer() {
     }
 
     return (
-        <Card padding="m">
+        <Card>
             <Stack gap="m">
                 <Stack direction="vertical" gap="m">
                     <Viewport viewport={viewport}

@@ -1,14 +1,22 @@
+import { LinkButton, Heading, Stack, Box, Article } from 'tailwind-admin';
+import notFoundImage from '../assets/not-found.svg';
+
 function NotFoundPage({ link }) {
     return (
-        <div>
-            <h1>Страница не найдена</h1>
-            <p>
-                Страница, которую вы ищете, перемещена, удалена или не существует.
-            </p>
-            <div>
-                {link}
-            </div>
-        </div>
+        <Box>
+            <Stack>
+                <img src={notFoundImage} width="400" height="400" alt="Not found page." />
+                <Heading variant="h2">
+                    Страница не найдена
+                </Heading>
+                <Article>
+                    Страница, которую вы ищете, перемещена, удалена или не существует.
+                </Article>
+                <LinkButton style="primary">
+                    {link}
+                </LinkButton>
+            </Stack>
+        </Box>
     )
 }
 

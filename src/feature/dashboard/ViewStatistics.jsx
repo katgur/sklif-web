@@ -10,7 +10,7 @@ function ViewStatistics() {
 
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Statistics data={data} />
         </Card>
     )

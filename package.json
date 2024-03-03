@@ -26,7 +26,6 @@
     "react-router": "^6.21.1",
     "react-router-dom": "^6.21.1",
     "recharts": "^2.12.1",
-    "tailwind-admin": "^0.0.10",
     "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {

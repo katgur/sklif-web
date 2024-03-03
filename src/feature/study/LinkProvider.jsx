@@ -26,7 +26,7 @@ function LinkProvider() {
 
     return (
         <Modal isVisible={true}>
-            <Card padding="m">
+            <Card>
                 <Stack direction="vertical" gap="m">
                     <Article title="Ссылка на исследование">
                         {link}

@@ -4,7 +4,7 @@ import { uploadAvatar } from "./usersSlice";
 import useUser from '../../hook/useUser';
 import useAuth from '../../hook/useAuth';
 import { useParams } from "react-router";
-import { FileUploadForm, Preview, Button, Card } from "tailwind-admin";
+import { FileUploadForm, Preview, Button, Card, Stack } from "tailwind-admin";
 
 function UploadAvatarForm() {
     const { email } = useParams();
@@ -25,18 +25,20 @@ function UploadAvatarForm() {
     }
 
     return (
-        <Card>
+        <Card width="full">
             <FileUploadForm file={file} setFile={setFile}>
                 {
                     file &&
                     <>
                         <Preview fileURL={file.url} />
-                        <Button style="primary" onClick={onUploadButtonClick}>
-                            Загрузить
-                        </Button>
-                        <Button style="secondary" onClick={() => setFile(null)}>
-                            Отмена
-                        </Button>
+                        <Stack direction="horizontal">
+                            <Button width="full" style="primary" onClick={onUploadButtonClick}>
+                                Загрузить
+                            </Button>
+                            <Button width="full" style="secondary" onClick={() => setFile(null)}>
+                                Отмена
+                            </Button>
+                        </Stack>
                     </>
                 }
             </FileUploadForm>

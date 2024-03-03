@@ -28,7 +28,7 @@ function EditUserRoleForm({ isGlobal }) {
     }
 
     return (
-        <Card>
+        <Card width="full">
             <Form onSubmit={onSubmit} entity={user}>
                 <RadioGroup field={fields[0]}>
                     {

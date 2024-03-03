@@ -11,7 +11,7 @@ function SpaceChart() {
 
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack gap="m" align="center">
                 <ResponsiveContainer width={132} height={132}>
                     <PieChart style={{ fontSize: "18px" }}>
