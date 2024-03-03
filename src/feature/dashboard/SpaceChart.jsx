@@ -11,8 +11,8 @@ function SpaceChart() {
 
 
     return (
-        <Card width="full">
-            <Stack gap="m" align="center">
+        <Card>
+            <Stack direction="horizontal" gap="m">
                 <ResponsiveContainer width={132} height={132}>
                     <PieChart style={{ fontSize: "18px" }}>
                         <Pie data={data} nameKey="name" dataKey="uv" innerRadius="70%" outerRadius="100%" startAngle={90} endAngle={-270}>

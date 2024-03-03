@@ -17,10 +17,10 @@ function UploadFileForm() {
 
     const directories = storage.map(file => file.key).filter(isDirectory);
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const isSuccess = data.hasNewDirectory ?
-            dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files)) :
-            dispatch(uploadFiles(data.directory, files));
+            await dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files)) :
+            await dispatch(uploadFiles(data.directory, files));
         if (isSuccess) {
             navigate("/home/success/file");
         }
@@ -38,7 +38,7 @@ function UploadFileForm() {
             <Details title="Просмотреть список файлов" items={Array.from(files).map(file => file.name)} />
         </>
         :
-        <Card width="full">
+        <Card width="fit">
             <DragAndDrop setFiles={setFiles} accepts=".dcm, .dicom" />
         </Card>
     )

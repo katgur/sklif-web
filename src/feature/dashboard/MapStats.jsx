@@ -8,7 +8,6 @@ function MapStats() {
         return;
     }
 
-
     return (
         <Card width="full">
             <Stack gap="xl" direction="vertical">

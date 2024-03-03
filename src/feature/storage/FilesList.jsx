@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteFiles, selectCurrent, setCurrent } from "./storageSlice";
 import { useState } from "react";
 import useStorage from "../../hook/useStorage";
-import { SortableTableViewer, ToolPanel } from "tailwind-admin";
+import { SortableTableViewer, ToolPanel, Card, ContextMenu } from "tailwind-admin";
 import FolderIcon from '../../assets/folder.svg?react';
 import FileIcon from '../../assets/file.svg?react';
-import useApiDispatch from "../../hook/useApiDispatch.js";
 
 const schema = ["Название", "Дата изменения", "Размер"];
 
@@ -44,15 +43,13 @@ const mapDirsForTable = (dirs, selected) => {
     return dirs.map(dir => {
         return {
             id: dir.key,
+            key: <span key={dir.key}>
+                <FolderIcon />
+                <span>{dir.key.split('/').slice(-2)}</span>
+            </span>,
+            lastModified: parseDate(dir.lastModified),
+            size: "",
             isSelected: selected.has(dir.key),
-            data: [
-                <span key={dir.key}>
-                    <FolderIcon />
-                    <span>{dir.key.split('/').slice(-2)}</span>
-                </span>,
-                parseDate(dir.lastModified),
-                "",
-            ]
         }
     })
 }
@@ -61,15 +58,13 @@ const mapFilesForTable = (files, selected) => {
     return files.map(file => {
         return {
             id: file.key,
+            key: <span key={file.key}>
+                <FileIcon />
+                <span>{file.key.split('/').slice(-1)}</span>
+            </span>,
+            lastModified: parseDate(file.lastModified),
+            size: `${Math.round(file.size / 1024)}KB`,
             isSelected: selected.has(file.key),
-            data: [
-                <span key={file.key}>
-                    <FileIcon />
-                    <span>{file.key.split('/').slice(-1)}</span>
-                </span>,
-                parseDate(file.lastModified),
-                `${Math.round(file.size / 1024)}KB`,
-            ]
         }
     })
 }
@@ -77,7 +72,7 @@ const mapFilesForTable = (files, selected) => {
 function FilesList() {
     const files = useStorage();
     const current = useSelector(selectCurrent);
-    const dispatch = useApiDispatch();
+    const dispatch = useDispatch();
     const [selected, setSelected] = useState(new Set());
 
     if (!files) {
@@ -128,16 +123,22 @@ function FilesList() {
 
     return (
         <>
-            <ToolPanel {...storageToolPanelProps}>
-                <Link to='/home/add_directory'>Создать директорию</Link>
-                <Link to='/home/add_file'>Загрузить файл</Link>
-            </ToolPanel>
+            <Card width="full" padding="0">
+                <ToolPanel {...storageToolPanelProps}>
+                    <ContextMenu>
+                        <Link to='/home/add_directory'>Создать директорию</Link>
+                        <Link to='/home/add_file'>Загрузить файл</Link>
+                    </ContextMenu>
+                </ToolPanel>
+            </Card>
             <SortableTableViewer
                 capacity={10}
                 columns={schema}
+                keys={["key", "lastModified", "size"]}
                 contextMenu={contextMenu}
                 onItemClick={onChooseFile}
                 onItemDoubleClick={onItemClick}
+                id="id"
                 items={items} />
         </>
     )

@@ -10,7 +10,7 @@ function TopContent() {
 
 
     return (
-        <Card width="full">
+        <Card>
             <Heading variant="h3">
                 Top Content
             </Heading>
