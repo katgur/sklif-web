@@ -40,12 +40,12 @@ function Viewer() {
     }
 
     return (
-        <Stack direction="vertical">
+        <Stack direction="vertical" gap={0}>
             <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} />
-            <Stack>
+            <Stack direction="horizontal" gap={0}>
+                {isOpen.drawer && <SideStudyViewer study={study} index={index} volume={result.volume} />}
                 <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + api.getBytes(key))} />
                 {isOpen.mask && <Mask path={study.keys[index]} />}
-                {isOpen.drawer && <SideStudyViewer study={study} index={index} volume={result.volume} />}
             </Stack>
         </Stack>
     )

@@ -6,7 +6,6 @@ export const fetchMask = path => {
         api: async () => api.getMask(path),
         action: setResult,
         message: {
-            success: "Снимок обработан",
             error: "Не удалось обработать снимок",
         }
     }
