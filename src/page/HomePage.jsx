@@ -19,7 +19,7 @@ function HomePage({ headerMenu, drawerMenu }) {
     }
 
     return (
-        <DrawerLayout user={user} headerMenu={[]} drawerMenu={drawerMenu} onSearchClick={onSearchClick} logo={logo}>
+        <DrawerLayout user={user} headerMenu={headerMenu} drawerMenu={drawerMenu} onSearchClick={onSearchClick} logo={logo}>
             <Outlet />
         </DrawerLayout>
     )

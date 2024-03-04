@@ -32,8 +32,8 @@ function LinkProvider() {
                         {link}
                     </Article>
                     <Stack gap="m">
-                        <Button style="primary" onClick={() => copyContent(link, setCopyStatus)}>Копировать</Button>
-                        <Button style="secondary" onClick={onCancelButtonClick}>Закрыть</Button>
+                        <Button style="primary" onClick={() => copyContent(link, setCopyStatus)} width="full">Копировать</Button>
+                        <Button style="secondary" onClick={onCancelButtonClick} width="full">Закрыть</Button>
                     </Stack>
                     {
                         copyStatus &&

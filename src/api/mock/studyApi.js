@@ -30,7 +30,7 @@ const mock = [
         ],
         dataType: '',
         patientId: '048-001-0024477',
-        patientName: 'Dmitrienko G.A.',
+        patientName: 'Patient A.B.',
         birthDate: 19990923,
         patientAge: '019Y',
         patientWeight: 70,
@@ -81,7 +81,7 @@ const getBytes = (key) => {
     return urls[key];
 }
 
-const getData = async () => {
+export const getData = async () => {
     return await LS.get(key, mock);
 }
 

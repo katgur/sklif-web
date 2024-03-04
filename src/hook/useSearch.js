@@ -11,7 +11,7 @@ function useSearch() {
 
     useEffect(() => {
         dispatch(search(filter));
-    }, []);
+    }, [filter]);
 
     return data;
 }

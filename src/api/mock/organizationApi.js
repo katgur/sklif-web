@@ -2,7 +2,7 @@ import LS from './LSRequest';
 
 const key = 'org';
 
-const getData = async () => {
+export const getData = async () => {
     return await LS.get(key, [
         {
             "email": "hse@hse.ru",

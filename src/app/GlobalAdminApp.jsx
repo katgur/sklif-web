@@ -32,8 +32,14 @@ import TopChannels from '../feature/dashboard/TopChannels.jsx';
 import Progress from '../feature/progress/Progress.jsx';
 import Success from '../component/Success.jsx';
 import Welcome from '../component/Welcome.jsx';
+import Search from '../feature/search/Search.jsx';
 
 /* eslint-disable react/jsx-key */
+const headerMenu = [
+  <Link to="/home/profile">Профиль</Link>,
+  <Link to="/logout">Выйти</Link>,
+]
+
 const drawerMenu = [
   {
     text: "Пользователи", icon: <UsersIcon />, options: [
@@ -70,7 +76,7 @@ const drawerMenu = [
 const homePage = (
   <>
     <Progress />
-    <HomePage drawerMenu={drawerMenu} />
+    <HomePage headerMenu={headerMenu} drawerMenu={drawerMenu} />
   </>
 )
 
@@ -200,6 +206,15 @@ const charts = (
   </GridLayout>
 )
 
+const searchPage = (
+  <>
+    <Breadcrumbs title='Поиск'>
+      <Link to=''>Список</Link>
+    </Breadcrumbs>
+    <Search />
+  </>
+)
+
 function App() {
   return (
     <>
@@ -226,6 +241,7 @@ function App() {
           <Route path="profile" element={profileViewer} />
           <Route path="settings" element={settingsPage} />
 
+          <Route path="search/:filter" element={searchPage} />
           <Route path="success/:feature" element={<Success />} />
         </Route>
         <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />

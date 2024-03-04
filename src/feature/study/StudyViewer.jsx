@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import Viewport from "./Viewport";
 import { DataViewer, Card, LinkButton, Stack } from "tailwind-admin";
-import api from "../../api/mock/storageApi";
+import api from "../../api/mock/studyApi";
 import useStudy from '../../hook/useStudy';
 import { Link as RouteLink } from 'react-router-dom';
 
@@ -71,12 +71,12 @@ function StudyViewer() {
 
     return (
         <Card>
-            <Stack gap="m">
-                <Stack direction="vertical" gap="m">
+            <Stack direction="horizontal" gap="xl">
+                <Stack gap="m">
                     <Viewport viewport={viewport}
                         imageId={'wadouri:' + api.getBytes(study.keys[0])}
                         style={{ width: "200px", height: "200px" }} />
-                    <LinkButton style="primary">
+                    <LinkButton style="primary" width="full">
                         <RouteLink to={`/home/viewer/${study.key}`}>
                             Просмотр
                         </RouteLink>
