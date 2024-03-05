@@ -68,7 +68,7 @@ function StackViewport({ imageIds, viewport, index, setIndex }) {
     return (
         <StackViewportWrapper>
             <Scroll total={imageIds.length} current={index} />
-            <Viewport imageId={imageIds[index]} viewport={viewport} style={{ height: "85vh", width: "600px" }} />
+            <Viewport imageId={imageIds[index]} viewport={viewport} style={{ height: "100%", width: "600px" }} />
             <StackViewportLayer style={{ left: "0", top: window.innerHeight / 2 - 90 }}>
                 <button onClick={onBackButtonClick}>
                     <ChevronLeftIcon />

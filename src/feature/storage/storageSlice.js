@@ -61,7 +61,10 @@ export const createDirectoryAndLoadFiles = (path, newDirectoryName, files) => {
 
 export const deleteDirectory = key => {
     return {
-        api: async () => await api.deleteDirectory(key),
+        api: async () => {
+            await api.deleteDirectory(key);
+            return key;
+        },
         action: removeFile,
         message: {
             success: "Директория удалена",
@@ -98,7 +101,7 @@ const storageSlice = createSlice({
         removeFile: (state, action) => {
             return {
                 ...state,
-                list: state.list.filter(item => item.key !== action.payload.key)
+                list: state.list.filter(item => item.key !== action.payload)
             }
         },
         removeFiles: (state, action) => {

@@ -43,10 +43,10 @@ const mapDirsForTable = (dirs, selected) => {
     return dirs.map(dir => {
         return {
             id: dir.key,
-            key: <span key={dir.key}>
+            key: <button key={dir.key}>
                 <FolderIcon />
                 <span>{dir.key.split('/').slice(-2)}</span>
-            </span>,
+            </button>,
             lastModified: parseDate(dir.lastModified),
             size: "",
             isSelected: selected.has(dir.key),
@@ -58,10 +58,10 @@ const mapFilesForTable = (files, selected) => {
     return files.map(file => {
         return {
             id: file.key,
-            key: <span key={file.key}>
+            key: <button key={file.key}>
                 <FileIcon />
                 <span>{file.key.split('/').slice(-1)}</span>
-            </span>,
+            </button>,
             lastModified: parseDate(file.lastModified),
             size: `${Math.round(file.size / 1024)}KB`,
             isSelected: selected.has(file.key),

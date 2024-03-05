@@ -28,6 +28,11 @@ import Welcome from '../component/Welcome.jsx';
 import Success from '../component/Success.jsx';
 
 /* eslint-disable react/jsx-key */
+const headerMenu = [
+  <Link to="/home/profile">Профиль</Link>,
+  <Link to="/logout">Выйти</Link>,
+]
+
 const drawerMenu = [
   {
     text: "Пользователи", icon: <UsersIcon />, options: [
@@ -64,7 +69,7 @@ const drawerMenu = [
 const homePage = (
   <>
     <ProgressBar />
-    <HomePage drawerMenu={drawerMenu} />
+    <HomePage headerMenu={headerMenu} drawerMenu={drawerMenu} />
   </>
 )
 

@@ -18,6 +18,7 @@ function UploadFileForm() {
     const directories = storage.map(file => file.key).filter(isDirectory);
 
     const onSubmit = async (data) => {
+        console.log(data)
         const isSuccess = data.hasNewDirectory ?
             await dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files)) :
             await dispatch(uploadFiles(data.directory, files));
