@@ -7,10 +7,10 @@ function LoginPage() {
 
     return (
         <Box>
-            <Card padding="m">
+            <Card>
                 <Stack direction="vertical" gap="m">
                     <p>Нажмите кнопку Вход, чтобы авторизоваться</p>
-                    <LinkButton style="primary">
+                    <LinkButton width="full" style="primary">
                         <Link to="/redirect">
                             Вход
                         </Link>

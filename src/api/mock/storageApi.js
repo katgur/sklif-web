@@ -2,7 +2,7 @@ import LS from './LSRequest';
 
 const key = 'storage';
 
-const getData = async () => {
+export const getData = async () => {
     return await LS.get(key, [
         {
             key: 'S000001/',

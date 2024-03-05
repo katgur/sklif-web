@@ -24,14 +24,15 @@ function DeleteUserForm() {
     }
 
     return (
-        <Card>
-            <Modal isVisible={true} onClose={onCancel}>
+        <Modal isVisible={true} onClose={onCancel}>
+            <Card>
+
                 <Form
                     title={`Вы уверены, что хотите удалить пользователя ${user.firstName} ${user.lastName} ${user.patronymic}?`}
                     onSubmit={onSubmit}
                     onCancel={onCancel} />
-            </Modal>
-        </Card>
+            </Card>
+        </Modal>
     )
 }
 

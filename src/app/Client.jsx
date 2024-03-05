@@ -20,6 +20,7 @@ import Hammer from "hammerjs";
 import * as cornerstoneWADOImageLoader from "cornerstone-wado-image-loader";
 import * as dicomParser from "dicom-parser";
 import Search from '../feature/search/Search.jsx';
+import Welcome from '../component/Welcome.jsx';
 
 function getBlobUrl(url) {
     const baseUrl = window.URL || window.webkitURL;
@@ -144,6 +145,7 @@ function Client() {
     return (
         <Routes>
             <Route path="" element={homePage}>
+                <Route path="/" element={<Welcome />} />
                 <Route path="studies" element={studiesPage}>
                     <Route path="search/:search" />
                 </Route>

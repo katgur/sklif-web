@@ -10,7 +10,7 @@ function ActivityChart() {
     }
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack gap="m" direction="vertical">
                 <Heading variant="h3">
                     Activity Chart

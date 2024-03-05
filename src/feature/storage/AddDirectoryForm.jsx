@@ -18,7 +18,7 @@ function AddDirectoryForm() {
     }
 
     return (
-        <Card>
+        <Card width="full">
             <Form onSubmit={onSubmit}>
                 <Input field={fields[0]} />
             </Form>

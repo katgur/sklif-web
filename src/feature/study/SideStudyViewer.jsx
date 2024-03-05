@@ -50,18 +50,17 @@ const schema = [
             { name: "patientComments", text: "Комментарии" },
         ]
     },
+    {
+        text: "Анализ",
+        tabs: [
+            { name: "volume", text: "Объем пораженной ткани, cm3" },
+        ]
+    }
 ];
 
 function SideStudyViewer({ study, volume }) {
-    console.log(volume)
     return (
-        <SideDataViewer schema={schema} entity={study}>
-            {
-                volume &&
-                <p>
-                    Объем пораженной ткани {volume} cm3
-                </p>
-            }
+        <SideDataViewer schema={schema} entity={{ ...study, volume: volume || "Нет данных" }}>
             <CommentSection _key={study.key} comments={study.globalComments} />
         </SideDataViewer>
     )

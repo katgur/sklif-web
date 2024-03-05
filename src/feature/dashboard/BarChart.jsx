@@ -17,7 +17,7 @@ function BarChart() {
         barSize: 12,
     }
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack gap="xl" direction="vertical">
                 <Heading variant="h3">
                     Visitors Analytics

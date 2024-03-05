@@ -26,14 +26,14 @@ function LinkProvider() {
 
     return (
         <Modal isVisible={true}>
-            <Card padding="m">
+            <Card>
                 <Stack direction="vertical" gap="m">
                     <Article title="Ссылка на исследование">
                         {link}
                     </Article>
                     <Stack gap="m">
-                        <Button style="primary" onClick={() => copyContent(link, setCopyStatus)}>Копировать</Button>
-                        <Button style="secondary" onClick={onCancelButtonClick}>Закрыть</Button>
+                        <Button style="primary" onClick={() => copyContent(link, setCopyStatus)} width="full">Копировать</Button>
+                        <Button style="secondary" onClick={onCancelButtonClick} width="full">Закрыть</Button>
                     </Stack>
                     {
                         copyStatus &&

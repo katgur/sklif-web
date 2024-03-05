@@ -20,7 +20,7 @@ function LineChart() {
 
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack gap="xl" direction="vertical">
                 <Heading variant="h3">
                     Revenue

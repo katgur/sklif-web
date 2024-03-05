@@ -31,17 +31,17 @@ function ProfileViewer({ searchable }) {
     }
 
     return (
-        <Card padding="m">
-            <Stack direction="horizontal">
-                <Stack gap="sm">
-                    <img width="200" height="200" src={user.avatarURL} alt="Фотография профиля." />
+        <Card>
+            <Stack direction="horizontal" gap="xl">
+                <Stack gap="m">
+                    <img width="100%" height="200" src={user.avatarURL} alt="Фотография профиля." />
                     {
                         auth.authorities !== "DOCTOR" &&
                         <>
-                            <LinkButton style="primary">
+                            <LinkButton style="primary" width="full">
                                 <RouteLink to={`/home/edit_user/${user.email}`}>Редактировать</RouteLink>
                             </LinkButton>
-                            <LinkButton style="secondary">
+                            <LinkButton style="secondary" width="full">
                                 <RouteLink to={`/home/delete_user/${user.email}`}>Удалить профиль</RouteLink>
                             </LinkButton>
                         </>
