@@ -1,27 +1,19 @@
 import useUsers from '../../hook/useUsers';
 import { SortableTableViewer } from 'tailwind-admin';
 import { Link, useNavigate } from 'react-router-dom';
+import { columns } from '../../util/columns';
 
-const schema = ["Почта", "Фамилия", "Имя", "Отчество", "Телефон", "Роль"];
 const contextMenu = [
-    (id) => { return <Link to={`/home/edit_user/${id}`}>Редактировать</Link> },
-    (id) => { return <Link to={`/home/delete_user/${id}`}>Удалить</Link> }
+    (id) => <Link to={`/home/edit_user/${id}`}>Редактировать</Link>,
+    (id) => <Link to={`/home/delete_user/${id}`}>Удалить</Link>
 ]
 
-function UsersList({ isGlobal }) {
+function UsersList() {
     const users = useUsers();
     const navigate = useNavigate();
 
     if (!users) {
         return;
-    }
-
-    const mapUser = (user) => {
-        const res = [user.email, user.lastName, user.firstName, user.patronymic, user.phoneNumber, user.role]
-        if (isGlobal) {
-            return res.concat(user.organization);
-        }
-        return res;
     }
 
     const onItemClick = (id) => {
@@ -30,16 +22,12 @@ function UsersList({ isGlobal }) {
 
     return (
         <SortableTableViewer
-            columns={isGlobal ? [...schema, "Организация"] : schema}
+            columns={Object.keys(users[0]).map(key => columns[key])}
             contextMenu={contextMenu}
             onItemClick={onItemClick}
-            items={
-                users.map((user) => {
-                    return {
-                        id: user.email,
-                        data: mapUser(user)
-                    }
-                })} />
+            keys={Object.keys(users[0])}
+            items={users}
+            id="email" />
     )
 }
 

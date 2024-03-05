@@ -26,7 +26,7 @@ function EditUserEmailForm() {
     }
 
     return (
-        <Card>
+        <Card width="full">
             <Form onSubmit={onSubmit} entity={user}>
                 <Input field={fields[0]} />
             </Form>

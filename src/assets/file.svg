@@ -5,13 +5,13 @@
                 <g>
                     <path
                         d="M18,22H6a2,2,0,0,1-2-2V4A2,2,0,0,1,6,2h7.1a2,2,0,0,1,1.5.6l4.9,5.2A2,2,0,0,1,20,9.2V20A2,2,0,0,1,18,22Z"
-                        fill="none" id="File" stroke="#DEE4EE" strokeLinecap="round"
+                        fill="none" id="File" stroke="#64748B" strokeLinecap="round"
                         strokeLinejoin="round" strokeWidth="1" />
-                    <line fill="none" stroke="#DEE4EE" strokeLinecap="round" strokeLinejoin="round"
+                    <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round"
                         strokeWidth="1" x1="7.9" x2="16.1" y1="17.5" y2="17.5" />
-                    <line fill="none" stroke="#DEE4EE" strokeLinecap="round" strokeLinejoin="round"
+                    <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round"
                         strokeWidth="1" x1="7.9" x2="16.1" y1="13.5" y2="13.5" />
-                    <line fill="none" stroke="#DEE4EE" strokeLinecap="round" strokeLinejoin="round"
+                    <line fill="none" stroke="#64748B" strokeLinecap="round" strokeLinejoin="round"
                         strokeWidth="1" x1="8" x2="13" y1="9.5" y2="9.5" />
                 </g>
             </g>

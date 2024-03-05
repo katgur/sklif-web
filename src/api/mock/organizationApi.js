@@ -2,15 +2,22 @@ import LS from './LSRequest';
 
 const key = 'org';
 
-const getData = async () => {
+export const getData = async () => {
     return await LS.get(key, [
         {
-            "email": "hse@hse.ru",
-            "name": "HSE",
+            "email": "tailwind@admin.ru",
+            "name": "Tailwind Admin",
             "administratorFullName": "Test Test Test",
             "phoneNumber": "098",
             "address": "Ulitsa Sezam"
-        }
+        },
+        {
+            "email": "romashka@mail.ru",
+            "name": "'ООО' Ромашка",
+            "administratorFullName": "Test Test Test",
+            "phoneNumber": "098",
+            "address": "Ulitsa Sezam"
+        },
     ]);
 }
 

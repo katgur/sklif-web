@@ -1,9 +1,10 @@
-import { Form, TwoColumnLayout, Input, RadioGroup, Radio, Select, Alert } from 'tailwind-admin';
+import { Form, TwoColumnLayout, Input, RadioGroup, Radio, Select, Alert, Card } from 'tailwind-admin';
 import { useDispatch } from 'react-redux';
 import useApiDispatch from "../../hook/useApiDispatch.js";
 import useOrganizations from '../../hook/useOrganizations.js';
 import { createUser } from './usersSlice.js';
 import { addError } from '../notification/notificationSlice.js';
+import { useNavigate } from 'react-router';
 
 const fields = [
     {
@@ -33,6 +34,7 @@ function GlobalRegisterUserForm() {
     const dispatch = useDispatch();
     const apiDispatch = useApiDispatch();
     const organizations = useOrganizations();
+    const navigate = useNavigate();
 
     if (!organizations) {
         return;
@@ -42,38 +44,43 @@ function GlobalRegisterUserForm() {
         return <Alert type="error" content="Нельзя добавить пользователя, если список оранизаций пуст" />
     }
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.password !== data.repeatPassword) {
             dispatch(addError("Введенные пароли не совпадают, попробуйте снова"));
             return;
         }
         delete data.repeatPassword;
-        apiDispatch(createUser(data));
+        const isSuccess = await apiDispatch(createUser(data));
+        if (isSuccess) {
+            navigate("/home/success/user");
+        }
     }
 
     return (
-        <Form onSubmit={onSubmit}>
-            <TwoColumnLayout>
+        <Card>
+            <Form onSubmit={onSubmit}>
+                <TwoColumnLayout>
+                    {
+                        fields.slice(0, 4).map(field => {
+                            return <Input key={field.name} field={field} />
+                        })
+                    }
+                </TwoColumnLayout>
+                <RadioGroup field={{ required: true, name: "role", text: "Роль" }}>
+                    <Radio>Врач</Radio>
+                    <Radio>Администратор</Radio>
+                    <Radio>Глобальный администратор</Radio>
+                </RadioGroup>
                 {
-                    fields.slice(0, 4).map(field => {
+                    organizations && <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations.map(org => org.name)} />
+                }
+                {
+                    fields.slice(4).map(field => {
                         return <Input key={field.name} field={field} />
                     })
                 }
-            </TwoColumnLayout>
-            <RadioGroup field={{ required: true, name: "role", text: "Роль" }}>
-                <Radio>Врач</Radio>
-                <Radio>Администратор</Radio>
-                <Radio>Глобальный администратор</Radio>
-            </RadioGroup>
-            {
-                organizations && <Select field={{ required: true, name: "organization", text: "Организация" }} options={organizations.map(org => org.name)} />
-            }
-            {
-                fields.slice(4).map(field => {
-                    return <Input key={field.name} field={field} />
-                })
-            }
-        </Form>
+            </Form>
+        </Card>
     )
 }
 

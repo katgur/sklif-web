@@ -42,7 +42,7 @@ function EditUserInfoForm({ isGlobal }) {
     }
 
     return (
-        <Card>
+        <Card width="full">
             <Form onSubmit={onSubmit} entity={user}>
                 <TwoColumnLayout>
                     {

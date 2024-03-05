@@ -24,8 +24,15 @@ import ActivityChart from '../feature/dashboard/ActivityChart.jsx';
 import SpaceChart from '../feature/dashboard/SpaceChart.jsx';
 import AvailableChart from '../feature/dashboard/AvailableChart.jsx';
 import Search from '../feature/search/Search.jsx';
+import Welcome from '../component/Welcome.jsx';
+import Success from '../component/Success.jsx';
 
 /* eslint-disable react/jsx-key */
+const headerMenu = [
+  <Link to="/home/profile">Профиль</Link>,
+  <Link to="/logout">Выйти</Link>,
+]
+
 const drawerMenu = [
   {
     text: "Пользователи", icon: <UsersIcon />, options: [
@@ -62,7 +69,7 @@ const drawerMenu = [
 const homePage = (
   <>
     <ProgressBar />
-    <HomePage drawerMenu={drawerMenu} />
+    <HomePage headerMenu={headerMenu} drawerMenu={drawerMenu} />
   </>
 )
 
@@ -197,6 +204,7 @@ function App() {
     <>
       <Routes>
         <Route path="" element={homePage}>
+          <Route path="/" element={<Welcome />} />
           <Route path="dashboard" element={dashboard} />
           <Route path="users" element={usersListPage}>
             <Route path="search/:search" />
@@ -215,6 +223,7 @@ function App() {
           <Route path="settings" element={settingsPage} />
 
           <Route path="search/:filter" element={searchPage} />
+          <Route path="success/:feature" element={<Success />} />
         </Route>
         <Route path="*" element={<NotFoundPage link={<Link to='/home'>Вернуться на главную</Link>} />} />
       </Routes>

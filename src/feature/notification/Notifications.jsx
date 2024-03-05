@@ -27,7 +27,7 @@ function Notifications() {
     }, [])
 
     return wrapper && createPortal(notifications.length !== 0 &&
-        <ul>
+        <ul style={{ position: "fixed", bottom: "12px", right: "12px", display: "flex", gap: "8px", flexDirection: "column" }}>
             {
                 notifications.map(notification => {
                     return <Alert key={notification.id} type={notification.type} onClose={() => dispatch(removeNotification(notification.id))}>

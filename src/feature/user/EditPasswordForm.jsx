@@ -26,7 +26,7 @@ function EditPasswordForm() {
     ]
 
     return (
-        <Card>
+        <Card width="full">
             <Form onSubmit={onSubmit}>
                 {
                     fields.map(field => <Input key={field.name} field={field} />)

@@ -1,15 +1,18 @@
-import { Card, Heading, SortableTableViewer } from 'tailwind-admin';
+import { Heading, SortableTableViewer } from 'tailwind-admin';
+import { columns } from '../../util/columns';
 
 function SearchItem({ title, data }) {
 
+    if (!data || data.length === 0) {
+        return;
+    }
+
     return (
         <>
-            <Card padding="sm">
-                <Heading variant="h3">
-                    {title}
-                </Heading>
-            </Card>
-            <SortableTableViewer columns={Object.keys(data[0])} items={data.map(d => ({ data: Object.keys(data[0]).map(key => d[key]) }))} />
+            <Heading variant="h3">
+                {title}
+            </Heading>
+            <SortableTableViewer keys={Object.keys(data[0])} columns={Object.keys(data[0]).map(key => columns[key])} items={data} />
         </>
     )
 }

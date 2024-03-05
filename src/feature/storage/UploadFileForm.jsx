@@ -17,10 +17,11 @@ function UploadFileForm() {
 
     const directories = storage.map(file => file.key).filter(isDirectory);
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        console.log(data)
         const isSuccess = data.hasNewDirectory ?
-            dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files)) :
-            dispatch(uploadFiles(data.directory, files));
+            await dispatch(createDirectoryAndLoadFiles(data.directory, data.newDirectory, files)) :
+            await dispatch(uploadFiles(data.directory, files));
         if (isSuccess) {
             navigate("/home/success/file");
         }
@@ -28,7 +29,7 @@ function UploadFileForm() {
 
     return (files ?
         <>
-            <Card>
+            <Card width="full">
                 <Form onSubmit={onSubmit}>
                     <Select field={{ name: "directory", text: "Директория для загрузки", required: true }} options={directories} />
                     <Checkbox field={{ name: "hasNewDirectory", text: "Загрузить в новую директорию" }} />
@@ -38,7 +39,7 @@ function UploadFileForm() {
             <Details title="Просмотреть список файлов" items={Array.from(files).map(file => file.name)} />
         </>
         :
-        <Card>
+        <Card width="fit">
             <DragAndDrop setFiles={setFiles} accepts=".dcm, .dicom" />
         </Card>
     )

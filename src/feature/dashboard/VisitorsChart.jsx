@@ -12,7 +12,7 @@ function VisitorsChart() {
     }
 
     return (
-        <Card padding="m">
+        <Card width="full">
             <Stack padding="xl" direction="vertical">
                 <Heading variant="h3">
                     Visitors Analytics

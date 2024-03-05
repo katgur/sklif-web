@@ -2,7 +2,7 @@ import LS from './LSRequest';
 
 const key = 'user';
 
-const getData = async () => {
+export const getData = async () => {
     return await LS.get(key, [
         {
             "email": "doctor@mail.com",
@@ -84,9 +84,18 @@ const postUser = async (user) => {
     return newUser;
 }
 
+function mapUserForClient(user) {
+    const newUser = { ...user };
+    delete newUser.avatarURL;
+    if (sessionStorage.getItem("login") === "admin") {
+        delete newUser.organization;
+    }
+    return newUser;
+}
+
 const getUsers = async (filter) => {
     const data = await getData();
-    return data.filter(user => user.firstName.includes(filter));
+    return data.map(mapUserForClient).filter(user => user.firstName.includes(filter));
 }
 
 const deleteUser = async (email) => {

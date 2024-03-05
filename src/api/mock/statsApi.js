@@ -1,5 +1,5 @@
 import LS from './LSRequest';
-import { codes } from "../../util/country";
+import { codes, countries } from "../../util/country";
 
 const key = 'stats';
 
@@ -7,7 +7,10 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const getMapData = () => {
     const res = {};
     for (const code of codes) {
-        res[code] = (Math.random() * Math.random() * 100).toFixed(0);
+        res[code] = {
+            name: countries[code],
+            value: (Math.random() * Math.random() * 100).toFixed(0),
+        }
     }
     return res;
 }

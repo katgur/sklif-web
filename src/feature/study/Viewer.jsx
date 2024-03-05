@@ -6,7 +6,7 @@ import Mask from '../mask/Mask';
 import api from '../../api/mock/studyApi';
 import useStudy from '../../hook/useStudy';
 import SideStudyViewer from './SideStudyViewer';
-import { Stack } from 'tailwind-admin';
+import { Stack, ViewerLayout } from 'tailwind-admin';
 import { useSelector } from 'react-redux';
 import { selectResult } from '../mask/maskSlice';
 
@@ -40,14 +40,14 @@ function Viewer() {
     }
 
     return (
-        <Stack direction="vertical">
+        <ViewerLayout>
             <Toolbar viewport={viewport} onBurgerClick={onBurgerClick} onMaskClick={onMaskClick} />
-            <Stack>
+            <Stack direction="horizontal" gap={0}>
+                {isOpen.drawer && <SideStudyViewer study={study} index={index} volume={result.volume} />}
                 <StackViewport viewport={viewport} index={index} setIndex={setIndex} imageIds={study.keys.map(key => 'wadouri:' + api.getBytes(key))} />
                 {isOpen.mask && <Mask path={study.keys[index]} />}
-                {isOpen.drawer && <SideStudyViewer study={study} index={index} volume={result.volume} />}
             </Stack>
-        </Stack>
+        </ViewerLayout>
     )
 }
 
